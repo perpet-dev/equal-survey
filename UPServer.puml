@@ -1,0 +1,21 @@
+@startuml
+allow_mixing
+package "UI Server" {
+    class AutomatonUI {
+        + display_question(user_id, automaton_id)
+        + submit_answer(user_id, automaton_id, question_id, answer)
+        + update_UI(next_state)
+    }
+}
+
+package "FastAPI Backend" {
+    class AutomatonAPI {
+        + process_automaton(input_data)
+        + fetch_user_automaton_state(user_id, automaton_id)
+        + process_user_input(current_state, question_id, answer)
+        + update_user_automaton_state(user_id, automaton_id, next_state)
+    }
+}
+
+AutomatonUI -> AutomatonAPI : uses
+@enduml

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "prosinsight",
+  "private_key_id": "f6f978758907aa1231828190cc0caed5d984683e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAIW6TITT6cuE0\nl7ac2trktKoZx8sOpORutHaubpB0M6Bpo5uj6uGAuOGhgSWV/T7FbWkmyByvmLdB\njgWYmUEogCPqMziEe26NV8zoVZEY9wjO+g7sT/PtyXhicM8r1aUGGT46yJpR2bmU\nIaMT6hFQyUb11AixF9o80kmM6DG1s+vH/UxVEtFAEgQmgftYXuzBO2lmvGkTTXvV\nguzxKKPEpfnU/xlpB+GKsHdrXFSO4HzDU3p8n5N/diFwXoazFgOFrybHBbRDDoBV\nRHAbvqhJ359AmkjaxcimYy4pK+p+/IAIE/xnUlLvbGwWfnXTV8HW/JvyIirGVdfi\nKsDL8Ib7AgMBAAECggEAOfSbv0QAECBBMLUm/6/A4cZhnT84UGWLBp3nQvzVFEhS\nditFErASb9rVLPuhE9p9ad50Hp+0j394oAywQXTRQ99LdiUXQlddZMN8awUMrMQv\n4wdpIv2HLk5cww0WYTmj+u/4ZpEGg/QyV63B3Ir5yC2++v6H1KvGSByC1T9hZ1al\nbxDBZqLT2KP2tZwZkLVP/gqIAZmuBxWUPrDF6MAAzbLzmbZhzrFebZumN/ndAXHg\ntdXGMSBaIJ5JmoRtNFrJTAIGiOVegigzCciwsv2HOsYl+DdLuoehFW8NPYr++J8w\nZezVvk+QjJ7p+R0U8f08zfG4eTFlT6Go+n/TikQmgQKBgQDvx/1qpfBmeX9ARsQe\nZpziHUqpDaaCglI1VzR6ReveHtaUBq9G6FvawmZTBRqhnV+MNJrkUBq6dSpKU/9L\nYicE0qjFC7G4W+uL25OIcUeortKAxNVzsUqshm66wXh9kbyz+BWyc98dSjc3muhG\nkPnC7sKyH1csJyjMHqL8uvheQQKBgQDNIFUIKkgoqX20YP5mxOOpms3gp8wN2G3t\nM99BUwNcBZ09eOwue4C4uQIUgJGwT4Tf1JPjHxvtWHRX+Xj3UiADd6jxkEjyGy9E\nel4wlsqfuSDRlY+cVCHT3Yw5VN6Ahj8LuJf6h4Y7+av/JKR+PNx6EXAaFmrTGRIT\nucgmjztOOwKBgQDl1Fp5u742auRm1q2qug5LyWnDqlrco09q40Bgpt6TFBn23oVo\nwNUyVL1BfBXvrOlleRKyHnnQGPfFMMf2GIlv3P95h2D8ZdbbQkciM/pMm+0XEhPK\nhbger+g4x7LXITavhe4+E0RbTcSpXqie4t0TVEl39ARZRNuc8wyklA32QQKBgAfK\nV5Bk0rLApSaJnH/YsHDLkVAb71MDSkF8+9imR3ViPTONeSLWy++4Dw0qSN4yVvCN\nSUSR9OSRvHFu5xo1g0O+cqsh+LNBNw1ZvGQKBg4E4Os0y+x7AYHjYyT2RTEKaDCQ\nxSzdosp6U/7vrFOjChiUuvYyrcHwrNAU+TYFsJHrAoGAMa7TXEAJNI2wdpA/YW0J\nBxo1fPqo9ELY128McTVkLMIFnqLcqOJ43fsqhiAp/GCn7djj/NrVJP+Oy686nmFI\nlEV9DyVlKjbHNQJ3HNTObgeZ6M2/FRhbVNVaY/dJkAzD0IicKBQ7T1K1CWiV/1La\nkxARWsRd4vMSbxMCmjDl6m4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-l9kcl@prosinsight.iam.gserviceaccount.com",
+  "client_id": "104070856036396806297",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-l9kcl%40prosinsight.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

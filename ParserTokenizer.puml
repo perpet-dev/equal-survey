@@ -1,0 +1,28 @@
+@startuml
+class Parser {
+    - tokenizer
+    - parsed_statements : list
+
+    + parse() : list
+    - parse_conditional() : dict
+    - parse_goto() : dict
+    - parse_set() : dict
+    - parse_array(token) : dict
+    - parse_set_array(array_name) : dict
+    - parse_action() : list
+}
+
+class Tokenizer {
+    + get_next_token() : dict
+    + peek_next_token() : dict
+    + expect_token(expected_type) : dict
+}
+
+class ParserError {
+}
+
+ParserError <|-- Parser
+
+Tokenizer "1" -right-> "1" Parser : uses
+
+@enduml

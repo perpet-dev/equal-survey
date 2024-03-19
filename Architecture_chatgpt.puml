@@ -1,0 +1,89 @@
+@startuml
+
+!define RECTANGLE class
+
+RECTANGLE User_Profile_Management {
+    :Manage User Data;
+    :Personalize Content;
+}
+
+RECTANGLE AI_Content_Generation {
+    :Generate Articles;
+    :Customize for Pet Types;
+}
+
+RECTANGLE User_Uploaded_Image_Handling {
+    :Validate Images;
+    :Store Securely;
+}
+
+RECTANGLE AI_Generated_Image_Management {
+    :Create Images;
+    :Moderate Content;
+}
+
+RECTANGLE Content_Moderation {
+    :Screen User Content;
+    :Ensure Policy Compliance;
+}
+
+RECTANGLE Data_Security_and_Privacy {
+    :Encrypt Data;
+    :Manage Access Controls;
+}
+
+RECTANGLE User_Feedback {
+    :Collect User Input;
+    :Adjust Content Accordingly;
+}
+
+RECTANGLE Analytics {
+    :Track User Engagement;
+    :Optimize Content Strategy;
+}
+
+RECTANGLE HealthCheck_and_Nutrition {
+    :Assess Pet Health;
+    :Recommend Vitamins & Nutrition;
+}
+
+RECTANGLE IoT_Data_Integration {
+    :Integrate Sensor Data;
+    :Enhance Health Assessments;
+}
+
+RECTANGLE Shopping_Mall {
+    :Offer Pet Products;
+    :Food, Toys, Devices;
+}
+
+RECTANGLE Recommendation_Engine {
+    :Analyze User Data & Behavior;
+    :Personalize Product Recommendations;
+}
+
+RECTANGLE PetGPT_ChatBot {
+    :Answer User Queries;
+    :Provide Pet Care Advice;
+}
+
+User_Profile_Management -down-> AI_Content_Generation : "Uses Profile\nData"
+AI_Content_Generation -right-> AI_Generated_Image_Management : "Requests\nImages"
+User_Uploaded_Image_Handling -up-> User_Profile_Management : "Links Images\nto Profiles"
+Content_Moderation -left-> User_Uploaded_Image_Handling : "Moderates\nUploaded Images"
+Content_Moderation -right-> AI_Generated_Image_Management : "Moderates\nGenerated Images"
+Data_Security_and_Privacy -down-> User_Profile_Management : "Secures User\nData"
+User_Feedback -down-> AI_Content_Generation : "Feedback for\nContent Improvement"
+Analytics -down-> AI_Content_Generation : "Analyzes Content\nPerformance"
+HealthCheck_and_Nutrition -left-> User_Profile_Management : "Utilizes Profile\nInformation"
+IoT_Data_Integration -up-> HealthCheck_and_Nutrition : "Provides Real-Time\nData for Assessments"
+Shopping_Mall -left-> User_Profile_Management : "Personalized\nProduct Offers"
+Shopping_Mall -down-> Analytics : "Analyze Purchase\nTrends"
+Recommendation_Engine -right-> Shopping_Mall : "Suggests Products\nBased on Analysis"
+Recommendation_Engine -up-> User_Profile_Management : "Leverages User\nProfile Data"
+Recommendation_Engine -up-> Analytics : "Utilizes Behavioral\nData"
+PetGPT_ChatBot -up-> User_Profile_Management : "Accesses User\nProfiles for Personalized Responses"
+PetGPT_ChatBot -left-> AI_Content_Generation : "Utilizes Generated\nContent for Answers"
+PetGPT_ChatBot -down-> HealthCheck_and_Nutrition : "Provides Health\nAdvice"
+
+@enduml

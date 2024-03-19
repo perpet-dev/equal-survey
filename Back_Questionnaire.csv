@@ -1,0 +1,213 @@
+﻿id,source,target,depth,question,answer,metadata_group,metadata_text,value_type
+BM001,back,"dog,cat",1st,매달 심장사상충 예방을 하고 있나요?,네.,heartworm_prevention,heartworm_prevention:yes,number
+BM002,back,"dog,cat",1st,매달 심장사상충 예방을 하고 있나요?,아니요.,heartworm_prevention,heartworm_prevention:no,number
+BM003,back,"dog,cat",1st,매년 추가접종(부스터 백신접종)을 하고 있나요?,네.,booster_vaccination,booster_vaccination:yes,number
+BM004,back,"dog,cat",1st,매년 추가접종(부스터 백신접종)을 하고 있나요?,항체가 검사를 통해 필요한 추가 접종만 진행하고 있어요.,booster_vaccination,booster_vaccination:conditional,number
+BM005,back,"dog,cat",1st,매년 추가접종(부스터 백신접종)을 하고 있나요?,아니요. 추가 접종을 하고 있지 않아요.,booster_vaccination,booster_vaccination:no,number
+BM006,back,"dog,cat",1st,현재 임신 중인가요?,네.,pregnancy_status,pregnancy_status:yes,number
+BM007,back,"dog,cat",1st,현재 임신 중인가요?,아니요.,pregnancy_status,pregnancy_status:no,number
+BM008,back,"dog,cat",2nd,최근 6개월 이내에 출산한 적이 있나요?,네.,recent_childbirth,recent_childbirth:yes,number
+BM009,back,"dog,cat",2nd,최근 6개월 이내에 출산한 적이 있나요?,아니요.,recent_childbirth,recent_childbirth:no,number
+BM010,back,"dog,cat",3rd,지금 수유 중인가요?,네.,breastfeeding,breastfeeding:yes,number
+BM011,back,"dog,cat",3rd,지금 수유 중인가요?,아니요.,breastfeeding,breastfeeding:no,number
+BM012,back,"dog,cat",1st,최근 ${e://Field/petname}의 체중에 변화가 있었나요?,눈에 띄게 줄었어요.,weight_change,weight_change:decreased_significantly,number
+BM013,back,"dog,cat",1st,최근 ${e://Field/petname}의 체중에 변화가 있었나요?,조금 줄었어요.,weight_change,weight_change:decreased_slightly,number
+BM014,back,"dog,cat",1st,최근 ${e://Field/petname}의 체중에 변화가 있었나요?,"아니요, 비슷해요.",weight_change,weight_change:no_change,number
+BM015,back,"dog,cat",1st,최근 ${e://Field/petname}의 체중에 변화가 있었나요?,조금 늘었어요.,weight_change,weight_change:increased_slightly,number
+BM016,back,"dog,cat",1st,최근 ${e://Field/petname}의 체중에 변화가 있었나요?,눈에 띄게 늘었어요.,weight_change,weight_change:increased_significantly,number
+BM017,back,cat,1st,"현재 고양이 헤르페스바이러스 감염 증상(재채기, 콧물, 결막염 등)이 있나요?",네.,feline_herpesvirus,feline_herpesvirus:positive,number
+BM018,back,cat,1st,"현재 고양이 헤르페스바이러스 감염 증상(재채기, 콧물, 결막염 등)이 있나요?",아니요.,feline_herpesvirus,feline_herpesvirus:negative,number
+BM019,back,cat,1st,"현재 고양이 헤르페스바이러스 감염 증상(재채기, 콧물, 결막염 등)이 있나요?",아니요. 하지만 보균자에요.,feline_herpesvirus,feline_herpesvirus:carrier,number
+BM020,back,"dog,cat",1st,"주로 어떤 사료를 먹나요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.",동물성 단백질 일반 사료 (곤충 단백질 포함),diet,diet:animal_protein,number
+BM021,back,"dog,cat",1st,"주로 어떤 사료를 먹나요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","식물성 단백질 일반 사료 (두부, 콩 단백질 등 포함)",diet,diet:plant_protein,number
+BM022,back,"dog,cat",1st,"주로 어떤 사료를 먹나요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","수의사 처방사료 (Royal Canin, Hill's, Purina, Velixer 등에서 생산한 처방식)",diet,diet:prescription_diet,number
+BM023,back,"dog,cat",1st,"주로 어떤 사료를 먹나요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","화식류 제품 (기성제품, 집에서 직접 굽거나 조리한 고기 등 포함)",diet,diet:cooked_meat,number
+BM024,back,"dog,cat",1st,"주로 어떤 사료를 먹나요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","생식 및 동결건조 사료 (조리되지 않은 어류, 육류, 생고기 등 포함)",diet,diet:raw_diet,number
+BM025,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.",비만 예방 및 체중 감량 사료,prescription_diet,prescription_diet:weight_control,number
+BM026,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","신장 (Renal, Kidney)",prescription_diet,prescription_diet:renal,number
+BM027,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","비뇨기계 (Urinary, 결석 예방 사료)",prescription_diet,prescription_diet:urinary,number
+BM028,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","간 (Hepatic, Liver)",prescription_diet,prescription_diet:hepatic,number
+BM029,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","저알러지 (Hypoallergic, 가수분해 사료)",prescription_diet,prescription_diet:hypoallergic,number
+BM030,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","소화기계 (Intearinal, Microbiome)",prescription_diet,prescription_diet:intestinal,number
+BM031,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.","심장 (Cardiac, Heart)",prescription_diet,prescription_diet:cardiac,number
+BM032,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.",회복용 처방사료 (A/D 또는 P/D 또는 Recovery),prescription_diet,prescription_diet:recovery,number
+BM033,back,"dog,cat",2nd,"처방 사료를 먹는다면, 어떤 사료인가요?<br>두 가지 이상의 사료를 먹는다면, 가장 많은 비중을 차지하는 사료를 기준으로 선택해주세요.",기타 처방사료 (아래에 작성해 주세요.),prescription_diet,prescription_diet:other,number
+BM034,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.",간식은 주지 않아요.,treat_type,treat_type:none,number
+BM035,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.","습식 간식류 (츄르, 양갱, 퓨레, 무스, 동물용 통조림 등)",treat_type,treat_type:wet_snacks,number
+BM036,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.","건식 간식류 (동결건조, 쿠키, 육포, 저키 등)",treat_type,treat_type:dry_snacks,number
+BM037,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.","기능성 간식류 (오메가3, 유산균 등 특정 건강 보조성분이 포함된 간식류)",treat_type,treat_type:functional_snacks,number
+BM038,back,dog,1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.",개껌류,treat_type,treat_type:dog_dental_chew,number
+BM039,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.","천연 재료 간식류 중 과일, 야채 위주",treat_type,treat_type:natural_fruit_vegetable,number
+BM040,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.","천연 재료 간식류 중 살코기, 닭가슴살, 황태포 등 육류 위주",treat_type,treat_type:natural_meat,number
+BM041,back,"dog,cat",1st,"주로 어떤 간식을 먹나요?<br>두 가지 이상의 간식을 먹는다면, 가장 많은 비중을 차지하는 간식 기준으로 선택해주세요.",기타 (아래에 작성해 주세요.),treat_type,treat_type:others,number
+BM042,back,"dog,cat",2nd,간식은 하루에 몇 번정도 주시나요?<br>권장되는 하루 간식 복용량은 하루에 먹는 사료량의 10% 이하입니다.,권장량을 지켜서 주거나 적게 줘요.,treat_intake,treat_intake:recommended_or_less,number
+BM043,back,"dog,cat",2nd,간식은 하루에 몇 번정도 주시나요?<br>권장되는 하루 간식 복용량은 하루에 먹는 사료량의 10% 이하입니다.,권장량보다 많이 줘요.,treat_intake,treat_intake:more_than_recommended,number
+BM044,back,"dog,cat",1st,사료나 간식을 먹는 속도는 어떤가요?,주자마자 허겁지겁 순식간에 먹어요. 잘 씹지 않고 삼키는 것 같아요.,eating_speed,eating_speed:fast,number
+BM045,back,"dog,cat",1st,사료나 간식을 먹는 속도는 어떤가요?,적당한 속도로 잘 씹어서 먹어요.,eating_speed,eating_speed:moderate,number
+BM046,back,"dog,cat",1st,사료나 간식을 먹는 속도는 어떤가요?,"아주 느리게 먹거나, 먹을 것에 별로 관심이 없어요.",eating_speed,eating_speed:slow,number
+BM047,back,"dog,cat",1st,최근 구토 또는 역류 증상을 나타낸 적이 있나요?,아니요.,vomiting_reflux,vomiting_reflux:absent,number
+BM048,back,"dog,cat",1st,최근 구토 또는 역류 증상을 나타낸 적이 있나요?,"네, 이전부터 종종 있었어요.",vomiting_reflux,vomiting_reflux:intermittent,number
+BM049,back,"dog,cat",1st,최근 구토 또는 역류 증상을 나타낸 적이 있나요?,"네, 최근 들어서 심해졌어요.",vomiting_reflux,vomiting_reflux:increased_recently,number
+BM050,back,"dog,cat",1st,최근 대변의 상태는 어떤가요?,건조하고 딱딱해요.,fecal_condition,fecal_condition:dry_hard,number
+BM051,back,"dog,cat",1st,최근 대변의 상태는 어떤가요?,"건조한 편이지만, 적당히 말랑해요.",fecal_condition,fecal_condition:dry_soft,number
+BM052,back,"dog,cat",1st,최근 대변의 상태는 어떤가요?,습기가 있으면서 적당히 말랑해요. 가끔 주변에 살짝 묻어날 때도 있어요.,fecal_condition,fecal_condition:moist_soft,number
+BM053,back,"dog,cat",1st,최근 대변의 상태는 어떤가요?,무른 변을 보고 있어요. 거의 항상 주변에 많이 묻어나요.,fecal_condition,fecal_condition:loose,number
+BM054,back,"dog,cat",1st,최근 대변의 상태는 어떤가요?,설사 증상이 나타났어요.,fecal_condition,fecal_condition:diarrhea,number
+BM055,back,cat,1st,최근 ${e://Field/petname}에게 변비 증상이 있나요?,"아니요, 없어요.",constipation,constipation:no,number
+BM056,back,cat,1st,최근 ${e://Field/petname}에게 변비 증상이 있나요?,"네, 최근에 변비가 생겼어요.",constipation,constipation:recent,number
+BM057,back,cat,1st,최근 ${e://Field/petname}에게 변비 증상이 있나요?,"네, 예전부터 계속 변비가 있었어요.",constipation,constipation:chronic,number
+BM058,back,"dog,cat",1st,최근 음수량에 변화가 있나요?,줄었어요.,water_intake_change,water_intake_change:decreased,number
+BM059,back,"dog,cat",1st,최근 음수량에 변화가 있나요?,비슷해요.,water_intake_change,water_intake_change:stable,number
+BM060,back,"dog,cat",1st,최근 음수량에 변화가 있나요?,늘었어요.,water_intake_change,water_intake_change:increased,number
+BM061,back,"dog,cat",1st,최근 소변량에 변화가 있었나요?,줄었어요.,urine_volume,urine_volume:decreased,number
+BM062,back,"dog,cat",1st,최근 소변량에 변화가 있었나요?,비슷해요.,urine_volume,urine_volume:stable,number
+BM063,back,"dog,cat",1st,최근 소변량에 변화가 있었나요?,늘었어요.,urine_volume,urine_volume:increased,number
+BM064,back,dog,1st,최근 하루 소변 횟수에 변화가 있었나요?,줄었어요.,urination_frequency,urination_frequency:decreased,number
+BM065,back,dog,1st,최근 하루 소변 횟수에 변화가 있었나요?,비슷해요.,urination_frequency,urination_frequency:stable,number
+BM066,back,dog,1st,최근 하루 소변 횟수에 변화가 있었나요?,늘었어요.,urination_frequency,urination_frequency:increased,number
+BM067,back,cat,1st,최근 소변 냄새가 심해졌나요?,아니요.,urine_odor,urine_odor:normal,number
+BM068,back,cat,1st,최근 소변 냄새가 심해졌나요?,네.,urine_odor,urine_odor:strong,number
+BM069,back,cat,1st,최근 ${e://Field/petname}의 화장실 방문 빈도에 변화가 있나요?,줄었어요.,bathroom_frequency,bathroom_frequency:decreased,number
+BM070,back,cat,1st,최근 ${e://Field/petname}의 화장실 방문 빈도에 변화가 있나요?,비슷해요.,bathroom_frequency,bathroom_frequency:stable,number
+BM071,back,cat,1st,최근 ${e://Field/petname}의 화장실 방문 빈도에 변화가 있나요?,늘었어요.,bathroom_frequency,bathroom_frequency:increased,number
+BM072,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,목욕을 시키고 있지 않아요.,bathing_frequency,bathing_frequency:no_bathing,number
+BM073,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,1달에 1번 이하,bathing_frequency,bathing_frequency:less_than_monthly,number
+BM074,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,2주일에 1번,bathing_frequency,bathing_frequency:biweekly,number
+BM075,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,1주일에 1번,bathing_frequency,bathing_frequency:weekly,number
+BM076,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,1주일에 2번,bathing_frequency,bathing_frequency:twice_weekly,number
+BM077,back,dog,1st,전신 목욕은 얼마나 자주 하나요?,1주일에 3번 이상,bathing_frequency,bathing_frequency:more_than_twice_weekly,number
+BM078,back,cat,1st,미용을 주기적으로 하나요?,네.,grooming,grooming:regular,number
+BM079,back,cat,1st,미용을 주기적으로 하나요?,아니요.,grooming,grooming:not_regular,number
+BM080,back,cat,2nd,미용은 주로 어디서 하나요?,집에서 해요.,grooming_location,grooming_location:home,number
+BM081,back,cat,2nd,미용은 주로 어디서 하나요?,샵 또는 동물병원에서 해요.,grooming_location,grooming_location:shop_or_vet,number
+BM082,back,cat,3rd,미용을 위해 마취를 하나요?,네.,anesthesia,anesthesia:yes,number
+BM083,back,cat,3rd,미용을 위해 마취를 하나요?,아니요.,anesthesia,anesthesia:no,number
+BM084,back,"dog,cat",1st,"최근 6개월 내에 감염성 피부염(ex. 곰팡이, 세균 등)이 2번 이상 나타났나요?",네.,infectious_dermatitis,infectious_dermatitis:yes,number
+BM085,back,"dog,cat",1st,"최근 6개월 내에 감염성 피부염(ex. 곰팡이, 세균 등)이 2번 이상 나타났나요?",아니요.,infectious_dermatitis,infectious_dermatitis:no,number
+BM086,back,"dog,cat",1st,주로 생활하는 실내 환경이 건조하지는 않나요?,건조한 편이라 평소 가습기를 틀어놔요.,indoor_environment_humidity,indoor_environment_humidity:dry_with_humidifier,number
+BM087,back,"dog,cat",1st,주로 생활하는 실내 환경이 건조하지는 않나요?,건조한 편이지만 특별히 신경 쓰고 있지 않아요.,indoor_environment_humidity,indoor_environment_humidity:dry_without_care,number
+BM088,back,"dog,cat",1st,주로 생활하는 실내 환경이 건조하지는 않나요?,건조하지 않아서 특별히 신경 쓰고 있지 않아요.,indoor_environment_humidity,indoor_environment_humidity:not_dry,number
+BM089,back,"dog,cat",1st,주로 생활하는 실내 환경이 건조하지는 않나요?,건조하지 않고 오히려 습한 환경이에요.,indoor_environment_humidity,indoor_environment_humidity:humid,number
+BM090,back,"dog,cat",1st,최근 눈을 반복적으로 비비는 행동을 보인 적이 있나요?,"아니요, 그렇지 않아요.",eye_rubbing,eye_rubbing:never,number
+BM091,back,"dog,cat",1st,최근 눈을 반복적으로 비비는 행동을 보인 적이 있나요?,일주일에 1-2회 정도 보여요.,eye_rubbing,eye_rubbing:1-2_times_weekly,number
+BM092,back,"dog,cat",1st,최근 눈을 반복적으로 비비는 행동을 보인 적이 있나요?,일주일에 3-5회 정도 보여요.,eye_rubbing,eye_rubbing:3-5_times_weekly,number
+BM093,back,"dog,cat",1st,최근 눈을 반복적으로 비비는 행동을 보인 적이 있나요?,거의 매일 보여요.,eye_rubbing,eye_rubbing:daily,number
+BM094,back,"dog,cat",1st,혹시 입안에 염증이 있거나 나쁜 냄새가 난다면 최근에 심해졌나요?,"아니요, 구취나 염증은 없어요.",oral_inflammation,oral_inflammation:absent,number
+BM095,back,"dog,cat",1st,혹시 입안에 염증이 있거나 나쁜 냄새가 난다면 최근에 심해졌나요?,"염증은 있지만, 구취가 심해지진 않았어요.",oral_inflammation,oral_inflammation:present,number
+BM096,back,"dog,cat",1st,혹시 입안에 염증이 있거나 나쁜 냄새가 난다면 최근에 심해졌나요?,"네, 둘 다 심해졌어요.",oral_inflammation,oral_inflammation:worsened,number
+BM097,back,"dog,cat",1st,혹시 입안에 염증이 있거나 나쁜 냄새가 난다면 최근에 심해졌나요?,입안을 안 보여줘서 확인하기 어려워요.,oral_inflammation,oral_inflammation:unconfirmed,number
+BM098,back,"dog,cat",1st,가장 최근에 받은 스케일링은 언제인가요?,6개월 내,scaling,scaling:last_6_months,number
+BM099,back,"dog,cat",1st,가장 최근에 받은 스케일링은 언제인가요?,"6개월 초과, 1년 이내",scaling,scaling:6_months_to_1_year,number
+BM100,back,"dog,cat",1st,가장 최근에 받은 스케일링은 언제인가요?,"1년 초과, 혹은 받은 적 없어요.",scaling,scaling:over_1_year_or_never,number
+BM101,back,"dog,cat",1st,칫솔질을 하고 있나요?,매일 해요.,toothbrushing,toothbrushing:everyday,number
+BM102,back,"dog,cat",1st,칫솔질을 하고 있나요?,일주일에 3회 이상 해요.,toothbrushing,toothbrushing:3_times_weekly,number
+BM103,back,"dog,cat",1st,칫솔질을 하고 있나요?,"치약만 잇몸이나 치아에 발라주고 있거나, 마시는 물에 치석 방지 제품을 섞어줘요.",toothbrushing,toothbrushing:only_toothpaste,number
+BM104,back,"dog,cat",1st,칫솔질을 하고 있나요?,잘 못해주고 있어요.,toothbrushing,toothbrushing:never,number
+BM105,back,cat,1st,최근에 입을 벌리고 호흡하는 경우가 있었나요?,네.,open_mouth_breathing,open_mouth_breathing:yes,number
+BM106,back,cat,1st,최근에 입을 벌리고 호흡하는 경우가 있었나요?,아니요.,open_mouth_breathing,open_mouth_breathing:no,number
+BM107,back,"dog,cat",1st,"최근 잠을 자거나 휴식을 취할 때, 코골이나 헉헉거림 등의 비정상적인 숨소리를 내나요?","아니요, 안 그래요.",abnormal_breathing,abnormal_breathing:never,number
+BM108,back,"dog,cat",1st,"최근 잠을 자거나 휴식을 취할 때, 코골이나 헉헉거림 등의 비정상적인 숨소리를 내나요?",일주일에 1-2회 정도 비정상적인 숨소리를 내요.,abnormal_breathing,abnormal_breathing:1-2_times_weekly,number
+BM109,back,"dog,cat",1st,"최근 잠을 자거나 휴식을 취할 때, 코골이나 헉헉거림 등의 비정상적인 숨소리를 내나요?",일주일에 3-5회 정도 비정상적인 숨소리를 내요.,abnormal_breathing,abnormal_breathing:3-5_times_weekly,number
+BM110,back,"dog,cat",1st,"최근 잠을 자거나 휴식을 취할 때, 코골이나 헉헉거림 등의 비정상적인 숨소리를 내나요?",매일 비정상적인 숨소리를 내요.,abnormal_breathing,abnormal_breathing:daily,number
+BM111,back,"dog,cat",1st,최근 캑캑거리는 증상이 자주 나타나나요?,"아니요, 안 그래요.",coughing_frequency,coughing_frequency:none,number
+BM112,back,"dog,cat",1st,최근 캑캑거리는 증상이 자주 나타나나요?,격한 운동 후 혹은 과하게 흥분하는 일이 있을 때만 캑캑거려요.,coughing_frequency,coughing_frequency:occasional,number
+BM113,back,"dog,cat",1st,최근 캑캑거리는 증상이 자주 나타나나요?,특별한 일이 없는데도 캑캑거리는 모습이 하루에 한두 번 정도 보여요.,coughing_frequency,coughing_frequency:frequent,number
+BM114,back,"dog,cat",1st,최근 캑캑거리는 증상이 자주 나타나나요?,특별한 일이 없는데도 캑캑거리는 모습이 하루에 네다섯 번 이상 보여요.,coughing_frequency,coughing_frequency:very_frequent,number
+BM115,back,dog,1st,${e://Field/petname}의 성격은 어떤가요?,항상 격하게 흥분해요.,temperament,temperament:excitable,number
+BM116,back,dog,1st,${e://Field/petname}의 성격은 어떤가요?,"때로는 격하지만, 평소에는 차분한 편이에요.",temperament,temperament:calm_excitable,number
+BM117,back,dog,1st,${e://Field/petname}의 성격은 어떤가요?,꼬리를 살랑이거나 만져달라고 오는 등 평온한 방식으로 기분과 상태를 표현해요.,temperament,temperament:peaceful_expressive,number
+BM118,back,dog,1st,${e://Field/petname}의 성격은 어떤가요?,주변 환경 변화에 예민한 편은 아니에요. 성격이 무던해요.,temperament,temperament:indifferent,number
+BM119,back,dog,1st,${e://Field/petname}의 성격은 어떤가요?,"겁이 많고, 반려인과 멀어지거나 환경이 변화하면 많이 불안해하고 예민한 편이에요.",temperament,temperament:anxious_sensitive,number
+BM120,back,dog,1st,최근 급격한 성격의 변화가 있었나요?,"아니요, 없었어요.",temperament_change,temperament_change:none,number
+BM121,back,dog,1st,최근 급격한 성격의 변화가 있었나요?,"네, 쓰다듬거나 만졌을 때 예전보다 반응의 정도가 덜 해요.",temperament_change,temperament_change:reduced_reaction,number
+BM122,back,dog,1st,최근 급격한 성격의 변화가 있었나요?,"네, 갑자기 저를 못 알아보거나 무시해요.",temperament_change,temperament_change:recognition_loss,number
+BM123,back,dog,1st,최근 급격한 성격의 변화가 있었나요?,"네, 어딜 만지든 짖거나 물려고 해요.",temperament_change,temperament_change:aggression,number
+BM124,back,dog,1st,최근 급격한 성격의 변화가 있었나요?,"네, 특정 부위를 만지려고 하면 짖거나 물려고 해요.",temperament_change,temperament_change:specific_aggression,number
+BM125,back,dog,1st,"반려인이 잠깐 집을 비울 때, 어떻게 행동하나요?",나가자마자 짖기 시작해요.,dog_separation_behavior,dog_separation_behavior:immediate_barking,number
+BM126,back,dog,1st,"반려인이 잠깐 집을 비울 때, 어떻게 행동하나요?","바로 짖지는 않지만, 종종 짖어요.",dog_separation_behavior,dog_separation_behavior:occasional_barking,number
+BM127,back,dog,1st,"반려인이 잠깐 집을 비울 때, 어떻게 행동하나요?",별로 신경쓰지 않아요.,dog_separation_behavior,dog_separation_behavior:indifferent,number
+BM128,back,cat,1st,최근 반려인님을 피하거나 숨는 경우가 있었나요?,거의 숨지 않아요.,cat_avoidance_behavior,cat_avoidance_behavior:normal,number
+BM129,back,cat,1st,최근 반려인님을 피하거나 숨는 경우가 있었나요?,가끔 그래요.,cat_avoidance_behavior,cat_avoidance_behavior:occasional,number
+BM130,back,cat,1st,최근 반려인님을 피하거나 숨는 경우가 있었나요?,최근에 심해졌어요.,cat_avoidance_behavior,cat_avoidance_behavior:increased,number
+BM131,back,cat,1st,최근 반려인님을 피하거나 숨는 경우가 있었나요?,"늘 숨어있고, 손길을 피해요.",cat_avoidance_behavior,cat_avoidance_behavior:constant,number
+BM132,back,cat,1st,반려인님이 외출하고 집에 돌아오면 어떻게 행동하나요?,친근하게 반겨줘요.,cat_greeting_behavior,cat_greeting_behavior:friendly,number
+BM133,back,cat,1st,반려인님이 외출하고 집에 돌아오면 어떻게 행동하나요?,저에게 딱히 관심을 보이지 않고 하던 일을 해요.,cat_greeting_behavior,cat_greeting_behavior:indifferent,number
+BM134,back,cat,1st,반려인님이 외출하고 집에 돌아오면 어떻게 행동하나요?,도망가거나 숨어있어요.,cat_greeting_behavior,cat_greeting_behavior:fearful,number
+BM135,back,cat,1st,평소 모르는 사람을 보면 어떻게 행동하나요?,친근하게 다가가요.,cat_social_behavior,cat_social_behavior:sociable,number
+BM136,back,cat,1st,평소 모르는 사람을 보면 어떻게 행동하나요?,도망가거나 숨어있어요.,cat_social_behavior,cat_social_behavior:avoidant,number
+BM137,back,cat,1st,평소 모르는 사람을 보면 어떻게 행동하나요?,"방어 태세를 취하거나, 때로는 공격성을 보여요.",cat_social_behavior,cat_social_behavior:defensive_aggressive,number
+BM138,back,cat,1st,평소 모르는 사람을 보면 어떻게 행동하나요?,사람에게 별로 관심이 없어요.,cat_social_behavior,cat_social_behavior:indifferent,number
+BM139,back,dog,1st,산책은 얼마나 오래 하나요?,거의 활동량이 없어요.,dog_activity_duration,dog_activity_duration:none,number
+BM140,back,dog,1st,산책은 얼마나 오래 하나요?,10-30분 이내,dog_activity_duration,dog_activity_duration:short,number
+BM141,back,dog,1st,산책은 얼마나 오래 하나요?,30-60분 이내,dog_activity_duration,dog_activity_duration:medium,number
+BM142,back,dog,1st,산책은 얼마나 오래 하나요?,1시간 이상,dog_activity_duration,dog_activity_duration:long,number
+BM143,back,dog,1st,산책은 얼마나 오래 하나요?,"산책을 자주 가진 않지만, 집안에서 활동량이 많아요.",dog_activity_duration,dog_activity_duration:indoor,number
+BM144,back,dog,1st,산책할 때 ${e://Field/petname}의 상태는 어떤가요?,계속 활발하게 걸어요.,dog_activity,dog_activity:high,number
+BM145,back,dog,1st,산책할 때 ${e://Field/petname}의 상태는 어떤가요?,처음부터 힘들어해요.,dog_activity,dog_activity:low,number
+BM146,back,dog,1st,산책할 때 ${e://Field/petname}의 상태는 어떤가요?,10분 정도 걸으면 힘들어해요.,dog_activity,dog_activity:low_after_short_walk,number
+BM147,back,dog,1st,산책할 때 ${e://Field/petname}의 상태는 어떤가요?,30분 정도 걸으면 힘들어해요.,dog_activity,dog_activity:low_after_medium_walk,number
+BM148,back,dog,1st,산책할 때 ${e://Field/petname}의 상태는 어떤가요?,1시간 정도 걸으면 힘들어해요.,dog_activity,dog_activity:low_after_long_walk,number
+BM149,back,dog,1st,산책할 때 다리를 아파하는 증상이 있나요?,"아니요, 그렇지 않아요.",leg_pain,leg_pain:no_symptoms,number
+BM150,back,dog,1st,산책할 때 다리를 아파하는 증상이 있나요?,"조금만 걸어도 다리를 떨거나, 절뚝이는 등 불안정해요.",leg_pain,leg_pain:unstable_after_short_walk,number
+BM151,back,dog,1st,산책할 때 다리를 아파하는 증상이 있나요?,"오래 걸으면 다리를 떨거나, 절뚝이는 등 불안정해요.",leg_pain,leg_pain:unstable_after_long_walk,number
+BM152,back,dog,1st,주로 생활하는 실내 공간은 어떤 바닥인가요?,미끄러운 바닥 (예: 대리석),floor_type,floor_type:slippery,number
+BM153,back,dog,1st,주로 생활하는 실내 공간은 어떤 바닥인가요?,조금 덜 미끄러운 바닥 (예: 나무 바닥),floor_type,floor_type:less_slippery,number
+BM154,back,dog,1st,주로 생활하는 실내 공간은 어떤 바닥인가요?,미끄러짐이 거의 없는 바닥 (예: 장판),floor_type,floor_type:non_slippery,number
+BM155,back,dog,1st,미끄럼 방지 관련 제품을 사용하시나요?,미끄럼 방지 패드를 깔아놨어요.,anti_slip_product,anti_slip_product:pad_used,number
+BM156,back,dog,1st,미끄럼 방지 관련 제품을 사용하시나요?,미끄럼 방지 크림을 바르고 있어요.,anti_slip_product,anti_slip_product:cream_used,number
+BM157,back,dog,1st,미끄럼 방지 관련 제품을 사용하시나요?,둘 다 사용하고 있어요.,anti_slip_product,anti_slip_product:both_used,number
+BM158,back,dog,1st,미끄럼 방지 관련 제품을 사용하시나요?,둘 다 사용하지 않아요.,anti_slip_product,anti_slip_product:none_used,number
+BM159,back,dog,1st,주로 생활하는 실내 공간의 가구 높이는 어떤가요?,"소파, 침대와 같은 가구가 없는 좌식 생활을 하거나, 저상형이에요.",furniture_height,furniture_height:low,number
+BM160,back,dog,1st,주로 생활하는 실내 공간의 가구 높이는 어떤가요?,"소파, 침대 등 모두 높은 편이에요.",furniture_height,furniture_height:high,number
+BM161,back,dog,1st,주로 생활하는 실내 공간의 가구 높이는 어떤가요?,"소파, 침대 등 모두 높지만, 계단식 구조로 되어있어요.",furniture_height,furniture_height:high_stepped,number
+BM162,back,dog,1st,"소파나 침대 등 높은 곳에 올라가고 내려갈 때, 어떻게 행동하나요?",달려와서 점프해요.,jumping_behavior,jumping_behavior:runs_and_jumps,number
+BM163,back,dog,1st,"소파나 침대 등 높은 곳에 올라가고 내려갈 때, 어떻게 행동하나요?",반려인에게 올려 달라고 애원해요.,jumping_behavior,jumping_behavior:requests_assistance,number
+BM164,back,dog,1st,"소파나 침대 등 높은 곳에 올라가고 내려갈 때, 어떻게 행동하나요?",계단이나 주변 사물이나 이용해서 계단식으로 올라와요.,jumping_behavior,jumping_behavior:uses_stairs_or_objects,number
+BM165,back,dog,1st,"소파나 침대 등 높은 곳에 올라가고 내려갈 때, 어떻게 행동하나요?",올라오지 않으려 해요.,jumping_behavior,jumping_behavior:avoids_climbing,number
+BM166,back,dog,1st,"두 발로 서려고 할 때, 반려인님은 어떻게 행동하시나요?",두 발로 서는 경우가 거의 없어요.,standing_behavior,standing_behavior:infrequent_standing,number
+BM167,back,dog,1st,"두 발로 서려고 할 때, 반려인님은 어떻게 행동하시나요?",서자마자 바로 안아주는 등 최대한 두 발로 서지 못하게 해요.,standing_behavior,standing_behavior:prevent_standing,number
+BM168,back,dog,1st,"두 발로 서려고 할 때, 반려인님은 어떻게 행동하시나요?",별로 신경 쓰지 않아요.,standing_behavior,standing_behavior:indifferent,number
+BM169,back,cat,1st,주로 생활하는 공간은 어디인가요?,"실내 - 아파트, 빌라, 주택 등 (실내에서만 생활해요. 외출하지 않아요.)",cat_living_space,cat_living_space:indoor,number
+BM170,back,cat,1st,주로 생활하는 공간은 어디인가요?,실외 - 마당냥이 혹은 길냥이 등 (자유롭게 외출할 수 있어요.),cat_living_space,cat_living_space:outdoor,number
+BM171,back,cat,1st,주로 생활하는 공간은 어디인가요?,기타 (아래에 작성해 주세요.),cat_living_space,cat_living_space:other,number
+BM172,back,cat,1st,주로 생활하는 환경에 외부인의 출입이 잦은 편인가요?,"네, 매번 다른 외부인이 자주 방문해요.",cat_visitor_frequency,cat_visitor_frequency:high_different_visitors,number
+BM173,back,cat,1st,주로 생활하는 환경에 외부인의 출입이 잦은 편인가요?,"네, 그런데 대부분 여러 번 방문한 친구들이에요.",cat_visitor_frequency,cat_visitor_frequency:high_repeated_visitors,number
+BM174,back,cat,1st,주로 생활하는 환경에 외부인의 출입이 잦은 편인가요?,"아니요, 그런데 최근 수리 기사님 등의 방문이 잦았어요.",cat_visitor_frequency,cat_visitor_frequency:low_recent_increase,number
+BM175,back,cat,1st,주로 생활하는 환경에 외부인의 출입이 잦은 편인가요?,"아니요, 가족들만 출입해요.",cat_visitor_frequency,cat_visitor_frequency:low_family_only,number
+BM176,back,cat,1st,캣타워 또는 올라갈 수 있는 높은 가구가 있나요?,네.,cat_tower,cat_tower:yes,number
+BM177,back,cat,1st,캣타워 또는 올라갈 수 있는 높은 가구가 있나요?,아니요.,cat_tower,cat_tower:no,number
+BM178,back,cat,1st,최근 놀다가 갑자기 멈추거나 휴식을 취하는 경우가 있었나요?,"아니요, 집사가 먼저 지칠 때 까지 멈추지 않고 놀아요.",cat_activity,cat_activity:high,number
+BM179,back,cat,1st,최근 놀다가 갑자기 멈추거나 휴식을 취하는 경우가 있었나요?,"대부분 지치지 않고 잘 놀지만, 일주일에 1-2회 정도는 먼저 놀이를 멈추거나 쉬고 싶어해요.",cat_activity,cat_activity:moderate,number
+BM180,back,cat,1st,최근 놀다가 갑자기 멈추거나 휴식을 취하는 경우가 있었나요?,일주일에 3-4회 정도 먼저 놀이를 멈추거나 쉬고 싶어해요.,cat_activity,cat_activity:low,number
+BM181,back,cat,1st,최근 놀다가 갑자기 멈추거나 휴식을 취하는 경우가 있었나요?,대부분 먼저 놀이를 멈추거나 쉬고 싶어해요.,cat_activity,cat_activity:very_low,number
+BM182,back,"dog,cat",1st,"지금부터는 관찰이 필요해요. 답변을 이어가시겠어요?<br>만약 코의 촉촉함, 귓구멍 상태 등을 안다면 이어서 답변할 수 있어요:)<br>답변이 많을수록 더 정교한 진단 결과를 받을 수 있어요.",좋아요! 답변할게요.,observation,observation:ready,
+BM183,back,"dog,cat",1st,"지금부터는 관찰이 필요해요. 답변을 이어가시겠어요?<br>만약 코의 촉촉함, 귓구멍 상태 등을 안다면 이어서 답변할 수 있어요:)<br>답변이 많을수록 더 정교한 진단 결과를 받을 수 있어요.",지금은 어려워요.,observation,observation:difficult,
+BM184,back,"dog,cat",1st,현재 기준으로 ${e://Field/petname}의 눈이 충혈되어있나요?,"아니요, 안 그래요.",eye_condition,eye_condition:normal,number
+BM185,back,"dog,cat",1st,현재 기준으로 ${e://Field/petname}의 눈이 충혈되어있나요?,약간 충혈되어있어요.,eye_condition,eye_condition:mild_congestion,number
+BM186,back,"dog,cat",1st,현재 기준으로 ${e://Field/petname}의 눈이 충혈되어있나요?,심하게 충혈되어있어요.,eye_condition,eye_condition:severe_congestion,number
+BM187,back,"dog,cat",1st,현재 ${e://Field/petname}의 동공 표면이 뿌옇거나 하얀색으로 보이는 부분이 있나요?,네.,eye_opacity,eye_opacity:cloudy,number
+BM188,back,"dog,cat",1st,현재 ${e://Field/petname}의 동공 표면이 뿌옇거나 하얀색으로 보이는 부분이 있나요?,아니요.,eye_opacity,eye_opacity:clear,number
+BM189,back,"dog,cat",1st,현재 기준으로 코가 촉촉한가요?,네.,nose_condition,nose_condition:moist,number
+BM190,back,"dog,cat",1st,현재 기준으로 코가 촉촉한가요?,"네, 그런데 하얗거나 노란 콧물을 동반하고 있어요.",nose_condition,nose_condition:moist_with_discharge,number
+BM191,back,"dog,cat",1st,현재 기준으로 코가 촉촉한가요?,"아니요, 건조해요.",nose_condition,nose_condition:dry,number
+BM192,back,"dog,cat",1st,현재 기준으로 잇몸은 촉촉한가요?,"네, 촉촉해요.",gum_condition,gum_condition:moist,number
+BM193,back,"dog,cat",1st,현재 기준으로 잇몸은 촉촉한가요?,"아니요, 건조해요.",gum_condition,gum_condition:dry,number
+BM194,back,"dog,cat",1st,현재 기준으로 잇몸은 촉촉한가요?,입안을 안 보여줘서 확인하기 어려워요.,gum_condition,gum_condition:unknown,number
+BM195,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,정상 같아 보여요.,ear_condition,ear_condition:normal,number
+BM196,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,연노랑색 귀지가 많아요.,ear_condition,ear_condition:light_yellow_earwax,number
+BM197,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,갈색 귀지가 많아요.,ear_condition,ear_condition:brown_earwax,number
+BM198,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,귀지 여부와 상관 없이 귓구멍이 좁아진 것 같아요.,ear_condition,ear_condition:narrowed_earhole,number
+BM199,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,최근 많이 긁어서인지 붉게 충혈됐어요.,ear_condition,ear_condition:reddened,number
+BM200,back,"dog,cat",1st,현재 귓구멍 내부는 어떤 상태인가요?,보여주지 않아서 확인이 불가능해요.,ear_condition,ear_condition:unconfirmed,number
+BM201,back,"dog,cat",2nd,방금 답변해 주신 증상이 양쪽 모두에서 나타나나요?,네.,ear_condition_symptom,ear_condition_symptom:bilateral,number
+BM202,back,"dog,cat",2nd,방금 답변해 주신 증상이 양쪽 모두에서 나타나나요?,아니요.,ear_condition_symptom,ear_condition_symptom:unilateral,number
+BM203,back,"dog,cat",1st,현재 피부에 상처 또는 염증이 있는 상태인가요?,네.,skin_condition,skin_condition:yes,number
+BM204,back,"dog,cat",1st,현재 피부에 상처 또는 염증이 있는 상태인가요?,아니요.,skin_condition,skin_condition:no,number
+BM205,back,"dog,cat",1st,털에 윤기가 있나요?,"네, 그런데 뭉칠 정도로 엉겨 붙어있어요.",hair_condition,hair_condition:clumped,number
+BM206,back,"dog,cat",1st,털에 윤기가 있나요?,"네, 적당하게 윤기가 보여요.",hair_condition,hair_condition:shiny,number
+BM207,back,"dog,cat",1st,털에 윤기가 있나요?,"아니요, 푸석해 보여요.",hair_condition,hair_condition:dull,number
+BM208,back,"dog,cat",1st,${e://Field/petname}에게 탈모 증상이 있나요?,아니요.,hair_loss,hair_loss:no_symptoms,number
+BM209,back,"dog,cat",1st,${e://Field/petname}에게 탈모 증상이 있나요?,"네, 한 곳에서만 털이 빠져요.",hair_loss,hair_loss:localized,number
+BM210,back,"dog,cat",1st,${e://Field/petname}에게 탈모 증상이 있나요?,"네, 대칭적으로 여러 곳에서 빠지고 있어요.",hair_loss,hair_loss:symmetrical,number
+BM211,back,"dog,cat",1st,${e://Field/petname}에게 탈모 증상이 있나요?,"네, 비대칭적으로 여러 곳에서 빠지고 있어요.",hair_loss,hair_loss:asymmetrical,number
+BM212,back,"dog,cat",1st,${e://Field/petname}에게 탈모 증상이 있나요?,"네, 전신적으로 빠지고 있어요.",hair_loss,hair_loss:generalized,number

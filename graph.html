@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizza Order Process</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.19.1/cytoscape.min.js"></script>
+    <style>
+        #cy {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div id="cy"></div>
+    <script>
+    var cytoscapeData = {
+    "nodes": [
+        {
+            "data": {
+                "id": "1",
+                "label": "1 -> Welcome to our Pizza Order Form!"
+            }
+        },
+        {
+            "data": {
+                "id": "2",
+                "label": "2 -> What's your name?"
+            }
+        },
+        {
+            "data": {
+                "id": "3",
+                "label": "3 -> Hi @2, What pizza size do you prefer?"
+            }
+        },
+        {
+            "data": {
+                "id": "4",
+                "label": "4 -> Choose your toppings:"
+            }
+        },
+        {
+            "data": {
+                "id": "5",
+                "label": "5 -> Would you like to add another pizza?"
+            }
+        },
+        {
+            "data": {
+                "id": "6",
+                "label": "6 -> Would you like to add beverages?"
+            }
+        },
+        {
+            "data": {
+                "id": "7",
+                "label": "7 -> Select beverages:"
+            }
+        },
+        {
+            "data": {
+                "id": "8",
+                "label": "8 -> How many {@Beverage} would you like?"
+            }
+        },
+        {
+            "data": {
+                "id": "9",
+                "label": "9 -> Add another beverage?"
+            }
+        },
+        {
+            "data": {
+                "id": "10",
+                "label": "10 -> Would you like to add desserts?"
+            }
+        },
+        {
+            "data": {
+                "id": "11",
+                "label": "11 -> Select desserts:"
+            }
+        },
+        {
+            "data": {
+                "id": "12",
+                "label": "12 -> How many {@Dessert} would you like?"
+            }
+        },
+        {
+            "data": {
+                "id": "13",
+                "label": "13 -> Add another dessert?"
+            }
+        },
+        {
+            "data": {
+                "id": "14",
+                "label": "14 -> Review your order: \\n\nPizza Size: {@Size}\\n\nToppings: {@Toppings}\\n\nBeverages: {@Beverage} x {@BeverageQuantity}\\n\nDesserts: {@Dessert} x {@DessertQuantity}\\n\nTotal: {@Price}\n\nWould you like to place your order?"
+            }
+        },
+        {
+            "data": {
+                "id": "15",
+                "label": "15 -> Your order has been submitted successfully! Thank you."
+            }
+        }
+    ],
+    "edges": [
+        {
+            "data": {
+                "source": "1",
+                "target": "2"
+            }
+        },
+        {
+            "data": {
+                "source": "2",
+                "target": "3"
+            }
+        },
+        {
+            "data": {
+                "source": "3",
+                "target": "4"
+            }
+        },
+        {
+            "data": {
+                "source": "4",
+                "target": "5"
+            }
+        },
+        {
+            "data": {
+                "source": "5",
+                "target": "6"
+            }
+        },
+        {
+            "data": {
+                "source": "6",
+                "target": "10"
+            }
+        },
+        {
+            "data": {
+                "source": "7",
+                "target": "8"
+            }
+        },
+        {
+            "data": {
+                "source": "8",
+                "target": "9"
+            }
+        },
+        {
+            "data": {
+                "source": "9",
+                "target": "10"
+            }
+        },
+        {
+            "data": {
+                "source": "10",
+                "target": "14"
+            }
+        },
+        {
+            "data": {
+                "source": "11",
+                "target": "12"
+            }
+        },
+        {
+            "data": {
+                "source": "12",
+                "target": "13"
+            }
+        },
+        {
+            "data": {
+                "source": "13",
+                "target": "14"
+            }
+        },
+        {
+            "data": {
+                "source": "14",
+                "target": "15"
+            }
+        },
+        {
+            "data": {
+                "source": "14",
+                "target": "3"
+            }
+        },
+        {
+            "data": {
+                "source": "14",
+                "target": "7"
+            }
+        },
+        {
+            "data": {
+                "source": "14",
+                "target": "11"
+            }
+        }
+    ]
+};
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: cytoscapeData,
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'shape': 'round-rectangle', // Ensures the node shape is a rectangle
+                        'background-color': '#ADD8E6', // Sets the background color of the node; replace with your preferred color
+                        'label': 'data(label)',
+                        'text-valign': 'center',
+                        'text-halign': 'center',
+                        'color': '#000', // Text color
+                        'font-size': '14px',
+                        'padding': '10px', // Adjust for padding around the text inside the node
+                        'text-wrap': 'wrap', // Allows the text to wrap within the node
+                        'text-max-width': '160px', // Adjust the width of the text to fit within the node
+                        'border-color': '#000', // Sets the border color of the node
+                        'border-width': 2, // Sets the border width of the node
+                        'width': 'label',  // Use the label width
+                        'height': 'label', // Use the label height
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 3,
+                        'line-color': '#ccc',
+                        'target-arrow-color': '#ccc',
+                        'target-arrow-shape': 'triangle',
+                        'curve-style': 'bezier',
+                        'label': 'data(label)',
+                        'edge-text-rotation': 'autorotate',
+                        'text-margin-y': '-10px'
+                    }
+                }
+            ],
+            layout: {
+                name: 'breadthfirst',
+                directed: true,
+                padding: 10
+            }
+        });
+    });
+</script>
+</body>
+</html>

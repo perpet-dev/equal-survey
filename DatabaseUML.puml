@@ -1,0 +1,24 @@
+@startuml
+allow_mixing
+package "Database Schema" {
+    class Automatons {
+        + AutomatonID: int
+        + AutomatonData: json
+    }
+
+    class UserResponses {
+        + UserID: int
+        + AutomatonID: int
+        + QuestionID: int
+        + Answer: string
+        + Timestamp: datetime
+    }
+
+    class UserAutomatonStates {
+        + UserID: int
+        + AutomatonID: int
+        + CurrentState: string
+        + StateData: json
+    }
+}
+@enduml

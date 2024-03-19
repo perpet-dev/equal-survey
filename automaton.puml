@@ -1,0 +1,43 @@
+@startuml
+class Automaton {
+    - states : dict
+    - variables : dict
+    - arrays : dict
+    - user_answers : dict
+    - goto : str
+
+    + store_user_answer(question_id: str, answer: str)
+    + get_user_answer(question_id: str) : str
+    + get_user_choice(question_id: str) : str
+    + execute_action(action: dict)
+    + execute_goto(step: str)
+    + execute_set(statement: dict)
+    + run(parse_info: dict)
+    + substitute_placeholders(question: str) : str
+    + display_and_get_choice(answer_choices: str, multiple_selection: bool) : str
+    + load_from_excel(file_path: str) : dict
+    + initVariables()
+    + print_automaton()
+    + execute()
+    + to_graph() : dict
+    + process(question_id: str, answer: str) : str
+    + determine_next_step(question_id: str, answer: str) : str
+}
+
+class Tokenizer {
+    + get_next_token() : dict
+    + peek_next_token() : dict
+    + expect_token(expected_type) : dict
+}
+
+class Parser {
+    + parse() : list
+}
+
+class ParserError {
+}
+
+ParserError <|-- Parser
+Tokenizer "1" -right-> "1" Parser : uses
+Parser -right-> Automaton : used by
+@enduml

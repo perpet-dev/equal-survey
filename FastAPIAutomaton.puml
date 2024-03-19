@@ -1,0 +1,99 @@
+@startuml
+allow_mixing
+
+actor "User" as User
+
+package "UI Server" {
+    class AutomatonUI {
+        + display_question(user_id, automaton_id)
+        + submit_answer(user_id, automaton_id, question_id, answer)
+        + update_UI(next_state)
+    }
+}
+
+rectangle "FastAPI Backend" {
+    class AutomatonAPI {
+        + process_automaton(input_data)
+        + fetch_user_automaton_state(user_id, automaton_id)
+        + process_user_input(current_state, question_id, answer)
+        + update_user_automaton_state(user_id, automaton_id, next_state)
+    }
+}
+
+database "Database Schema" {
+    class Automatons {
+        + AutomatonID: int
+        + AutomatonData: json
+    }
+
+    class UserResponses {
+        + UserID: int
+        + AutomatonID: int
+        + QuestionID: int
+        + Answer: string
+        + Timestamp: datetime
+    }
+
+    class UserAutomatonStates {
+        + UserID: int
+        + AutomatonID: int
+        + CurrentState: string
+        + StateData: json
+    }
+}
+
+class Automaton {
+    - states : dict
+    - variables : dict
+    - arrays : dict
+    - user_answers : dict
+    - goto : str
+
+    + store_user_answer(question_id: str, answer: str)
+    + get_user_answer(question_id: str) : str
+    + get_user_choice(question_id: str) : str
+    + execute_action(action: dict)
+    + execute_goto(step: str)
+    + execute_set(statement: dict)
+    + run(parse_info: dict)
+    + substitute_placeholders(question: str) : str
+    + display_and_get_choice(answer_choices: str, multiple_selection: bool) : str
+    + load_from_excel(file_path: str) : dict
+    + initVariables()
+    + print_automaton()
+    + execute()
+    + to_graph() : dict
+    + process(question_id: str, answer: str) : str
+    + determine_next_step(question_id: str, answer: str) : str
+}
+
+class Tokenizer {
+    + get_next_token() : dict
+    + peek_next_token() : dict
+    + expect_token(expected_type) : dict
+}
+
+class Parser {
+    - tokenizer : Tokenizer
+    - parsed_statements : list
+
+    + parse() : list
+    + parse_array(token : dict) : dict
+    + parse_goto() : dict
+    + parse_conditional() : dict
+    + parse_set() : dict
+    + parse_action() : list
+    + parse_set_array(array_name : string) : dict
+}
+
+Tokenizer "1" -right-> "1" Parser : uses
+Parser -right-> Automaton : used by
+
+User --> AutomatonUI : use
+AutomatonAPI -right-> Automaton : uses
+
+AutomatonUI --> AutomatonAPI : calls
+AutomatonAPI --> Automatons : reads/writes
+AutomatonAPI --> UserResponses : reads/writes
+AutomatonAPI --> UserAutomatonStates : reads/writes
+@enduml
