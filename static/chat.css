@@ -1,0 +1,320 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{text-size-adjust: 100%;}
+body {
+    background-color: #f5f5f5; /* Light gray background */
+    font-family: 'GmarketSansMedium',sans-serif;
+    font-size: 15px;
+}
+.chat-container {
+    margin: 0 auto;
+    padding: 10px; /* Padding for mobile-friendly design */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+    box-sizing: border-box;
+}
+/* Responsive design adjustments */
+@media (min-width: 768px) {
+    /* Styles for tablets and above */
+    .chat-container {
+        max-width: 720px; /* Adjust max-width as needed */
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Styles for desktops and larger devices */
+    .chat-container {
+        max-width: 960px; /* Adjust max-width as needed */
+    }
+}
+.sidebar-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    margin-bottom: 10px; /* Add space between buttons */
+    cursor: pointer;
+}
+
+.sidebar-button:hover {
+    background-color: #555;
+}
+.input-form {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-direction: column; /* Stack children vertically */
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;  /* Stack children vertically */
+    justify-content: space-between;
+    width: 100%; /* Ensure full width */
+    border: 1px solid #ccc; /* Example styling */
+    border-radius: 4px; /* Example styling */
+}
+
+.image-preview {
+    position: absolute;
+    top: -120px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px; /* Adjust icon size as needed */
+    padding: 0 10px;
+    /* color: #007bff; */
+    color: black; /* Changed from #007bff to black */
+}
+/* Additional styles for icons if they are not images but font icons */
+.icon {
+    color: black; /* Icon color */
+    font-size: 10px; /* Icon size */
+    cursor: pointer;
+}
+/* 
+.icon-button:hover {
+    color: #0056b3; */
+    /* color: #333;  Darker shade of black on hover 
+}
+*/
+.send-button,
+.image-upload-button {
+    background-color: black; /* Change icon buttons to black */
+    border: none; /* Remove default border */
+    color: white;
+    padding: 8px;
+    margin-left: 5px; /* Space between text input and button */
+    cursor: pointer;
+    border-radius:30%; /* Circular buttons */
+}
+/* Tooltip styling */
+.send-button:hover::after,
+.image-upload-button:hover::after {
+  content: attr(title); /* This will be the tooltip text */
+  position: absolute;
+  bottom: 100%; /* Position the tooltip above the button */
+  left: 50%;
+  transform: translateX(-50%); /* Center the tooltip */
+  background: #333; /* Background color of the tooltip */
+  color: #fff; /* Text color */
+  padding: 5px 8px; /* Padding inside the tooltip */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 12px; /* Smaller font size */
+  z-index: 1000; /* Ensure it's on top of other elements */
+  white-space: nowrap; /* Prevent text wrapping */
+  opacity: 0;
+  transition: opacity 0.3s; /* Fade-in effect */
+}
+
+.send-button:hover::after,
+.image-upload-button:hover::after {
+  opacity: 1; /* Show the tooltip on hover */
+}
+
+/* Position the tooltip arrow */
+.send-button:hover::before,
+.image-upload-button:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 90%; /* Position right below the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 5px;
+  border-color: #333 transparent transparent transparent; /* Arrow color */
+}
+
+/* Hide tooltip text for screen readers and when not hovered */
+.send-button::after,
+.image-upload-button::after,
+.send-button::before,
+.image-upload-button::before {
+  display: none;
+}
+
+.send-button:hover::after,
+.image-upload-button:hover::after,
+.send-button:hover::before,
+.image-upload-button:hover::before {
+  display: block;
+}
+#messageInput {
+    flex-grow: 1;
+    padding: 10px;
+    background: transparent; /* Match the parent's background */
+    /* border: 1px solid #ccc; */
+    border: none;
+    resize: none;
+    outline: none;
+    /* overflow: auto; */
+    overflow: hidden; /* Hide the scrollbar */
+    min-height: 40px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    margin: 0;
+    outline: none; /* Removes the default focus outline */
+    margin-right: 5px; /* Space between input and buttons */
+}
+/* Adjustments for placeholder vertical alignment */
+#messageInput::placeholder {
+    vertical-align: middle;
+}
+
+.chat-content {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: lightgray transparent;
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Stack messages from the top down */
+}
+
+.chat-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chat-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-content::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 5px;
+}
+
+.message {
+    max-width: 80%;
+    margin-bottom: 10px;
+}
+
+.user-message, .other-message {
+    justify-content: flex-start; /* Align all messages to the start */
+}
+
+.message-content {
+    padding: 8px 15px;
+    background: #f9f9f9;
+    border-radius: 20px;
+}
+
+.server-message, .user-message {
+    margin-bottom: 10px; /* Adjust the space between messages */
+    padding: 5px; /* Padding inside the message box */
+    white-space: pre-wrap; /* Wraps text and preserves whitespace */
+    /* Add more styling as needed */
+}
+
+.file-display-area {
+    display: none;
+    align-items: center;
+    padding: 4px 8px; /* Spacing inside the file display area */
+    border-radius: 16px;
+    margin-right: 8px;
+    font-size: 0.8em;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 8px; /* Spacing between file chip and input */
+    flex-shrink: 0; /* Prevent file chip from shrinking */
+}
+
+/* Show file display area when a file is selected */
+.file-display-area.visible {
+    display: flex; /* Make visible */
+}
+
+.file-display-area .file-name {
+    max-width: 200px; /* Adjust as necessary */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-display-area .remove-file {
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.text-send-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spacing between items */
+    padding: 5px 10px; /* Horizontal and vertical padding */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 20px; /* Rounded corners */
+    /* background: white; Optional: in case you want the inside to be white */
+    margin: 10px 0; /* Add some margin if needed */
+}
+
+.img-preview {
+    max-width: 100px; /* Limit the size of the preview */
+    max-height: 100px;
+    margin-right: 10px; /* Space between the preview and the remove icon */
+}
+
+.remove-file {
+    cursor: pointer;
+    padding: 0 5px; /* Padding around the remove icon for easier clicking */
+}
+
+.file-display-area {
+    display: none;
+    align-items: center; /* Align items in the center vertically */
+    justify-content: start; /* Align items to the start of the container */
+    margin-bottom: 10px; /* Space below the file display area */
+}
+
+/* Ensure that the file input is visually hidden but still accessible */
+#fileInput {
+    display: none;
+}
+
+/* Style for the image preview container */
+.file-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.file-preview {
+    width: 40px; /* Set the preview image size */
+    height: 40px; /* Set the preview image size */
+    border-radius: 50%; /* Circular preview images */
+    overflow: hidden; /* Hide overflow for circular shape */
+    margin-right: 5px;
+}
+
+.file-preview img {
+    width: 100%;
+    height: auto;
+}
