@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Screen Splash</title>
+<style>
+  .splash-screen {
+    background: url("static/img/health_intro2.png") no-repeat center center;
+    background-size: contain;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* To align items vertically */
+  }
+
+  .start-button {
+    background-color: black; /* Button background */
+    color: white; /* Text color */
+    padding: 20px 40px; /* Increase padding for a larger button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 20px; /* Increase font size */
+    cursor: pointer; /* Cursor style */
+    margin-top: auto; /* Pushes the button to the bottom */
+    margin-bottom: 30px; /* Increase bottom margin for spacing */
+    width: 80%; /* You can set a specific width or percentage */
+    max-width: 400px; /* Maximum width of the button */
+  }
+
+</style>
+<script>
+  function redirectToHealthCheck() {
+    window.location.href = '/questionnaire/PerpetHealthCheckIntro'; // Redirect to the health check page
+  }
+</script>
+</head>
+<body>
+
+<div class="splash-screen">
+  <!-- Other Content Here -->
+  
+  <!-- Start Button -->
+  <button class="start-button" onclick="redirectToHealthCheck()">등록하기</button>
+</div>
+
+</body>
+</html>

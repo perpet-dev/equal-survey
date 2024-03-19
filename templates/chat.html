@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equal.pet's GPT</title>
+    <meta name="title" content="Equal.pet's GPT: Your assistant for the health of your pet">
+    <meta property="og:title" content="Equal.pet's GPT">
+    <meta property="og:url" content="https://gpt.equal.pet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Equal.pet's GPT">
+    <link rel="stylesheet" type="text/css" href="/static/chat.css">
+    <script src="/static/chat.js"></script>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div id="sidebar" class="sidebar">
+            <!-- List of chats could go here -->
+        </div>
+        <button id="toggleSidebar" class="toggle-sidebar">☰</button>
+        <h3>PetGPT</h3>
+        <div id="messages" class="chat-content">
+        </div>
+        <form id="messageForm" class="input-form">
+            <div id="imagePreview" class="image-preview"></div>
+            <div class="text-send-container">
+                <input type="file" id="imageInput" accept="image/*" hidden onchange="handleFileUpload(event)">
+                <label for="fileInput" class="icon-button image-upload-button" title="Upload Image">
+                    <i class="fa fa-image"></i>
+                </label>
+                <textarea id="messageInput" autocomplete="off" placeholder="Type here ..."></textarea>
+                <button type="submit" class="icon-button send-button" title="Send Message">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- Hidden File Input for uploading files -->
+    <input type="file" id="fileInput" style="display: none;" accept="image/*" multiple>
+</body>
+</html>

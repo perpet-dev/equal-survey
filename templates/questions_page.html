@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: #f5f5f5; /* Light gray background */
+            font-family: 'GmarketSansMedium',sans-serif;
+            font-size: 15px;
+        }
+        .container {
+            padding: 10px; /* Padding for mobile-friendly design */
+        }
+
+        .question-card {
+            transition: all 0.3s ease; /* Smooth transition for the focus effect */
+            transform: scale(1); /* Default scale */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            background-color: #fff; /* White background for the question card */
+            margin-bottom: 20px; /* Increased space between question cards */
+            padding: 15px; /* Padding inside the card */
+            border-radius: 8px; /* Slightly rounded corners for the card */
+        }
+        
+        .question-card:hover {
+            transform: scale(1.02); /* Slightly larger scale on hover */
+        }
+        
+        .question-card.blurred {
+            opacity: 0.5;
+            filter: blur(2px);
+        }
+        
+        .question-card.focused {
+            transform: scale(1.05); /* Slightly larger scale when focused */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for focus */
+        }
+
+        .question-title {
+            margin-bottom: 15px; /* Space below the question */
+            font-family: 'GmarketSansBold',sans-serif;
+            font-size: 17px;
+            line-height:normal;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: start;
+        }
+        .option-btn {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 8px;
+            margin-right: 10px; /* Add space between buttons */
+            padding: 15px 20px;
+            text-align: center;
+            flex-grow: 1; /* Ensure buttons expand to fill the space */
+        }
+        .option-btn.selected {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #000;
+        }
+        .why-we-asked {
+            font-style: italic;
+            color: #6EC898; /* PerpetGreen text */
+            margin-top: 10px; /* Space above the explanation */
+        }
+        .input-group-text {
+            background-color: #fff; /* White background */
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+        }
+        .form-control {
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: none; /* No shadow */
+        }
+        .form-control:focus {
+            border: none; /* No border on focus */
+            box-shadow: none; /* No shadow on focus */
+        }
+        .btn-primary {
+            background-color: #000; /* Black background */
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+            padding: 15px 20px; /* Padding inside the button */
+            color: #fff; /* White text */
+            margin-top: 20px; /* Space above the button */
+            width: 100%; /* Full width button */
+            font-family: 'GmarketSansMedium',sans-serif;
+            font-size: 15px;
+            line-height:normal;
+        }
+        .hidden {
+            display: none; /* Hide the card initially */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <!-- Form logic starts here -->
+            <form tabindex="0" action="{{ url_for('submit_answer') }}" method="post">
+                {% for question in questions %}
+                    <div class="question-card{% if loop.index > 1 %} hidden{% endif %}"  id="questionCard{{ question.ID }}">
+                        <h5 class="question-title">{{ question.Question }}</h5>
+                        {% if question.AnswerType == 'Statement' %}
+                            <input type="hidden" name="answer" value="Start">
+                            <button type="button" class="answer-button">Start</button>
+
+                        {% elif question.AnswerType == 'Picture Choice' %}
+                            {% set choices = question.AnswerChoices.split(', ') %}
+                            <div class="choice-container">
+                                {% for choice in choices %}
+                                    <input type="radio" id="{{ choice }}" name="answer" value="{{ choice }}">
+                                    <label for="{{ choice }}" class="answer-button choice">{{ choice }}</label><br>
+                                {% endfor %}
+                            </div>
+
+                        {% elif question.AnswerType == 'Input' %}
+                            <div class="form-group">
+                                <input type="text" id="input" name="answer" class="form-control" placeholder="Type your answer here..." required>
+                            </div>
+                        {% elif question.AnswerType == 'Picture Choice with Multiple Selection' %}
+                            {% set choices = question.AnswerChoices.split(', ') %}
+                            <div class="choice-container">
+                                {% for choice in choices %}
+                                    <input type="checkbox" id="{{ choice }}" name="answer[]" value="{{ choice }}">
+                                    <label for="{{ choice }}" class="answer-button choice">{{ choice }}</label><br>
+                                {% endfor %}
+                            </div>
+
+                        {% elif question.AnswerType == 'Yes/No' %}
+                            <div class="choice-container">
+                                <input type="radio" id="yes" name="answer" value="Yes">
+                                <label for="yes" class="answer-button choice">Yes</label><br>
+                                <input type="radio" id="no" name="answer" value="No">
+                                <label for="no" class="answer-button choice">No</label><br>
+                            </div>
+
+                        {% elif question.AnswerType == 'Multichoice - Single' %}
+                            {% set choices = question.AnswerChoices.split(', ') %}
+                            <div class="btn-group" role="group">
+                                {% for choice in choices %}
+                                <button type="button" class="option-btn">{{ choice }}</button>
+                                {% endfor %}
+                            </div>
+                            <div class="why-we-asked">why we asked?</div>
+
+                        {% elif question.AnswerType == 'Number' %}
+                            <input type="number" name="answer" class="answer-button choice">
+
+                        {% elif question.AnswerType == 'Multichoice' %}
+                            {% set choices = question.AnswerChoices.split(', ') %}
+                            <div class="choice-container">
+                                {% for choice in choices %}
+                                    <input type="checkbox" id="{{ choice }}" name="answer[]" value="{{ choice }}">
+                                    <label for="{{ choice }}" class="answer-button choice">{{ choice }}</label><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                
+                
+            </form>
+        </div>
+    </div>
+    <script>
+        let answers = {};
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                let questionId = this.dataset.questionId;
+                answers[questionId] = this.dataset.optionValue;
+                // Update UI to reflect selection
+            });
+        });
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                let questionId = this.dataset.questionId;
+                let answer = this.dataset.optionValue;
+                submitAnswer(questionId, answer);
+            });
+        });
+
+        function submitAnswer(questionId, answer) {
+            fetch('/submit_answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ questionId, answer })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Show the next question card based on the server's response
+                showNextCard(data.next_step);
+            })
+            .catch(error => {
+                // Handle errors
+            });
+        }
+        function showNextCard(nextQuestionId) {
+            const newFocusCardId = 'questionCard' + nextQuestionId;
+        
+            const newFocusCard = document.getElementById(newFocusCardId);
+            if (newFocusCard) {
+                newFocusCard.classList.remove('hidden'); // Show the next card
+                newFocusCard.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Optional: Smoothly scroll the card into view
+            }
+        }
+        
+        function submitPageAnswers(pageNumber, answers) {
+            fetch(`/submit_page_answers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pageNumber, answers })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.next_page_number) {
+                    // Update the UI with the new questions
+                    displayQuestions(data.questions);
+                    // Optionally, update the URL or page state
+                    updatePageState(data.next_page_number);
+                } else {
+                    // Handle the end of the questionnaire or no more pages
+                }
+            })
+            .catch(error => {
+                // Handle error
+            });
+        }
+        
+        function collectPageAnswers() {
+            let answers = {};
+        
+            document.querySelectorAll('.question-card').forEach(card => {
+                const questionId = card.id; // Assuming the card's ID is the question ID
+                let answer;
+        
+                if (card.querySelector('input[type="radio"]:checked')) {
+                    // If the question is a radio button type
+                    answer = card.querySelector('input[type="radio"]:checked').value;
+                } else if (card.querySelector('input[type="checkbox"]')) {
+                    // If the question has checkboxes
+                    let selectedCheckboxes = card.querySelectorAll('input[type="checkbox"]:checked');
+                    answer = Array.from(selectedCheckboxes).map(cb => cb.value);
+                } else if (card.querySelector('input[type="text"]')) {
+                    // If the question is a text input type
+                    answer = card.querySelector('input[type="text"]').value;
+                }
+                // ... handle other input types as needed ...
+        
+                if (answer !== undefined && answer !== "") {
+                    answers[questionId] = answer;
+                }
+            });
+        
+            return answers;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const submitButton = document.querySelector('#ok-button'); // Assuming you have a submit button
+        
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                // Assuming the URL ends with the page number
+                let pageNumber = window.location.pathname.split("/").pop();
+                let pageAnswers = collectPageAnswers(); // Collect answers from the page
+                submitPageAnswers(pageNumber, pageAnswers); // Submit answers via AJAX
+            });
+        
+            if (submitButton) {
+                submitButton.addEventListener('click', function() {
+                    form.submit(); // Trigger form submission
+                });
+            }
+        });
+
+
+        document.querySelectorAll('.question-card input[type="radio"], .question-card input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function() {
+                let questionId = this.closest('.question-card').id.replace('questionCard', '');
+                let answer = this.value;
+                submitAnswer(questionId, answer);
+            });
+        });
+
+        document.querySelectorAll('.question-card input[type="text"]').forEach(input => {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();  // Prevent the form from submitting traditionally
+                    let questionId = this.closest('.question-card').id.replace('questionCard', '');
+                    let answer = this.value;
+                    submitAnswer(questionId, answer);
+                }
+            });
+        });
+
+        document.querySelectorAll('.question-card .option-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let questionId = this.closest('.question-card').id.replace('questionCard', '');
+                let answer = this.textContent.trim(); // Get the text content of the button as the answer
+        
+                // Remove 'selected' class from all buttons in the same question card
+                this.closest('.question-card').querySelectorAll('.option-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+        
+                // Add 'selected' class to the clicked button
+                this.classList.add('selected');
+        
+                submitAnswer(questionId, answer);
+
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

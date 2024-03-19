@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: #f5f5f5; /* Light gray background */
+            font-family: 'GmarketSansMedium',sans-serif;
+            font-size: 15px;
+        }
+        .container {
+            padding: 10px; /* Padding for mobile-friendly design */
+        }
+        .progress-container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f0f0f0;
+            height: 5px; /* Adjust the height of the progress bar */
+            z-index: 1000; /* Ensures it stays on top */
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #6EC898; /* Color of the progress bar */
+            width: 0%; /* Initial width */
+        }
+        .question-card {
+            background-color: #fff; /* White background for the question card */
+            margin-bottom: 10px; /* Increased space between question cards */
+            padding: 15px; /* Padding inside the card */
+            border-radius: 8px; /* Slightly rounded corners for the card */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }        
+        .question-title {
+            margin-bottom: 5px; /* Space below the question */
+            font-family: 'GmarketSansBold',sans-serif;
+            font-size: 17px;
+            line-height:normal;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: start;
+        }
+        .option-btn {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 8px;
+            margin-right: 10px; /* Add space between buttons */
+            padding: 15px 20px;
+            text-align: center;
+            flex-grow: 1; /* Ensure buttons expand to fill the space */
+        }
+        .option-btn.selected {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #000;
+        }
+        .input-group-text {
+            background-color: #fff; /* White background */
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+        }
+        .form-control {
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: none; /* No shadow */
+        }
+        .form-control:focus {
+            border: none; /* No border on focus */
+            box-shadow: none; /* No shadow on focus */
+        }
+        .btn-primary {
+            background-color: #000; /* Black background */
+            border: none; /* No border */
+            border-radius: 8px; /* Slightly rounded corners */
+            padding: 15px 20px; /* Padding inside the button */
+            color: #fff; /* White text */
+            margin-top: 20px; /* Space above the button */
+            width: 100%; /* Full width button */
+            font-family: 'GmarketSansMedium',sans-serif;
+            font-size: 15px;
+            line-height:normal;
+        }
+        .choice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the start of the container */
+        } 
+        .choice-item {
+            cursor: pointer; /* Change cursor to indicate clickable items */
+            margin: 5px 0; /* Spacing between choices */
+            /* padding: 5px; /* Padding for better clickability */
+            border: 2px solid transparent; /* Default border to maintain consistent size */
+            border-bottom: 1px solid #f0f0f0; /* Thin bottom border line */
+            width: 100%; /* Ensure the element takes full width */
+            box-sizing: border-box; /* Include padding and border in the element's total width */        
+            /* Add more styling as needed */
+        }
+        .choice-item:hover {
+            background-color: #f0f0f0; /* Highlight on hover */
+        }
+        .choice-item.selected {
+            background-color: #f0f0f0; /* Highlight on hover */
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+        }
+        .choice-tag-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            align-items: flex-start;
+            gap: 5px; /* Add some space between the tags */
+        }
+        .choice-tag {
+            cursor: pointer; /* Indicate clickable items */
+            padding: 5px 10px; /* Padding for better clickability */
+            margin-bottom: 5px; /* Space at the bottom of each tag */
+            border: 1px solid #ddd; /* Border for visual distinction */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f0f0f0; /* Light background color */
+            /* Add any additional styling as needed */
+        }
+        .choice-tag:hover {
+            background-color: #e9e9e9; /* Slightly darker on hover */
+        }
+        .choice-tag.selected {
+            background-color: #f0f0f0; /* Highlight color for selected tag */
+            color: #6EC898;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+        }
+        .input-field {
+            padding:8px;
+            display:block;
+            border:none;
+            border-bottom:1px 
+            solid #ccc;
+            width:100%
+        }
+        .why-we-asked-toggle {
+            border: none;
+            background-color: #fff;
+            padding: 0px 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #6EC898; /* PerpetGreen text */
+            /* Add other styling as necessary */
+        }
+        .why-we-asked {
+            font-style: italic;
+            color: #c8c8c8; /* Light gray text */
+            font-size: 12px;
+            margin-top: 5px; /* Space above the explanation */
+        }
+        .why-we-asked-toggle:focus {
+            outline: none;
+            box-shadow: none;
+            /*box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25); /* Change RGBA values to your preferred color */
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="container" id="container"></div>
+    <script>
+        // Function to extract query parameters from URL
+        function getQueryParams() {
+            const queryParams = {};
+            const queryString = window.location.search.substring(1);
+            const params = queryString.split('&');
+            
+            for (let param of params) {
+                const [key, value] = param.split('=');
+                queryParams[decodeURIComponent(key)] = decodeURIComponent(value);
+            }
+            return queryParams;
+        }
+
+        let currentState = 1; // Variable to track the current state of the form
+
+        function submitAnswer(questionId, answer) {
+            currentState = questionId;
+
+            fetch('/submit_answer/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question_id:questionId, answer:answer })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.redo_subsequent) {
+                    // Clear cards for all steps beyond the current one
+                    clearSubsequentCards(currentState);
+                }
+                // Process the next question or completion logic
+                if (data) {
+                    addQuestionCard(data);
+                } else {
+                    // No next question, so show the completion screen
+                    showCompletion();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function clearSubsequentCards(currentState) {
+            const container = document.getElementById('container');
+            Array.from(container.children).forEach(card => {
+                const cardId = parseInt(card.id.replace('questionCard', ''));
+                if (cardId > currentState) {
+                    container.removeChild(card);
+                }
+            });
+        }
+        
+        function addQuestionCard(question) {
+            const container = document.getElementById('container');
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.id = 'questionCard' + question.question_id;
+            
+
+            // Create a header for the question text
+            const questionHeader = document.createElement('h5');
+            questionHeader.className = 'question-title';
+            questionHeader.textContent = question.question;
+            card.appendChild(questionHeader);
+
+            why_we_asked = question.why_we_asked;
+
+            if(why_we_asked != null && why_we_asked != ''){
+                // Create a button or link that will be clicked to show/hide the explanation
+                /*
+                const whyWeAskedToggle = document.createElement('button');
+                whyWeAskedToggle.className = 'why-we-asked-toggle';
+                whyWeAskedToggle.textContent = 'Why we asked?';
+                */
+                // Create a paragraph to hold the explanation
+                const whyWeAsked = document.createElement('p');
+                whyWeAsked.className = 'why-we-asked';
+                whyWeAsked.textContent = why_we_asked;
+            
+                // Event listener to toggle the visibility of the explanation
+                /*
+                whyWeAskedToggle.addEventListener('click', function() {
+                    const isHidden = whyWeAsked.style.display === 'none';
+                    whyWeAsked.style.display = isHidden ? 'block' : 'none';
+                    // Optionally, toggle the button text or style
+                });
+                */
+            
+                // Append the toggle button and the explanation paragraph to the card
+                //card.appendChild(whyWeAskedToggle);
+                card.appendChild(whyWeAsked);
+            }
+
+            // Handle different types of questions based on answerType
+            if (question.answer_type === 'Multichoice - Single') {
+                const choices = question.answer_choices.split('\n');
+                const btnGroup = document.createElement('div');
+                btnGroup.className = 'btn-group';
+                choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'option-btn';
+                
+                    // Check if choice contains ':', split if it does, otherwise use the whole string
+                    const choiceParts = choice.includes(':') ? choice.split(':').map(s => s.trim()) : [choice, choice];
+                
+                    button.textContent = choiceParts[1]; // Display the human-readable text
+                    button.dataset.answer = choiceParts[0]; // Store the answer key in a data attribute
+                
+                    button.addEventListener('click', function() {
+                        processAnswer(question.question_id, button.dataset.answer); // Use the answer key for processing
+                    });
+                    btnGroup.appendChild(button);
+                });
+                card.appendChild(btnGroup);
+            }
+            else if (question.answer_type === 'Multichoice - Single - Vertical') {
+                const choices = question.answer_choices.split('\n');
+                const choiceContainer = document.createElement('div');
+                choiceContainer.className = 'choice-container';
+                
+                choices.forEach(choice => {
+                    const choiceElement = document.createElement('div');
+                    choiceElement.className = 'choice-item';
+                    
+                    // Check if choice contains ':', split if it does, otherwise use the whole string
+                    const choiceParts = choice.includes(':') ? choice.split(':').map(s => s.trim()) : [choice, choice];
+                    
+                    choiceElement.textContent = choiceParts[1]; // Display the human-readable text
+                    choiceElement.addEventListener('click', function() {
+                        handleChoiceSelection(question.question_id, choiceElement, choiceParts[0]);
+                    });
+                
+                    choiceContainer.appendChild(choiceElement);
+                });
+                
+                card.appendChild(choiceContainer);
+            }
+            else if (question.answer_type === 'Input') {
+                const inputField = document.createElement('input');
+                inputField.type = 'text';
+                inputField.className = 'input-field';
+                inputField.placeholder = 'Type your answer here...';
+                inputField.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        // Handle Enter keypress
+                        processAnswer(question.question_id, inputField.value);
+                    }
+                });
+                card.appendChild(inputField);
+            }
+            else if (question.answer_type === 'Date') { //(YYYY-MM)
+                const inputField = document.createElement('input');
+                inputField.type = 'date';
+                inputField.className = 'input-field';
+                inputField.placeholder = 'Type your answer here...';
+                inputField.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        // Handle Enter keypress
+                        processAnswer(question.question_id, inputField.value);
+                    }
+                });
+                // This event triggers when the input operation is complete (e.g., when the user clicks away)
+                inputField.addEventListener('change', function(event) {
+                    console.log('Final date selected: ', event.target.value);
+                    processAnswer(question.question_id, event.target.value);
+                });
+                card.appendChild(inputField);
+            }
+            else if (question.answer_type === 'Number') { //(YYYY-MM)
+                const inputField = document.createElement('input');
+                inputField.type = 'number';
+                inputField.className = 'input-field';
+                inputField.placeholder = 'Type your answer here...';
+                inputField.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        // Handle Enter keypress
+                        processAnswer(question.question_id, inputField.value);
+                    }
+                });
+                card.appendChild(inputField);
+            }
+            else if (question.answer_type === 'Search - Tags - Single') {
+                // Create search input
+                const searchInput = document.createElement('input');
+                searchInput.type = 'text';
+                searchInput.className = 'form-control';
+                searchInput.placeholder = 'Search ...';
+                card.appendChild(searchInput);
+        
+                // Container for tags
+                const tagContainer = document.createElement('div');
+                tagContainer.className = 'choice-tag-container';
+                card.appendChild(tagContainer);
+                // Function to update tags based on search
+                function updateTags(filter = '') {
+                    tagContainer.innerHTML = '';
+                    question.answer_choices.split('\n')
+                        .filter(choice => {
+                            const [, tagName] = choice.split(':').map(s => s.trim());
+                            tag = tagName.toLowerCase().includes(filter.toLowerCase());
+                            return tagName.toLowerCase().includes(filter.toLowerCase());
+                        })
+                        .forEach(choice => {
+                            const [id, tagName] = choice.split(':').map(s => s.trim());
+                            const tagElement = document.createElement('div');
+                            tagElement.className = 'choice-tag';
+                            tagElement.textContent = tagName; // Display only the tag name
+                            tagElement.addEventListener('click', () => {
+                                console.log("id: "+id + " tagName: "+tagName)
+                                handleTagSelection(question.question_id, id, tagName); // Pass the ID when a tag is selected
+                            });
+                            tagContainer.appendChild(tagElement);
+                        });
+                }
+                // Function to handle tag selection
+                function handleTagSelection(questionId, selectedTagId, selectedTagName) {
+                    // Find the tag element by its content (tag name)
+                    const tagElements = tagContainer.getElementsByClassName('choice-tag');
+                    for (let tagElement of tagElements) {
+                        if (tagElement.textContent === selectedTagName) {
+                            // Toggle the 'selected' class on the clicked tag
+                            if (tagElement.classList.contains('selected')) {
+                                tagElement.classList.remove('selected');
+                                // processAnswer(questionId, ''); // Handle deselection
+                            } else {
+                                // First, remove 'selected' class from all tags in the container
+                                for (let otherTagElement of tagElements) {
+                                    otherTagElement.classList.remove('selected');
+                                }
+
+                                // Add 'selected' class to the clicked tag
+                                tagElement.classList.add('selected');
+                                console.log("selectedTagId: "+selectedTagId)
+                                processAnswer(questionId, selectedTagId); // Process the selected tag ID
+                            }
+                        }
+                    }
+                }
+                // Initial loading of tags
+                updateTags();
+            
+                // Event listener for search input
+                searchInput.addEventListener('input', (e) => {
+                    updateTags(e.target.value);
+                });
+            }
+            else if (question.answer_type === 'Search - Tags - Multi') {
+                // Create search input
+                const searchInput = document.createElement('input');
+                searchInput.type = 'text';
+                searchInput.className = 'form-control';
+                searchInput.placeholder = 'Search ...';
+                card.appendChild(searchInput);
+            
+                // Container for tags
+                const tagContainer = document.createElement('div');
+                tagContainer.className = 'choice-tag-container';
+                card.appendChild(tagContainer);
+            
+                // Function to update tags based on search
+                function updateTags(filter = '') {
+                    tagContainer.innerHTML = '';
+                    question.answer_choices.split('\n')
+                        .filter(choice => {
+                            const [, tagName] = choice.split(':').map(s => s.trim());
+                            return tagName.toLowerCase().includes(filter.toLowerCase());
+                        })
+                        .forEach(choice => {
+                            const [id, tagName] = choice.split(':').map(s => s.trim());
+                            const tagElement = document.createElement('div');
+                            tagElement.className = 'choice-tag';
+                            tagElement.textContent = tagName; // Display only the tag name
+                            tagElement.dataset.tagId = id; // Store the ID in a data attribute
+                            tagElement.addEventListener('click', () => {
+                                // Toggle selection
+                                tagElement.classList.toggle('selected');
+                                //handleMultiTagSelection(question.question_id, tagElement);
+                            });
+                            tagContainer.appendChild(tagElement);
+                        });
+                }                
+                
+                // Initial loading of tags
+                updateTags();
+                
+                // Event listener for search input
+                searchInput.addEventListener('input', (e) => {
+                    updateTags(e.target.value);
+                });
+
+                // Create a submit button
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Selection finished';
+                submitButton.className = 'submit-button';
+                card.appendChild(submitButton);
+
+                // Function to handle the submission of selected tags
+                function handleSubmit(questionId) {
+                    const selectedTagIds = Array.from(tagContainer.getElementsByClassName('choice-tag'))
+                                                .filter(tag => tag.classList.contains('selected'))
+                                                .map(tag => tag.dataset.tagId) // Use the ID from the data attribute
+                                                .join(','); // Join the IDs into a string, separated by commas
+                    processAnswer(questionId, selectedTagIds); // Process the string of selected tag IDs
+                }
+                // Add event listener to the submit button
+                submitButton.addEventListener('click', () => handleSubmit(question.question_id));                
+
+            } else if (question.answer_type === 'Multichoice - Single - Image') {
+                console.log('Multichoice - Single - Image')
+                console.log(question.answer_choices)
+                const choices = question.answer_choices.split('\n');
+                const choiceContainer = document.createElement('div');
+                choiceContainer.className = 'choice-container';
+            
+                choices.forEach(choice => {
+                    const parts = choice.split(' - ');
+                    const description = parts[0];
+                    const details = parts[1];
+                    const imgSrc = parts[2].match(/<img src=(.*?)>/)[1]; // Extract the image source
+            
+                    const choiceElement = document.createElement('div');
+                    choiceElement.className = 'choice-item';
+                    // Create and add the image element
+                    const imgElement = document.createElement('img');
+                    imgElement.src = '/static/img/' + imgSrc;
+                    choiceElement.appendChild(imgElement);
+            
+                    choiceElement.addEventListener('click', function() {
+                        handleChoiceSelection(question.question_id, choiceElement, choice);
+                    });
+                    // Add description and details as text
+                    const textNode = document.createTextNode(description + ' - ' + details);
+                    choiceElement.appendChild(textNode);
+            
+                    choiceContainer.appendChild(choiceElement);
+                });
+            
+                card.appendChild(choiceContainer);
+            }
+            
+            function handleMultiTagSelection(questionId, tagElement) {
+                // Determine which tags are selected
+                const selectedTags = Array.from(tagElement.parentElement.children)
+                                         .filter(el => el.classList.contains('selected'))
+                                         .map(el => el.textContent);
+                
+                // Process the selected tags as the answer
+                processAnswer(questionId, selectedTags);
+            }
+            // ... handle other answer types similarly ...
+        
+            container.appendChild(card);
+            // Scroll the new card into view
+            card.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+        // ... [Rest of your code, including the existing addQuestionCard function] ...
+
+        function processAnswer(questionId, answerKey) {
+            const card = document.getElementById('questionCard' + questionId);
+            const btns = card.querySelectorAll('.option-btn');
+            btns.forEach(btn => {
+                // Remove 'selected' from all buttons
+                btn.classList.remove('selected');
+                
+                // Add 'selected' to the button with the matching answerKey
+                if (btn.dataset.answer === answerKey) {
+                    btn.classList.add('selected');
+                }
+            });
+            currentState = questionId;
+            // Submit the answer to the server
+            answeredQuestions = answeredQuestions + 1;
+            updateProgressBar();
+            submitAnswer(questionId, answerKey);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const queryParams = getQueryParams();
+
+            fetch('/get_question/1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ queryParams })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                // Display the first question
+                addQuestionCard(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function handleChoiceSelection(questionId, choiceElement, choice) {
+            // Remove 'selected' class from all choices in the same container
+            choiceElement.parentElement.querySelectorAll('.choice-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+        
+            // Add 'selected' class to the clicked choice
+            choiceElement.classList.add('selected');
+        
+            // Process the selected answer
+            processAnswer(questionId, choice);
+        }
+        let totalQuestions = 10; // Set the total number of questions
+        let answeredQuestions = 0; // Initialize answered questions
+        
+        function updateProgressBar() {
+            let progress = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

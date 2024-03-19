@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radar Chart Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: 'GmarketSansMedium',sans-serif;
+            font-size: 15px;
+            text-align: justify;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .chart-container {
+            max-width: 100%; /* Maximum width */
+            text-align: left; /* Centers the text */
+            margin: 5px auto; /* Centered with 10px margin around */
+            display: flex; /* Use block for standard elements */
+            flex-direction: column; /* Stack the flex items vertically */
+            align-items: left; /* Centers the content */
+            aspect-ratio: auto;
+            margin-bottom: 0;
+            /*align-items: flex-start;
+            width: auto; /* Let the width be determined by the content */
+            height: auto; /* Let the height be determined by the content */
+        }
+        h5 {
+            margin-top: 0; /* Removes top margin */
+            font-family: 'GmarketSansBold',sans-serif;
+            font-size: 22px;
+            line-height:normal;
+            text-align: left;
+            margin-bottom: 0; /* Removes bottom margin */
+        }
+        .space {
+            margin-top: 0; /* Removes top margin */
+            margin-bottom: 0; /* Removes bottom margin */
+            height: 25px;
+        }
+        .result-comment {
+            word-wrap: keep-all; /* Ensures words break and wrap to the next line */
+            max-width: 100%; /* Ensures the comment doesn't overflow the container */
+            text-align: left; /* Aligns the text to the left */
+        }
+        p {
+            margin-top: 0; /* Removes top margin */
+            /* Other styles */
+        }
+        
+        canvas {
+            width: 100% !important;
+            height: auto !important; /* Adjust height as needed, or use 'auto' */
+        }
+        
+        /* Media query for smaller screens */
+        /* Additional responsive adjustments for smaller screens */
+        @media only screen and (max-width: 600px) {
+            .chart-container {
+                width: 100%; /* Full width minus a little margin */
+                max-width: 100%; /* Maximum width */
+                text-align: center; /* Centers the text */
+                margin: 5px auto; /* Centered with 10px margin around */
+                display: flex; /* Use block for standard elements */
+                flex-direction: column; /* Stack the flex items vertically */
+                align-items: center; /* Centers the content */
+                aspect-ratio: 1 / 1; /* Maintain aspect ratio for the chart */
+            }
+            canvas {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h5>ㄱㄱ<br>문진 종합결과</h5>
+    <div class="chart-container">
+        <div class="space"></div>
+        <canvas id="myRadarChart"></canvas>
+        <div class="space"></div>
+        <div class="comment">
+            <p class="result-comment" >건강 코멘트</p>
+            <p class="result-comment" id='result'></p>
+
+            <a href="http://0.0.0.0:10000/" target="_blank">우리 아이 건강검진 하기
+                
+            </a>
+            <a href="https://apps.apple.com/kr/app/%EC%9D%B4%ED%80%84-equal/id6446155819?l=ko-KR" target="_blank">
+                <img src="static/img/Download_on_the_App_Store_Badge_KR_RGB_blk_100317.svg" alt="Download on the App Store" style="height: 40px;">
+            </a>
+            <a href='https://play.google.com/store/apps/details?id=pet.perpet.equal&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img alt='다운로드하기 Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/ko_badge_web_generic.png' style="height: 60px;"/>
+            </a>
+        </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Prepare the data for the POST request
+        var postData = {
+          "id": "apple.ts.1705363125",
+          "type": "APPLE"
+        };
+      
+        // Make the POST request to get the accessToken
+        fetch('https://api.equal.pet/user-service/v1/auth/social', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Log the accessToken
+          console.log('AccessToken:', data.data.accessToken);
+      
+          // Use the accessToken for the next API call
+          var myHeaders = new Headers();
+          myHeaders.append("Authorization", "Bearer " + data.data.accessToken);
+      
+          fetch('https://api.equal.pet/medical-service/v1/medical/121', {
+            method: 'GET',
+            headers: myHeaders,
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(apiData => {
+            handleAPIData(apiData); // Process your data
+          })
+          .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching the access token:', error);
+        });
+      });
+
+    // Assume this function gets called when the API data is ready
+    function handleAPIData(apiData) {
+        // Update pet name and result comment
+        var petName = 'ㄱㄱ<br>문진 종합결과'; // Default pet name
+        var resultComment = apiData.data.resultComment || 'No comment available';
+        console.log("resultComment: "+resultComment);
+        document.querySelectorAll('.pet-name').forEach(elem => elem.innerText = petName);
+        document.querySelectorAll('#result').forEach(elem => elem.innerText = resultComment);
+
+        // Update radar chart
+        var labels = apiData.data.results.map(result => result.diagnosis.name_kor);
+        var scores = apiData.data.results.map(result => result.score);
+        var averages = apiData.data.results.map(result => result.avg);
+
+        updateRadarChart(labels, scores, averages);
+    }
+
+    function updateRadarChart(labels, scores, averages) {
+        myRadarChart.data.labels = labels; // Update labels
+        myRadarChart.data.datasets[0].data = scores;
+        myRadarChart.data.datasets[1].data = averages;
+        // Apply gradients to datasets
+        myRadarChart.data.datasets[0].backgroundColor = blueGreenGradient;
+        myRadarChart.data.datasets[1].backgroundColor = hexScaleGradient;
+
+        // Update the chart to render gradients
+        myRadarChart.update();
+    }
+
+    var ctx = document.getElementById('myRadarChart').getContext('2d');
+    var gradientApplied = false; // Flag to check if gradient is already applied
+
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                // label: '우리 아이 건강',
+                data: [],
+                fill: true,
+                borderColor: 'rgb(34, 139, 34)', // Green border color
+                pointBackgroundColor: 'rgb(34, 139, 34)', // Green point background color
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(34, 139, 34)', // Green point hover border color
+                pointRadius: 0
+                // The backgroundColor will be set to a gradient later
+            },
+            // avg dataset
+            {
+                //label: '표준 건강 범위',
+                data: [],
+                fill: true,
+                backgroundColor: 'rgba(136, 136, 136, 0.3)',
+                borderColor: '#bbbbbb',
+                pointBackgroundColor: '#bbbbbb',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(253, 211, 100)',
+                pointRadius: 0
+            }
+        ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: {
+
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    align: 'end', // Aligns the legend to the end (right) of the bottom position
+                    labels: {
+                        font: {
+                            size: 12, // Adjusts the font size of the legend
+                            weight: 'bold'
+                        },
+                        // Custom legend label generation
+                        generateLabels: function(chart) {
+                            const datasets = chart.data.datasets;
+                            return datasets.map((dataset, i) => {
+                                return {
+                                    // This is the text for the legend label
+                                    text: i === 0 ? '우리아이' : '건강한 아이 평균', // 'Average' for the first dataset, 'Our Child' for the second
+                                    // The following properties determine the styling of the legend labels
+                                    fillStyle: dataset.backgroundColor,
+                                    strokeStyle: dataset.borderColor,
+                                    lineWidth: dataset.borderWidth,
+                                    hidden: !chart.isDatasetVisible(i),
+                                    // Default properties for all legend items
+                                    index: i
+                                };
+                            });
+                        }
+                    }
+                },
+                title: {
+                    display: false, // Enables the display of the title
+                    //text: '우리 아이 건강', // The text of the title
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    font: {
+                        size: 18
+                    },
+                    position: 'top' // Position of the title
+                }
+            },
+            scales: {
+                r: {
+                    pointLabels: {
+                        font: {
+                            size: 14 // Set to desired font size
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.3)' // Dark gridlines
+                    },
+                    angleLines: {
+                        display: true,
+                        color: 'rgba(0, 0, 0, 0.3)' // Dark angle lines, same as gridlines
+                    },
+                    ticks: {
+                        display: false,
+                        beginAtZero: true,
+                        stepSize: 0.1,
+                        font: {
+                            fontSize: 15 // Adjust the font size for axis labels
+                        }
+                    }
+                }
+            },
+            elements: {
+                line: {
+                    borderWidth: 1
+                }
+            }
+        }
+    });
+    function createGradient(ctx, chartArea, colorStart, colorEnd) {
+        let gradientStart = chartArea.bottom + (chartArea.top - chartArea.bottom) * 0.2; // 20% from the top
+        let gradientEnd = chartArea.bottom + (chartArea.top - chartArea.bottom) * 0.8; // 80% from the top
+        const gradient = ctx.createLinearGradient(0, gradientStart, 0, gradientEnd);
+        gradient.addColorStop(0, colorStart); // Start color
+        gradient.addColorStop(1, colorEnd);   // End color
+        return gradient;
+    }
+    
+    var chartArea = myRadarChart.chartArea;
+    // Create gradients
+    var blueGreenGradient = createGradient(ctx, chartArea, 'rgba(0, 128, 0, 0.4)', 'rgba(0, 0, 255, 0.4)');
+    var hexScaleGradient = createGradient(ctx, chartArea, 'rgba(136,136,136, 0.3)', 'rgba(68,68,68, 0.3)');
+
+</script>
+
+</body>
+</html>
