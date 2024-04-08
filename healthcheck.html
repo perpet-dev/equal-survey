@@ -173,18 +173,6 @@
             box-shadow: none;
             /*box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25); /* Change RGBA values to your preferred color */
         }
-        .response-card {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-        }
-        .image-container {
-            margin-bottom: 10px; /* Space below the image container */
-        }
-        .field-container {
-            margin-bottom: 10px; /* Space between each pair */
-        }
     </style>
 </head>
 <body>
@@ -193,134 +181,6 @@
     </div>
     <div class="container" id="container"></div>
     <script>
-        let currentState = 1; // Variable to track the current state of the form
-        let question_data = null;
-
-        // Get the questionnaire_id from the HTML
-        document.addEventListener('DOMContentLoaded', function() {
-            // Try to get session_id from cookies
-            var session_id = getCookie('session_id');
-            console.log("session_id: " + session_id);
-            
-            if(session_id) {
-                // Restore session using the session_id
-                fetch(`/questionnaire/${questionnaireId}/${session_id}/restore`)
-                .then(response => {
-                    if(response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Failed to restore session');
-                    }
-                })
-                .then(data => {
-                    console.log("Restored session data: ", data);
-                    // Use restored session data to redraw UI or continue questionnaire
-                    // This could involve loading the current question, previous answers, etc.
-                    // const { current_question_id, current_question, questions_history } = data;
-                    current_question_id = data.current_question_id;
-                    currentState = current_question_id;
-                    questions_history = data.questions_history
-                    console.log("questions_history: ", questions_history);
-                    user_answers = data.user_answers;
-                    drawPreviousQuestions(questions_history, user_answers);
-                    // Continue with the questionnaire, setting up event listeners, etc.
-                    setupQuestionnaireFlow(current_question_id, questionnaireId);
-                })
-                .catch(error => {
-                    console.error('Error restoring session:', error);
-                    // Handle case where session cannot be restored - maybe start a new session
-                });
-            } else {
-                // No session_id, start a new questionnaire session
-                // You may need to create a new session_id here and save it as a cookie
-                startNewQuestionnaireSession();
-            }
-        });
-        
-        function getCookie(name) {
-            let matches = document.cookie.match(new RegExp(
-              "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-            ));
-            return matches ? decodeURIComponent(matches[1]) : undefined;
-        }
-
-        function startNewQuestionnaireSession() {
-            // Logic to start a new session, possibly setting a new session_id cookie
-            console.log("Starting a new questionnaire session");
-            // For example, request the first question of the questionnaire
-            // and handle new session creation on the server side
-            fetch('/get_question/'+questionnaireId+'/1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ queryParams: getQueryParams() })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                // Display the first question for the new session
-                addQuestionCard(data);
-            })
-            .catch(error => console.error('Error:', error));
-        }
-
-        function drawPreviousQuestions(questions_history, user_answers) {
-
-            const container = document.getElementById('container');
-            container.innerHTML = ''; // Clear existing content
-        
-            Object.entries(questions_history).forEach(([question_id, question]) => {
-                console.log("drawPreviousQuestions => question_id: "+question_id + " question: "+question)
-                // Convert stored question history format to the expected format for addQuestionCard
-                // Assuming each question object has 'question_id', 'question', 'answer_type', and 'answer_choices' keys
-                // The 'answer' key might need to be transformed or processed depending on how your data is structured
-                const formattedQuestion = {
-                    question_id: question.question_id,
-                    question: question.question,
-                    answer_type: question.answer_type,
-                    answer_choices: question.answer_choices, // This should be a string or structure addQuestionCard expects
-                    why_we_asked: question.why_we_asked,
-                    user_answer: question.answer,
-                    // Include other necessary properties that addQuestionCard uses to render the question
-                };
-        
-                // Use addQuestionCard to render the question. This keeps it interactive.
-                addQuestionCard(formattedQuestion, user_answers[question_id]);
-        
-                // Optionally, mark the previously selected answer as selected if applicable
-                // This may involve modifying addQuestionCard to accept an additional parameter for the selected answer
-            });
-        
-            // After drawing all previous questions, make sure to draw the current question or the next one to be answered
-            // This might involve a call like addQuestionCard(currentQuestion) or similar
-        }
-        
-        function setupQuestionnaireFlow(current_question_id, questionnaireId) {
-            // Setup event listeners for options or input submissions
-            // Update progress as needed
-            // Fetch and display subsequent questions upon answering the current question
-            const queryParams = getQueryParams();
-
-            fetch('/get_question/'+questionnaireId+'/'+current_question_id, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ queryParams })
-            })
-            .then(response => response.json())
-            .then(data => {
-                question_data = data;
-                console.log(data)
-                // Display the first question
-                addQuestionCard(data);
-            })
-            .catch(error => console.error('Error:', error));
-        }
-
-        var questionnaireId = {{ questionnaire_id | tojson }};
-        console.log("questionnaireId: "+questionnaireId)
         // Function to extract query parameters from URL
         function getQueryParams() {
             const queryParams = {};
@@ -334,23 +194,20 @@
             return queryParams;
         }
 
+        let currentState = 1; // Variable to track the current state of the form
+
         function submitAnswer(questionId, answer) {
             currentState = questionId;
 
-            fetch('/submit_answer/'+questionnaireId, {
+            fetch('/submit_answer/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(
-                    {   
-                        question_id: questionId,
-                        user_answer: answer
-                    })
+                body: JSON.stringify({ question_id:questionId, answer:answer })
             })
             .then(response => response.json())
             .then(data => {
-                question_data = data;
                 console.log(data)
                 if (data.redo_subsequent) {
                     // Clear cards for all steps beyond the current one
@@ -377,99 +234,13 @@
             });
         }
         
-
-        function updateQuestionCard(question_id, question) {
-            // Update the card based on the question details
+        function addQuestionCard(question) {
             const container = document.getElementById('container');
-            const existingCardId = 'questionCard' + question_id;
-            console.log("check exsiting card for : "+ question_id)
-            // Check if the question card already exists
-            if (document.getElementById(existingCardId)) {
-                const questionHeader = document.getElementById(existingCardId).querySelector('.question-title');
-                questionHeader.textContent = question;
-            }
-        }
-
-        function removeQuestionCard(question_id) {
-            const container = document.getElementById('container');
-            const card = document.getElementById('questionCard' + question_id);
-            if (card) {
-                container.removeChild(card);
-            }
-        }
-
-        function redoCardQuestionCard(question_id, question_data) {
-            // Update the card based on the question details
-            const container = document.getElementById('container');
-            const existingCardId = 'questionCard' + question_id;
-            console.log("check exsiting card for : "+ question_id)
-            // Check if the question card already exists
-            if (document.getElementById(existingCardId)) {
-                addQuestionCard(question_data)
-            }
-        }
-
-
-        function addQuestionCard(question, userAnswer = null) {
-            console.log("addQuestionCard: "+ JSON.stringify(question))
-            console.log("addQuestionCard:  with user answer:" + userAnswer)
-            console.log("got question_id: "+ question.question_id)
-            console.log("got question: "+ question.question)
-            console.log("got answer_type: "+ question.answer_type)
-            console.log("got answer_choices: "+ question.answer_choices)
-            console.log("got updated_questions: "+ question.updated_questions)
-            console.log("got redo_questions: "+ question.redo_questions)
-            console.log("got remove_questions: "+ question.remove_questions)
-
-            // Handle remove_questions
-            if (question.remove_questions) {
-                question.remove_questions.forEach(questionId => {
-                    removeQuestionCard(questionId);
-                });
-            }
-
-            // Handle updated questions
-            if (question.updated_questions) {
-                Object.entries(question.updated_questions).forEach(([questionId, updatedQuestion]) => {
-                    updateQuestionCard(questionId, updatedQuestion);
-                });
-            }
-
-            // Handle redo questions
-            if (question.redo_questions && question.redo_questions.length > 0) {
-                const queryParams = getQueryParams();
-                question.redo_questions.forEach(questionId => {
-                    fetch('/get_question/'+questionnaireId+'/'+questionId, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ queryParams })
-                    }).then(response => response.json())
-                    .then(data => {
-                        question_data = data;
-                        redoCardQuestionCard(questionId, question_data);
-                    });
-                });
-            }
-
-            const container = document.getElementById('container');
-            const existingCardId = 'questionCard' + question.question_id;
-            console.log("check exsiting card for : "+ question.question_id)
-            // Check if the question card already exists
-            card = document.getElementById(existingCardId)
-            if (card) {
-                console.log('Question card for question ID ' + question.question_id + ' already exists... Need to refresh the card');
-                // Refresh the card with the updated question details
-                card.innerHTML = '';
-            } else {
-                // Create a new card for the question
-                card = document.createElement('div');
-            }
-            
+            const card = document.createElement('div');
             card.className = 'question-card';
             card.id = 'questionCard' + question.question_id;
             
+
             // Create a header for the question text
             const questionHeader = document.createElement('h5');
             questionHeader.className = 'question-title';
@@ -524,9 +295,6 @@
                         processAnswer(question.question_id, button.dataset.answer); // Use the answer key for processing
                     });
                     btnGroup.appendChild(button);
-                    if (userAnswer === button.dataset.answer) {
-                        button.classList.add('selected'); // This marks the button as selected
-                    }
                 });
                 card.appendChild(btnGroup);
             }
@@ -543,12 +311,6 @@
                     const choiceParts = choice.includes(':') ? choice.split(':').map(s => s.trim()) : [choice, choice];
                     
                     choiceElement.textContent = choiceParts[1]; // Display the human-readable text
-                    
-                    // Check if this was the user's answer and mark it as selected
-                    if (userAnswer === choiceParts[0]) {
-                        choiceElement.classList.add('selected'); // Add 'selected' class or another appropriate class you use to indicate selection
-                    }
-
                     choiceElement.addEventListener('click', function() {
                         handleChoiceSelection(question.question_id, choiceElement, choiceParts[0]);
                     });
@@ -557,39 +319,6 @@
                 });
                 
                 card.appendChild(choiceContainer);
-            } else if (question.answer_type === 'Text input - Image Attached') {
-                // Add text input for pet's name
-                const nameInput = document.createElement('input');
-                nameInput.type = 'text';
-                nameInput.className = 'form-control';
-                nameInput.placeholder = 'Enter name...';
-                card.appendChild(nameInput);
-
-                // Add file input for image upload
-                const imageInput = document.createElement('input');
-                imageInput.type = 'file';
-                imageInput.className = 'form-control';
-                imageInput.multiple = true; // Allow multiple file uploads
-                card.appendChild(imageInput);
-
-                // Add a submit button
-                const submitButton = document.createElement('button');
-                submitButton.textContent = 'Submit';
-                submitButton.className = 'btn btn-primary';
-                submitButton.addEventListener('click', function() {
-                    processPetInfo(question.question_id, nameInput.value, imageInput.files);
-                });
-                card.appendChild(submitButton);
-
-                const imageContainer = document.createElement('div');
-                imageContainer.id = 'imageContainer' + question.question_id; // Unique ID for each question
-                imageContainer.className = 'image-container';
-                card.appendChild(imageContainer);
-
-                const responseDiv = document.createElement('div');
-                responseDiv.id = 'responseCard' + question.question_id; // Unique ID for each question
-                responseDiv.className = 'response-card';
-                card.appendChild(responseDiv);
             }
             else if (question.answer_type === 'Input') {
                 const inputField = document.createElement('input');
@@ -602,9 +331,6 @@
                         processAnswer(question.question_id, inputField.value);
                     }
                 });
-                if (userAnswer) {
-                    inputField.value = userAnswer; // This sets the input's value to the user's answer
-                }
                 card.appendChild(inputField);
             }
             else if (question.answer_type === 'Date') { //(YYYY-MM)
@@ -623,9 +349,6 @@
                     console.log('Final date selected: ', event.target.value);
                     processAnswer(question.question_id, event.target.value);
                 });
-                if (userAnswer) {
-                    inputField.value = userAnswer; // This sets the input's value to the user's answer
-                }
                 card.appendChild(inputField);
             }
             else if (question.answer_type === 'Number') { //(YYYY-MM)
@@ -639,9 +362,6 @@
                         processAnswer(question.question_id, inputField.value);
                     }
                 });
-                if (userAnswer) {
-                    inputField.value = userAnswer; // This sets the input's value to the user's answer
-                }
                 card.appendChild(inputField);
             }
             else if (question.answer_type === 'Search - Tags - Single') {
@@ -670,16 +390,10 @@
                             const tagElement = document.createElement('div');
                             tagElement.className = 'choice-tag';
                             tagElement.textContent = tagName; // Display only the tag name
-                            tagElement.dataset.tagId = id; // Set the 'data-tag-id' attribute to the tag's ID
                             tagElement.addEventListener('click', () => {
                                 console.log("id: "+id + " tagName: "+tagName)
                                 handleTagSelection(question.question_id, id, tagName); // Pass the ID when a tag is selected
                             });
-                            // Check if this tag ID is in the user's answers and mark it as selected
-                            if (userAnswer && userAnswer.includes(id)) {
-                                tagElement.classList.add('selected');
-                            }
-
                             tagContainer.appendChild(tagElement);
                         });
                 }
@@ -802,9 +516,7 @@
                     // Add description and details as text
                     const textNode = document.createTextNode(description + ' - ' + details);
                     choiceElement.appendChild(textNode);
-                    if (userAnswer && choice.includes(userAnswer)) {
-                        choiceElement.classList.add('selected'); // This marks the choice as selected if it includes the user's answer
-                    }
+            
                     choiceContainer.appendChild(choiceElement);
                 });
             
@@ -829,35 +541,42 @@
         // ... [Rest of your code, including the existing addQuestionCard function] ...
 
         function processAnswer(questionId, answerKey) {
-            if (answerKey === "confirmed") {
-                // Logic to move to the next question
-                console.log("Need to proceed confirmed answers before next question")
-                currentState = questionId;
-                // Submit the answer to the server
-                answeredQuestions = answeredQuestions + 1;
-                updateProgressBar();
-                submitAnswer(questionId, answerKey);
-
-            } else {
-                const card = document.getElementById('questionCard' + questionId);
-                const btns = card.querySelectorAll('.option-btn');
-                btns.forEach(btn => {
-                    // Remove 'selected' from all buttons
-                    btn.classList.remove('selected');
-                    
-                    // Add 'selected' to the button with the matching answerKey
-                    if (btn.dataset.answer === answerKey) {
-                        btn.classList.add('selected');
-                    }
-                });
-                currentState = questionId;
-                // Submit the answer to the server
-                answeredQuestions = answeredQuestions + 1;
-                updateProgressBar();
-                submitAnswer(questionId, answerKey);
-            }
-            
+            const card = document.getElementById('questionCard' + questionId);
+            const btns = card.querySelectorAll('.option-btn');
+            btns.forEach(btn => {
+                // Remove 'selected' from all buttons
+                btn.classList.remove('selected');
+                
+                // Add 'selected' to the button with the matching answerKey
+                if (btn.dataset.answer === answerKey) {
+                    btn.classList.add('selected');
+                }
+            });
+            currentState = questionId;
+            // Submit the answer to the server
+            answeredQuestions = answeredQuestions + 1;
+            updateProgressBar();
+            submitAnswer(questionId, answerKey);
         }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const queryParams = getQueryParams();
+
+            fetch('/get_question/1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ queryParams })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                // Display the first question
+                addQuestionCard(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
 
         function handleChoiceSelection(questionId, choiceElement, choice) {
             // Remove 'selected' class from all choices in the same container
@@ -877,120 +596,6 @@
         function updateProgressBar() {
             let progress = (answeredQuestions / totalQuestions) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
-        }
-
-        function processPetInfo(questionId, petName, petImages) {
-            // Convert FileList to Array
-            const imagesArray = Array.from(petImages);
-
-            // Display images in the imageContainer
-            const imageContainer = document.getElementById('imageContainer' + questionId);
-            imageContainer.innerHTML = ''; // Clear any existing content
-            imagesArray.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = URL.createObjectURL(image);
-                imgElement.style.maxWidth = '100px'; // Set a max width for the image
-                imgElement.style.marginRight = '10px'; // Add some margin between images
-                imageContainer.appendChild(imgElement);
-            });
-        
-            convertImagesToBase64(imagesArray).then(base64Images => {
-                const payload = {
-                    petName: petName,
-                    petImages: base64Images
-                };
-        
-                // Replace with the API endpoint on your server that handles pet info submission
-                fetch('/process-pet-info', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Pet info submitted:', data);
-                    // Handle the response here
-                    displayResponse(questionId, data); // Pass the question ID
-                    // Add a button for user confirmation to proceed to the next question
-                    //Need to parse the JSON answer and create form from the key-value pairs for user to modify or confirm
-
-                    addConfirmationButton(questionId);
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        }
-        
-        function convertImagesToBase64(images) {
-            const promises = images.map(image => {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(image);
-                });
-            });
-            return Promise.all(promises);
-        }
-        
-        function displayResponse(questionId, data) {
-            const responseCard = document.getElementById('responseCard' + questionId);
-            if (responseCard) {
-
-                // Extract JSON string from the data
-                const jsonMatch = data.match(/```json\n([\s\S]*?)\n```/);
-                console.log("jsonMatch: "+jsonMatch)
-                if (jsonMatch && jsonMatch[1]) {
-                    const jsonString = jsonMatch[1];
-                    const jsonData = JSON.parse(jsonString);
-                    console.log("jsonData: "+jsonData)
-                    // Create a container for the input fields
-                    const container = document.createElement('div');
-                    container.className = 'json-fields-container';
-
-                    // Iterate over the keys in the JSON data and create fields
-                    Object.keys(jsonData).forEach(key => {
-                        const value = jsonData[key];
-                        const fieldContainer = document.createElement('div'); // Container for each pair
-                        fieldContainer.className = 'field-container';
-                        if (key === 'answer') {
-                            // Create a paragraph for the 'answer' key
-                            const paragraph = document.createElement('p');
-                            paragraph.textContent = value;
-                            fieldContainer.appendChild(paragraph);
-                        } else {
-                            // Create a label and input field for other key-value pairs
-                            const label = document.createElement('label');
-                            label.textContent = key;
-                            label.htmlFor = 'jsonField-' + key;
-                    
-                            const input = document.createElement('input');
-                            input.type = 'text';
-                            input.id = 'jsonField-' + key;
-                            input.value = value;
-                    
-                            fieldContainer.appendChild(label);
-                            fieldContainer.appendChild(input);
-                        }
-                        container.appendChild(fieldContainer); // Append the container to the main container
-                    });
-                    // Clear previous content and append the new container
-                    responseCard.innerHTML = '';
-                    responseCard.appendChild(container);
-                }
-            }
-        }
-
-        function addConfirmationButton(questionId) {
-            const responseCard = document.getElementById('responseCard' + questionId);
-            const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirm and Proceed';
-            confirmButton.className = 'btn btn-success';
-            confirmButton.addEventListener('click', function() {
-                processAnswer(questionId, "confirmed"); // Here, "confirmed" is a placeholder
-            });
-            responseCard.appendChild(confirmButton);
         }
     </script>
 

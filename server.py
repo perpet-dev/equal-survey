@@ -1,8 +1,4 @@
 # server.py
-
-from doctest import debug
-from enum import auto
-from click import prompt
 from fastapi import FastAPI, Body, Form, Header, HTTPException, Depends, Response, Request, File, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,11 +15,7 @@ import requests
 import re
 import uuid
 from pymongo import MongoClient
-import openai
-import base64
-from openai import OpenAI
 from fastapi.middleware.cors import CORSMiddleware
-
 
 import logging
 logging.config.dictConfig(LOGGING_CONFIG)
@@ -31,7 +23,13 @@ logger = logging.getLogger(__name__)
 
 class AnswerSubmission(BaseModel):
     question_id: str
-    answer: str
+    user_answer: str
+    # question: str
+    # why_we_asked : str
+    # answer_type: str
+    # answer_choices: str 
+    # redo_questions: List[str]
+    # page_number: int
 
 class SingleAnswer(BaseModel):
     variable_name: str
@@ -39,18 +37,12 @@ class SingleAnswer(BaseModel):
 class AnswersSubmission(BaseModel):
     question_id: str
     answers: List[SingleAnswer]  # List of answers
-    
-# Initialize Firebase Admin SDK
-#cred = credentials.Certificate("key.json")
-#firebase_admin.initialize_app(cred)
-
-# Initialize Firestore DB
-#db = firestore.client()
 
 client = MongoClient(MONGODB)
 mongo_db = client.perpet_healthcheck
 
 app = FastAPI()
+
 # Allow all origins
 app.add_middleware(
     CORSMiddleware,
@@ -59,101 +51,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
-system_message = "You are 'PetGPT', a friendly and enthusiastic GPT that specializes in analyzing images of dogs and cats. \
-    Upon receiving an image, you identifies the pet's type, breed, age, weight, gender and body condition score. \
-    If you get the name of the pet, please incorporate it into your answer. \
-    If it's a cat, try to see if the ears are folded. If folded then output foldEar=true else  foldEar=false \
-    type=dog or cat, breed=breed of the pet, age=age of the pet, weight=weight of the pet, body_condition_score=body condition score of the pet, gender = male or female \
-    Output strictly as a JSON object containing the fields: answer, type, name, breed, gender, age, weight, body_condition_score, foldEar."
-    
-# Define the Pydantic model for the incoming data
-class PetInfo(BaseModel):
-    petName: str
-    petImages: List[str]  # List of base64 encoded images
-
-auth_key = "e452c6ee-d7f3-6804-3ded-7c591670019c:fx"
-def translate_text_with_deepl(text, target_lang):
-    url = 'https://api-free.deepl.com/v2/translate'
-    headers = {'Authorization': f'DeepL-Auth-Key {auth_key}'}
-    data = {
-        'text': text,
-        'target_lang': target_lang
-    }
-
-    response = requests.post(url, headers=headers, data=data)
-    logger.info(f"Original text: {text}")
-    logger.debug(f"response: {response.json()}")
-    answer = response.json()['translations'][0]['text']
-    logger.info(f"Translated text: {answer}")
-    return answer
-
-# # Usage
-# auth_key = 'yourAuthKey'  # Replace with your actual DeepL Auth Key
-# translated_text = translate_text_with_deepl("Hello, world!", "DE", auth_key)
-# print(translated_text)
-class ContentRequest(BaseModel):
-    content: str
-
-@app.post("/extract-questions")
-async def extract_questions(request: ContentRequest):
-    content_to_analyze = request.content
-    systemquestion = '''
-        Hello, I'm compiling an FAQ section for a pet care website and need to extract potential frequently asked questions \
-        from content written by veterinarians. The content covers a wide range of topics important to pet owners, including but not limited to:\n\
-        Healthcare for pets of all ages (babies, young, and old-aged pets) 
-            Accessories such as strollers, clothes, and toys 
-            Food recommendations and dietary advice 
-            Activities and walks 
-            Medicines and treatments, with a focus on dental, liver, and hair care \n\ 
-            The goal is to identify questions that provide practical, actionable information and advice for pet owners. 
-            Please extract questions that cover these topics comprehensively, 
-                ensuring that they're relevant and useful for an FAQ section. 
-                The questions should be structured and categorized by topic to help pet owners easily find the information they need. 
-                Aim for clarity and directness in each question to make them as helpful as possible.
-        '''
-    OPENAI_API_KEY="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"
-    openai.api_key=OPENAI_API_KEY
-    client = OpenAI(
-        organization='org-oMDD9ptBReP4GSSW5lMD1wv6',
-    )
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": f"{systemquestion}"},
-            {"role": "user", "content": f"Here is the content: {content_to_analyze}"},
-        ]
-    )
-    print(completion.choices[0].message)
-    return {"message": f"{completion.choices[0].message}"}
-
-@app.post("/process-pet-info")
-async def process_pet_info(pet_info: PetInfo):
-
-    oaiclient = OpenAI()
-    messages = [
-        {"role": "system", "content": system_message},
-        {"role": "user","content": [
-            {"type": "text", 
-            "text": f"It's {pet_info.petName} photo. What's the breed, age, weight and body condition score?"}]}
-    ]
-    for img_base64 in pet_info.petImages:
-        # Format the base64 string as a data URL
-        if not img_base64.startswith('data:image'):
-            img_base64 = f"data:image/jpeg;base64,{img_base64}"
-
-        messages[1]["content"].append({
-            "type": "image_url",
-            "image_url": {"url" : img_base64}
-        })
-
-    response = oaiclient.chat.completions.create(
-        model="gpt-4-vision-preview",
-        messages=messages,
-        max_tokens=500,
-    )
-
-    gpt4v = response.choices[0].message.content
-    return translate_text_with_deepl(gpt4v, "KO")
 
 # static files directory for web app
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -172,18 +69,21 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
     Returns:
         Tuple[Automaton, str]: A tuple containing the Automaton instance and the user ID.
     """
-    print(f"FastAPI session_id: {session_id}, questionnaire_id: {questionnaire_id} => get_automaton_for_user")
+    logger.debug(f"FastAPI session_id: {session_id}, questionnaire_id: {questionnaire_id} => get_automaton_for_user")
     automaton = Automaton()
     # Step 1: Check if the Automaton for the questionnaire_id exists, if not, create it.
     automaton_collection = mongo_db.automatons
     if automaton_states := automaton_collection.find_one(
         {"name": questionnaire_id}
     ):
+        logger.debug(f"FastAPI: for questionnaire_id: {questionnaire_id} found in MongoDB. Load Automaton from DB")
         automaton_id = automaton_states["_id"]
+        automaton.name = automaton_id
         # Create Automaton instance from state data
         automaton.deserialize_states(automaton_states)
+        logger.debug(f"FastAPI: for questionnaire_id: {questionnaire_id} => Automaton: {automaton.serialized_states()}")
     else:
-        print(f"FastAPI: for questionnaire_id: {questionnaire_id} not found. Load from excel")
+        logger.debug(f"FastAPI: for questionnaire_id: {questionnaire_id} not found. Load from excel")
         automaton = Automaton()
         automaton.load_from_excel(f"{questionnaire_id}.xlsx")
         new_automaton = automaton.serialized_states()
@@ -194,7 +94,7 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
     # Step 2: Create or Retrieve a session for this user and automaton
     session_collection = mongo_db.automaton_sessions
     if session_data := session_collection.find_one({"_id": session_id}):
-        # print(f"FastAPI: for session_id: {session_id} => Found Session data: {session_data}")
+        logger.debug(f"FastAPI: for session_id: {session_id} => Found Session data: {session_data}")
         # Process existing session data
         automaton.deserialize_data(session_data)
     else:
@@ -207,6 +107,317 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
         session_collection.insert_one(new_session)
 
     return automaton, session_id
+
+@app.get("/questionnaire/{automaton_id}/{session_id}/restore")
+async def restore_session(automaton_id: str, session_id: str):
+    session_collection = mongo_db.automaton_sessions
+    session_data = session_collection.find_one({"_id": session_id})
+
+    # If session_data is not found, create a new session
+    if not session_data:
+        # Initialize an empty session data structure
+        new_session_data = {
+            "_id": session_id,
+            "session_id": session_id,
+            "automaton_id": automaton_id
+        }
+        # Insert the new session into the database
+        session_collection.insert_one(new_session_data)
+        session_data = new_session_data
+        logger.info(f"New session created with session_id: {session_id}")
+
+    # Proceed with session restoration logic
+    # Initialize the Automaton instance and deserialize its state
+    automaton = Automaton()
+    automaton.deserialize_data(session_data)
+    # The rest of your restoration logic here
+    questions_history = session_data.get("questions_history", {})
+    current_question_id = automaton.goto  # or some default value
+    questionnaire_id = automaton.name  # Assuming the questionnaire ID is stored in the automaton's name attribute
+    restored_session_data = {
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id,
+        "current_question_id": current_question_id,
+        # "current_question": {},  # You may want to fetch the current question based on current_question_id
+        "questions_history": questions_history,
+        "variables": automaton.variables,  # Optionally include other automaton states if needed
+        "user_answers": session_data.get("user_answers", {})
+    }
+    
+    logger.info(f"Restored session data: {restored_session_data}")
+    return restored_session_data
+
+#2 Save Session State
+@app.post("/questionnaire/{session_id}/save")
+async def save_session(session_id: str, session_data: dict):
+    session_collection = mongo_db.automaton_sessions
+    result = session_collection.update_one({"_id": session_id}, {"$set": session_data}, upsert=True)
+    if result.modified_count == 0 and result.upserted_id is None:
+        raise HTTPException(status_code=500, detail="Failed to save session")
+    return {"message": "Session saved successfully"}
+
+#End or Reset Session
+@app.post("/questionnaire/{session_id}/end")
+async def end_session(session_id: str):
+    session_collection = mongo_db.automaton_sessions
+    # Option 1: Delete the session
+    session_collection.delete_one({"_id": session_id})
+    # Option 2: Reset the session (if you prefer to keep the session record)
+    # automaton = Automaton()
+    # initial_state = automaton.serialize_data()  # Assuming serialize_data() can represent the initial state
+    # session_collection.update_one({"_id": session_id}, {"$set": initial_state}, upsert=True)
+
+    return {"message": "Session ended successfully"}
+
+@app.post("/get_question/{questionaire_id}/{question_id}")
+async def get_question(response: Response, request: Request, questionaire_id: str, question_id: str, query_params: Optional[dict] = Body(default=None)):
+    session_id = request.headers.get('session_id', None) or request.cookies.get('session_id', None)
+
+    if not session_id:
+        session_id = str(uuid.uuid4())
+        logger.info(f"FastAPI generated new session_id: {session_id}")
+        # Set the cookie
+        response.set_cookie(key="session_id", value=session_id)
+
+    logger.info(f"FastAPI session_id: {session_id} => Question ID: {question_id}")
+    logger.info(f"Query Parameters: {query_params}")
+
+    automaton, session_id = await get_automaton_for_user(session_id, questionaire_id)
+    logger.info(f"Found automaton for session_id: {session_id}, questionaire_id: {questionaire_id}, automaton: {automaton.serialized_states()}, automaton: {automaton.serialize_data()}")
+    
+    if question_id == "1" and query_params:
+        for key, inner_dict in query_params.items():
+            if isinstance(inner_dict, dict):
+                for inner_key, value in inner_dict.items():
+                    formatted_key = f"@{inner_key}"
+                    if len(formatted_key) > 1:
+                        automaton.set_variable_value(formatted_key, value)
+
+        # Serialize and save the state to 
+        # Firestore
+        # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
+        # MongoDB: Serialize and save or update the state
+        automaton_data = automaton.serialize_data()
+        automaton_sessions_collection = mongo_db.automaton_sessions
+        automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
+
+    node = automaton.states.get(question_id)
+    if node is None:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    question = automaton.substitute_placeholders(node['Question'])
+    answer_choices = node.get("AnswerChoices")
+    logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
+    if "APICALL" in answer_choices:
+        logger.debug("Should make API CALL")
+        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
+        api_call = automaton.substitute_placeholders(api_call)
+        logger.debug(f"API CALL: {api_call}")
+        if "EXTRACT" in answer_choices:
+            logger.debug(f"get_question - answer_choices: {answer_choices}")
+            extract_key = extract_from_function(answer_choices)
+            response = make_api_call(api_call)
+            logger.debug(f"get_question - Should Extract data: {extract_key}")
+            answer_choices = extract_data(response, extract_key)
+        else:
+            response = make_api_call(api_call)
+            answer_choices = response
+
+    question_data = { 
+        "question_id": question_id,
+        "question": question,
+        "answer_type": node.get("AnswerType"),
+        "answer_choices": answer_choices,
+        "page_number": node.get("Page"),
+        "why_we_asked": node.get("WhyWeAsk"),
+        #"design": node.get("Design"),
+        "updated_questions": [],
+        "redo_questions": [],
+        "remove_questions": []
+    }
+    
+    logger.debug(f"FastAPI:/get_question/{questionaire_id}/{question_id} => Next question: {question_data}")
+    # MongoDB: Serialize and save or update the state
+    automaton.update_questions_path(question_id)
+    automaton_data = automaton.serialize_data()
+    automaton_sessions_collection = mongo_db.automaton_sessions
+    automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
+    # Add the current question data to `questions_history`
+    update_history_query = {"$set": {f"questions_history.{question_id}": question_data}}
+    automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
+    return question_data
+
+@app.post("/submit_answer/{questionnaireId}")
+async def submit_answer(request: Request, questionnaireId: str, submission: AnswerSubmission, response: Response):
+    session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
+    if not session_id:
+        # Generate a new session_id if not present
+        session_id = str(uuid.uuid4())
+        # Set the cookie
+        response.set_cookie(key="session_id", value=session_id)
+
+    automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
+    
+    question_id = submission.question_id
+    answer = submission.user_answer
+    logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Answer: {answer}")
+    next_step, updated_affected_questions, redo_questions, remove_questions = automaton.process(question_id, answer)
+    
+    logger.debug(f"FastAPI: => current question:{question_id} => next_step: {next_step} => affected_questions: {updated_affected_questions}")
+    
+    # First, update the user's answer for the current question in the questions_history
+    automaton_sessions_collection = mongo_db.automaton_sessions
+    update_fields = {
+        f"questions_history.{question_id}.update_questions": updated_affected_questions,
+        f"questions_history.{question_id}.redo_questions": redo_questions,
+        f"questions_history.{question_id}.remove_questions": remove_questions,
+        f"questions_history.{question_id}.user_answer": answer
+    }
+    update_history_query = {"$set": update_fields}
+    automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
+    
+    if next_step is None:
+        logger.info("FastAPI: No further action required")
+        return {"message": "No further action required"}
+    
+    node = automaton.states.get(str(next_step))
+    if node is None:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    question = automaton.substitute_placeholders(node['Question'])
+    answer_choices = node.get("AnswerChoices")
+    logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
+
+    if "APICALL" in answer_choices:
+        logger.debug("Should make API CALL")
+        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
+        api_call = automaton.substitute_placeholders(api_call)
+        logger.debug(f"API CALL: {api_call}")
+        if "EXTRACT" in answer_choices:
+            extract_key = extract_from_function(answer_choices)
+            response = make_api_call(api_call)
+            #logger.info(f"API Call response: {response}")
+            logger.debug(f"submit_answer - Should Extract data: {extract_key}")
+            answer_choices = extract_data(response, extract_key)
+            logger.info(f"answer_choices: {answer_choices}")
+        else:
+            response = make_api_call(api_call)
+            answer_choices = response
+
+    if " - " in answer_choices:
+        #case of images answer choices
+        parsed_choices = parse_answer_choices(answer_choices, automaton)
+        logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
+    else:
+        parsed_choices = answer_choices
+    
+    question_data = {
+        "question_id": node.get("ID"),
+        "question": question,
+        "answer_type": node.get("AnswerType"),
+        "answer_choices": parsed_choices,
+        "why_we_asked": node.get("WhyWeAsk"),
+        #"design": node.get("Design"),
+        #"page_number": node.get("Page"),
+        "updated_questions": updated_affected_questions, 
+        "redo_questions": redo_questions,
+        "remove_questions": remove_questions
+    }
+    next_question_id = node.get("ID")
+    # MongoDB: Serialize and save or update the state
+    automaton_sessions_collection = mongo_db.automaton_sessions
+    automaton.update_questions_path(next_question_id)
+    automaton_data = automaton.serialize_data()
+    automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
+
+    update_history_query = {"$set": {f"questions_history.{next_question_id}": question_data}}
+    automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
+    
+    logger.debug(f"FastAPI:submit_answer => next_step: {next_step}, Next question: {question_data}")
+    
+    return question_data
+
+#Endpoint to process in case of multiple answers for multiple variables
+@app.post("/submit_answers/{questionnaireId}")
+async def submit_answers(request: Request, questionnaireId: str, submission: AnswersSubmission, response: Response):
+    session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
+    if not session_id:
+        # Generate a new session_id if not present
+        session_id = str(uuid.uuid4())
+        # Set the cookie
+        response.set_cookie(key="session_id", value=session_id)
+
+    automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
+    question_id = submission.question_id
+    answers = submission.answers
+    for answer in answers:
+        logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Variable:{answer.variable_name} Value: {answer.value}")
+        automaton.set_variable_value(answer.variable_name, answer.value)
+
+    # Process the user's answer
+    next_step, affected_questions, redo_questions, remove_questions = automaton.process(question_id, answer)
+
+    # Serialize and save the state to Firestore
+    # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
+    # MongoDB: Serialize and save or update the state
+    automaton_data = automaton.serialize_data()
+    #logger.debug(f"FastAPI: => {automaton_data}")
+    automaton_sessions_collection = mongo_db.automaton_sessions
+    automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
+    #questions_history
+    
+    if next_step is None:
+        logger.debug("FastAPI: No further action required")
+        return {"message": "No further action required"}
+
+    node = automaton.states.get(str(next_step))
+
+    if node is None:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    question = automaton.substitute_placeholders(node['Question'])
+    answer_choices = node.get("AnswerChoices")
+    logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
+
+    if "APICALL" in answer_choices:
+        logger.debug("Should make API CALL")
+        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
+        api_call = automaton.substitute_placeholders(api_call)
+        logger.debug(f"API CALL: {api_call}")
+        if "EXTRACT" in answer_choices:
+            extract_key = extract_from_function(answer_choices)
+            response = make_api_call(api_call)
+            #logger.info(f"API Call response: {response}")
+            logger.debug(f"submit_answers - Should Extract data: {extract_key}")
+            answer_choices = extract_data(response, extract_key)
+            logger.info(f"answer_choices: {answer_choices}")
+        else:
+            response = make_api_call(api_call)
+            answer_choices = response
+
+    if " - " in answer_choices:
+        #case of images answer choices
+        parsed_choices = parse_answer_choices(answer_choices, automaton)
+        logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
+    else:
+        parsed_choices = answer_choices
+
+    question_data = {
+        "question_id": node.get("ID"),
+        "question": question,
+        "answer_type": node.get("AnswerType"),
+        "answer_choices": parsed_choices,
+        "page_number": node.get("Page"),
+        "why_we_asked": node.get("WhyWeAsk"),
+        "design": node.get("Design"),
+        #"redo_questions": affected_questions
+        "updated_questions": affected_questions, 
+        "redo_questions": redo_questions,
+        "remove_questions": remove_questions
+    }
+
+    logger.debug(f"FastAPI:submit_answer => next_step: {next_step}, Next question: {question_data}")
+    return question_data
 
 def get_url_parameters(request: Request):
     """
@@ -225,6 +436,7 @@ def make_api_call(url: str):
         raise HTTPException(status_code=400, detail=str(e)) from e
 
 def extract_data(json_data, path):
+    logger.debug(f"FastAPI: Extract data from JSON: {json_data} => Path: {path}\n\n")
     """
     Extracts data from json_data based on the provided path and returns a list of values or
     dictionaries with specified fields in the path.
@@ -250,20 +462,18 @@ def extract_data(json_data, path):
 
     last_element = elements[-1]
     if '(' in last_element and last_element.endswith(')'):
-        return _extracted_from_extract_data_27(last_element, current_data)
+        return extracted_from_extract_data(last_element, current_data)
     # For a single field, return a list of values
     choices =  [item.get(last_element) for item in current_data if isinstance(item, dict)]
-    print(f"FastAPI: Extracted choices - simple key: {choices}")
+    logger.debug(f"FastAPI: Extracted choices - simple key: {choices}")
     return '\n'.join(choices)
 
-
-# TODO Rename this here and in `extract_data`
-def _extracted_from_extract_data_27(last_element, current_data):
+def extracted_from_extract_data(last_element, current_data):
     fields = last_element.replace(' ', '').strip('()').split(',')
     choices = [{field: item.get(field) for field in fields} for item in current_data if isinstance(item, dict)]
-    print(f"FastAPI: Extracted choices - multiple keys : {choices}")
+    logger.debug(f"FastAPI: Extracted choices - multiple keys : {choices}")
     answer_choices = format_dict_array_to_string(choices)
-    print(f"FastAPI: Extracted choices - answer_choices : {answer_choices}")
+    logger.debug(f"FastAPI: Extracted choices - answer_choices : {answer_choices}")
     return answer_choices
 
 def format_dict_array_to_string(dict_array):
@@ -278,71 +488,6 @@ def format_dict_array_to_string(dict_array):
         formatted_lines.append(formatted_line)
 
     return '\n'.join(formatted_lines)
-
-@app.post("/get_question/{questionaire_id}/{question_id}")
-async def get_question(response: Response, request: Request, questionaire_id: str, question_id: str, query_params: Optional[dict] = Body(default=None)):
-    session_id = request.headers.get('session_id', None) or request.cookies.get('session_id', None)
-
-    if not session_id:
-        session_id = str(uuid.uuid4())
-        logger.info(f"FastAPI generated new session_id: {session_id}")
-        # Set the cookie
-        response.set_cookie(key="session_id", value=session_id)
-
-    logger.info(f"FastAPI session_id: {session_id} => Question ID: {question_id}")
-    logger.info(f"Query Parameters: {query_params}")
-
-    automaton, session_id = await get_automaton_for_user(session_id, questionaire_id)
-
-    if question_id == "1" and query_params:
-        for key, inner_dict in query_params.items():
-            if isinstance(inner_dict, dict):
-                for inner_key, value in inner_dict.items():
-                    formatted_key = f"@{inner_key}"
-                    if len(formatted_key) > 1:
-                        automaton.set_variable_value(formatted_key, value)
-
-        # Serialize and save the state to 
-        # Firestore
-        # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-        # MongoDB: Serialize and save or update the state
-        automaton_data = automaton.serialize_data()
-        automaton_sessions_collection = mongo_db.automaton_sessions
-        automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-
-    node = automaton.states.get(question_id)
-    if node is None:
-        raise HTTPException(status_code=404, detail="Question not found")
-
-    question = automaton.substitute_placeholders(node['Question'])
-    answer_choices = node.get("AnswerChoices")
-    print(f"FastAPI: => Answer choices: {answer_choices}")
-    if "APICALL" in answer_choices:
-        logger.info("Should make API CALL")
-        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-        api_call = automaton.substitute_placeholders(api_call)
-        logger.info(f"API CALL: {api_call}")
-        if "EXTRACT" in answer_choices:
-            extract_key = answer_choices.split("EXTRACT(")[1].split(")")[0]
-            response = make_api_call(api_call)
-            logger.info(f"Should Extract data: {extract_key}")
-            answer_choices = extract_data(response, extract_key)
-        else:
-            response = make_api_call(api_call)
-            answer_choices = response
-
-    question_data = {
-        "question_id": question_id,
-        "question": question,
-        "answer_type": node.get("AnswerType"),
-        "answer_choices": answer_choices,
-        "page_number": node.get("Page"),
-        "why_we_asked": node.get("WhyWeAsk"),
-        "design": node.get("Design")
-    }
-    print(f"FastAPI: Next question: {question_data}")
-
-    return question_data
 
 
 def parse_answer_choices(answer_choices: str, automaton: Automaton) -> str:
@@ -416,182 +561,7 @@ def extract_from_function(input_string):
 
     return None if parenthesis_count != 0 else input_string[start:end - 1]
 
-@app.post("/submit_answer/{questionnaireId}")
-async def submit_answer(request: Request, questionnaireId: str, submission: AnswerSubmission, response: Response):
-    session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
-    if not session_id:
-        # Generate a new session_id if not present
-        session_id = str(uuid.uuid4())
-        # Set the cookie
-        response.set_cookie(key="session_id", value=session_id)
 
-    automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
-    question_id = submission.question_id
-    answer = submission.answer
-
-    logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Answer: {answer}")
-    # Process the user's answer
-    next_step = automaton.process(question_id, answer)
-
-    # Assume this function determines if subsequent steps need to be redone
-    def determine_if_redo_is_needed(automaton, question_id, answer):
-        # Implement your custom logic here
-        # For example, check if the answer to this question changes the path in the automaton
-
-        return True
-
-    redo_subsequent = determine_if_redo_is_needed(automaton, question_id, answer)
-
-    if next_step is None:
-        logger.info("FastAPI: No further action required")
-        return {"message": "No further action required"}
-    
-    
-    node = automaton.states.get(str(next_step))
-    # logger.debug(f"FastAPI: => {automaton.serialize_data()}")
-    # Serialize and save the state to Firestore
-    # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-    # MongoDB: Serialize and save or update the state
-    automaton_data = automaton.serialize_data()
-    automaton_sessions_collection = mongo_db.automaton_sessions
-    automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-    
-    print(f"FastAPI: => current question:{question_id} => next_step: {next_step}")
-    
-    if node is None:
-        raise HTTPException(status_code=404, detail="Question not found")
-
-    question = automaton.substitute_placeholders(node['Question'])
-    answer_choices = node.get("AnswerChoices")
-    logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
-
-    if "APICALL" in answer_choices:
-        logger.info("Should make API CALL")
-        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-        api_call = automaton.substitute_placeholders(api_call)
-        logger.info(f"API CALL: {api_call}")
-        if "EXTRACT" in answer_choices:
-            extract_key = extract_from_function(answer_choices)
-            response = make_api_call(api_call)
-            #logger.info(f"API Call response: {response}")
-            logger.debug(f"Should Extract data: {extract_key}")
-            answer_choices = extract_data(response, extract_key)
-            logger.info(f"answer_choices: {answer_choices}")
-        else:
-            response = make_api_call(api_call)
-            answer_choices = response
-
-    if " - " in answer_choices:
-        #case of images answer choices
-        parsed_choices = parse_answer_choices(answer_choices, automaton)
-        print(f"FastAPI: => Parsed choices: {parsed_choices}")
-    else:
-        parsed_choices = answer_choices
-
-    question_data = {
-        "question_id": node.get("ID"),
-        "question": question,
-        "answer_type": node.get("AnswerType"),
-        "answer_choices": parsed_choices,
-        "page_number": node.get("Page"),
-        "why_we_asked": node.get("WhyWeAsk"),
-        "design": node.get("Design")
-    }
-
-    # Add the redo_subsequent flag to your response
-    # question_data["redo_subsequent"] = redo_subsequent
-    logger.info(f"FastAPI: Next question: {question_data}")
-
-    return question_data
-
-#Endpoint to process in case of multiple answers for multiple variables
-@app.post("/submit_answers/{questionnaireId}")
-async def submit_answers(request: Request, questionnaireId: str, submission: AnswersSubmission, response: Response):
-    session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
-    if not session_id:
-        # Generate a new session_id if not present
-        session_id = str(uuid.uuid4())
-        # Set the cookie
-        response.set_cookie(key="session_id", value=session_id)
-
-    automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
-    question_id = submission.question_id
-
-    answers = submission.answers
-    for answer in answers:
-        logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Variable:{answer.variable_name} Value: {answer.value}")
-        automaton.set_variable_value(answer.variable_name, answer.value)
-
-    # Process the user's answer
-    next_step = automaton.process(question_id, answer)
-
-    # # Assume this function determines if subsequent steps need to be redone
-    # def determine_if_redo_is_needed(automaton, question_id, answer):
-    #     # Implement your custom logic here
-    #     # For example, check if the answer to this question changes the path in the automaton
-
-    #     return True
-
-    # redo_subsequent = determine_if_redo_is_needed(automaton, question_id, answer)
-
-    if next_step is None:
-        logger.info("FastAPI: No further action required")
-        return {"message": "No further action required"}
-
-    node = automaton.states.get(str(next_step))
-    logger.debug(f"FastAPI: => {automaton.serialize_data()}")
-    # Serialize and save the state to Firestore
-    # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-    # MongoDB: Serialize and save or update the state
-    automaton_data = automaton.serialize_data()
-    automaton_sessions_collection = mongo_db.automaton_sessions
-    automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-
-    if node is None:
-        raise HTTPException(status_code=404, detail="Question not found")
-
-    question = automaton.substitute_placeholders(node['Question'])
-    answer_choices = node.get("AnswerChoices")
-    print(f"FastAPI: => Answer choices: {answer_choices}")
-
-    if "APICALL" in answer_choices:
-        logger.info("Should make API CALL")
-        api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-        api_call = automaton.substitute_placeholders(api_call)
-        logger.info(f"API CALL: {api_call}")
-        if "EXTRACT" in answer_choices:
-            extract_key = extract_from_function(answer_choices)
-            response = make_api_call(api_call)
-            #logger.info(f"API Call response: {response}")
-            logger.debug(f"Should Extract data: {extract_key}")
-            answer_choices = extract_data(response, extract_key)
-            logger.info(f"answer_choices: {answer_choices}")
-        else:
-            response = make_api_call(api_call)
-            answer_choices = response
-
-    if " - " in answer_choices:
-        #case of images answer choices
-        parsed_choices = parse_answer_choices(answer_choices, automaton)
-        print(f"FastAPI: => Parsed choices: {parsed_choices}")
-    else:
-        parsed_choices = answer_choices
-
-    question_data = {
-        "question_id": node.get("ID"),
-        "question": question,
-        "answer_type": node.get("AnswerType"),
-        "answer_choices": parsed_choices,
-        "page_number": node.get("Page"),
-        "why_we_asked": node.get("WhyWeAsk"),
-        "design": node.get("Design")
-    }
-
-    # Add the redo_subsequent flag to your response
-    question_data["redo_subsequent"] = redo_subsequent
-    logger.info(f"FastAPI: Next question: {question_data}")
-
-    return question_data
 
 # @app.post("/reset_automaton")
 # async def reset_automaton(session_id: str = Header(...)):
@@ -608,7 +578,7 @@ async def get_questionnaire(request: Request, questionnaire_id: str):
     session_id = request.cookies.get('session_id')
     # If no user ID cookie, generate a new one and set it
     if not session_id:
-        print("No session_id cookie found")
+        logger.debug("No session_id cookie found")
         session_id = str(uuid.uuid4())
         response = templates.TemplateResponse("questionnaire.html", {"request": request, "questionnaire_id": questionnaire_id, "session_id": session_id,
                                                 "query_params": request.query_params})
@@ -619,11 +589,6 @@ async def get_questionnaire(request: Request, questionnaire_id: str):
                                                 "query_params": request.query_params})
 
 #This is the Flask equivalent part in FastAPI
-@app.get("/qualtrics", response_class=HTMLResponse)
-async def goQualtrics(request: Request):
-    return templates.TemplateResponse("qualtrics.html", {"request": request, "query_params": request.query_params})
-
-#This is the Flask equivalent part in FastAPI
 @app.get("/healthreport", response_class=HTMLResponse)
 async def healthreport(request: Request):
     return templates.TemplateResponse("radar.html", {"request": request, "query_params": request.query_params})
@@ -632,23 +597,16 @@ async def healthreport(request: Request):
 async def home(request: Request, response: Response):
     return templates.TemplateResponse("intro.html", {"request": request})
 
-@app.get("/petgpt")
-async def petgpt(request: Request, response: Response):
-    return templates.TemplateResponse("chat.html", {"request": request})
-
-from generation import (
-    generation_websocket_endpoint_chatgpt
-)
-app.websocket("/ws/generation")(generation_websocket_endpoint_chatgpt)
+LOGLEVEL = logging.DEBUG
 # Set the logging level for Uvicorn loggers
-logging.getLogger("uvicorn").setLevel(logging.INFO)
-logging.getLogger("uvicorn.error").setLevel(logging.INFO)
-logging.getLogger("uvicorn.access").setLevel(logging.INFO)
+logging.getLogger("uvicorn").setLevel(LOGLEVEL)
+logging.getLogger("uvicorn.error").setLevel(LOGLEVEL)
+logging.getLogger("uvicorn.access").setLevel(LOGLEVEL)
 # Attempt to set the level for "uvicorn.asgi" only if it exists
 if logging.getLogger("uvicorn.asgi"):
-    logging.getLogger("uvicorn.asgi").setLevel(logging.INFO)
+    logging.getLogger("uvicorn.asgi").setLevel(LOGLEVEL)
 
 # Set the root logger level if you want to adjust the overall logging level
-logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(LOGLEVEL)
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=10000, log_level="debug")
