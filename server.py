@@ -222,12 +222,19 @@ async def get_question(response: Response, request: Request, questionaire_id: st
         else:
             response = make_api_call(api_call)
             answer_choices = response
-
+            
+    if " - " in answer_choices:
+        #case of images answer choices
+        parsed_choices = parse_answer_choices(answer_choices, automaton)
+        logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
+    else:
+        parsed_choices = answer_choices
+        
     question_data = { 
         "question_id": question_id,
         "question": question,
         "answer_type": node.get("AnswerType"),
-        "answer_choices": answer_choices,
+        "answer_choices": parsed_choices,
         "page_number": node.get("Page"),
         "why_we_asked": node.get("WhyWeAsk"),
         #"design": node.get("Design"),
