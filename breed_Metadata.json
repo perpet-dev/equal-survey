@@ -1,0 +1,2290 @@
+[
+	{
+		"breed_id" : 1,
+		"breed_name" : "골든 리트리버",
+		"answer_seq" : 8,
+		"answer" : "골든 리트리버",
+		"metadata_seq" : 1423,
+		"metadata_text" : "dog_breed:golden_retriever"
+	},
+	{
+		"breed_id" : 2,
+		"breed_name" : "그레이 하운드",
+		"answer_seq" : 9,
+		"answer" : "그레이 하운드",
+		"metadata_seq" : 1428,
+		"metadata_text" : "dog_breed:greyhound"
+	},
+	{
+		"breed_id" : 3,
+		"breed_name" : "그레이트 데인",
+		"answer_seq" : 10,
+		"answer" : "그레이트 데인",
+		"metadata_seq" : 1424,
+		"metadata_text" : "dog_breed:great_dane"
+	},
+	{
+		"breed_id" : 4,
+		"breed_name" : "그레이트 스위스 마운틴 독",
+		"answer_seq" : 11,
+		"answer" : "그레이트 스위스 마운틴 독",
+		"metadata_seq" : 1426,
+		"metadata_text" : "dog_breed:greater_swiss_mountain_dog"
+	},
+	{
+		"breed_id" : 5,
+		"breed_name" : "그레이트 피레니즈",
+		"answer_seq" : 222,
+		"answer" : "그레이트 피레니즈",
+		"metadata_seq" : 1425,
+		"metadata_text" : "dog_breed:great_pyrenees"
+	},
+	{
+		"breed_id" : 6,
+		"breed_name" : "그리폰 브뤼셀",
+		"answer_seq" : 12,
+		"answer" : "그리폰 브뤼셀",
+		"metadata_seq" : 1374,
+		"metadata_text" : "dog_breed:brussels_griffon"
+	},
+	{
+		"breed_id" : 7,
+		"breed_name" : "꼬똥 드 툴레아",
+		"answer_seq" : 176,
+		"answer" : "꼬똥 드 툴레아",
+		"metadata_seq" : 1391,
+		"metadata_text" : "dog_breed:coton_de_tulear"
+	},
+	{
+		"breed_id" : 8,
+		"breed_name" : "노르웨이 룬트훈트",
+		"answer_seq" : 14,
+		"answer" : "노르웨이 룬트훈트",
+		"metadata_seq" : 1470,
+		"metadata_text" : "dog_breed:norwegian_lundehund"
+	},
+	{
+		"breed_id" : 9,
+		"breed_name" : "노르웨이안 엘크하운드",
+		"answer_seq" : 15,
+		"answer" : "노르웨이안 엘크하운드",
+		"metadata_seq" : 1468,
+		"metadata_text" : "dog_breed:norwegian_elkhound"
+	},
+	{
+		"breed_id" : 10,
+		"breed_name" : "노르웨이안 하운드",
+		"answer_seq" : 16,
+		"answer" : "노르웨이안 하운드",
+		"metadata_seq" : 1469,
+		"metadata_text" : "dog_breed:norwegian_hound"
+	},
+	{
+		"breed_id" : 11,
+		"breed_name" : "노리치 테리어",
+		"answer_seq" : 17,
+		"answer" : "노리치 테리어",
+		"metadata_seq" : 1471,
+		"metadata_text" : "dog_breed:norwich_terrier"
+	},
+	{
+		"breed_id" : 12,
+		"breed_name" : "노바 스코셔 덕 톨링 레트리버",
+		"answer_seq" : 18,
+		"answer" : "노바 스코셔 덕 톨링 레트리버",
+		"metadata_seq" : 1472,
+		"metadata_text" : "dog_breed:nova_scotia_duck_tolling_retriever"
+	},
+	{
+		"breed_id" : 13,
+		"breed_name" : "뉴펀들랜드 독",
+		"answer_seq" : 19,
+		"answer" : "뉴펀들랜드 독",
+		"metadata_seq" : 1467,
+		"metadata_text" : "dog_breed:newfoundland_dog"
+	},
+	{
+		"breed_id" : 14,
+		"breed_name" : "닥스훈트",
+		"answer_seq" : 20,
+		"answer" : "닥스훈트",
+		"metadata_seq" : 1394,
+		"metadata_text" : "dog_breed:dachshund"
+	},
+	{
+		"breed_id" : 15,
+		"breed_name" : "달마시안",
+		"answer_seq" : 21,
+		"answer" : "달마시안",
+		"metadata_seq" : 1395,
+		"metadata_text" : "dog_breed:dalmatian"
+	},
+	{
+		"breed_id" : 16,
+		"breed_name" : "더치 셰퍼드 독",
+		"answer_seq" : 22,
+		"answer" : "더치 셰퍼드 독",
+		"metadata_seq" : 1400,
+		"metadata_text" : "dog_breed:dutch_shepherd_dog"
+	},
+	{
+		"breed_id" : 17,
+		"breed_name" : "도고 아르헨티노",
+		"answer_seq" : 23,
+		"answer" : "도고 아르헨티노",
+		"metadata_seq" : 1398,
+		"metadata_text" : "dog_breed:dogo_argentino"
+	},
+	{
+		"breed_id" : 18,
+		"breed_name" : "도그 드 보르도",
+		"answer_seq" : 24,
+		"answer" : "도그 드 보르도",
+		"metadata_seq" : 1399,
+		"metadata_text" : "dog_breed:dogue_de_bordeaux"
+	},
+	{
+		"breed_id" : 19,
+		"breed_name" : "도베르만",
+		"answer_seq" : 25,
+		"answer" : "도베르만",
+		"metadata_seq" : 1397,
+		"metadata_text" : "dog_breed:doberman"
+	},
+	{
+		"breed_id" : 20,
+		"breed_name" : "디어하운드",
+		"answer_seq" : 26,
+		"answer" : "디어하운드",
+		"metadata_seq" : 1396,
+		"metadata_text" : "dog_breed:deerhound"
+	},
+	{
+		"breed_id" : 21,
+		"breed_name" : "래브라도 리트리버",
+		"answer_seq" : 27,
+		"answer" : "래브라도 리트리버",
+		"metadata_seq" : 1455,
+		"metadata_text" : "dog_breed:labrador_retriever"
+	},
+	{
+		"breed_id" : 22,
+		"breed_name" : "라사압소",
+		"answer_seq" : 28,
+		"answer" : "라사압소",
+		"metadata_seq" : 1456,
+		"metadata_text" : "dog_breed:lassa_apso"
+	},
+	{
+		"breed_id" : 23,
+		"breed_name" : "러시안 블랙 테리어",
+		"answer_seq" : 29,
+		"answer" : "러시안 블랙 테리어",
+		"metadata_seq" : 1500,
+		"metadata_text" : "dog_breed:russian_black_terrier"
+	},
+	{
+		"breed_id" : 24,
+		"breed_name" : "러시안-유러피안 라이카",
+		"answer_seq" : 30,
+		"answer" : "러시안-유러피안 라이카",
+		"metadata_seq" : 1501,
+		"metadata_text" : "dog_breed:russian_european_laika"
+	},
+	{
+		"breed_id" : 25,
+		"breed_name" : "로디지안 리지백",
+		"answer_seq" : 31,
+		"answer" : "로디지안 리지백",
+		"metadata_seq" : 1496,
+		"metadata_text" : "dog_breed:rhodesian_ridgeback"
+	},
+	{
+		"breed_id" : 26,
+		"breed_name" : "루마니안 셰퍼드",
+		"answer_seq" : 32,
+		"answer" : "루마니안 셰퍼드",
+		"metadata_seq" : 1497,
+		"metadata_text" : "dog_breed:romanian_shepherd"
+	},
+	{
+		"breed_id" : 27,
+		"breed_name" : "로첸",
+		"answer_seq" : 33,
+		"answer" : "로첸",
+		"metadata_seq" : 1457,
+		"metadata_text" : "dog_breed:lochen"
+	},
+	{
+		"breed_id" : 28,
+		"breed_name" : "로트와일러",
+		"answer_seq" : 34,
+		"answer" : "로트와일러",
+		"metadata_seq" : 1498,
+		"metadata_text" : "dog_breed:rottweiler"
+	},
+	{
+		"breed_id" : 29,
+		"breed_name" : "잉글리쉬 마스티프",
+		"answer_seq" : 35,
+		"answer" : "잉글리쉬 마스티프",
+		"metadata_seq" : 1403,
+		"metadata_text" : "dog_breed:english_mastiff"
+	},
+	{
+		"breed_id" : 30,
+		"breed_name" : "타트라 마운틴 쉽독",
+		"answer_seq" : 188,
+		"answer" : "타트라 마운틴 쉽독",
+		"metadata_seq" : 1531,
+		"metadata_text" : "dog_breed:tatra_mountain_sheepdog"
+	},
+	{
+		"breed_id" : 31,
+		"breed_name" : "나폴리탄 마스티프",
+		"answer_seq" : 37,
+		"answer" : "나폴리탄 마스티프",
+		"metadata_seq" : 1466,
+		"metadata_text" : "dog_breed:neapolitan_mastiff"
+	},
+	{
+		"breed_id" : 32,
+		"breed_name" : "말티즈",
+		"answer_seq" : 38,
+		"answer" : "말티즈",
+		"metadata_seq" : 1458,
+		"metadata_text" : "dog_breed:maltese"
+	},
+	{
+		"breed_id" : 33,
+		"breed_name" : "말티푸",
+		"answer_seq" : 39,
+		"answer" : "말티푸",
+		"metadata_seq" : 1459,
+		"metadata_text" : "dog_breed:maltipoo"
+	},
+	{
+		"breed_id" : 34,
+		"breed_name" : "맨체스터 테리어",
+		"answer_seq" : 40,
+		"answer" : "맨체스터 테리어",
+		"metadata_seq" : 1460,
+		"metadata_text" : "dog_breed:manchester_terrier"
+	},
+	{
+		"breed_id" : 35,
+		"breed_name" : "멕시칸 헤어리스 독",
+		"answer_seq" : 41,
+		"answer" : "멕시칸 헤어리스 독",
+		"metadata_seq" : 1461,
+		"metadata_text" : "dog_breed:mexican_hairless_dog"
+	},
+	{
+		"breed_id" : 36,
+		"breed_name" : "무디",
+		"answer_seq" : 42,
+		"answer" : "무디",
+		"metadata_seq" : 1465,
+		"metadata_text" : "dog_breed:mudi"
+	},
+	{
+		"breed_id" : 37,
+		"breed_name" : "미니어처 슈나우저",
+		"answer_seq" : 43,
+		"answer" : "미니어처 슈나우저",
+		"metadata_seq" : 1463,
+		"metadata_text" : "dog_breed:miniature_schnauzer"
+	},
+	{
+		"breed_id" : 38,
+		"breed_name" : "미니어처 핀셔",
+		"answer_seq" : 44,
+		"answer" : "미니어처 핀셔",
+		"metadata_seq" : 1462,
+		"metadata_text" : "dog_breed:miniature_pinscher"
+	},
+	{
+		"breed_id" : 39,
+		"breed_name" : "프렌치 포인팅 독",
+		"answer_seq" : 207,
+		"answer" : "프렌치 포인팅 독",
+		"metadata_seq" : 1414,
+		"metadata_text" : "dog_breed:french_pointing"
+	},
+	{
+		"breed_id" : 40,
+		"breed_name" : "믹스견",
+		"answer_seq" : 46,
+		"answer" : "믹스견",
+		"metadata_seq" : 1464,
+		"metadata_text" : "dog_breed:mixed_breed"
+	},
+	{
+		"breed_id" : 41,
+		"breed_name" : "바바리안 마운틴 하운드",
+		"answer_seq" : 47,
+		"answer" : "바바리안 마운틴 하운드",
+		"metadata_seq" : 1353,
+		"metadata_text" : "dog_breed:bavarian_mountain_hound"
+	},
+	{
+		"breed_id" : 42,
+		"breed_name" : "바베트",
+		"answer_seq" : 48,
+		"answer" : "바베트",
+		"metadata_seq" : 1348,
+		"metadata_text" : "dog_breed:barbet"
+	},
+	{
+		"breed_id" : 43,
+		"breed_name" : "바센지",
+		"answer_seq" : 49,
+		"answer" : "바센지",
+		"metadata_seq" : 1349,
+		"metadata_text" : "dog_breed:basenji"
+	},
+	{
+		"breed_id" : 44,
+		"breed_name" : "바셋 블뢰 드 가스코뉴",
+		"answer_seq" : 50,
+		"answer" : "바셋 블뢰 드 가스코뉴",
+		"metadata_seq" : 1350,
+		"metadata_text" : "dog_breed:basset_bleu_de_gascogne"
+	},
+	{
+		"breed_id" : 45,
+		"breed_name" : "바셋 포브 드 브르타뉴",
+		"answer_seq" : 51,
+		"answer" : "바셋 포브 드 브르타뉴",
+		"metadata_seq" : 1351,
+		"metadata_text" : "dog_breed:basset_faup_de_bretagne"
+	},
+	{
+		"breed_id" : 46,
+		"breed_name" : "바셋하운드",
+		"answer_seq" : 52,
+		"answer" : "바셋하운드",
+		"metadata_seq" : 1352,
+		"metadata_text" : "dog_breed:basset_hound"
+	},
+	{
+		"breed_id" : 47,
+		"breed_name" : "버니즈 마운틴 독",
+		"answer_seq" : 53,
+		"answer" : "버니즈 마운틴 독",
+		"metadata_seq" : 1360,
+		"metadata_text" : "dog_breed:bernese_mountain_dog"
+	},
+	{
+		"breed_id" : 48,
+		"breed_name" : "벌고 포인팅 독",
+		"answer_seq" : 54,
+		"answer" : "벌고 포인팅 독",
+		"metadata_seq" : 1378,
+		"metadata_text" : "dog_breed:burgos_pointing_dog"
+	},
+	{
+		"breed_id" : 49,
+		"breed_name" : "베들링턴 테리어",
+		"answer_seq" : 55,
+		"answer" : "베들링턴 테리어",
+		"metadata_seq" : 1356,
+		"metadata_text" : "dog_breed:bedlington_terrier"
+	},
+	{
+		"breed_id" : 50,
+		"breed_name" : "베르가마스코 셰퍼드 독",
+		"answer_seq" : 56,
+		"answer" : "베르가마스코 셰퍼드 독",
+		"metadata_seq" : 1359,
+		"metadata_text" : "dog_breed:bergamasco_shepherd_dog"
+	},
+	{
+		"breed_id" : 51,
+		"breed_name" : "벨지안 그리폰",
+		"answer_seq" : 57,
+		"answer" : "벨지안 그리폰",
+		"metadata_seq" : 1357,
+		"metadata_text" : "dog_breed:belgian_griffon"
+	},
+	{
+		"breed_id" : 52,
+		"breed_name" : "벨지안 셰퍼드 독",
+		"answer_seq" : 58,
+		"answer" : "벨지안 셰퍼드 독",
+		"metadata_seq" : 1358,
+		"metadata_text" : "dog_breed:belgian_shepherd_dog"
+	},
+	{
+		"breed_id" : 53,
+		"breed_name" : "보더 콜리",
+		"answer_seq" : 59,
+		"answer" : "보더 콜리",
+		"metadata_seq" : 1365,
+		"metadata_text" : "dog_breed:border_collie"
+	},
+	{
+		"breed_id" : 54,
+		"breed_name" : "보더 테리어",
+		"answer_seq" : 60,
+		"answer" : "보더 테리어",
+		"metadata_seq" : 1366,
+		"metadata_text" : "dog_breed:border_terrier"
+	},
+	{
+		"breed_id" : 55,
+		"breed_name" : "보르조이",
+		"answer_seq" : 61,
+		"answer" : "보르조이",
+		"metadata_seq" : 1367,
+		"metadata_text" : "dog_breed:borzoi"
+	},
+	{
+		"breed_id" : 56,
+		"breed_name" : "보스 쉽독",
+		"answer_seq" : 62,
+		"answer" : "보스 쉽독",
+		"metadata_seq" : 1368,
+		"metadata_text" : "dog_breed:boss_shipdog"
+	},
+	{
+		"breed_id" : 57,
+		"breed_name" : "보스턴 테리어",
+		"answer_seq" : 63,
+		"answer" : "보스턴 테리어",
+		"metadata_seq" : 1369,
+		"metadata_text" : "dog_breed:boston_terrier"
+	},
+	{
+		"breed_id" : 58,
+		"breed_name" : "복서",
+		"answer_seq" : 64,
+		"answer" : "복서",
+		"metadata_seq" : 1370,
+		"metadata_text" : "dog_breed:boxer"
+	},
+	{
+		"breed_id" : 59,
+		"breed_name" : "볼로네즈",
+		"answer_seq" : 65,
+		"answer" : "볼로네즈",
+		"metadata_seq" : 1364,
+		"metadata_text" : "dog_breed:bolognese"
+	},
+	{
+		"breed_id" : 60,
+		"breed_name" : "불 테리어",
+		"answer_seq" : 66,
+		"answer" : "불 테리어",
+		"metadata_seq" : 1375,
+		"metadata_text" : "dog_breed:bull_terrier"
+	},
+	{
+		"breed_id" : 60,
+		"breed_name" : "불 테리어",
+		"answer_seq" : 92,
+		"answer" : "스타포드셔 불 테리어",
+		"metadata_seq" : 1527,
+		"metadata_text" : "dog_breed:staffordshire_bull_terrier"
+	},
+	{
+		"breed_id" : 61,
+		"breed_name" : "불독",
+		"answer_seq" : 67,
+		"answer" : "불독",
+		"metadata_seq" : 1376,
+		"metadata_text" : "dog_breed:bulldog"
+	},
+	{
+		"breed_id" : 61,
+		"breed_name" : "불독",
+		"answer_seq" : 205,
+		"answer" : "프렌치 불독",
+		"metadata_seq" : 1412,
+		"metadata_text" : "dog_breed:french_bulldog"
+	},
+	{
+		"breed_id" : 62,
+		"breed_name" : "불마스티프",
+		"answer_seq" : 68,
+		"answer" : "불마스티프",
+		"metadata_seq" : 1377,
+		"metadata_text" : "dog_breed:bullmastiff"
+	},
+	{
+		"breed_id" : 63,
+		"breed_name" : "네바 마스커레이드",
+		"answer_seq" : 708,
+		"answer" : "네바 마스커레이드",
+		"metadata_seq" : 475,
+		"metadata_text" : "cat_breed:neva_masquerade"
+	},
+	{
+		"breed_id" : 64,
+		"breed_name" : "노르웨이 숲",
+		"answer_seq" : 709,
+		"answer" : "노르웨이 숲",
+		"metadata_seq" : 476,
+		"metadata_text" : "cat_breed:norwegian_forest"
+	},
+	{
+		"breed_id" : 65,
+		"breed_name" : "데본렉스",
+		"answer_seq" : 710,
+		"answer" : "데본렉스",
+		"metadata_seq" : 460,
+		"metadata_text" : "cat_breed:devon_rex"
+	},
+	{
+		"breed_id" : 66,
+		"breed_name" : "돈스코이",
+		"answer_seq" : 711,
+		"answer" : "돈스코이",
+		"metadata_seq" : 461,
+		"metadata_text" : "cat_breed:donskoy"
+	},
+	{
+		"breed_id" : 67,
+		"breed_name" : "라가머핀",
+		"answer_seq" : 712,
+		"answer" : "라가머핀",
+		"metadata_seq" : 482,
+		"metadata_text" : "cat_breed:ragamuffin"
+	},
+	{
+		"breed_id" : 68,
+		"breed_name" : "라팜",
+		"answer_seq" : 713,
+		"answer" : "라팜",
+		"metadata_seq" : 470,
+		"metadata_text" : "cat_breed:la_perm"
+	},
+	{
+		"breed_id" : 69,
+		"breed_name" : "렉돌",
+		"answer_seq" : 714,
+		"answer" : "렉돌",
+		"metadata_seq" : 483,
+		"metadata_text" : "cat_breed:ragdoll"
+	},
+	{
+		"breed_id" : 70,
+		"breed_name" : "러시안 블루",
+		"answer_seq" : 715,
+		"answer" : "러시안 블루",
+		"metadata_seq" : 484,
+		"metadata_text" : "cat_breed:russian_blue"
+	},
+	{
+		"breed_id" : 71,
+		"breed_name" : "맹크스 (Manx)",
+		"answer_seq" : 716,
+		"answer" : "맹크스 (Manx)",
+		"metadata_seq" : 472,
+		"metadata_text" : "cat_breed:manx"
+	},
+	{
+		"breed_id" : 72,
+		"breed_name" : "먼치킨",
+		"answer_seq" : 717,
+		"answer" : "먼치킨",
+		"metadata_seq" : 474,
+		"metadata_text" : "cat_breed:munchkin"
+	},
+	{
+		"breed_id" : 73,
+		"breed_name" : "메인쿤",
+		"answer_seq" : 718,
+		"answer" : "메인쿤",
+		"metadata_seq" : 471,
+		"metadata_text" : "cat_breed:maine_coon"
+	},
+	{
+		"breed_id" : 74,
+		"breed_name" : "믹스묘",
+		"answer_seq" : 719,
+		"answer" : "믹스묘",
+		"metadata_seq" : 473,
+		"metadata_text" : "cat_breed:mixed_cat"
+	},
+	{
+		"breed_id" : 75,
+		"breed_name" : "발리니즈",
+		"answer_seq" : 720,
+		"answer" : "발리니즈",
+		"metadata_seq" : 449,
+		"metadata_text" : "cat_breed:balinese"
+	},
+	{
+		"breed_id" : 76,
+		"breed_name" : "버만",
+		"answer_seq" : 721,
+		"answer" : "버만",
+		"metadata_seq" : 451,
+		"metadata_text" : "cat_breed:birman"
+	},
+	{
+		"breed_id" : 77,
+		"breed_name" : "버미즈",
+		"answer_seq" : 722,
+		"answer" : "버미즈",
+		"metadata_seq" : 455,
+		"metadata_text" : "cat_breed:burmese"
+	},
+	{
+		"breed_id" : 78,
+		"breed_name" : "버밀라",
+		"answer_seq" : 723,
+		"answer" : "버밀라",
+		"metadata_seq" : 456,
+		"metadata_text" : "cat_breed:burmilla"
+	},
+	{
+		"breed_id" : 79,
+		"breed_name" : "벵갈",
+		"answer_seq" : 724,
+		"answer" : "벵갈",
+		"metadata_seq" : 450,
+		"metadata_text" : "cat_breed:bengal"
+	},
+	{
+		"breed_id" : 80,
+		"breed_name" : "봄베이",
+		"answer_seq" : 725,
+		"answer" : "봄베이",
+		"metadata_seq" : 452,
+		"metadata_text" : "cat_breed:bombay"
+	},
+	{
+		"breed_id" : 81,
+		"breed_name" : "브리티쉬 롱헤어",
+		"answer_seq" : 726,
+		"answer" : "브리티쉬 롱헤어",
+		"metadata_seq" : 453,
+		"metadata_text" : "cat_breed:british_longhair"
+	},
+	{
+		"breed_id" : 82,
+		"breed_name" : "브리티쉬 숏헤어",
+		"answer_seq" : 727,
+		"answer" : "브리티쉬 숏헤어",
+		"metadata_seq" : 454,
+		"metadata_text" : "cat_breed:british_shorthair"
+	},
+	{
+		"breed_id" : 83,
+		"breed_name" : "사바나",
+		"answer_seq" : 728,
+		"answer" : "사바나",
+		"metadata_seq" : 485,
+		"metadata_text" : "cat_breed:savannah"
+	},
+	{
+		"breed_id" : 84,
+		"breed_name" : "샤르트뢰",
+		"answer_seq" : 729,
+		"answer" : "샤르트뢰",
+		"metadata_seq" : 457,
+		"metadata_text" : "cat_breed:chartreux"
+	},
+	{
+		"breed_id" : 85,
+		"breed_name" : "샴",
+		"answer_seq" : 730,
+		"answer" : "샴",
+		"metadata_seq" : 490,
+		"metadata_text" : "cat_breed:siamese"
+	},
+	{
+		"breed_id" : 86,
+		"breed_name" : "세이셸루아",
+		"answer_seq" : 731,
+		"answer" : "세이셸루아",
+		"metadata_seq" : 489,
+		"metadata_text" : "cat_breed:seychellois"
+	},
+	{
+		"breed_id" : 87,
+		"breed_name" : "셀커크 렉스",
+		"answer_seq" : 732,
+		"answer" : "셀커크 렉스",
+		"metadata_seq" : 488,
+		"metadata_text" : "cat_breed:selkirk_rex"
+	},
+	{
+		"breed_id" : 88,
+		"breed_name" : "소말리",
+		"answer_seq" : 733,
+		"answer" : "소말리",
+		"metadata_seq" : 494,
+		"metadata_text" : "cat_breed:somali"
+	},
+	{
+		"breed_id" : 89,
+		"breed_name" : "스노우슈",
+		"answer_seq" : 734,
+		"answer" : "스노우슈",
+		"metadata_seq" : 493,
+		"metadata_text" : "cat_breed:snowshoe"
+	},
+	{
+		"breed_id" : 90,
+		"breed_name" : "스코티시 스트레이트",
+		"answer_seq" : 735,
+		"answer" : "스코티시 스트레이트",
+		"metadata_seq" : 487,
+		"metadata_text" : "cat_breed:scottish_straight"
+	},
+	{
+		"breed_id" : 91,
+		"breed_name" : "스코티시 폴드",
+		"answer_seq" : 736,
+		"answer" : "스코티시 폴드",
+		"metadata_seq" : 486,
+		"metadata_text" : "cat_breed:scottish_fold"
+	},
+	{
+		"breed_id" : 92,
+		"breed_name" : "스핑크스",
+		"answer_seq" : 737,
+		"answer" : "스핑크스",
+		"metadata_seq" : 495,
+		"metadata_text" : "cat_breed:sphynx"
+	},
+	{
+		"breed_id" : 93,
+		"breed_name" : "시베리안",
+		"answer_seq" : 102,
+		"answer" : "시베리안 허스키",
+		"metadata_seq" : 1515,
+		"metadata_text" : "dog_breed:siberian_husky"
+	},
+	{
+		"breed_id" : 93,
+		"breed_name" : "시베리안",
+		"answer_seq" : 136,
+		"answer" : "시베리안 라이카",
+		"metadata_seq" : 1516,
+		"metadata_text" : "dog_breed:siberian_laika"
+	},
+	{
+		"breed_id" : 93,
+		"breed_name" : "시베리안",
+		"answer_seq" : 738,
+		"answer" : "시베리안",
+		"metadata_seq" : 491,
+		"metadata_text" : "cat_breed:siberian"
+	},
+	{
+		"breed_id" : 94,
+		"breed_name" : "싱가푸라",
+		"answer_seq" : 739,
+		"answer" : "싱가푸라",
+		"metadata_seq" : 492,
+		"metadata_text" : "cat_breed:singapura"
+	},
+	{
+		"breed_id" : 95,
+		"breed_name" : "아메리칸 밥테일",
+		"answer_seq" : 740,
+		"answer" : "아메리칸 밥테일",
+		"metadata_seq" : 444,
+		"metadata_text" : "cat_breed:american_bobtail"
+	},
+	{
+		"breed_id" : 96,
+		"breed_name" : "아메리칸 숏헤어",
+		"answer_seq" : 741,
+		"answer" : "아메리칸 숏헤어",
+		"metadata_seq" : 446,
+		"metadata_text" : "cat_breed:american_shorthair"
+	},
+	{
+		"breed_id" : 97,
+		"breed_name" : "아메리칸 와이어헤어",
+		"answer_seq" : 742,
+		"answer" : "아메리칸 와이어헤어",
+		"metadata_seq" : 447,
+		"metadata_text" : "cat_breed:american_wirehair"
+	},
+	{
+		"breed_id" : 98,
+		"breed_name" : "아메리칸 컬",
+		"answer_seq" : 743,
+		"answer" : "아메리칸 컬",
+		"metadata_seq" : 445,
+		"metadata_text" : "cat_breed:american_curl"
+	},
+	{
+		"breed_id" : 99,
+		"breed_name" : "아비시니안",
+		"answer_seq" : 744,
+		"answer" : "아비시니안",
+		"metadata_seq" : 443,
+		"metadata_text" : "cat_breed:abyssinian"
+	},
+	{
+		"breed_id" : 100,
+		"breed_name" : "엑조틱 숏헤어",
+		"answer_seq" : 745,
+		"answer" : "엑조틱 숏헤어",
+		"metadata_seq" : 463,
+		"metadata_text" : "cat_breed:exotic_shorthair"
+	},
+	{
+		"breed_id" : 101,
+		"breed_name" : "오리엔탈",
+		"answer_seq" : 746,
+		"answer" : "오리엔탈",
+		"metadata_seq" : 478,
+		"metadata_text" : "cat_breed:oriental"
+	},
+	{
+		"breed_id" : 102,
+		"breed_name" : "오스트레일리안 미스트",
+		"answer_seq" : 747,
+		"answer" : "오스트레일리안 미스트",
+		"metadata_seq" : 448,
+		"metadata_text" : "cat_breed:australian_mist"
+	},
+	{
+		"breed_id" : 103,
+		"breed_name" : "오시캣",
+		"answer_seq" : 748,
+		"answer" : "오시캣",
+		"metadata_seq" : 477,
+		"metadata_text" : "cat_breed:ocicat"
+	},
+	{
+		"breed_id" : 104,
+		"breed_name" : "이집션 마우",
+		"answer_seq" : 749,
+		"answer" : "이집션 마우",
+		"metadata_seq" : 462,
+		"metadata_text" : "cat_breed:egyptian_mau"
+	},
+	{
+		"breed_id" : 105,
+		"breed_name" : "재패니즈 밥테일",
+		"answer_seq" : 750,
+		"answer" : "재패니즈 밥테일",
+		"metadata_seq" : 465,
+		"metadata_text" : "cat_breed:japanese_bobtail"
+	},
+	{
+		"breed_id" : 106,
+		"breed_name" : "카오 마니",
+		"answer_seq" : 751,
+		"answer" : "카오 마니",
+		"metadata_seq" : 466,
+		"metadata_text" : "cat_breed:kao_mani"
+	},
+	{
+		"breed_id" : 107,
+		"breed_name" : "코니시 렉스",
+		"answer_seq" : 752,
+		"answer" : "코니시 렉스",
+		"metadata_seq" : 458,
+		"metadata_text" : "cat_breed:cornish_rex"
+	},
+	{
+		"breed_id" : 108,
+		"breed_name" : "코랏",
+		"answer_seq" : 753,
+		"answer" : "코랏",
+		"metadata_seq" : 467,
+		"metadata_text" : "cat_breed:korat"
+	},
+	{
+		"breed_id" : 109,
+		"breed_name" : "코리안 숏헤어",
+		"answer_seq" : 754,
+		"answer" : "코리안 숏헤어",
+		"metadata_seq" : 468,
+		"metadata_text" : "cat_breed:korean_shorthair"
+	},
+	{
+		"breed_id" : 110,
+		"breed_name" : "쿠릴리안 밥테일",
+		"answer_seq" : 755,
+		"answer" : "쿠릴리안 밥테일",
+		"metadata_seq" : 469,
+		"metadata_text" : "cat_breed:kurilian_bobtail"
+	},
+	{
+		"breed_id" : 111,
+		"breed_name" : "킴릭",
+		"answer_seq" : 756,
+		"answer" : "킴릭",
+		"metadata_seq" : 459,
+		"metadata_text" : "cat_breed:cyrmic"
+	},
+	{
+		"breed_id" : 112,
+		"breed_name" : "타이",
+		"answer_seq" : 186,
+		"answer" : "타이 리지백",
+		"metadata_seq" : 1532,
+		"metadata_text" : "dog_breed:thai_ridgeback"
+	},
+	{
+		"breed_id" : 112,
+		"breed_name" : "타이",
+		"answer_seq" : 187,
+		"answer" : "타이완 독",
+		"metadata_seq" : 1530,
+		"metadata_text" : "dog_breed:taiwan_dog"
+	},
+	{
+		"breed_id" : 112,
+		"breed_name" : "타이",
+		"answer_seq" : 757,
+		"answer" : "타이",
+		"metadata_seq" : 496,
+		"metadata_text" : "cat_breed:thai"
+	},
+	{
+		"breed_id" : 113,
+		"breed_name" : "터키쉬 반",
+		"answer_seq" : 758,
+		"answer" : "터키쉬 반",
+		"metadata_seq" : 499,
+		"metadata_text" : "cat_breed:turkish_van"
+	},
+	{
+		"breed_id" : 114,
+		"breed_name" : "터키쉬 앙고라",
+		"answer_seq" : 759,
+		"answer" : "터키쉬 앙고라",
+		"metadata_seq" : 498,
+		"metadata_text" : "cat_breed:turkish_angora"
+	},
+	{
+		"breed_id" : 115,
+		"breed_name" : "통키니즈",
+		"answer_seq" : 760,
+		"answer" : "통키니즈",
+		"metadata_seq" : 497,
+		"metadata_text" : "cat_breed:tonkinese"
+	},
+	{
+		"breed_id" : 116,
+		"breed_name" : "페르시안",
+		"answer_seq" : 761,
+		"answer" : "페르시안",
+		"metadata_seq" : 479,
+		"metadata_text" : "cat_breed:persian"
+	},
+	{
+		"breed_id" : 117,
+		"breed_name" : "피터볼드",
+		"answer_seq" : 762,
+		"answer" : "피터볼드",
+		"metadata_seq" : 480,
+		"metadata_text" : "cat_breed:peterbald"
+	},
+	{
+		"breed_id" : 118,
+		"breed_name" : "픽시 밥",
+		"answer_seq" : 763,
+		"answer" : "픽시 밥",
+		"metadata_seq" : 481,
+		"metadata_text" : "cat_breed:pixie_bob"
+	},
+	{
+		"breed_id" : 119,
+		"breed_name" : "하바나 브라운",
+		"answer_seq" : 764,
+		"answer" : "하바나 브라운",
+		"metadata_seq" : 464,
+		"metadata_text" : "cat_breed:havana_brown"
+	},
+	{
+		"breed_id" : 130,
+		"breed_name" : "브라질리언 테리어",
+		"answer_seq" : 69,
+		"answer" : "브라질리언 테리어",
+		"metadata_seq" : 1371,
+		"metadata_text" : "dog_breed:brazilian_terrier"
+	},
+	{
+		"breed_id" : 131,
+		"breed_name" : "브리아드",
+		"answer_seq" : 70,
+		"answer" : "브리아드",
+		"metadata_seq" : 1372,
+		"metadata_text" : "dog_breed:briard"
+	},
+	{
+		"breed_id" : 132,
+		"breed_name" : "브리타니 스파니엘",
+		"answer_seq" : 71,
+		"answer" : "브리타니 스파니엘",
+		"metadata_seq" : 1373,
+		"metadata_text" : "dog_breed:brittany_spaniel"
+	},
+	{
+		"breed_id" : 133,
+		"breed_name" : "블랙 앤 탄 쿤하운드",
+		"answer_seq" : 72,
+		"answer" : "블랙 앤 탄 쿤하운드",
+		"metadata_seq" : 1362,
+		"metadata_text" : "dog_breed:black_and_tan_coonhound"
+	},
+	{
+		"breed_id" : 134,
+		"breed_name" : "블러드 하운드",
+		"answer_seq" : 73,
+		"answer" : "블러드 하운드",
+		"metadata_seq" : 1363,
+		"metadata_text" : "dog_breed:blood_hound"
+	},
+	{
+		"breed_id" : 135,
+		"breed_name" : "비글",
+		"answer_seq" : 74,
+		"answer" : "비글",
+		"metadata_seq" : 1354,
+		"metadata_text" : "dog_breed:beagle"
+	},
+	{
+		"breed_id" : 136,
+		"breed_name" : "비숑 프리제",
+		"answer_seq" : 75,
+		"answer" : "비숑 프리제",
+		"metadata_seq" : 1361,
+		"metadata_text" : "dog_breed:bichon_frise"
+	},
+	{
+		"breed_id" : 137,
+		"breed_name" : "비어디드 콜리",
+		"answer_seq" : 76,
+		"answer" : "비어디드 콜리",
+		"metadata_seq" : 1355,
+		"metadata_text" : "dog_breed:bearded_collie"
+	},
+	{
+		"breed_id" : 138,
+		"breed_name" : "쁘띠 바셋 그리폰 방뎅",
+		"answer_seq" : 77,
+		"answer" : "쁘띠 바셋 그리폰 방뎅",
+		"metadata_seq" : 1480,
+		"metadata_text" : "dog_breed:petit_basset_griffon_vendeen"
+	},
+	{
+		"breed_id" : 139,
+		"breed_name" : "쁘띠 브라반숑",
+		"answer_seq" : 78,
+		"answer" : "쁘띠 브라반숑",
+		"metadata_seq" : 1481,
+		"metadata_text" : "dog_breed:petit_brabancon"
+	},
+	{
+		"breed_id" : 140,
+		"breed_name" : "샤를로스 울프하운드",
+		"answer_seq" : 79,
+		"answer" : "샤를로스 울프하운드",
+		"metadata_seq" : 1385,
+		"metadata_text" : "dog_breed:charolais_wolfhound"
+	},
+	{
+		"breed_id" : 141,
+		"breed_name" : "사모예드",
+		"answer_seq" : 80,
+		"answer" : "사모예드",
+		"metadata_seq" : 1505,
+		"metadata_text" : "dog_breed:samoyed"
+	},
+	{
+		"breed_id" : 142,
+		"breed_name" : "살루키",
+		"answer_seq" : 81,
+		"answer" : "살루키",
+		"metadata_seq" : 1504,
+		"metadata_text" : "dog_breed:saluki"
+	},
+	{
+		"breed_id" : 143,
+		"breed_name" : "샤페이",
+		"answer_seq" : 82,
+		"answer" : "샤페이",
+		"metadata_seq" : 1510,
+		"metadata_text" : "dog_breed:shar_pei"
+	},
+	{
+		"breed_id" : 144,
+		"breed_name" : "서식스 스파니엘",
+		"answer_seq" : 83,
+		"answer" : "서식스 스파니엘",
+		"metadata_seq" : 1528,
+		"metadata_text" : "dog_breed:sussex_spaniel"
+	},
+	{
+		"breed_id" : 145,
+		"breed_name" : "세인트 버나드",
+		"answer_seq" : 84,
+		"answer" : "세인트 버나드",
+		"metadata_seq" : 1502,
+		"metadata_text" : "dog_breed:saint_bernard"
+	},
+	{
+		"breed_id" : 146,
+		"breed_name" : "세인트 저먼 포인터",
+		"answer_seq" : 85,
+		"answer" : "세인트 저먼 포인터",
+		"metadata_seq" : 1503,
+		"metadata_text" : "dog_breed:saint_german_pointer"
+	},
+	{
+		"breed_id" : 147,
+		"breed_name" : "셰틀랜드 쉽독",
+		"answer_seq" : 86,
+		"answer" : "셰틀랜드 쉽독",
+		"metadata_seq" : 1511,
+		"metadata_text" : "dog_breed:shetland_sheepdog"
+	},
+	{
+		"breed_id" : 148,
+		"breed_name" : "슈나우저",
+		"answer_seq" : 43,
+		"answer" : "미니어처 슈나우저",
+		"metadata_seq" : 1463,
+		"metadata_text" : "dog_breed:miniature_schnauzer"
+	},
+	{
+		"breed_id" : 148,
+		"breed_name" : "슈나우저",
+		"answer_seq" : 87,
+		"answer" : "슈나우저",
+		"metadata_seq" : 1507,
+		"metadata_text" : "dog_breed:schnauzer"
+	},
+	{
+		"breed_id" : 148,
+		"breed_name" : "슈나우저",
+		"answer_seq" : 150,
+		"answer" : "자이언트 슈나우저",
+		"metadata_seq" : 1422,
+		"metadata_text" : "dog_breed:giant_schnauzer"
+	},
+	{
+		"breed_id" : 149,
+		"breed_name" : "스위스 하운드",
+		"answer_seq" : 88,
+		"answer" : "스위스 하운드",
+		"metadata_seq" : 1529,
+		"metadata_text" : "dog_breed:swiss_hound"
+	},
+	{
+		"breed_id" : 150,
+		"breed_name" : "스카이 테리어",
+		"answer_seq" : 89,
+		"answer" : "스카이 테리어",
+		"metadata_seq" : 1517,
+		"metadata_text" : "dog_breed:sky_terrier"
+	},
+	{
+		"breed_id" : 151,
+		"breed_name" : "스코티시 테리어",
+		"answer_seq" : 90,
+		"answer" : "스코티시 테리어",
+		"metadata_seq" : 1508,
+		"metadata_text" : "dog_breed:scottish_terrier"
+	},
+	{
+		"breed_id" : 152,
+		"breed_name" : "스키퍼키",
+		"answer_seq" : 91,
+		"answer" : "스키퍼키",
+		"metadata_seq" : 1506,
+		"metadata_text" : "dog_breed:schipperke"
+	},
+	{
+		"breed_id" : 153,
+		"breed_name" : "스타포드셔 불 테리어",
+		"answer_seq" : 92,
+		"answer" : "스타포드셔 불 테리어",
+		"metadata_seq" : 1527,
+		"metadata_text" : "dog_breed:staffordshire_bull_terrier"
+	},
+	{
+		"breed_id" : 154,
+		"breed_name" : "스테비훈",
+		"answer_seq" : 93,
+		"answer" : "스테비훈",
+		"metadata_seq" : 1526,
+		"metadata_text" : "dog_breed:stabyhoun"
+	},
+	{
+		"breed_id" : 155,
+		"breed_name" : "스패니시 그레이하운드",
+		"answer_seq" : 94,
+		"answer" : "스패니시 그레이하운드",
+		"metadata_seq" : 1521,
+		"metadata_text" : "dog_breed:spanish_greyhound"
+	},
+	{
+		"breed_id" : 156,
+		"breed_name" : "스패니시 마스티프",
+		"answer_seq" : 95,
+		"answer" : "스패니시 마스티프",
+		"metadata_seq" : 1523,
+		"metadata_text" : "dog_breed:spanish_mastiff"
+	},
+	{
+		"breed_id" : 157,
+		"breed_name" : "스패니시 워터 독",
+		"answer_seq" : 96,
+		"answer" : "스패니시 워터 독",
+		"metadata_seq" : 1524,
+		"metadata_text" : "dog_breed:spanish_water_dog"
+	},
+	{
+		"breed_id" : 158,
+		"breed_name" : "스패니시 하운드",
+		"answer_seq" : 97,
+		"answer" : "스패니시 하운드",
+		"metadata_seq" : 1522,
+		"metadata_text" : "dog_breed:spanish_hound"
+	},
+	{
+		"breed_id" : 159,
+		"breed_name" : "스피츠",
+		"answer_seq" : 98,
+		"answer" : "스피츠",
+		"metadata_seq" : 1525,
+		"metadata_text" : "dog_breed:spitz"
+	},
+	{
+		"breed_id" : 159,
+		"breed_name" : "스피츠",
+		"answer_seq" : 151,
+		"answer" : "재패니즈 스피츠",
+		"metadata_seq" : 1444,
+		"metadata_text" : "dog_breed:japanese_spitz"
+	},
+	{
+		"breed_id" : 159,
+		"breed_name" : "스피츠",
+		"answer_seq" : 210,
+		"answer" : "피니시 스피츠",
+		"metadata_seq" : 1409,
+		"metadata_text" : "dog_breed:finnish_spitz"
+	},
+	{
+		"breed_id" : 160,
+		"breed_name" : "슬로바키안 하운드",
+		"answer_seq" : 99,
+		"answer" : "슬로바키안 하운드",
+		"metadata_seq" : 1519,
+		"metadata_text" : "dog_breed:slovakian_hound"
+	},
+	{
+		"breed_id" : 161,
+		"breed_name" : "슬루기",
+		"answer_seq" : 100,
+		"answer" : "슬루기",
+		"metadata_seq" : 1518,
+		"metadata_text" : "dog_breed:sloughi"
+	},
+	{
+		"breed_id" : 162,
+		"breed_name" : "시바",
+		"answer_seq" : 101,
+		"answer" : "시바",
+		"metadata_seq" : 1512,
+		"metadata_text" : "dog_breed:shiba"
+	},
+	{
+		"breed_id" : 163,
+		"breed_name" : "시베리안 허스키",
+		"answer_seq" : 102,
+		"answer" : "시베리안 허스키",
+		"metadata_seq" : 1515,
+		"metadata_text" : "dog_breed:siberian_husky"
+	},
+	{
+		"breed_id" : 164,
+		"breed_name" : "시츄",
+		"answer_seq" : 103,
+		"answer" : "시츄",
+		"metadata_seq" : 1513,
+		"metadata_text" : "dog_breed:shih_tzu"
+	},
+	{
+		"breed_id" : 165,
+		"breed_name" : "시코쿠",
+		"answer_seq" : 104,
+		"answer" : "시코쿠",
+		"metadata_seq" : 1514,
+		"metadata_text" : "dog_breed:shikoku"
+	},
+	{
+		"breed_id" : 166,
+		"breed_name" : "실리엄 테리어",
+		"answer_seq" : 105,
+		"answer" : "실리엄 테리어",
+		"metadata_seq" : 1509,
+		"metadata_text" : "dog_breed:sealyham_terrier"
+	},
+	{
+		"breed_id" : 167,
+		"breed_name" : "아르투아 하운드",
+		"answer_seq" : 106,
+		"answer" : "아르투아 하운드",
+		"metadata_seq" : 1341,
+		"metadata_text" : "dog_breed:artois_hound"
+	},
+	{
+		"breed_id" : 168,
+		"breed_name" : "아리에쥬아",
+		"answer_seq" : 107,
+		"answer" : "아리에쥬아",
+		"metadata_seq" : 1340,
+		"metadata_text" : "dog_breed:ariegeois"
+	},
+	{
+		"breed_id" : 169,
+		"breed_name" : "아메리칸 스태퍼드셔 테리어",
+		"answer_seq" : 108,
+		"answer" : "아메리칸 스태퍼드셔 테리어",
+		"metadata_seq" : 1338,
+		"metadata_text" : "dog_breed:american_staffordshire_terrier"
+	},
+	{
+		"breed_id" : 170,
+		"breed_name" : "아메리칸 아키타",
+		"answer_seq" : 109,
+		"answer" : "아메리칸 아키타",
+		"metadata_seq" : 1335,
+		"metadata_text" : "dog_breed:american_akita"
+	},
+	{
+		"breed_id" : 171,
+		"breed_name" : "아메리칸 워터 스파니엘",
+		"answer_seq" : 110,
+		"answer" : "아메리칸 워터 스파니엘",
+		"metadata_seq" : 1339,
+		"metadata_text" : "dog_breed:american_water_spaniel"
+	},
+	{
+		"breed_id" : 172,
+		"breed_name" : "아메리칸 코카 스파니엘",
+		"answer_seq" : 111,
+		"answer" : "아메리칸 코카 스파니엘",
+		"metadata_seq" : 1336,
+		"metadata_text" : "dog_breed:american_cocker_spaniel"
+	},
+	{
+		"breed_id" : 173,
+		"breed_name" : "아메리칸 폭스하운드",
+		"answer_seq" : 112,
+		"answer" : "아메리칸 폭스하운드",
+		"metadata_seq" : 1337,
+		"metadata_text" : "dog_breed:american_foxhound"
+	},
+	{
+		"breed_id" : 174,
+		"breed_name" : "아이리시 글렌 오브 이말 테리어",
+		"answer_seq" : 113,
+		"answer" : "아이리시 글렌 오브 이말 테리어",
+		"metadata_seq" : 1433,
+		"metadata_text" : "dog_breed:irish_glen_of_imaal_terrier"
+	},
+	{
+		"breed_id" : 175,
+		"breed_name" : "아이리시 세터",
+		"answer_seq" : 114,
+		"answer" : "아이리시 세터",
+		"metadata_seq" : 1434,
+		"metadata_text" : "dog_breed:irish_setter"
+	},
+	{
+		"breed_id" : 176,
+		"breed_name" : "아이리시 소프트코티드 휘튼 테리어",
+		"answer_seq" : 115,
+		"answer" : "아이리시 소프트코티드 휘튼 테리어",
+		"metadata_seq" : 1435,
+		"metadata_text" : "dog_breed:irish_soft_coated_wheaten_terrier"
+	},
+	{
+		"breed_id" : 177,
+		"breed_name" : "아이리시 울프하운드",
+		"answer_seq" : 116,
+		"answer" : "아이리시 울프하운드",
+		"metadata_seq" : 1438,
+		"metadata_text" : "dog_breed:irish_wolfhound"
+	},
+	{
+		"breed_id" : 178,
+		"breed_name" : "아이리시 워터 스파니엘",
+		"answer_seq" : 117,
+		"answer" : "아이리시 워터 스파니엘",
+		"metadata_seq" : 1437,
+		"metadata_text" : "dog_breed:irish_water_spaniel"
+	},
+	{
+		"breed_id" : 179,
+		"breed_name" : "아이리시 테리어",
+		"answer_seq" : 118,
+		"answer" : "아이리시 테리어",
+		"metadata_seq" : 1436,
+		"metadata_text" : "dog_breed:irish_terrier"
+	},
+	{
+		"breed_id" : 180,
+		"breed_name" : "아이슬랜드 쉽독",
+		"answer_seq" : 119,
+		"answer" : "아이슬랜드 쉽독",
+		"metadata_seq" : 1432,
+		"metadata_text" : "dog_breed:icelandic_sheepdog"
+	},
+	{
+		"breed_id" : 181,
+		"breed_name" : "아키타",
+		"answer_seq" : 109,
+		"answer" : "아메리칸 아키타",
+		"metadata_seq" : 1335,
+		"metadata_text" : "dog_breed:american_akita"
+	},
+	{
+		"breed_id" : 181,
+		"breed_name" : "아키타",
+		"answer_seq" : 120,
+		"answer" : "아키타",
+		"metadata_seq" : 1333,
+		"metadata_text" : "dog_breed:akita"
+	},
+	{
+		"breed_id" : 182,
+		"breed_name" : "아펜핀셔",
+		"answer_seq" : 121,
+		"answer" : "아펜핀셔",
+		"metadata_seq" : 1330,
+		"metadata_text" : "dog_breed:affenpinscher"
+	},
+	{
+		"breed_id" : 183,
+		"breed_name" : "아프간 하운드",
+		"answer_seq" : 122,
+		"answer" : "아프간 하운드",
+		"metadata_seq" : 1331,
+		"metadata_text" : "dog_breed:afghan_hound"
+	},
+	{
+		"breed_id" : 184,
+		"breed_name" : "알라스칸 말라뮤트",
+		"answer_seq" : 123,
+		"answer" : "알라스칸 말라뮤트",
+		"metadata_seq" : 1334,
+		"metadata_text" : "dog_breed:alaskan_malamute"
+	},
+	{
+		"breed_id" : 185,
+		"breed_name" : "에어데일 테리어",
+		"answer_seq" : 124,
+		"answer" : "에어데일 테리어",
+		"metadata_seq" : 1332,
+		"metadata_text" : "dog_breed:airedale_terrier"
+	},
+	{
+		"breed_id" : 186,
+		"breed_name" : "오스트레일리안 셰퍼드",
+		"answer_seq" : 125,
+		"answer" : "오스트레일리안 셰퍼드",
+		"metadata_seq" : 1343,
+		"metadata_text" : "dog_breed:australian_shepherd"
+	},
+	{
+		"breed_id" : 187,
+		"breed_name" : "오스트레일리안 스텀피 테일 캐틀 독",
+		"answer_seq" : 126,
+		"answer" : "오스트레일리안 스텀피 테일 캐틀 독",
+		"metadata_seq" : 1344,
+		"metadata_text" : "dog_breed:australian_stumpy_tail_cattle_dog"
+	},
+	{
+		"breed_id" : 188,
+		"breed_name" : "오스트레일리안 켈피",
+		"answer_seq" : 127,
+		"answer" : "오스트레일리안 켈피",
+		"metadata_seq" : 1342,
+		"metadata_text" : "dog_breed:australian_kelpie"
+	},
+	{
+		"breed_id" : 189,
+		"breed_name" : "오스트레일리안 테리어",
+		"answer_seq" : 128,
+		"answer" : "오스트레일리안 테리어",
+		"metadata_seq" : 1345,
+		"metadata_text" : "dog_breed:australian_terrier"
+	},
+	{
+		"breed_id" : 190,
+		"breed_name" : "오스트리안 블랙 앤드 탄 하운드",
+		"answer_seq" : 129,
+		"answer" : "오스트리안 블랙 앤드 탄 하운드",
+		"metadata_seq" : 1346,
+		"metadata_text" : "dog_breed:austrian_black_and_tan_hound"
+	},
+	{
+		"breed_id" : 191,
+		"breed_name" : "오스트리안 핀셔",
+		"answer_seq" : 130,
+		"answer" : "오스트리안 핀셔",
+		"metadata_seq" : 1347,
+		"metadata_text" : "dog_breed:austrian_pinscher"
+	},
+	{
+		"breed_id" : 192,
+		"breed_name" : "오터 하운드",
+		"answer_seq" : 131,
+		"answer" : "오터 하운드",
+		"metadata_seq" : 1475,
+		"metadata_text" : "dog_breed:otterhound"
+	},
+	{
+		"breed_id" : 193,
+		"breed_name" : "올드 대니시 포인팅 독",
+		"answer_seq" : 132,
+		"answer" : "올드 대니시 포인팅 독",
+		"metadata_seq" : 1473,
+		"metadata_text" : "dog_breed:old_danish_pointing_dog"
+	},
+	{
+		"breed_id" : 194,
+		"breed_name" : "올드 잉글리시 쉽독",
+		"answer_seq" : 133,
+		"answer" : "올드 잉글리시 쉽독",
+		"metadata_seq" : 1474,
+		"metadata_text" : "dog_breed:old_english_sheepdog"
+	},
+	{
+		"breed_id" : 195,
+		"breed_name" : "와이마라너",
+		"answer_seq" : 134,
+		"answer" : "와이마라너",
+		"metadata_seq" : 1537,
+		"metadata_text" : "dog_breed:weimaraner"
+	},
+	{
+		"breed_id" : 196,
+		"breed_name" : "요크셔테리어",
+		"answer_seq" : 135,
+		"answer" : "요크셔테리어",
+		"metadata_seq" : 1544,
+		"metadata_text" : "dog_breed:yorkshire_terrier"
+	},
+	{
+		"breed_id" : 197,
+		"breed_name" : "시베리안 라이카",
+		"answer_seq" : 136,
+		"answer" : "시베리안 라이카",
+		"metadata_seq" : 1516,
+		"metadata_text" : "dog_breed:siberian_laika"
+	},
+	{
+		"breed_id" : 198,
+		"breed_name" : "웨스트 하일랜드 화이트 테리어",
+		"answer_seq" : 137,
+		"answer" : "웨스트 하일랜드 화이트 테리어",
+		"metadata_seq" : 1541,
+		"metadata_text" : "dog_breed:west_highland_white_terrier"
+	},
+	{
+		"breed_id" : 199,
+		"breed_name" : "웰시 스프링어 스파니엘",
+		"answer_seq" : 138,
+		"answer" : "웰시 스프링어 스파니엘",
+		"metadata_seq" : 1539,
+		"metadata_text" : "dog_breed:welsh_springer_spaniel"
+	},
+	{
+		"breed_id" : 200,
+		"breed_name" : "웰시 코기",
+		"answer_seq" : 139,
+		"answer" : "웰시 코기",
+		"metadata_seq" : 1538,
+		"metadata_text" : "dog_breed:welsh_corgi"
+	},
+	{
+		"breed_id" : 200,
+		"breed_name" : "웰시 코기",
+		"answer_seq" : 195,
+		"answer" : "펨브록 웰시 코기",
+		"metadata_seq" : 1479,
+		"metadata_text" : "dog_breed:pembroke_welsh_corgi"
+	},
+	{
+		"breed_id" : 200,
+		"breed_name" : "웰시 코기",
+		"answer_seq" : 221,
+		"answer" : "카디건 웰시 코기",
+		"metadata_seq" : 1382,
+		"metadata_text" : "dog_breed:cardigan_welsh_corgi"
+	},
+	{
+		"breed_id" : 201,
+		"breed_name" : "웰시 테리어",
+		"answer_seq" : 140,
+		"answer" : "웰시 테리어",
+		"metadata_seq" : 1540,
+		"metadata_text" : "dog_breed:welsh_terrier"
+	},
+	{
+		"breed_id" : 202,
+		"breed_name" : "이탈리안 그레이하운드",
+		"answer_seq" : 141,
+		"answer" : "이탈리안 그레이하운드",
+		"metadata_seq" : 1439,
+		"metadata_text" : "dog_breed:italian_greyhound"
+	},
+	{
+		"breed_id" : 203,
+		"breed_name" : "이탈리안 볼피노",
+		"answer_seq" : 142,
+		"answer" : "이탈리안 볼피노",
+		"metadata_seq" : 1441,
+		"metadata_text" : "dog_breed:italian_volpino"
+	},
+	{
+		"breed_id" : 204,
+		"breed_name" : "이탈리안 포인팅 독",
+		"answer_seq" : 143,
+		"answer" : "이탈리안 포인팅 독",
+		"metadata_seq" : 1440,
+		"metadata_text" : "dog_breed:italian_pointing_dog"
+	},
+	{
+		"breed_id" : 205,
+		"breed_name" : "잉글리시 세터 (르웰린)",
+		"answer_seq" : 144,
+		"answer" : "잉글리시 세터 (르웰린)",
+		"metadata_seq" : 1405,
+		"metadata_text" : "dog_breed:english_setter_llewllin"
+	},
+	{
+		"breed_id" : 206,
+		"breed_name" : "잉글리시 스프링거 스파니엘",
+		"answer_seq" : 145,
+		"answer" : "잉글리시 스프링거 스파니엘",
+		"metadata_seq" : 1406,
+		"metadata_text" : "dog_breed:english_springer_spaniel"
+	},
+	{
+		"breed_id" : 207,
+		"breed_name" : "잉글리시 코커 스파니엘",
+		"answer_seq" : 146,
+		"answer" : "잉글리시 코커 스파니엘",
+		"metadata_seq" : 1401,
+		"metadata_text" : "dog_breed:english_cocker_spaniel"
+	},
+	{
+		"breed_id" : 208,
+		"breed_name" : "잉글리시 토이 테리어 블랙 앤드 탠",
+		"answer_seq" : 147,
+		"answer" : "잉글리시 토이 테리어 블랙 앤드 탠",
+		"metadata_seq" : 1407,
+		"metadata_text" : "dog_breed:english_toy_terrier_black_and_tan"
+	},
+	{
+		"breed_id" : 209,
+		"breed_name" : "잉글리시 포인터",
+		"answer_seq" : 148,
+		"answer" : "잉글리시 포인터",
+		"metadata_seq" : 1404,
+		"metadata_text" : "dog_breed:english_pointer"
+	},
+	{
+		"breed_id" : 210,
+		"breed_name" : "잉글리시 폭스하운드",
+		"answer_seq" : 149,
+		"answer" : "잉글리시 폭스하운드",
+		"metadata_seq" : 1402,
+		"metadata_text" : "dog_breed:english_foxhound"
+	},
+	{
+		"breed_id" : 211,
+		"breed_name" : "자이언트 슈나우저",
+		"answer_seq" : 150,
+		"answer" : "자이언트 슈나우저",
+		"metadata_seq" : 1422,
+		"metadata_text" : "dog_breed:giant_schnauzer"
+	},
+	{
+		"breed_id" : 212,
+		"breed_name" : "재패니즈 스피츠",
+		"answer_seq" : 151,
+		"answer" : "재패니즈 스피츠",
+		"metadata_seq" : 1444,
+		"metadata_text" : "dog_breed:japanese_spitz"
+	},
+	{
+		"breed_id" : 213,
+		"breed_name" : "재패니즈 친",
+		"answer_seq" : 152,
+		"answer" : "재패니즈 친",
+		"metadata_seq" : 1443,
+		"metadata_text" : "dog_breed:japanese_chin"
+	},
+	{
+		"breed_id" : 214,
+		"breed_name" : "재패니즈 테리어",
+		"answer_seq" : 153,
+		"answer" : "재패니즈 테리어",
+		"metadata_seq" : 1445,
+		"metadata_text" : "dog_breed:japanese_terrier"
+	},
+	{
+		"breed_id" : 215,
+		"breed_name" : "잭 러셀 테리어",
+		"answer_seq" : 154,
+		"answer" : "잭 러셀 테리어",
+		"metadata_seq" : 1442,
+		"metadata_text" : "dog_breed:jack_russell_terrier"
+	},
+	{
+		"breed_id" : 216,
+		"breed_name" : "저먼 롱헤어드 포인팅 독",
+		"answer_seq" : 155,
+		"answer" : "저먼 롱헤어드 포인팅 독",
+		"metadata_seq" : 1417,
+		"metadata_text" : "dog_breed:german_longhaired_pointer"
+	},
+	{
+		"breed_id" : 217,
+		"breed_name" : "저먼 셰퍼드",
+		"answer_seq" : 156,
+		"answer" : "저먼 셰퍼드",
+		"metadata_seq" : 1419,
+		"metadata_text" : "dog_breed:german_shepherd"
+	},
+	{
+		"breed_id" : 218,
+		"breed_name" : "저먼 쇼트-헤어드 포인팅 독",
+		"answer_seq" : 157,
+		"answer" : "저먼 쇼트-헤어드 포인팅 독",
+		"metadata_seq" : 1420,
+		"metadata_text" : "dog_breed:german_shorthaired_pointer"
+	},
+	{
+		"breed_id" : 219,
+		"breed_name" : "저먼 스파니엘",
+		"answer_seq" : 158,
+		"answer" : "저먼 스파니엘",
+		"metadata_seq" : 1421,
+		"metadata_text" : "dog_breed:german_spaniel"
+	},
+	{
+		"breed_id" : 220,
+		"breed_name" : "저먼 핀셔",
+		"answer_seq" : 159,
+		"answer" : "저먼 핀셔",
+		"metadata_seq" : 1418,
+		"metadata_text" : "dog_breed:german_pinscher"
+	},
+	{
+		"breed_id" : 221,
+		"breed_name" : "저먼 하운드",
+		"answer_seq" : 160,
+		"answer" : "저먼 하운드",
+		"metadata_seq" : 1416,
+		"metadata_text" : "dog_breed:german_hound"
+	},
+	{
+		"breed_id" : 222,
+		"breed_name" : "진돗개",
+		"answer_seq" : 161,
+		"answer" : "진돗개",
+		"metadata_seq" : 1446,
+		"metadata_text" : "dog_breed:jindo"
+	},
+	{
+		"breed_id" : 223,
+		"breed_name" : "차우차우",
+		"answer_seq" : 162,
+		"answer" : "차우차우",
+		"metadata_seq" : 1389,
+		"metadata_text" : "dog_breed:chow_chow"
+	},
+	{
+		"breed_id" : 224,
+		"breed_name" : "차이니스 크레스티드",
+		"answer_seq" : 163,
+		"answer" : "차이니스 크레스티드",
+		"metadata_seq" : 1388,
+		"metadata_text" : "dog_breed:chinese_crested"
+	},
+	{
+		"breed_id" : 225,
+		"breed_name" : "체서피크 베이 리트리버",
+		"answer_seq" : 164,
+		"answer" : "체서피크 베이 리트리버",
+		"metadata_seq" : 1386,
+		"metadata_text" : "dog_breed:chesapeake_bay_retriever"
+	},
+	{
+		"breed_id" : 226,
+		"breed_name" : "체스키 테리어",
+		"answer_seq" : 165,
+		"answer" : "체스키 테리어",
+		"metadata_seq" : 1384,
+		"metadata_text" : "dog_breed:cesky_terrier"
+	},
+	{
+		"breed_id" : 227,
+		"breed_name" : "치와와",
+		"answer_seq" : 166,
+		"answer" : "치와와",
+		"metadata_seq" : 1387,
+		"metadata_text" : "dog_breed:chihuahua"
+	},
+	{
+		"breed_id" : 228,
+		"breed_name" : "카네코르소",
+		"answer_seq" : 167,
+		"answer" : "카네코르소",
+		"metadata_seq" : 1381,
+		"metadata_text" : "dog_breed:cane_corso"
+	},
+	{
+		"breed_id" : 229,
+		"breed_name" : "카디건 웰시 코기",
+		"answer_seq" : 221,
+		"answer" : "카디건 웰시 코기",
+		"metadata_seq" : 1382,
+		"metadata_text" : "dog_breed:cardigan_welsh_corgi"
+	},
+	{
+		"breed_id" : 230,
+		"breed_name" : "카발리에 킹 찰스 스파니엘",
+		"answer_seq" : 168,
+		"answer" : "카발리에 킹 찰스 스파니엘",
+		"metadata_seq" : 1383,
+		"metadata_text" : "dog_breed:cavalier_king_charles_spaniel"
+	},
+	{
+		"breed_id" : 231,
+		"breed_name" : "캉갈 셰퍼드 독",
+		"answer_seq" : 169,
+		"answer" : "캉갈 셰퍼드 독",
+		"metadata_seq" : 1447,
+		"metadata_text" : "dog_breed:kangal_shepherd_dog"
+	},
+	{
+		"breed_id" : 232,
+		"breed_name" : "커릴리언 베어 독",
+		"answer_seq" : 170,
+		"answer" : "커릴리언 베어 독",
+		"metadata_seq" : 1448,
+		"metadata_text" : "dog_breed:karelian_bear_dog"
+	},
+	{
+		"breed_id" : 233,
+		"breed_name" : "컬리 코티드 리트리버",
+		"answer_seq" : 171,
+		"answer" : "컬리 코티드 리트리버",
+		"metadata_seq" : 1393,
+		"metadata_text" : "dog_breed:curly_coated_retriever"
+	},
+	{
+		"breed_id" : 234,
+		"breed_name" : "케리 블루 테리어",
+		"answer_seq" : 172,
+		"answer" : "케리 블루 테리어",
+		"metadata_seq" : 1449,
+		"metadata_text" : "dog_breed:kerry_blue_terrier"
+	},
+	{
+		"breed_id" : 235,
+		"breed_name" : "케언 테리어",
+		"answer_seq" : 173,
+		"answer" : "케언 테리어",
+		"metadata_seq" : 1379,
+		"metadata_text" : "dog_breed:cairn_terrier"
+	},
+	{
+		"breed_id" : 236,
+		"breed_name" : "케이넌 독",
+		"answer_seq" : 174,
+		"answer" : "케이넌 독",
+		"metadata_seq" : 1380,
+		"metadata_text" : "dog_breed:canaan_dog"
+	},
+	{
+		"breed_id" : 237,
+		"breed_name" : "그린란드견",
+		"answer_seq" : 13,
+		"answer" : "그린란드견",
+		"metadata_seq" : 1427,
+		"metadata_text" : "dog_breed:greenland_dog"
+	},
+	{
+		"breed_id" : 238,
+		"breed_name" : "빠삐용 (콘티넨탈 토이 스파니엘)",
+		"answer_seq" : 177,
+		"answer" : "빠삐용 (콘티넨탈 토이 스파니엘)",
+		"metadata_seq" : 1476,
+		"metadata_text" : "dog_breed:papillon"
+	},
+	{
+		"breed_id" : 239,
+		"breed_name" : "러프 콜리",
+		"answer_seq" : 178,
+		"answer" : "러프 콜리",
+		"metadata_seq" : 1499,
+		"metadata_text" : "dog_breed:rough_collie"
+	},
+	{
+		"breed_id" : 240,
+		"breed_name" : "스무스 콜리",
+		"answer_seq" : 179,
+		"answer" : "스무스 콜리",
+		"metadata_seq" : 1520,
+		"metadata_text" : "dog_breed:smooth_collie"
+	},
+	{
+		"breed_id" : 241,
+		"breed_name" : "코몬도르",
+		"answer_seq" : 175,
+		"answer" : "코몬도르",
+		"metadata_seq" : 1451,
+		"metadata_text" : "dog_breed:komondor"
+	},
+	{
+		"breed_id" : 242,
+		"breed_name" : "쿠바츠",
+		"answer_seq" : 180,
+		"answer" : "쿠바츠",
+		"metadata_seq" : 1452,
+		"metadata_text" : "dog_breed:kooikerhondje"
+	},
+	{
+		"breed_id" : 243,
+		"breed_name" : "쿠이커혼제",
+		"answer_seq" : 181,
+		"answer" : "쿠이커혼제",
+		"metadata_seq" : 1454,
+		"metadata_text" : "dog_breed:kuikerhondje"
+	},
+	{
+		"breed_id" : 244,
+		"breed_name" : "크로아티안 셰퍼드 독",
+		"answer_seq" : 182,
+		"answer" : "크로아티안 셰퍼드 독",
+		"metadata_seq" : 1392,
+		"metadata_text" : "dog_breed:croatian_shepherd_dog"
+	},
+	{
+		"breed_id" : 245,
+		"breed_name" : "크롬폴란데",
+		"answer_seq" : 183,
+		"answer" : "크롬폴란데",
+		"metadata_seq" : 1453,
+		"metadata_text" : "dog_breed:kromfohrlander"
+	},
+	{
+		"breed_id" : 246,
+		"breed_name" : "클럼버 스파니엘",
+		"answer_seq" : 184,
+		"answer" : "클럼버 스파니엘",
+		"metadata_seq" : 1390,
+		"metadata_text" : "dog_breed:clumber_spaniel"
+	},
+	{
+		"breed_id" : 247,
+		"breed_name" : "킹 찰스 스파니엘",
+		"answer_seq" : 168,
+		"answer" : "카발리에 킹 찰스 스파니엘",
+		"metadata_seq" : 1383,
+		"metadata_text" : "dog_breed:cavalier_king_charles_spaniel"
+	},
+	{
+		"breed_id" : 247,
+		"breed_name" : "킹 찰스 스파니엘",
+		"answer_seq" : 185,
+		"answer" : "킹 찰스 스파니엘",
+		"metadata_seq" : 1450,
+		"metadata_text" : "dog_breed:king_charles_spaniel"
+	},
+	{
+		"breed_id" : 248,
+		"breed_name" : "타이 리지백",
+		"answer_seq" : 186,
+		"answer" : "타이 리지백",
+		"metadata_seq" : 1532,
+		"metadata_text" : "dog_breed:thai_ridgeback"
+	},
+	{
+		"breed_id" : 249,
+		"breed_name" : "타이완 독",
+		"answer_seq" : 187,
+		"answer" : "타이완 독",
+		"metadata_seq" : 1530,
+		"metadata_text" : "dog_breed:taiwan_dog"
+	},
+	{
+		"breed_id" : 250,
+		"breed_name" : "티베탄 스파니엘",
+		"answer_seq" : 190,
+		"answer" : "티베탄 스파니엘",
+		"metadata_seq" : 1534,
+		"metadata_text" : "dog_breed:tibetan_spaniel"
+	},
+	{
+		"breed_id" : 251,
+		"breed_name" : "티베탄 마스티프",
+		"answer_seq" : 36,
+		"answer" : "티베탄 마스티프",
+		"metadata_seq" : 1533,
+		"metadata_text" : "dog_breed:tibetan_mastiff"
+	},
+	{
+		"breed_id" : 252,
+		"breed_name" : "티베탄 테리어",
+		"answer_seq" : 189,
+		"answer" : "티베탄 테리어",
+		"metadata_seq" : 1535,
+		"metadata_text" : "dog_breed:tibetan_terrier"
+	},
+	{
+		"breed_id" : 253,
+		"breed_name" : "파라오 하운드",
+		"answer_seq" : 191,
+		"answer" : "파라오 하운드",
+		"metadata_seq" : 1482,
+		"metadata_text" : "dog_breed:pharaoh_hound"
+	},
+	{
+		"breed_id" : 254,
+		"breed_name" : "파슨 러셀 테리어",
+		"answer_seq" : 192,
+		"answer" : "파슨 러셀 테리어",
+		"metadata_seq" : 1477,
+		"metadata_text" : "dog_breed:parson_russell_terrier"
+	},
+	{
+		"breed_id" : 255,
+		"breed_name" : "퍼그",
+		"answer_seq" : 193,
+		"answer" : "퍼그",
+		"metadata_seq" : 1491,
+		"metadata_text" : "dog_breed:pug"
+	},
+	{
+		"breed_id" : 256,
+		"breed_name" : "페키니즈",
+		"answer_seq" : 194,
+		"answer" : "페키니즈",
+		"metadata_seq" : 1478,
+		"metadata_text" : "dog_breed:pekingese"
+	},
+	{
+		"breed_id" : 257,
+		"breed_name" : "펨브록 웰시 코기",
+		"answer_seq" : 195,
+		"answer" : "펨브록 웰시 코기",
+		"metadata_seq" : 1479,
+		"metadata_text" : "dog_breed:pembroke_welsh_corgi"
+	},
+	{
+		"breed_id" : 258,
+		"breed_name" : "포르투기즈 쉽독",
+		"answer_seq" : 196,
+		"answer" : "포르투기즈 쉽독",
+		"metadata_seq" : 1488,
+		"metadata_text" : "dog_breed:portuguese_sheepdog"
+	},
+	{
+		"breed_id" : 259,
+		"breed_name" : "포르투기즈 워터 독",
+		"answer_seq" : 197,
+		"answer" : "포르투기즈 워터 독",
+		"metadata_seq" : 1489,
+		"metadata_text" : "dog_breed:portuguese_water_dog"
+	},
+	{
+		"breed_id" : 260,
+		"breed_name" : "포르투기즈 포인팅 독",
+		"answer_seq" : 198,
+		"answer" : "포르투기즈 포인팅 독",
+		"metadata_seq" : 1487,
+		"metadata_text" : "dog_breed:portuguese_pointing_dog"
+	},
+	{
+		"breed_id" : 261,
+		"breed_name" : "포메라니안",
+		"answer_seq" : 199,
+		"answer" : "포메라니안",
+		"metadata_seq" : 1485,
+		"metadata_text" : "dog_breed:pomeranian"
+	},
+	{
+		"breed_id" : 262,
+		"breed_name" : "폭스 테리어",
+		"answer_seq" : 200,
+		"answer" : "폭스 테리어",
+		"metadata_seq" : 1411,
+		"metadata_text" : "dog_breed:fox_terrier"
+	},
+	{
+		"breed_id" : 263,
+		"breed_name" : "폴리시 로랜드 쉽독",
+		"answer_seq" : 201,
+		"answer" : "폴리시 로랜드 쉽독",
+		"metadata_seq" : 1484,
+		"metadata_text" : "dog_breed:polish_lowland_sheepdog"
+	},
+	{
+		"breed_id" : 264,
+		"breed_name" : "폴리시 하운드",
+		"answer_seq" : 202,
+		"answer" : "폴리시 하운드",
+		"metadata_seq" : 1483,
+		"metadata_text" : "dog_breed:polish_hound"
+	},
+	{
+		"breed_id" : 265,
+		"breed_name" : "푸델포인터",
+		"answer_seq" : 203,
+		"answer" : "푸델포인터",
+		"metadata_seq" : 1490,
+		"metadata_text" : "dog_breed:pudelpointer"
+	},
+	{
+		"breed_id" : 266,
+		"breed_name" : "푸들",
+		"answer_seq" : 204,
+		"answer" : "푸들",
+		"metadata_seq" : 1486,
+		"metadata_text" : "dog_breed:poodle"
+	},
+	{
+		"breed_id" : 267,
+		"breed_name" : "프렌치 불독",
+		"answer_seq" : 205,
+		"answer" : "프렌치 불독",
+		"metadata_seq" : 1412,
+		"metadata_text" : "dog_breed:french_bulldog"
+	},
+	{
+		"breed_id" : 268,
+		"breed_name" : "프렌치 스파니엘",
+		"answer_seq" : 206,
+		"answer" : "프렌치 스파니엘",
+		"metadata_seq" : 1415,
+		"metadata_text" : "dog_breed:french_spaniel"
+	},
+	{
+		"breed_id" : 269,
+		"breed_name" : "프렌치 하운드",
+		"answer_seq" : 45,
+		"answer" : "프렌치 하운드",
+		"metadata_seq" : 1413,
+		"metadata_text" : "dog_breed:french_hound"
+	},
+	{
+		"breed_id" : 270,
+		"breed_name" : "플랫 코티드 리트리버",
+		"answer_seq" : 208,
+		"answer" : "플랫 코티드 리트리버",
+		"metadata_seq" : 1410,
+		"metadata_text" : "dog_breed:flat_coated_retriever"
+	},
+	{
+		"breed_id" : 271,
+		"breed_name" : "피니쉬 하운드",
+		"answer_seq" : 209,
+		"answer" : "피니쉬 하운드",
+		"metadata_seq" : 1408,
+		"metadata_text" : "dog_breed:finnish_hound"
+	},
+	{
+		"breed_id" : 272,
+		"breed_name" : "피니시 스피츠",
+		"answer_seq" : 210,
+		"answer" : "피니시 스피츠",
+		"metadata_seq" : 1409,
+		"metadata_text" : "dog_breed:finnish_spitz"
+	},
+	{
+		"breed_id" : 273,
+		"breed_name" : "피레니안 마스티프",
+		"answer_seq" : 211,
+		"answer" : "피레니안 마스티프",
+		"metadata_seq" : 1492,
+		"metadata_text" : "dog_breed:pyrenean_mastiff"
+	},
+	{
+		"breed_id" : 274,
+		"breed_name" : "피레니안 마운틴 독",
+		"answer_seq" : 212,
+		"answer" : "피레니안 마운틴 독",
+		"metadata_seq" : 1493,
+		"metadata_text" : "dog_breed:pyrenean_mountain_dog"
+	},
+	{
+		"breed_id" : 275,
+		"breed_name" : "피레니안 셰펴드",
+		"answer_seq" : 213,
+		"answer" : "피레니안 셰펴드",
+		"metadata_seq" : 1495,
+		"metadata_text" : "dog_breed:pyrenean_shepherd"
+	},
+	{
+		"breed_id" : 276,
+		"breed_name" : "피레니안 쉽독",
+		"answer_seq" : 214,
+		"answer" : "피레니안 쉽독",
+		"metadata_seq" : 1494,
+		"metadata_text" : "dog_breed:pyrenean_sheepdog"
+	},
+	{
+		"breed_id" : 277,
+		"breed_name" : "비즐라 (헝가리안 포인터)",
+		"answer_seq" : 216,
+		"answer" : "비즐라 (헝가리안 포인터)",
+		"metadata_seq" : 1536,
+		"metadata_text" : "dog_breed:vizsla_hungarian_pointer"
+	},
+	{
+		"breed_id" : 278,
+		"breed_name" : "헝가리안 그레이하운드",
+		"answer_seq" : 215,
+		"answer" : "헝가리안 그레이하운드",
+		"metadata_seq" : 1431,
+		"metadata_text" : "dog_breed:hungarian_greyhound"
+	},
+	{
+		"breed_id" : 279,
+		"breed_name" : "호바와트",
+		"answer_seq" : 217,
+		"answer" : "호바와트",
+		"metadata_seq" : 1430,
+		"metadata_text" : "dog_breed:hovawart"
+	},
+	{
+		"breed_id" : 280,
+		"breed_name" : "홋카이도견",
+		"answer_seq" : 218,
+		"answer" : "홋카이도견",
+		"metadata_seq" : 1429,
+		"metadata_text" : "dog_breed:hokkaido_dog"
+	},
+	{
+		"breed_id" : 281,
+		"breed_name" : "화이트 스위스 셰퍼드 독",
+		"answer_seq" : 219,
+		"answer" : "화이트 스위스 셰퍼드 독",
+		"metadata_seq" : 1543,
+		"metadata_text" : "dog_breed:white_swiss_shepherd_dog"
+	},
+	{
+		"breed_id" : 286,
+		"breed_name" : "휘핏",
+		"answer_seq" : 220,
+		"answer" : "휘핏",
+		"metadata_seq" : 1542,
+		"metadata_text" : "dog_breed:whippet"
+	}
+]

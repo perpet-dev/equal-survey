@@ -3,20 +3,22 @@ from fastapi import FastAPI, Body, Form, Header, HTTPException, Depends, Respons
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
+
 from pydantic import BaseModel
 from typing import Optional, Tuple, List, Dict
 import os
 from automaton import Automaton
-from config import LOGGING_CONFIG, MONGODB
 #import firebase_admin
 #from firebase_admin import credentials, firestore
 import uvicorn
 import requests
 import re
 import uuid
-from pymongo import MongoClient
-from fastapi.middleware.cors import CORSMiddleware
-
+from pymongo import MongoClient, UpdateOne
+from bson.objectid import ObjectId
+import json
+from config import LOGGING_CONFIG, MONGODB
 import logging
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
@@ -55,6 +57,10 @@ app.add_middleware(
 # static files directory for web app
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+breedid_map = {}
+allergyid_map = {} 
+diseaseid_map = {} 
 
 async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tuple[Automaton, str]:
     """
@@ -336,7 +342,20 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
     automaton.update_questions_path(next_question_id)
     automaton_data = automaton.serialize_data()
     automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
+    bulk_operations = []
 
+    # Handle updates to affected questions
+    for q_id, new_question_text in updated_affected_questions.items():
+        update_field = {
+            f"questions_history.{q_id}.question": new_question_text
+        }
+        bulk_operations.append(UpdateOne({'_id': session_id}, {'$set': update_field}))
+
+    # Execute bulk operations
+    if bulk_operations:
+        result = automaton_sessions_collection.bulk_write(bulk_operations)
+        print(f"Bulk operation results: {result.bulk_api_result}")
+    
     update_history_query = {"$set": {f"questions_history.{next_question_id}": question_data}}
     automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
     
@@ -568,16 +587,70 @@ def extract_from_function(input_string):
 
     return None if parenthesis_count != 0 else input_string[start:end - 1]
 
+#Endpoint get the metadata text
+@app.get("/questionnaire/{automaton_id}/{session_id}/get_metadata")
+async def get_metadata(automaton_id: str, session_id: str):
+    session_collection = mongo_db.automaton_sessions
+    session_data = session_collection.find_one({"_id": session_id})
+
+    # If session_data is not found, create a new session
+    if not session_data:
+        return {"message": "Session not found"}
+
+    # Proceed with session restoration logic
+    # Initialize the Automaton instance and deserialize its state
+    automaton = Automaton()
+    automaton.deserialize_data(session_data)
+    # The rest of your restoration logic here
+    questions_history = session_data.get("questions_history", {})
+    current_question_id = automaton.goto  # or some default value
+    questionnaire_id = automaton.name  # Assuming the questionnaire ID is stored in the automaton's name attribute
+    restored_session_data = {
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id,
+        "current_question_id": current_question_id,
+        # "current_question": {},  # You may want to fetch the current question based on current_question_id
+        "questions_history": questions_history,
+        "variables": automaton.variables,  # Optionally include other automaton states if needed
+        "user_answers": session_data.get("user_answers", {})
+    }
+    
+    logger.info(f"Restored session data: {restored_session_data}")
+    
+    variables = automaton.variables
+    metadata_text = []
+    for key, value in variables.items():
+        if key.startswith('@'):
+            logger.debug(f"variable => {key}: {value}" )
+            if key == '@breeds_id':
+                logger.debug(f"breeds_id: {value}")
+                metadata = getBreedMetaText(value)
+                logger.debug(f"metadata: {metadata}")
+                metadata_text.append(metadata)
+            if key == '@disease_id':
+                for disease_id in value:
+                    logger.debug(f"disease_id: {disease_id}")
+                    metadata = getDiseaseMetaText(disease_id)
+                    metadata_text.append(metadata)
+                    logger.debug(f"metadata: {metadata}")
+            if key == '@allergy_id':
+                for allergy_id in value:
+                    logger.debug(f"allergy_id: {allergy_id}")
+                    metadata = getAllergyMetaText(allergy_id)
+                    logger.debug(f"metadata: {metadata}")
+                    metadata_text.append(metadata)
+            # metadata = key+":"+value
+    logger.debug(f"metadata_text: {metadata_text}")
 
 
-# @app.post("/reset_automaton")
-# async def reset_automaton(session_id: str = Header(...)):
-#     automaton, session_id = await get_automaton_for_user(session_id)
-#     automaton.reset()
-#     # Update the reset state in Firestore
-#     db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-#     return {"message": "Automaton reset"}
+def getBreedMetaText(breed_id):
+    return breedid_map.get(breed_id)
 
+def getDiseaseMetaText(disease_id):
+    return diseaseid_map.get(disease_id)
+
+def getAllergyMetaText(allergy_id):
+    return allergyid_map.get(allergy_id)
 
 #This is the Flask equivalent part in FastAPI
 @app.get("/questionnaire/{questionnaire_id}", response_class=HTMLResponse)
@@ -603,6 +676,53 @@ async def healthreport(request: Request):
 @app.get("/")
 async def home(request: Request, response: Response):
     return templates.TemplateResponse("intro.html", {"request": request})
+
+breedid_map, allergyid_map, diseaseid_map = {}, {}, {}
+def getBreedMetaText(breed_id: str) -> str:
+    return breedid_map.get(breed_id, "No metadata found for this breed ID")
+
+def getDiseaseMetaText(disease_id: str) -> str:
+    return diseaseid_map.get(disease_id, "No metadata found for this disease ID")
+
+def getAllergyMetaText(allergy_id: str) -> str:
+    return allergyid_map.get(allergy_id, "No metadata found for this disease ID")
+
+@app.on_event("startup")
+async def startup_event():
+    global breedid_map, allergyid_map, diseaseid_map
+    # Load the JSON data from a file
+    with open('breed_Metadata.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    # Create a map from breed_id to metadata_text
+    breedid_map = {
+        item['breed_id']: item['metadata_text'] 
+        for item in data
+        if item['metadata_text'].endswith('_breed')
+    }
+
+    with open('allergy_Metadata.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    # Create a map from breed_id to metadata_text
+    allergyid_map = {
+        item['allergy_id']: item['metadata_text'] 
+        for item in data
+        if item['metadata_text'].startswith('allergy')
+    }
+
+    with open('disease_Metadata.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    # Create a map from disease_id to metadata_text, filtering for metadata_text that starts with "disease"
+    diseaseid_map = {
+        item['disease_id']: item['metadata_text']
+        for item in data
+        if item['metadata_text'].startswith('disease')
+    }
+    logger.debug(f"breedid_map:{breedid_map}")
+    logger.debug(f"diseaseid_map:{diseaseid_map}")
+    logger.debug(f"allergyid_map:{allergyid_map}")
 
 LOGLEVEL = logging.DEBUG
 # Set the logging level for Uvicorn loggers

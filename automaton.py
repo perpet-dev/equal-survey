@@ -533,6 +533,7 @@ class Automaton:
         self.update_questions_path(question_id)
         # Snapshot of variables before processing
         variables_snapshot_before = dict(self.variables)
+        logger.debug(f"variables_snapshot_before: {variables_snapshot_before}")
         """
         Processes the user's answer to a given question and determines the next step.
         """
@@ -556,7 +557,7 @@ class Automaton:
                         redo_candidates.append(candidate)
 
         # Store the user's answer
-        logger.debug(f"self.states: {self.states}")
+        # logger.debug(f"self.states: {self.states}")
         self.variables[str(question_id) + " -> " + self.states[question_id]['Question']] = answer
         self.store_user_answer(question_id, answer)
         logger.debug(f"user_answers: {self.user_answers}")
@@ -676,6 +677,8 @@ class Automaton:
             var for var in self.variables
             if variables_snapshot_before.get(var) != self.variables[var]
         ]
+        logger.debug(f"variables_snapshot_before: {variables_snapshot_before}")
+        logger.debug(f"current variables: {self.variables}")
         logger.debug(f"Updated variables: {updated_variables}")
         
         # Use updated variables to identify dependent questions that need revisiting
@@ -722,7 +725,13 @@ class Automaton:
         for question_id in remove_questions:
             if question_id in self.question_path:
                 self.question_path.remove(question_id)
-            # Decide if you want to also clear the answer
+            if question_id in self.user_answers:
+                del self.user_answers[question_id]
+                
+        # Now, remove questions from `question_path` and potentially from `user_answers`
+        for question_id in redo_questions:
+            if question_id in self.question_path:
+                self.question_path.remove(question_id)
             if question_id in self.user_answers:
                 del self.user_answers[question_id]
 

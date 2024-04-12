@@ -1,0 +1,7193 @@
+[
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 234,
+		"answer" : "피부",
+		"metadata_seq" : 1005,
+		"metadata_text" : "disease:skin"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 250,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 1304,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 252,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 1307,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 256,
+		"answer" : "면역매개성피부염",
+		"metadata_seq" : 1309,
+		"metadata_text" : "disease_skin:immune_mediated_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 258,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 1310,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 261,
+		"answer" : "세균성 피부염(농피증)",
+		"metadata_seq" : 1322,
+		"metadata_text" : "disease_skin:pyoderma"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 263,
+		"answer" : "아토피성피부염",
+		"metadata_seq" : 1295,
+		"metadata_text" : "disease_skin:atopic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 264,
+		"answer" : "알러지성피부염",
+		"metadata_seq" : 1293,
+		"metadata_text" : "disease_skin:allergic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 266,
+		"answer" : "자기면역성피부염",
+		"metadata_seq" : 1296,
+		"metadata_text" : "disease_skin:autoimmune_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 267,
+		"answer" : "자상성 피부염",
+		"metadata_seq" : 1305,
+		"metadata_text" : "disease_skin:granulomatous_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 268,
+		"answer" : "자외선 피부염(햇빛알러지)",
+		"metadata_seq" : 1320,
+		"metadata_text" : "disease_skin:photosensitivity_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 269,
+		"answer" : "접촉성 피부염",
+		"metadata_seq" : 1297,
+		"metadata_text" : "disease_skin:contact_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 271,
+		"answer" : "지루성피부염",
+		"metadata_seq" : 1324,
+		"metadata_text" : "disease_skin:seborrheic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 276,
+		"answer" : "피부 궤양",
+		"metadata_seq" : 1298,
+		"metadata_text" : "disease_skin:cutaneous_ulcer"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 277,
+		"answer" : "피부 농양",
+		"metadata_seq" : 1292,
+		"metadata_text" : "disease_skin:abscess"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 278,
+		"answer" : "피부 섬유종",
+		"metadata_seq" : 1303,
+		"metadata_text" : "disease_skin:fibroma"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 279,
+		"answer" : "피부각질증",
+		"metadata_seq" : 1308,
+		"metadata_text" : "disease_skin:hyperkeratosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 280,
+		"answer" : "피부건조증",
+		"metadata_seq" : 1327,
+		"metadata_text" : "disease_skin:xerosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 281,
+		"answer" : "피부괴사",
+		"metadata_seq" : 1313,
+		"metadata_text" : "disease_skin:necrosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 550,
+		"answer" : "피부암",
+		"metadata_seq" : 1037,
+		"metadata_text" : "disease_cancer:skin_cancer"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 778,
+		"answer" : "피부",
+		"metadata_seq" : 516,
+		"metadata_text" : "disease:skin"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 794,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 818,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 796,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 821,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 800,
+		"answer" : "면역매개성피부염",
+		"metadata_seq" : 823,
+		"metadata_text" : "disease_skin:immune_mediated_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 802,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 824,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 805,
+		"answer" : "세균성 피부염(농피증)",
+		"metadata_seq" : 836,
+		"metadata_text" : "disease_skin:pyoderma"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 807,
+		"answer" : "아토피성피부염",
+		"metadata_seq" : 807,
+		"metadata_text" : "disease_skin:atopic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 808,
+		"answer" : "알러지성피부염",
+		"metadata_seq" : 805,
+		"metadata_text" : "disease_skin:allergic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 810,
+		"answer" : "자기면역성피부염",
+		"metadata_seq" : 808,
+		"metadata_text" : "disease_skin:autoimmune_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 811,
+		"answer" : "자상성 피부염",
+		"metadata_seq" : 819,
+		"metadata_text" : "disease_skin:granulomatous_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 812,
+		"answer" : "자외선 피부염(햇빛알러지)",
+		"metadata_seq" : 834,
+		"metadata_text" : "disease_skin:photosensitivity_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 813,
+		"answer" : "접촉성 피부염",
+		"metadata_seq" : 810,
+		"metadata_text" : "disease_skin:contact_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 815,
+		"answer" : "지루성피부염",
+		"metadata_seq" : 838,
+		"metadata_text" : "disease_skin:seborrheic_dermatitis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 820,
+		"answer" : "피부 궤양",
+		"metadata_seq" : 811,
+		"metadata_text" : "disease_skin:cutaneous_ulcer"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 821,
+		"answer" : "피부 농양",
+		"metadata_seq" : 804,
+		"metadata_text" : "disease_skin:abscess"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 822,
+		"answer" : "피부 섬유종",
+		"metadata_seq" : 817,
+		"metadata_text" : "disease_skin:fibroma"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 823,
+		"answer" : "피부각질증",
+		"metadata_seq" : 822,
+		"metadata_text" : "disease_skin:hyperkeratosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 824,
+		"answer" : "피부건조증",
+		"metadata_seq" : 841,
+		"metadata_text" : "disease_skin:xerosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 825,
+		"answer" : "피부괴사",
+		"metadata_seq" : 827,
+		"metadata_text" : "disease_skin:necrosis"
+	},
+	{
+		"disease_id" : 1,
+		"disease_name" : "피부",
+		"disease_type" : null,
+		"answer_seq" : 1097,
+		"answer" : "피부암",
+		"metadata_seq" : 548,
+		"metadata_text" : "disease_cancer:skin_cancer"
+	},
+	{
+		"disease_id" : 2,
+		"disease_name" : "비뇨생식기계",
+		"disease_type" : null,
+		"answer_seq" : 240,
+		"answer" : "비뇨생식기계",
+		"metadata_seq" : 998,
+		"metadata_text" : "disease:genitourinary"
+	},
+	{
+		"disease_id" : 2,
+		"disease_name" : "비뇨생식기계",
+		"disease_type" : null,
+		"answer_seq" : 427,
+		"answer" : "비뇨생식기계 해부학적 이상",
+		"metadata_seq" : 1168,
+		"metadata_text" : "disease_genitourinary:genitourinary_anatomical_abnormalities"
+	},
+	{
+		"disease_id" : 2,
+		"disease_name" : "비뇨생식기계",
+		"disease_type" : null,
+		"answer_seq" : 784,
+		"answer" : "비뇨생식기계",
+		"metadata_seq" : 509,
+		"metadata_text" : "disease:genitourinary"
+	},
+	{
+		"disease_id" : 2,
+		"disease_name" : "비뇨생식기계",
+		"disease_type" : null,
+		"answer_seq" : 975,
+		"answer" : "비뇨생식기계 해부학적 이상",
+		"metadata_seq" : 677,
+		"metadata_text" : "disease_genitourinary:genitourinary_anatomical_abnormalities"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 248,
+		"answer" : "당뇨",
+		"metadata_seq" : 994,
+		"metadata_text" : "disease:diabetic"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 554,
+		"answer" : "당뇨병",
+		"metadata_seq" : 1083,
+		"metadata_text" : "disease_diabetic:diabetes_mellitus"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 555,
+		"answer" : "당뇨성 케톤산증",
+		"metadata_seq" : 1084,
+		"metadata_text" : "disease_diabetic:diabetic_ketoacidosis"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 792,
+		"answer" : "당뇨",
+		"metadata_seq" : 505,
+		"metadata_text" : "disease:diabetic"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 1101,
+		"answer" : "당뇨병",
+		"metadata_seq" : 594,
+		"metadata_text" : "disease_diabetic:diabetes_mellitus"
+	},
+	{
+		"disease_id" : 3,
+		"disease_name" : "당뇨",
+		"disease_type" : null,
+		"answer_seq" : 1102,
+		"answer" : "당뇨성 케톤산증",
+		"metadata_seq" : 595,
+		"metadata_text" : "disease_diabetic:diabetic_ketoacidosis"
+	},
+	{
+		"disease_id" : 4,
+		"disease_name" : "불안장애",
+		"disease_type" : "",
+		"answer_seq" : 517,
+		"answer" : "불안장애",
+		"metadata_seq" : 1007,
+		"metadata_text" : "disease_behavior:anxiety_disorder"
+	},
+	{
+		"disease_id" : 4,
+		"disease_name" : "불안장애",
+		"disease_type" : "",
+		"answer_seq" : 1064,
+		"answer" : "불안장애",
+		"metadata_seq" : 518,
+		"metadata_text" : "disease_behavior:anxiety_disorder"
+	},
+	{
+		"disease_id" : 5,
+		"disease_name" : "악성종양",
+		"disease_type" : null,
+		"answer_seq" : 247,
+		"answer" : "악성종양",
+		"metadata_seq" : 990,
+		"metadata_text" : "disease:cancer"
+	},
+	{
+		"disease_id" : 5,
+		"disease_name" : "악성종양",
+		"disease_type" : null,
+		"answer_seq" : 791,
+		"answer" : "악성종양",
+		"metadata_seq" : 501,
+		"metadata_text" : "disease:cancer"
+	},
+	{
+		"disease_id" : 6,
+		"disease_name" : "치과",
+		"disease_type" : null,
+		"answer_seq" : 236,
+		"answer" : "치과",
+		"metadata_seq" : 1001,
+		"metadata_text" : "disease:oral"
+	},
+	{
+		"disease_id" : 6,
+		"disease_name" : "치과",
+		"disease_type" : null,
+		"answer_seq" : 780,
+		"answer" : "치과",
+		"metadata_seq" : 512,
+		"metadata_text" : "disease:oral"
+	},
+	{
+		"disease_id" : 7,
+		"disease_name" : "호흡기계",
+		"disease_type" : null,
+		"answer_seq" : 237,
+		"answer" : "호흡기계",
+		"metadata_seq" : 1004,
+		"metadata_text" : "disease:respiratory"
+	},
+	{
+		"disease_id" : 7,
+		"disease_name" : "호흡기계",
+		"disease_type" : null,
+		"answer_seq" : 781,
+		"answer" : "호흡기계",
+		"metadata_seq" : 515,
+		"metadata_text" : "disease:respiratory"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 241,
+		"answer" : "신장",
+		"metadata_seq" : 1003,
+		"metadata_text" : "disease:renal"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 369,
+		"answer" : "폐신장증후군",
+		"metadata_seq" : 1285,
+		"metadata_text" : "disease_respiratory:pulmonary_renal_syndrome"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 454,
+		"answer" : "신장 낭종",
+		"metadata_seq" : 1256,
+		"metadata_text" : "disease_renal:kidney_cysts"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 455,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 1255,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 456,
+		"answer" : "신장 염증성 섬유증",
+		"metadata_seq" : 1261,
+		"metadata_text" : "disease_renal:renal_inflammatory_fibrosis"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 457,
+		"answer" : "신장결석",
+		"metadata_seq" : 1258,
+		"metadata_text" : "disease_renal:kidney_stones"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 458,
+		"answer" : "신장염",
+		"metadata_seq" : 1257,
+		"metadata_text" : "disease_renal:kidney_inflammation"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 459,
+		"answer" : "신장이식 후 합병증",
+		"metadata_seq" : 1259,
+		"metadata_text" : "disease_renal:kidney_transplant_complications"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 460,
+		"answer" : "신장종양",
+		"metadata_seq" : 1262,
+		"metadata_text" : "disease_renal:renal_tumors"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 785,
+		"answer" : "신장",
+		"metadata_seq" : 514,
+		"metadata_text" : "disease:renal"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 916,
+		"answer" : "폐신장증후군",
+		"metadata_seq" : 797,
+		"metadata_text" : "disease_respiratory:pulmonary_renal_syndrome"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1000,
+		"answer" : "다낭성신장질환(PKD)",
+		"metadata_seq" : 771,
+		"metadata_text" : "disease_renal:polycystic_kidney_disease"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1003,
+		"answer" : "신장 낭종",
+		"metadata_seq" : 767,
+		"metadata_text" : "disease_renal:kidney_cysts"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1004,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 766,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1005,
+		"answer" : "신장 염증성 섬유증",
+		"metadata_seq" : 773,
+		"metadata_text" : "disease_renal:renal_inflammatory_fibrosis"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1006,
+		"answer" : "신장결석",
+		"metadata_seq" : 769,
+		"metadata_text" : "disease_renal:kidney_stones"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1007,
+		"answer" : "신장염",
+		"metadata_seq" : 768,
+		"metadata_text" : "disease_renal:kidney_inflammation"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1008,
+		"answer" : "신장이식 후 합병증",
+		"metadata_seq" : 770,
+		"metadata_text" : "disease_renal:kidney_transplant_complications"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1009,
+		"answer" : "신장종양",
+		"metadata_seq" : 774,
+		"metadata_text" : "disease_renal:renal_tumors"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1265,
+		"answer" : "신장 (Renal, Kidney)",
+		"metadata_seq" : 275,
+		"metadata_text" : "prescription_diet:renal"
+	},
+	{
+		"disease_id" : 8,
+		"disease_name" : "신장",
+		"disease_type" : null,
+		"answer_seq" : 1437,
+		"answer" : "신장 (Renal, Kidney)",
+		"metadata_seq" : 121,
+		"metadata_text" : "prescription_diet:renal"
+	},
+	{
+		"disease_id" : 9,
+		"disease_name" : "간담도계",
+		"disease_type" : null,
+		"answer_seq" : 239,
+		"answer" : "간담도계",
+		"metadata_seq" : 999,
+		"metadata_text" : "disease:hepatobiliary"
+	},
+	{
+		"disease_id" : 9,
+		"disease_name" : "간담도계",
+		"disease_type" : null,
+		"answer_seq" : 783,
+		"answer" : "간담도계",
+		"metadata_seq" : 510,
+		"metadata_text" : "disease:hepatobiliary"
+	},
+	{
+		"disease_id" : 10,
+		"disease_name" : "소화기계",
+		"disease_type" : null,
+		"answer_seq" : 238,
+		"answer" : "소화기계",
+		"metadata_seq" : 995,
+		"metadata_text" : "disease:digestive"
+	},
+	{
+		"disease_id" : 10,
+		"disease_name" : "소화기계",
+		"disease_type" : null,
+		"answer_seq" : 782,
+		"answer" : "소화기계",
+		"metadata_seq" : 506,
+		"metadata_text" : "disease:digestive"
+	},
+	{
+		"disease_id" : 10,
+		"disease_name" : "소화기계",
+		"disease_type" : null,
+		"answer_seq" : 1269,
+		"answer" : "소화기계 (Intearinal, Microbiome)",
+		"metadata_seq" : 272,
+		"metadata_text" : "prescription_diet:intestinal"
+	},
+	{
+		"disease_id" : 10,
+		"disease_name" : "소화기계",
+		"disease_type" : null,
+		"answer_seq" : 1441,
+		"answer" : "소화기계 (Intearinal, Microbiome)",
+		"metadata_seq" : 118,
+		"metadata_text" : "prescription_diet:intestinal"
+	},
+	{
+		"disease_id" : 11,
+		"disease_name" : "심혈관계",
+		"disease_type" : null,
+		"answer_seq" : 242,
+		"answer" : "심혈관계",
+		"metadata_seq" : 991,
+		"metadata_text" : "disease:cardiovascular"
+	},
+	{
+		"disease_id" : 11,
+		"disease_name" : "심혈관계",
+		"disease_type" : null,
+		"answer_seq" : 786,
+		"answer" : "심혈관계",
+		"metadata_seq" : 502,
+		"metadata_text" : "disease:cardiovascular"
+	},
+	{
+		"disease_id" : 13,
+		"disease_name" : "뇌신경",
+		"disease_type" : null,
+		"answer_seq" : 249,
+		"answer" : "뇌신경",
+		"metadata_seq" : 992,
+		"metadata_text" : "disease:cns"
+	},
+	{
+		"disease_id" : 13,
+		"disease_name" : "뇌신경",
+		"disease_type" : null,
+		"answer_seq" : 793,
+		"answer" : "뇌신경",
+		"metadata_seq" : 503,
+		"metadata_text" : "disease:cns"
+	},
+	{
+		"disease_id" : 14,
+		"disease_name" : "정형외과",
+		"disease_type" : null,
+		"answer_seq" : 244,
+		"answer" : "정형외과",
+		"metadata_seq" : 1002,
+		"metadata_text" : "disease:orthopedic"
+	},
+	{
+		"disease_id" : 14,
+		"disease_name" : "정형외과",
+		"disease_type" : null,
+		"answer_seq" : 788,
+		"answer" : "정형외과",
+		"metadata_seq" : 513,
+		"metadata_text" : "disease:orthopedic"
+	},
+	{
+		"disease_id" : 15,
+		"disease_name" : "행동학적 질환",
+		"disease_type" : null,
+		"answer_seq" : 245,
+		"answer" : "행동학적 질환",
+		"metadata_seq" : 989,
+		"metadata_text" : "disease:behavior"
+	},
+	{
+		"disease_id" : 15,
+		"disease_name" : "행동학적 질환",
+		"disease_type" : null,
+		"answer_seq" : 789,
+		"answer" : "행동학적 질환",
+		"metadata_seq" : 500,
+		"metadata_text" : "disease:behavior"
+	},
+	{
+		"disease_id" : 16,
+		"disease_name" : "인지장애",
+		"disease_type" : null,
+		"answer_seq" : 246,
+		"answer" : "인지장애",
+		"metadata_seq" : 993,
+		"metadata_text" : "disease:cognitive"
+	},
+	{
+		"disease_id" : 16,
+		"disease_name" : "인지장애",
+		"disease_type" : null,
+		"answer_seq" : 790,
+		"answer" : "인지장애",
+		"metadata_seq" : 504,
+		"metadata_text" : "disease:cognitive"
+	},
+	{
+		"disease_id" : 17,
+		"disease_name" : "안과",
+		"disease_type" : null,
+		"answer_seq" : 235,
+		"answer" : "안과",
+		"metadata_seq" : 997,
+		"metadata_text" : "disease:eye"
+	},
+	{
+		"disease_id" : 17,
+		"disease_name" : "안과",
+		"disease_type" : null,
+		"answer_seq" : 779,
+		"answer" : "안과",
+		"metadata_seq" : 508,
+		"metadata_text" : "disease:eye"
+	},
+	{
+		"disease_id" : 56,
+		"disease_name" : "간암",
+		"disease_type" : null,
+		"answer_seq" : 535,
+		"answer" : "간암",
+		"metadata_seq" : 1029,
+		"metadata_text" : "disease_cancer:liver_cancer"
+	},
+	{
+		"disease_id" : 56,
+		"disease_name" : "간암",
+		"disease_type" : null,
+		"answer_seq" : 1082,
+		"answer" : "간암",
+		"metadata_seq" : 540,
+		"metadata_text" : "disease_cancer:liver_cancer"
+	},
+	{
+		"disease_id" : 57,
+		"disease_name" : "갑상선암",
+		"disease_type" : null,
+		"answer_seq" : 536,
+		"answer" : "갑상선암",
+		"metadata_seq" : 1043,
+		"metadata_text" : "disease_cancer:thyroid_cancer"
+	},
+	{
+		"disease_id" : 57,
+		"disease_name" : "갑상선암",
+		"disease_type" : null,
+		"answer_seq" : 1083,
+		"answer" : "갑상선암",
+		"metadata_seq" : 554,
+		"metadata_text" : "disease_cancer:thyroid_cancer"
+	},
+	{
+		"disease_id" : 58,
+		"disease_name" : "골육종",
+		"disease_type" : null,
+		"answer_seq" : 537,
+		"answer" : "골육종",
+		"metadata_seq" : 1035,
+		"metadata_text" : "disease_cancer:osteosarcoma"
+	},
+	{
+		"disease_id" : 58,
+		"disease_name" : "골육종",
+		"disease_type" : null,
+		"answer_seq" : 1084,
+		"answer" : "골육종",
+		"metadata_seq" : 546,
+		"metadata_text" : "disease_cancer:osteosarcoma"
+	},
+	{
+		"disease_id" : 59,
+		"disease_name" : "구강편평상피세포암종",
+		"disease_type" : null,
+		"answer_seq" : 538,
+		"answer" : "구강편평상피세포암종",
+		"metadata_seq" : 1041,
+		"metadata_text" : "disease_cancer:squamous_cell_carcinoma_oral"
+	},
+	{
+		"disease_id" : 59,
+		"disease_name" : "구강편평상피세포암종",
+		"disease_type" : null,
+		"answer_seq" : 1085,
+		"answer" : "구강편평상피세포암종",
+		"metadata_seq" : 552,
+		"metadata_text" : "disease_cancer:squamous_cell_carcinoma_oral"
+	},
+	{
+		"disease_id" : 60,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 422,
+		"answer" : "난소암",
+		"metadata_seq" : 1175,
+		"metadata_text" : "disease_genitourinary:ovarian_cancer"
+	},
+	{
+		"disease_id" : 60,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 534,
+		"answer" : "난소암",
+		"metadata_seq" : 1036,
+		"metadata_text" : "disease_cancer:ovarian_cancer"
+	},
+	{
+		"disease_id" : 60,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 970,
+		"answer" : "난소암",
+		"metadata_seq" : 684,
+		"metadata_text" : "disease_genitourinary:ovarian_cancer"
+	},
+	{
+		"disease_id" : 60,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 1081,
+		"answer" : "난소암",
+		"metadata_seq" : 547,
+		"metadata_text" : "disease_cancer:ovarian_cancer"
+	},
+	{
+		"disease_id" : 61,
+		"disease_name" : "대장암",
+		"disease_type" : null,
+		"answer_seq" : 539,
+		"answer" : "대장암",
+		"metadata_seq" : 1027,
+		"metadata_text" : "disease_cancer:colorectal_cancer"
+	},
+	{
+		"disease_id" : 61,
+		"disease_name" : "대장암",
+		"disease_type" : null,
+		"answer_seq" : 1086,
+		"answer" : "대장암",
+		"metadata_seq" : 538,
+		"metadata_text" : "disease_cancer:colorectal_cancer"
+	},
+	{
+		"disease_id" : 62,
+		"disease_name" : "림프종(림포마)",
+		"disease_type" : null,
+		"answer_seq" : 540,
+		"answer" : "림프종(림포마)",
+		"metadata_seq" : 1031,
+		"metadata_text" : "disease_cancer:lymphoma"
+	},
+	{
+		"disease_id" : 62,
+		"disease_name" : "림프종(림포마)",
+		"disease_type" : null,
+		"answer_seq" : 1087,
+		"answer" : "림프종(림포마)",
+		"metadata_seq" : 542,
+		"metadata_text" : "disease_cancer:lymphoma"
+	},
+	{
+		"disease_id" : 63,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 425,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 1158,
+		"metadata_text" : "disease_genitourinary:bladder_cancer"
+	},
+	{
+		"disease_id" : 63,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 541,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 1026,
+		"metadata_text" : "disease_cancer:bladder_cancer"
+	},
+	{
+		"disease_id" : 63,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 973,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 667,
+		"metadata_text" : "disease_genitourinary:bladder_cancer"
+	},
+	{
+		"disease_id" : 63,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 1088,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 537,
+		"metadata_text" : "disease_cancer:bladder_cancer"
+	},
+	{
+		"disease_id" : 64,
+		"disease_name" : "비만세포종(MCT)",
+		"disease_type" : null,
+		"answer_seq" : 542,
+		"answer" : "비만세포종(MCT)",
+		"metadata_seq" : 1033,
+		"metadata_text" : "disease_cancer:mast_cell_tumor"
+	},
+	{
+		"disease_id" : 64,
+		"disease_name" : "비만세포종(MCT)",
+		"disease_type" : null,
+		"answer_seq" : 1089,
+		"answer" : "비만세포종(MCT)",
+		"metadata_seq" : 544,
+		"metadata_text" : "disease_cancer:mast_cell_tumor"
+	},
+	{
+		"disease_id" : 65,
+		"disease_name" : "섬유육종",
+		"disease_type" : null,
+		"answer_seq" : 543,
+		"answer" : "섬유육종",
+		"metadata_seq" : 1028,
+		"metadata_text" : "disease_cancer:fibrosarcoma"
+	},
+	{
+		"disease_id" : 65,
+		"disease_name" : "섬유육종",
+		"disease_type" : null,
+		"answer_seq" : 1090,
+		"answer" : "섬유육종",
+		"metadata_seq" : 539,
+		"metadata_text" : "disease_cancer:fibrosarcoma"
+	},
+	{
+		"disease_id" : 66,
+		"disease_name" : "소장암",
+		"disease_type" : null,
+		"answer_seq" : 544,
+		"answer" : "소장암",
+		"metadata_seq" : 1038,
+		"metadata_text" : "disease_cancer:small_intestine_cancer"
+	},
+	{
+		"disease_id" : 66,
+		"disease_name" : "소장암",
+		"disease_type" : null,
+		"answer_seq" : 1091,
+		"answer" : "소장암",
+		"metadata_seq" : 549,
+		"metadata_text" : "disease_cancer:small_intestine_cancer"
+	},
+	{
+		"disease_id" : 67,
+		"disease_name" : "악성유선종양",
+		"disease_type" : null,
+		"answer_seq" : 545,
+		"answer" : "악성유선종양",
+		"metadata_seq" : 1032,
+		"metadata_text" : "disease_cancer:malignant_mammary_tumor"
+	},
+	{
+		"disease_id" : 67,
+		"disease_name" : "악성유선종양",
+		"disease_type" : null,
+		"answer_seq" : 1092,
+		"answer" : "악성유선종양",
+		"metadata_seq" : 543,
+		"metadata_text" : "disease_cancer:malignant_mammary_tumor"
+	},
+	{
+		"disease_id" : 68,
+		"disease_name" : "연부조직 암종",
+		"disease_type" : null,
+		"answer_seq" : 546,
+		"answer" : "연부조직 암종",
+		"metadata_seq" : 1039,
+		"metadata_text" : "disease_cancer:soft_tissue_sarcoma"
+	},
+	{
+		"disease_id" : 68,
+		"disease_name" : "연부조직 암종",
+		"disease_type" : null,
+		"answer_seq" : 1093,
+		"answer" : "연부조직 암종",
+		"metadata_seq" : 550,
+		"metadata_text" : "disease_cancer:soft_tissue_sarcoma"
+	},
+	{
+		"disease_id" : 69,
+		"disease_name" : "위암",
+		"disease_type" : null,
+		"answer_seq" : 547,
+		"answer" : "위암",
+		"metadata_seq" : 1042,
+		"metadata_text" : "disease_cancer:stomach_cancer"
+	},
+	{
+		"disease_id" : 69,
+		"disease_name" : "위암",
+		"disease_type" : null,
+		"answer_seq" : 1094,
+		"answer" : "위암",
+		"metadata_seq" : 553,
+		"metadata_text" : "disease_cancer:stomach_cancer"
+	},
+	{
+		"disease_id" : 70,
+		"disease_name" : "편평상피세포암종(SCC)",
+		"disease_type" : null,
+		"answer_seq" : 548,
+		"answer" : "편평상피세포암종(SCC)",
+		"metadata_seq" : 1040,
+		"metadata_text" : "disease_cancer:squamous_cell_carcinoma"
+	},
+	{
+		"disease_id" : 70,
+		"disease_name" : "편평상피세포암종(SCC)",
+		"disease_type" : null,
+		"answer_seq" : 1095,
+		"answer" : "편평상피세포암종(SCC)",
+		"metadata_seq" : 551,
+		"metadata_text" : "disease_cancer:squamous_cell_carcinoma"
+	},
+	{
+		"disease_id" : 71,
+		"disease_name" : "폐암",
+		"disease_type" : null,
+		"answer_seq" : 549,
+		"answer" : "폐암",
+		"metadata_seq" : 1030,
+		"metadata_text" : "disease_cancer:lung_cancer"
+	},
+	{
+		"disease_id" : 71,
+		"disease_name" : "폐암",
+		"disease_type" : null,
+		"answer_seq" : 1096,
+		"answer" : "폐암",
+		"metadata_seq" : 541,
+		"metadata_text" : "disease_cancer:lung_cancer"
+	},
+	{
+		"disease_id" : 72,
+		"disease_name" : "피부암",
+		"disease_type" : null,
+		"answer_seq" : 550,
+		"answer" : "피부암",
+		"metadata_seq" : 1037,
+		"metadata_text" : "disease_cancer:skin_cancer"
+	},
+	{
+		"disease_id" : 72,
+		"disease_name" : "피부암",
+		"disease_type" : null,
+		"answer_seq" : 1097,
+		"answer" : "피부암",
+		"metadata_seq" : 548,
+		"metadata_text" : "disease_cancer:skin_cancer"
+	},
+	{
+		"disease_id" : 73,
+		"disease_name" : "항문주위선암종",
+		"disease_type" : null,
+		"answer_seq" : 551,
+		"answer" : "항문주위선암종",
+		"metadata_seq" : 1025,
+		"metadata_text" : "disease_cancer:anal_sac_adenocarcinoma"
+	},
+	{
+		"disease_id" : 73,
+		"disease_name" : "항문주위선암종",
+		"disease_type" : null,
+		"answer_seq" : 1098,
+		"answer" : "항문주위선암종",
+		"metadata_seq" : 536,
+		"metadata_text" : "disease_cancer:anal_sac_adenocarcinoma"
+	},
+	{
+		"disease_id" : 74,
+		"disease_name" : "혈관육종",
+		"disease_type" : null,
+		"answer_seq" : 552,
+		"answer" : "혈관육종",
+		"metadata_seq" : 1044,
+		"metadata_text" : "disease_cancer:vascular_sarcoma"
+	},
+	{
+		"disease_id" : 74,
+		"disease_name" : "혈관육종",
+		"disease_type" : null,
+		"answer_seq" : 1099,
+		"answer" : "혈관육종",
+		"metadata_seq" : 555,
+		"metadata_text" : "disease_cancer:vascular_sarcoma"
+	},
+	{
+		"disease_id" : 75,
+		"disease_name" : "흑색종",
+		"disease_type" : null,
+		"answer_seq" : 553,
+		"answer" : "흑색종",
+		"metadata_seq" : 1034,
+		"metadata_text" : "disease_cancer:melanoma"
+	},
+	{
+		"disease_id" : 75,
+		"disease_name" : "흑색종",
+		"disease_type" : null,
+		"answer_seq" : 1100,
+		"answer" : "흑색종",
+		"metadata_seq" : 545,
+		"metadata_text" : "disease_cancer:melanoma"
+	},
+	{
+		"disease_id" : 76,
+		"disease_name" : "고혈압",
+		"disease_type" : null,
+		"answer_seq" : 461,
+		"answer" : "고혈압",
+		"metadata_seq" : 1054,
+		"metadata_text" : "disease_cardiovascular:hypertension"
+	},
+	{
+		"disease_id" : 76,
+		"disease_name" : "고혈압",
+		"disease_type" : null,
+		"answer_seq" : 479,
+		"answer" : "폐성고혈압",
+		"metadata_seq" : 1061,
+		"metadata_text" : "disease_cardiovascular:pulmonary_hypertension"
+	},
+	{
+		"disease_id" : 76,
+		"disease_name" : "고혈압",
+		"disease_type" : null,
+		"answer_seq" : 1010,
+		"answer" : "고혈압",
+		"metadata_seq" : 564,
+		"metadata_text" : "disease_cardiovascular:hypertension"
+	},
+	{
+		"disease_id" : 76,
+		"disease_name" : "고혈압",
+		"disease_type" : null,
+		"answer_seq" : 1028,
+		"answer" : "폐성고혈압",
+		"metadata_seq" : 572,
+		"metadata_text" : "disease_cardiovascular:pulmonary_hypertension"
+	},
+	{
+		"disease_id" : 77,
+		"disease_name" : "대동맥협착증",
+		"disease_type" : null,
+		"answer_seq" : 462,
+		"answer" : "대동맥협착증",
+		"metadata_seq" : 1045,
+		"metadata_text" : "disease_cardiovascular:aortic_stenosis"
+	},
+	{
+		"disease_id" : 77,
+		"disease_name" : "대동맥협착증",
+		"disease_type" : null,
+		"answer_seq" : 1011,
+		"answer" : "대동맥협착증",
+		"metadata_seq" : 556,
+		"metadata_text" : "disease_cardiovascular:aortic_stenosis"
+	},
+	{
+		"disease_id" : 78,
+		"disease_name" : "동맥관 개존증(PDA)",
+		"disease_type" : null,
+		"answer_seq" : 463,
+		"answer" : "동맥관 개존증(PDA)",
+		"metadata_seq" : 1058,
+		"metadata_text" : "disease_cardiovascular:patent_ductus_arteriosus"
+	},
+	{
+		"disease_id" : 78,
+		"disease_name" : "동맥관 개존증(PDA)",
+		"disease_type" : null,
+		"answer_seq" : 1012,
+		"answer" : "동맥관 개존증(PDA)",
+		"metadata_seq" : 569,
+		"metadata_text" : "disease_cardiovascular:patent_ductus_arteriosus"
+	},
+	{
+		"disease_id" : 79,
+		"disease_name" : "부정맥",
+		"disease_type" : null,
+		"answer_seq" : 464,
+		"answer" : "부정맥",
+		"metadata_seq" : 1046,
+		"metadata_text" : "disease_cardiovascular:arrhythmia"
+	},
+	{
+		"disease_id" : 79,
+		"disease_name" : "부정맥",
+		"disease_type" : null,
+		"answer_seq" : 1013,
+		"answer" : "부정맥",
+		"metadata_seq" : 557,
+		"metadata_text" : "disease_cardiovascular:arrhythmia"
+	},
+	{
+		"disease_id" : 80,
+		"disease_name" : "빈맥",
+		"disease_type" : null,
+		"answer_seq" : 465,
+		"answer" : "빈맥",
+		"metadata_seq" : 1062,
+		"metadata_text" : "disease_cardiovascular:tachycardia"
+	},
+	{
+		"disease_id" : 80,
+		"disease_name" : "빈맥",
+		"disease_type" : null,
+		"answer_seq" : 1015,
+		"answer" : "빈맥",
+		"metadata_seq" : 573,
+		"metadata_text" : "disease_cardiovascular:tachycardia"
+	},
+	{
+		"disease_id" : 81,
+		"disease_name" : "삼첨판 역류",
+		"disease_type" : null,
+		"answer_seq" : 466,
+		"answer" : "삼첨판 역류",
+		"metadata_seq" : 1063,
+		"metadata_text" : "disease_cardiovascular:tricuspid_valve_regurgitation"
+	},
+	{
+		"disease_id" : 81,
+		"disease_name" : "삼첨판 역류",
+		"disease_type" : null,
+		"answer_seq" : 1016,
+		"answer" : "삼첨판 역류",
+		"metadata_seq" : 574,
+		"metadata_text" : "disease_cardiovascular:tricuspid_valve_regurgitation"
+	},
+	{
+		"disease_id" : 82,
+		"disease_name" : "서맥",
+		"disease_type" : null,
+		"answer_seq" : 467,
+		"answer" : "서맥",
+		"metadata_seq" : 1048,
+		"metadata_text" : "disease_cardiovascular:bradycardia"
+	},
+	{
+		"disease_id" : 82,
+		"disease_name" : "서맥",
+		"disease_type" : null,
+		"answer_seq" : 1017,
+		"answer" : "서맥",
+		"metadata_seq" : 559,
+		"metadata_text" : "disease_cardiovascular:bradycardia"
+	},
+	{
+		"disease_id" : 83,
+		"disease_name" : "심낭압전",
+		"disease_type" : null,
+		"answer_seq" : 468,
+		"answer" : "심낭압전",
+		"metadata_seq" : 1059,
+		"metadata_text" : "disease_cardiovascular:pericardial_effusion"
+	},
+	{
+		"disease_id" : 83,
+		"disease_name" : "심낭압전",
+		"disease_type" : null,
+		"answer_seq" : 1018,
+		"answer" : "심낭압전",
+		"metadata_seq" : 570,
+		"metadata_text" : "disease_cardiovascular:pericardial_effusion"
+	},
+	{
+		"disease_id" : 84,
+		"disease_name" : "심내막염",
+		"disease_type" : null,
+		"answer_seq" : 469,
+		"answer" : "심내막염",
+		"metadata_seq" : 1052,
+		"metadata_text" : "disease_cardiovascular:endocarditis"
+	},
+	{
+		"disease_id" : 84,
+		"disease_name" : "심내막염",
+		"disease_type" : null,
+		"answer_seq" : 1019,
+		"answer" : "심내막염",
+		"metadata_seq" : 562,
+		"metadata_text" : "disease_cardiovascular:endocarditis"
+	},
+	{
+		"disease_id" : 85,
+		"disease_name" : "심막염",
+		"disease_type" : null,
+		"answer_seq" : 470,
+		"answer" : "심막염",
+		"metadata_seq" : 1057,
+		"metadata_text" : "disease_cardiovascular:myocarditis"
+	},
+	{
+		"disease_id" : 85,
+		"disease_name" : "심막염",
+		"disease_type" : null,
+		"answer_seq" : 1020,
+		"answer" : "심막염",
+		"metadata_seq" : 568,
+		"metadata_text" : "disease_cardiovascular:myocarditis"
+	},
+	{
+		"disease_id" : 86,
+		"disease_name" : "심방중격결손",
+		"disease_type" : null,
+		"answer_seq" : 471,
+		"answer" : "심방중격결손",
+		"metadata_seq" : 1047,
+		"metadata_text" : "disease_cardiovascular:atrial_septal_defect"
+	},
+	{
+		"disease_id" : 86,
+		"disease_name" : "심방중격결손",
+		"disease_type" : null,
+		"answer_seq" : 1021,
+		"answer" : "심방중격결손",
+		"metadata_seq" : 558,
+		"metadata_text" : "disease_cardiovascular:atrial_septal_defect"
+	},
+	{
+		"disease_id" : 87,
+		"disease_name" : "심장사상충증",
+		"disease_type" : null,
+		"answer_seq" : 472,
+		"answer" : "심장사상충증",
+		"metadata_seq" : 1053,
+		"metadata_text" : "disease_cardiovascular:heartworm_disease"
+	},
+	{
+		"disease_id" : 87,
+		"disease_name" : "심장사상충증",
+		"disease_type" : null,
+		"answer_seq" : 1022,
+		"answer" : "심장사상충증",
+		"metadata_seq" : 563,
+		"metadata_text" : "disease_cardiovascular:heartworm_disease"
+	},
+	{
+		"disease_id" : 88,
+		"disease_name" : "울혈성심부전",
+		"disease_type" : null,
+		"answer_seq" : 473,
+		"answer" : "울혈성심부전",
+		"metadata_seq" : 1049,
+		"metadata_text" : "disease_cardiovascular:congestive_heart_failure"
+	},
+	{
+		"disease_id" : 88,
+		"disease_name" : "울혈성심부전",
+		"disease_type" : null,
+		"answer_seq" : 1023,
+		"answer" : "울혈성심부전",
+		"metadata_seq" : 560,
+		"metadata_text" : "disease_cardiovascular:congestive_heart_failure"
+	},
+	{
+		"disease_id" : 89,
+		"disease_name" : "이첨판 역류",
+		"disease_type" : null,
+		"answer_seq" : 474,
+		"answer" : "이첨판 역류",
+		"metadata_seq" : 1056,
+		"metadata_text" : "disease_cardiovascular:mitral_valve_regurgitation"
+	},
+	{
+		"disease_id" : 89,
+		"disease_name" : "이첨판 역류",
+		"disease_type" : null,
+		"answer_seq" : 1024,
+		"answer" : "이첨판 역류",
+		"metadata_seq" : 567,
+		"metadata_text" : "disease_cardiovascular:mitral_valve_regurgitation"
+	},
+	{
+		"disease_id" : 90,
+		"disease_name" : "저혈압",
+		"disease_type" : null,
+		"answer_seq" : 475,
+		"answer" : "저혈압",
+		"metadata_seq" : 1055,
+		"metadata_text" : "disease_cardiovascular:hypotension"
+	},
+	{
+		"disease_id" : 90,
+		"disease_name" : "저혈압",
+		"disease_type" : null,
+		"answer_seq" : 1025,
+		"answer" : "저혈압",
+		"metadata_seq" : 566,
+		"metadata_text" : "disease_cardiovascular:hypotension"
+	},
+	{
+		"disease_id" : 91,
+		"disease_name" : "점액종성이첨판판막질환(MMVD)",
+		"disease_type" : null,
+		"answer_seq" : 476,
+		"answer" : "점액종성이첨판판막질환(MMVD)",
+		"metadata_seq" : 1050,
+		"metadata_text" : "disease_cardiovascular:degenerative_mitral_valve_disease"
+	},
+	{
+		"disease_id" : 92,
+		"disease_name" : "폐동맥협착증",
+		"disease_type" : null,
+		"answer_seq" : 477,
+		"answer" : "폐동맥협착증",
+		"metadata_seq" : 1060,
+		"metadata_text" : "disease_cardiovascular:pulmonary_artery_stenosis"
+	},
+	{
+		"disease_id" : 92,
+		"disease_name" : "폐동맥협착증",
+		"disease_type" : null,
+		"answer_seq" : 1026,
+		"answer" : "폐동맥협착증",
+		"metadata_seq" : 571,
+		"metadata_text" : "disease_cardiovascular:pulmonary_artery_stenosis"
+	},
+	{
+		"disease_id" : 93,
+		"disease_name" : "폐성고혈압",
+		"disease_type" : null,
+		"answer_seq" : 479,
+		"answer" : "폐성고혈압",
+		"metadata_seq" : 1061,
+		"metadata_text" : "disease_cardiovascular:pulmonary_hypertension"
+	},
+	{
+		"disease_id" : 93,
+		"disease_name" : "폐성고혈압",
+		"disease_type" : null,
+		"answer_seq" : 1028,
+		"answer" : "폐성고혈압",
+		"metadata_seq" : 572,
+		"metadata_text" : "disease_cardiovascular:pulmonary_hypertension"
+	},
+	{
+		"disease_id" : 94,
+		"disease_name" : "확장성심근병증(DCM)",
+		"disease_type" : null,
+		"answer_seq" : 478,
+		"answer" : "확장성심근병증(DCM)",
+		"metadata_seq" : 1051,
+		"metadata_text" : "disease_cardiovascular:dilated_cardiomyopathy"
+	},
+	{
+		"disease_id" : 94,
+		"disease_name" : "확장성심근병증(DCM)",
+		"disease_type" : null,
+		"answer_seq" : 1027,
+		"answer" : "확장성심근병증(DCM)",
+		"metadata_seq" : 561,
+		"metadata_text" : "disease_cardiovascular:dilated_cardiomyopathy"
+	},
+	{
+		"disease_id" : 95,
+		"disease_name" : "괴사성 척수병",
+		"disease_type" : null,
+		"answer_seq" : 556,
+		"answer" : "괴사성 척수병",
+		"metadata_seq" : 1076,
+		"metadata_text" : "disease_cns:spinal_cord_necrosis"
+	},
+	{
+		"disease_id" : 95,
+		"disease_name" : "괴사성 척수병",
+		"disease_type" : null,
+		"answer_seq" : 1103,
+		"answer" : "괴사성 척수병",
+		"metadata_seq" : 587,
+		"metadata_text" : "disease_cns:spinal_cord_necrosis"
+	},
+	{
+		"disease_id" : 96,
+		"disease_name" : "뇌경색",
+		"disease_type" : null,
+		"answer_seq" : 557,
+		"answer" : "뇌경색",
+		"metadata_seq" : 1079,
+		"metadata_text" : "disease_cns:system_cerebral_infarction"
+	},
+	{
+		"disease_id" : 96,
+		"disease_name" : "뇌경색",
+		"disease_type" : null,
+		"answer_seq" : 1104,
+		"answer" : "뇌경색",
+		"metadata_seq" : 590,
+		"metadata_text" : "disease_cns:system_cerebral_infarction"
+	},
+	{
+		"disease_id" : 97,
+		"disease_name" : "뇌손상",
+		"disease_type" : null,
+		"answer_seq" : 558,
+		"answer" : "뇌손상",
+		"metadata_seq" : 1065,
+		"metadata_text" : "disease_cns:brain_injury"
+	},
+	{
+		"disease_id" : 97,
+		"disease_name" : "뇌손상",
+		"disease_type" : null,
+		"answer_seq" : 1105,
+		"answer" : "뇌손상",
+		"metadata_seq" : 576,
+		"metadata_text" : "disease_cns:brain_injury"
+	},
+	{
+		"disease_id" : 98,
+		"disease_name" : "뇌수막염",
+		"disease_type" : null,
+		"answer_seq" : 559,
+		"answer" : "뇌수막염",
+		"metadata_seq" : 1075,
+		"metadata_text" : "disease_cns:meningitis"
+	},
+	{
+		"disease_id" : 98,
+		"disease_name" : "뇌수막염",
+		"disease_type" : null,
+		"answer_seq" : 1106,
+		"answer" : "뇌수막염",
+		"metadata_seq" : 586,
+		"metadata_text" : "disease_cns:meningitis"
+	},
+	{
+		"disease_id" : 99,
+		"disease_name" : "뇌염",
+		"disease_type" : null,
+		"answer_seq" : 560,
+		"answer" : "뇌염",
+		"metadata_seq" : 1071,
+		"metadata_text" : "disease_cns:encephalitis"
+	},
+	{
+		"disease_id" : 99,
+		"disease_name" : "뇌염",
+		"disease_type" : null,
+		"answer_seq" : 1107,
+		"answer" : "뇌염",
+		"metadata_seq" : 582,
+		"metadata_text" : "disease_cns:encephalitis"
+	},
+	{
+		"disease_id" : 100,
+		"disease_name" : "뇌전증(간질)",
+		"disease_type" : null,
+		"answer_seq" : 561,
+		"answer" : "뇌전증(간질)",
+		"metadata_seq" : 1072,
+		"metadata_text" : "disease_cns:epilepsy"
+	},
+	{
+		"disease_id" : 100,
+		"disease_name" : "뇌전증(간질)",
+		"disease_type" : null,
+		"answer_seq" : 1108,
+		"answer" : "뇌전증(간질)",
+		"metadata_seq" : 583,
+		"metadata_text" : "disease_cns:epilepsy"
+	},
+	{
+		"disease_id" : 101,
+		"disease_name" : "뇌졸중",
+		"disease_type" : null,
+		"answer_seq" : 562,
+		"answer" : "뇌졸중",
+		"metadata_seq" : 1077,
+		"metadata_text" : "disease_cns:stroke"
+	},
+	{
+		"disease_id" : 101,
+		"disease_name" : "뇌졸중",
+		"disease_type" : null,
+		"answer_seq" : 1109,
+		"answer" : "뇌졸중",
+		"metadata_seq" : 588,
+		"metadata_text" : "disease_cns:stroke"
+	},
+	{
+		"disease_id" : 102,
+		"disease_name" : "뇌종양",
+		"disease_type" : null,
+		"answer_seq" : 563,
+		"answer" : "뇌종양",
+		"metadata_seq" : 1066,
+		"metadata_text" : "disease_cns:brain_tumor"
+	},
+	{
+		"disease_id" : 102,
+		"disease_name" : "뇌종양",
+		"disease_type" : null,
+		"answer_seq" : 1110,
+		"answer" : "뇌종양",
+		"metadata_seq" : 577,
+		"metadata_text" : "disease_cns:brain_tumor"
+	},
+	{
+		"disease_id" : 103,
+		"disease_name" : "뇌출혈",
+		"disease_type" : null,
+		"answer_seq" : 564,
+		"answer" : "뇌출혈",
+		"metadata_seq" : 1074,
+		"metadata_text" : "disease_cns:intracranial_hemorrhage"
+	},
+	{
+		"disease_id" : 103,
+		"disease_name" : "뇌출혈",
+		"disease_type" : null,
+		"answer_seq" : 1111,
+		"answer" : "뇌출혈",
+		"metadata_seq" : 585,
+		"metadata_text" : "disease_cns:intracranial_hemorrhage"
+	},
+	{
+		"disease_id" : 104,
+		"disease_name" : "선천성 뇌 이상",
+		"disease_type" : null,
+		"answer_seq" : 565,
+		"answer" : "선천성 뇌 이상",
+		"metadata_seq" : 1070,
+		"metadata_text" : "disease_cns:congenital_brain_abnormality"
+	},
+	{
+		"disease_id" : 104,
+		"disease_name" : "선천성 뇌 이상",
+		"disease_type" : null,
+		"answer_seq" : 1112,
+		"answer" : "선천성 뇌 이상",
+		"metadata_seq" : 581,
+		"metadata_text" : "disease_cns:congenital_brain_abnormality"
+	},
+	{
+		"disease_id" : 105,
+		"disease_name" : "중추신경계 감염",
+		"disease_type" : null,
+		"answer_seq" : 566,
+		"answer" : "중추신경계 감염",
+		"metadata_seq" : 1067,
+		"metadata_text" : "disease_cns:central_nervous_system_infection"
+	},
+	{
+		"disease_id" : 105,
+		"disease_name" : "중추신경계 감염",
+		"disease_type" : null,
+		"answer_seq" : 1113,
+		"answer" : "중추신경계 감염",
+		"metadata_seq" : 578,
+		"metadata_text" : "disease_cns:central_nervous_system_infection"
+	},
+	{
+		"disease_id" : 106,
+		"disease_name" : "중추신경계 염증",
+		"disease_type" : null,
+		"answer_seq" : 567,
+		"answer" : "중추신경계 염증",
+		"metadata_seq" : 1068,
+		"metadata_text" : "disease_cns:central_nervous_system_inflammation"
+	},
+	{
+		"disease_id" : 106,
+		"disease_name" : "중추신경계 염증",
+		"disease_type" : null,
+		"answer_seq" : 1114,
+		"answer" : "중추신경계 염증",
+		"metadata_seq" : 579,
+		"metadata_text" : "disease_cns:central_nervous_system_inflammation"
+	},
+	{
+		"disease_id" : 107,
+		"disease_name" : "중추신경계 종양",
+		"disease_type" : null,
+		"answer_seq" : 568,
+		"answer" : "중추신경계 종양",
+		"metadata_seq" : 1069,
+		"metadata_text" : "disease_cns:central_nervous_system_tumor"
+	},
+	{
+		"disease_id" : 107,
+		"disease_name" : "중추신경계 종양",
+		"disease_type" : null,
+		"answer_seq" : 1115,
+		"answer" : "중추신경계 종양",
+		"metadata_seq" : 580,
+		"metadata_text" : "disease_cns:central_nervous_system_tumor"
+	},
+	{
+		"disease_id" : 108,
+		"disease_name" : "척수공동증",
+		"disease_type" : null,
+		"answer_seq" : 569,
+		"answer" : "척수공동증",
+		"metadata_seq" : 1078,
+		"metadata_text" : "disease_cns:syringomyelia"
+	},
+	{
+		"disease_id" : 108,
+		"disease_name" : "척수공동증",
+		"disease_type" : null,
+		"answer_seq" : 1116,
+		"answer" : "척수공동증",
+		"metadata_seq" : 589,
+		"metadata_text" : "disease_cns:syringomyelia"
+	},
+	{
+		"disease_id" : 109,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 509,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 1234,
+		"metadata_text" : "disease_orthopedic:disc_disease"
+	},
+	{
+		"disease_id" : 109,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 570,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 1073,
+		"metadata_text" : "disease_cns:intervertebral_disc_disease"
+	},
+	{
+		"disease_id" : 109,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 1056,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 745,
+		"metadata_text" : "disease_orthopedic:disc_disease"
+	},
+	{
+		"disease_id" : 109,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 1117,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 584,
+		"metadata_text" : "disease_cns:intervertebral_disc_disease"
+	},
+	{
+		"disease_id" : 110,
+		"disease_name" : "환추축성 불안정(AAI)",
+		"disease_type" : null,
+		"answer_seq" : 571,
+		"answer" : "환추축성 불안정(AAI)",
+		"metadata_seq" : 1064,
+		"metadata_text" : "disease_cns:atlantoaxial_instability"
+	},
+	{
+		"disease_id" : 110,
+		"disease_name" : "환추축성 불안정(AAI)",
+		"disease_type" : null,
+		"answer_seq" : 1118,
+		"answer" : "환추축성 불안정(AAI)",
+		"metadata_seq" : 575,
+		"metadata_text" : "disease_cns:atlantoaxial_instability"
+	},
+	{
+		"disease_id" : 111,
+		"disease_name" : "인지기능장애",
+		"disease_type" : null,
+		"answer_seq" : 531,
+		"answer" : "인지기능장애",
+		"metadata_seq" : 1082,
+		"metadata_text" : "disease_cognitive:dysfunction"
+	},
+	{
+		"disease_id" : 111,
+		"disease_name" : "인지기능장애",
+		"disease_type" : null,
+		"answer_seq" : 1078,
+		"answer" : "인지기능장애",
+		"metadata_seq" : 593,
+		"metadata_text" : "disease_cognitive:dysfunction"
+	},
+	{
+		"disease_id" : 112,
+		"disease_name" : "인지기능저하증",
+		"disease_type" : null,
+		"answer_seq" : 532,
+		"answer" : "인지기능저하증",
+		"metadata_seq" : 1080,
+		"metadata_text" : "disease_cognitive:decline"
+	},
+	{
+		"disease_id" : 112,
+		"disease_name" : "인지기능저하증",
+		"disease_type" : null,
+		"answer_seq" : 1079,
+		"answer" : "인지기능저하증",
+		"metadata_seq" : 591,
+		"metadata_text" : "disease_cognitive:decline"
+	},
+	{
+		"disease_id" : 113,
+		"disease_name" : "치매",
+		"disease_type" : null,
+		"answer_seq" : 533,
+		"answer" : "치매",
+		"metadata_seq" : 1081,
+		"metadata_text" : "disease_cognitive:dementia"
+	},
+	{
+		"disease_id" : 113,
+		"disease_name" : "치매",
+		"disease_type" : null,
+		"answer_seq" : 1080,
+		"answer" : "치매",
+		"metadata_seq" : 592,
+		"metadata_text" : "disease_cognitive:dementia"
+	},
+	{
+		"disease_id" : 114,
+		"disease_name" : "당뇨병",
+		"disease_type" : null,
+		"answer_seq" : 554,
+		"answer" : "당뇨병",
+		"metadata_seq" : 1083,
+		"metadata_text" : "disease_diabetic:diabetes_mellitus"
+	},
+	{
+		"disease_id" : 114,
+		"disease_name" : "당뇨병",
+		"disease_type" : null,
+		"answer_seq" : 1101,
+		"answer" : "당뇨병",
+		"metadata_seq" : 594,
+		"metadata_text" : "disease_diabetic:diabetes_mellitus"
+	},
+	{
+		"disease_id" : 115,
+		"disease_name" : "당뇨성 케톤산증",
+		"disease_type" : null,
+		"answer_seq" : 555,
+		"answer" : "당뇨성 케톤산증",
+		"metadata_seq" : 1084,
+		"metadata_text" : "disease_diabetic:diabetic_ketoacidosis"
+	},
+	{
+		"disease_id" : 115,
+		"disease_name" : "당뇨성 케톤산증",
+		"disease_type" : null,
+		"answer_seq" : 1102,
+		"answer" : "당뇨성 케톤산증",
+		"metadata_seq" : 595,
+		"metadata_text" : "disease_diabetic:diabetic_ketoacidosis"
+	},
+	{
+		"disease_id" : 117,
+		"disease_name" : "감염성 장염",
+		"disease_type" : null,
+		"answer_seq" : 376,
+		"answer" : "감염성 장염",
+		"metadata_seq" : 1103,
+		"metadata_text" : "disease_digestive:infectious_enteritis"
+	},
+	{
+		"disease_id" : 117,
+		"disease_name" : "감염성 장염",
+		"disease_type" : null,
+		"answer_seq" : 923,
+		"answer" : "감염성 장염",
+		"metadata_seq" : 614,
+		"metadata_text" : "disease_digestive:infectious_enteritis"
+	},
+	{
+		"disease_id" : 118,
+		"disease_name" : "거대식도",
+		"disease_type" : null,
+		"answer_seq" : 377,
+		"answer" : "거대식도",
+		"metadata_seq" : 1109,
+		"metadata_text" : "disease_digestive:megaoesophagus"
+	},
+	{
+		"disease_id" : 118,
+		"disease_name" : "거대식도",
+		"disease_type" : null,
+		"answer_seq" : 924,
+		"answer" : "거대식도",
+		"metadata_seq" : 620,
+		"metadata_text" : "disease_digestive:megaoesophagus"
+	},
+	{
+		"disease_id" : 119,
+		"disease_name" : "과민성 장증후군",
+		"disease_type" : null,
+		"answer_seq" : 378,
+		"answer" : "과민성 장증후군",
+		"metadata_seq" : 1106,
+		"metadata_text" : "disease_digestive:irritable_bowel_syndrome"
+	},
+	{
+		"disease_id" : 119,
+		"disease_name" : "과민성 장증후군",
+		"disease_type" : null,
+		"answer_seq" : 925,
+		"answer" : "과민성 장증후군",
+		"metadata_seq" : 617,
+		"metadata_text" : "disease_digestive:irritable_bowel_syndrome"
+	},
+	{
+		"disease_id" : 120,
+		"disease_name" : "구토",
+		"disease_type" : null,
+		"answer_seq" : 379,
+		"answer" : "구토",
+		"metadata_seq" : 1112,
+		"metadata_text" : "disease_digestive:vomiting"
+	},
+	{
+		"disease_id" : 120,
+		"disease_name" : "구토",
+		"disease_type" : null,
+		"answer_seq" : 926,
+		"answer" : "구토",
+		"metadata_seq" : 623,
+		"metadata_text" : "disease_digestive:vomiting"
+	},
+	{
+		"disease_id" : 121,
+		"disease_name" : "급성췌장염",
+		"disease_type" : null,
+		"answer_seq" : 380,
+		"answer" : "급성췌장염",
+		"metadata_seq" : 1085,
+		"metadata_text" : "disease_digestive:acute_pancreatitis"
+	},
+	{
+		"disease_id" : 121,
+		"disease_name" : "급성췌장염",
+		"disease_type" : null,
+		"answer_seq" : 927,
+		"answer" : "급성췌장염",
+		"metadata_seq" : 596,
+		"metadata_text" : "disease_digestive:acute_pancreatitis"
+	},
+	{
+		"disease_id" : 122,
+		"disease_name" : "기생충성 위장염",
+		"disease_type" : null,
+		"answer_seq" : 381,
+		"answer" : "기생충성 위장염",
+		"metadata_seq" : 1111,
+		"metadata_text" : "disease_digestive:parasitic_gastroenteritis"
+	},
+	{
+		"disease_id" : 122,
+		"disease_name" : "기생충성 위장염",
+		"disease_type" : null,
+		"answer_seq" : 928,
+		"answer" : "기생충성 위장염",
+		"metadata_seq" : 622,
+		"metadata_text" : "disease_digestive:parasitic_gastroenteritis"
+	},
+	{
+		"disease_id" : 123,
+		"disease_name" : "림프관 확장증",
+		"disease_type" : null,
+		"answer_seq" : 382,
+		"answer" : "림프관 확장증",
+		"metadata_seq" : 1107,
+		"metadata_text" : "disease_digestive:lymphangiectasia"
+	},
+	{
+		"disease_id" : 123,
+		"disease_name" : "림프관 확장증",
+		"disease_type" : null,
+		"answer_seq" : 929,
+		"answer" : "림프관 확장증",
+		"metadata_seq" : 618,
+		"metadata_text" : "disease_digestive:lymphangiectasia"
+	},
+	{
+		"disease_id" : 124,
+		"disease_name" : "만성 장염",
+		"disease_type" : null,
+		"answer_seq" : 383,
+		"answer" : "만성 장염",
+		"metadata_seq" : 1086,
+		"metadata_text" : "disease_digestive:chronic_enteritis"
+	},
+	{
+		"disease_id" : 124,
+		"disease_name" : "만성 장염",
+		"disease_type" : null,
+		"answer_seq" : 930,
+		"answer" : "만성 장염",
+		"metadata_seq" : 597,
+		"metadata_text" : "disease_digestive:chronic_enteritis"
+	},
+	{
+		"disease_id" : 125,
+		"disease_name" : "만성췌장염",
+		"disease_type" : null,
+		"answer_seq" : 384,
+		"answer" : "만성췌장염",
+		"metadata_seq" : 1087,
+		"metadata_text" : "disease_digestive:chronic_pancreatitis"
+	},
+	{
+		"disease_id" : 125,
+		"disease_name" : "만성췌장염",
+		"disease_type" : null,
+		"answer_seq" : 931,
+		"answer" : "만성췌장염",
+		"metadata_seq" : 598,
+		"metadata_text" : "disease_digestive:chronic_pancreatitis"
+	},
+	{
+		"disease_id" : 126,
+		"disease_name" : "변비",
+		"disease_type" : null,
+		"answer_seq" : 385,
+		"answer" : "변비",
+		"metadata_seq" : 1088,
+		"metadata_text" : "disease_digestive:constipation"
+	},
+	{
+		"disease_id" : 126,
+		"disease_name" : "변비",
+		"disease_type" : null,
+		"answer_seq" : 932,
+		"answer" : "변비",
+		"metadata_seq" : 599,
+		"metadata_text" : "disease_digestive:constipation"
+	},
+	{
+		"disease_id" : 126,
+		"disease_name" : "변비",
+		"disease_type" : null,
+		"answer_seq" : 1466,
+		"answer" : "네, 최근에 변비가 생겼어요.",
+		"metadata_seq" : 41,
+		"metadata_text" : "constipation:recent"
+	},
+	{
+		"disease_id" : 126,
+		"disease_name" : "변비",
+		"disease_type" : null,
+		"answer_seq" : 1467,
+		"answer" : "네, 예전부터 계속 변비가 있었어요.",
+		"metadata_seq" : 39,
+		"metadata_text" : "constipation:chronic"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 231,
+		"answer" : "(준비만) 조금 통통해요",
+		"metadata_seq" : 982,
+		"metadata_text" : "body_shape:overweight_slight"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 232,
+		"answer" : "(고도비만) 뚱뚱해요",
+		"metadata_seq" : 981,
+		"metadata_text" : "body_shape:obese_severe"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 386,
+		"answer" : "비만",
+		"metadata_seq" : 1110,
+		"metadata_text" : "disease_digestive:obesity"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 542,
+		"answer" : "비만세포종(MCT)",
+		"metadata_seq" : 1033,
+		"metadata_text" : "disease_cancer:mast_cell_tumor"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 775,
+		"answer" : "(준비만) 조금 통통해요",
+		"metadata_seq" : 440,
+		"metadata_text" : "body_shape:overweight_slight"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 776,
+		"answer" : "(고도비만) 뚱뚱해요",
+		"metadata_seq" : 439,
+		"metadata_text" : "body_shape:obese_severe"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 933,
+		"answer" : "비만",
+		"metadata_seq" : 621,
+		"metadata_text" : "disease_digestive:obesity"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 1089,
+		"answer" : "비만세포종(MCT)",
+		"metadata_seq" : 544,
+		"metadata_text" : "disease_cancer:mast_cell_tumor"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 1264,
+		"answer" : "비만 예방 및 체중 감량 사료",
+		"metadata_seq" : 277,
+		"metadata_text" : "prescription_diet:weight_control"
+	},
+	{
+		"disease_id" : 127,
+		"disease_name" : "비만",
+		"disease_type" : null,
+		"answer_seq" : 1436,
+		"answer" : "비만 예방 및 체중 감량 사료",
+		"metadata_seq" : 123,
+		"metadata_text" : "prescription_diet:weight_control"
+	},
+	{
+		"disease_id" : 128,
+		"disease_name" : "설사",
+		"disease_type" : null,
+		"answer_seq" : 387,
+		"answer" : "설사",
+		"metadata_seq" : 1089,
+		"metadata_text" : "disease_digestive:diarrhea"
+	},
+	{
+		"disease_id" : 128,
+		"disease_name" : "설사",
+		"disease_type" : null,
+		"answer_seq" : 934,
+		"answer" : "설사",
+		"metadata_seq" : 600,
+		"metadata_text" : "disease_digestive:diarrhea"
+	},
+	{
+		"disease_id" : 128,
+		"disease_name" : "설사",
+		"disease_type" : null,
+		"answer_seq" : 1293,
+		"answer" : "설사 증상이 나타났어요.",
+		"metadata_seq" : 221,
+		"metadata_text" : "fecal_condition:diarrhea"
+	},
+	{
+		"disease_id" : 128,
+		"disease_name" : "설사",
+		"disease_type" : null,
+		"answer_seq" : 1464,
+		"answer" : "설사 증상이 나타났어요.",
+		"metadata_seq" : 71,
+		"metadata_text" : "fecal_condition:diarrhea"
+	},
+	{
+		"disease_id" : 129,
+		"disease_name" : "소화불량",
+		"disease_type" : null,
+		"answer_seq" : 388,
+		"answer" : "소화불량",
+		"metadata_seq" : 1102,
+		"metadata_text" : "disease_digestive:indigestion"
+	},
+	{
+		"disease_id" : 129,
+		"disease_name" : "소화불량",
+		"disease_type" : null,
+		"answer_seq" : 935,
+		"answer" : "소화불량",
+		"metadata_seq" : 613,
+		"metadata_text" : "disease_digestive:indigestion"
+	},
+	{
+		"disease_id" : 130,
+		"disease_name" : "식도염",
+		"disease_type" : null,
+		"answer_seq" : 389,
+		"answer" : "식도염",
+		"metadata_seq" : 1091,
+		"metadata_text" : "disease_digestive:esophagitis"
+	},
+	{
+		"disease_id" : 130,
+		"disease_name" : "식도염",
+		"disease_type" : null,
+		"answer_seq" : 936,
+		"answer" : "식도염",
+		"metadata_seq" : 602,
+		"metadata_text" : "disease_digestive:esophagitis"
+	},
+	{
+		"disease_id" : 131,
+		"disease_name" : "염증성 위장질환(IBD)",
+		"disease_type" : null,
+		"answer_seq" : 390,
+		"answer" : "염증성 위장질환(IBD)",
+		"metadata_seq" : 1104,
+		"metadata_text" : "disease_digestive:inflammatory_bowel_disease"
+	},
+	{
+		"disease_id" : 131,
+		"disease_name" : "염증성 위장질환(IBD)",
+		"disease_type" : null,
+		"answer_seq" : 937,
+		"answer" : "염증성 위장질환(IBD)",
+		"metadata_seq" : 615,
+		"metadata_text" : "disease_digestive:inflammatory_bowel_disease"
+	},
+	{
+		"disease_id" : 132,
+		"disease_name" : "외분비 췌장부전(EPI)",
+		"disease_type" : null,
+		"answer_seq" : 391,
+		"answer" : "외분비 췌장부전(EPI)",
+		"metadata_seq" : 1090,
+		"metadata_text" : "disease_digestive:endocrine_pancreatic_insufficiency"
+	},
+	{
+		"disease_id" : 132,
+		"disease_name" : "외분비 췌장부전(EPI)",
+		"disease_type" : null,
+		"answer_seq" : 938,
+		"answer" : "외분비 췌장부전(EPI)",
+		"metadata_seq" : 601,
+		"metadata_text" : "disease_digestive:endocrine_pancreatic_insufficiency"
+	},
+	{
+		"disease_id" : 133,
+		"disease_name" : "위 용종",
+		"disease_type" : null,
+		"answer_seq" : 392,
+		"answer" : "위 용종",
+		"metadata_seq" : 1094,
+		"metadata_text" : "disease_digestive:gastric_polyp"
+	},
+	{
+		"disease_id" : 133,
+		"disease_name" : "위 용종",
+		"disease_type" : null,
+		"answer_seq" : 939,
+		"answer" : "위 용종",
+		"metadata_seq" : 605,
+		"metadata_text" : "disease_digestive:gastric_polyp"
+	},
+	{
+		"disease_id" : 134,
+		"disease_name" : "위궤양",
+		"disease_type" : null,
+		"answer_seq" : 393,
+		"answer" : "위궤양",
+		"metadata_seq" : 1095,
+		"metadata_text" : "disease_digestive:gastric_ulcer"
+	},
+	{
+		"disease_id" : 134,
+		"disease_name" : "위궤양",
+		"disease_type" : null,
+		"answer_seq" : 940,
+		"answer" : "위궤양",
+		"metadata_seq" : 606,
+		"metadata_text" : "disease_digestive:gastric_ulcer"
+	},
+	{
+		"disease_id" : 135,
+		"disease_name" : "위식도역류",
+		"disease_type" : null,
+		"answer_seq" : 394,
+		"answer" : "위식도역류",
+		"metadata_seq" : 1097,
+		"metadata_text" : "disease_digestive:gastroesophageal_reflux"
+	},
+	{
+		"disease_id" : 135,
+		"disease_name" : "위식도역류",
+		"disease_type" : null,
+		"answer_seq" : 941,
+		"answer" : "위식도역류",
+		"metadata_seq" : 608,
+		"metadata_text" : "disease_digestive:gastroesophageal_reflux"
+	},
+	{
+		"disease_id" : 136,
+		"disease_name" : "위염",
+		"disease_type" : null,
+		"answer_seq" : 395,
+		"answer" : "위염",
+		"metadata_seq" : 1096,
+		"metadata_text" : "disease_digestive:gastritis"
+	},
+	{
+		"disease_id" : 136,
+		"disease_name" : "위염",
+		"disease_type" : null,
+		"answer_seq" : 942,
+		"answer" : "위염",
+		"metadata_seq" : 607,
+		"metadata_text" : "disease_digestive:gastritis"
+	},
+	{
+		"disease_id" : 137,
+		"disease_name" : "위장관 이물",
+		"disease_type" : null,
+		"answer_seq" : 396,
+		"answer" : "위장관 이물",
+		"metadata_seq" : 1098,
+		"metadata_text" : "disease_digestive:gastrointestinal_foreign_body"
+	},
+	{
+		"disease_id" : 137,
+		"disease_name" : "위장관 이물",
+		"disease_type" : null,
+		"answer_seq" : 943,
+		"answer" : "위장관 이물",
+		"metadata_seq" : 609,
+		"metadata_text" : "disease_digestive:gastrointestinal_foreign_body"
+	},
+	{
+		"disease_id" : 138,
+		"disease_name" : "위장관 출혈",
+		"disease_type" : null,
+		"answer_seq" : 397,
+		"answer" : "위장관 출혈",
+		"metadata_seq" : 1099,
+		"metadata_text" : "disease_digestive:gastrointestinal_hemorrhage"
+	},
+	{
+		"disease_id" : 138,
+		"disease_name" : "위장관 출혈",
+		"disease_type" : null,
+		"answer_seq" : 944,
+		"answer" : "위장관 출혈",
+		"metadata_seq" : 610,
+		"metadata_text" : "disease_digestive:gastrointestinal_hemorrhage"
+	},
+	{
+		"disease_id" : 139,
+		"disease_name" : "위확대염전",
+		"disease_type" : null,
+		"answer_seq" : 398,
+		"answer" : "위확대염전",
+		"metadata_seq" : 1093,
+		"metadata_text" : "disease_digestive:gastric_dilatation_volvulus"
+	},
+	{
+		"disease_id" : 139,
+		"disease_name" : "위확대염전",
+		"disease_type" : null,
+		"answer_seq" : 945,
+		"answer" : "위확대염전",
+		"metadata_seq" : 604,
+		"metadata_text" : "disease_digestive:gastric_dilatation_volvulus"
+	},
+	{
+		"disease_id" : 140,
+		"disease_name" : "음식물과민증",
+		"disease_type" : null,
+		"answer_seq" : 399,
+		"answer" : "음식물과민증",
+		"metadata_seq" : 1092,
+		"metadata_text" : "disease_digestive:food_intolerance"
+	},
+	{
+		"disease_id" : 140,
+		"disease_name" : "음식물과민증",
+		"disease_type" : null,
+		"answer_seq" : 946,
+		"answer" : "음식물과민증",
+		"metadata_seq" : 603,
+		"metadata_text" : "disease_digestive:food_intolerance"
+	},
+	{
+		"disease_id" : 141,
+		"disease_name" : "장 용종",
+		"disease_type" : null,
+		"answer_seq" : 400,
+		"answer" : "장 용종",
+		"metadata_seq" : 1105,
+		"metadata_text" : "disease_digestive:intestinal_polyp"
+	},
+	{
+		"disease_id" : 141,
+		"disease_name" : "장 용종",
+		"disease_type" : null,
+		"answer_seq" : 947,
+		"answer" : "장 용종",
+		"metadata_seq" : 616,
+		"metadata_text" : "disease_digestive:intestinal_polyp"
+	},
+	{
+		"disease_id" : 142,
+		"disease_name" : "출혈성 위장염",
+		"disease_type" : null,
+		"answer_seq" : 401,
+		"answer" : "출혈성 위장염",
+		"metadata_seq" : 1101,
+		"metadata_text" : "disease_digestive:hemorrhagic_gastroenteritis"
+	},
+	{
+		"disease_id" : 142,
+		"disease_name" : "출혈성 위장염",
+		"disease_type" : null,
+		"answer_seq" : 948,
+		"answer" : "출혈성 위장염",
+		"metadata_seq" : 612,
+		"metadata_text" : "disease_digestive:hemorrhagic_gastroenteritis"
+	},
+	{
+		"disease_id" : 143,
+		"disease_name" : "헬리코박터 감염",
+		"disease_type" : null,
+		"answer_seq" : 402,
+		"answer" : "헬리코박터 감염",
+		"metadata_seq" : 1100,
+		"metadata_text" : "disease_digestive:helicobacter_infection"
+	},
+	{
+		"disease_id" : 143,
+		"disease_name" : "헬리코박터 감염",
+		"disease_type" : null,
+		"answer_seq" : 949,
+		"answer" : "헬리코박터 감염",
+		"metadata_seq" : 611,
+		"metadata_text" : "disease_digestive:helicobacter_infection"
+	},
+	{
+		"disease_id" : 144,
+		"disease_name" : "흡수장애",
+		"disease_type" : null,
+		"answer_seq" : 403,
+		"answer" : "흡수장애",
+		"metadata_seq" : 1108,
+		"metadata_text" : "disease_digestive:malabsorption"
+	},
+	{
+		"disease_id" : 144,
+		"disease_name" : "흡수장애",
+		"disease_type" : null,
+		"answer_seq" : 950,
+		"answer" : "흡수장애",
+		"metadata_seq" : 619,
+		"metadata_text" : "disease_digestive:malabsorption"
+	},
+	{
+		"disease_id" : 145,
+		"disease_name" : "갑상선 기능 저하증",
+		"disease_type" : null,
+		"answer_seq" : 480,
+		"answer" : "갑상선 기능 저하증",
+		"metadata_seq" : 1117,
+		"metadata_text" : "disease_endocrine:hypothyroidism"
+	},
+	{
+		"disease_id" : 145,
+		"disease_name" : "갑상선 기능 저하증",
+		"disease_type" : null,
+		"answer_seq" : 481,
+		"answer" : "부갑상선 기능 저하증",
+		"metadata_seq" : 1116,
+		"metadata_text" : "disease_endocrine:hypoparathyroidism"
+	},
+	{
+		"disease_id" : 145,
+		"disease_name" : "갑상선 기능 저하증",
+		"disease_type" : null,
+		"answer_seq" : 1030,
+		"answer" : "부갑상선 기능 저하증",
+		"metadata_seq" : 626,
+		"metadata_text" : "disease_endocrine:hypoparathyroidism"
+	},
+	{
+		"disease_id" : 146,
+		"disease_name" : "부갑상선 기능 저하증",
+		"disease_type" : null,
+		"answer_seq" : 481,
+		"answer" : "부갑상선 기능 저하증",
+		"metadata_seq" : 1116,
+		"metadata_text" : "disease_endocrine:hypoparathyroidism"
+	},
+	{
+		"disease_id" : 146,
+		"disease_name" : "부갑상선 기능 저하증",
+		"disease_type" : null,
+		"answer_seq" : 1030,
+		"answer" : "부갑상선 기능 저하증",
+		"metadata_seq" : 626,
+		"metadata_text" : "disease_endocrine:hypoparathyroidism"
+	},
+	{
+		"disease_id" : 147,
+		"disease_name" : "부갑상선 기능 항진증",
+		"disease_type" : null,
+		"answer_seq" : 482,
+		"answer" : "부갑상선 기능 항진증",
+		"metadata_seq" : 1115,
+		"metadata_text" : "disease_endocrine:hyperparathyroidism"
+	},
+	{
+		"disease_id" : 147,
+		"disease_name" : "부갑상선 기능 항진증",
+		"disease_type" : null,
+		"answer_seq" : 1031,
+		"answer" : "부갑상선 기능 항진증",
+		"metadata_seq" : 624,
+		"metadata_text" : "disease_endocrine:hyperparathyroidism"
+	},
+	{
+		"disease_id" : 148,
+		"disease_name" : "애디슨씨 증후군",
+		"disease_type" : null,
+		"answer_seq" : 483,
+		"answer" : "애디슨씨 증후군",
+		"metadata_seq" : 1113,
+		"metadata_text" : "disease_endocrine:addisons_disease"
+	},
+	{
+		"disease_id" : 149,
+		"disease_name" : "인슐린종",
+		"disease_type" : null,
+		"answer_seq" : 484,
+		"answer" : "인슐린종",
+		"metadata_seq" : 1118,
+		"metadata_text" : "disease_endocrine:insulinoma"
+	},
+	{
+		"disease_id" : 149,
+		"disease_name" : "인슐린종",
+		"disease_type" : null,
+		"answer_seq" : 1032,
+		"answer" : "인슐린종",
+		"metadata_seq" : 627,
+		"metadata_text" : "disease_endocrine:insulinoma"
+	},
+	{
+		"disease_id" : 150,
+		"disease_name" : "쿠싱증후군",
+		"disease_type" : null,
+		"answer_seq" : 485,
+		"answer" : "쿠싱증후군",
+		"metadata_seq" : 1114,
+		"metadata_text" : "disease_endocrine:cushings_syndrome"
+	},
+	{
+		"disease_id" : 151,
+		"disease_name" : "각막 궤양",
+		"disease_type" : null,
+		"answer_seq" : 286,
+		"answer" : "각막 궤양",
+		"metadata_seq" : 1130,
+		"metadata_text" : "disease_eye:corneal_ulcer"
+	},
+	{
+		"disease_id" : 151,
+		"disease_name" : "각막 궤양",
+		"disease_type" : null,
+		"answer_seq" : 832,
+		"answer" : "각막 궤양",
+		"metadata_seq" : 639,
+		"metadata_text" : "disease_eye:corneal_ulcer"
+	},
+	{
+		"disease_id" : 152,
+		"disease_name" : "각막 수종",
+		"disease_type" : null,
+		"answer_seq" : 287,
+		"answer" : "각막 수종",
+		"metadata_seq" : 1127,
+		"metadata_text" : "disease_eye:corneal_edema"
+	},
+	{
+		"disease_id" : 152,
+		"disease_name" : "각막 수종",
+		"disease_type" : null,
+		"answer_seq" : 833,
+		"answer" : "각막 수종",
+		"metadata_seq" : 636,
+		"metadata_text" : "disease_eye:corneal_edema"
+	},
+	{
+		"disease_id" : 153,
+		"disease_name" : "각막 이영양증(각막 미네랄 침착증)",
+		"disease_type" : null,
+		"answer_seq" : 288,
+		"answer" : "각막 이영양증(각막 미네랄 침착증)",
+		"metadata_seq" : 1129,
+		"metadata_text" : "disease_eye:corneal_mineral_deposition"
+	},
+	{
+		"disease_id" : 153,
+		"disease_name" : "각막 이영양증(각막 미네랄 침착증)",
+		"disease_type" : null,
+		"answer_seq" : 834,
+		"answer" : "각막 이영양증(각막 미네랄 침착증)",
+		"metadata_seq" : 638,
+		"metadata_text" : "disease_eye:corneal_mineral_deposition"
+	},
+	{
+		"disease_id" : 154,
+		"disease_name" : "각막 지질 침착증",
+		"disease_type" : null,
+		"answer_seq" : 289,
+		"answer" : "각막 지질 침착증",
+		"metadata_seq" : 1128,
+		"metadata_text" : "disease_eye:corneal_lipid_deposition"
+	},
+	{
+		"disease_id" : 154,
+		"disease_name" : "각막 지질 침착증",
+		"disease_type" : null,
+		"answer_seq" : 835,
+		"answer" : "각막 지질 침착증",
+		"metadata_seq" : 637,
+		"metadata_text" : "disease_eye:corneal_lipid_deposition"
+	},
+	{
+		"disease_id" : 155,
+		"disease_name" : "각막염",
+		"disease_type" : null,
+		"answer_seq" : 290,
+		"answer" : "각막염",
+		"metadata_seq" : 1140,
+		"metadata_text" : "disease_eye:keratitis"
+	},
+	{
+		"disease_id" : 155,
+		"disease_name" : "각막염",
+		"disease_type" : null,
+		"answer_seq" : 836,
+		"answer" : "각막염",
+		"metadata_seq" : 649,
+		"metadata_text" : "disease_eye:keratitis"
+	},
+	{
+		"disease_id" : 156,
+		"disease_name" : "각막이형성증",
+		"disease_type" : null,
+		"answer_seq" : 291,
+		"answer" : "각막이형성증",
+		"metadata_seq" : 1126,
+		"metadata_text" : "disease_eye:corneal_dysplasia"
+	},
+	{
+		"disease_id" : 156,
+		"disease_name" : "각막이형성증",
+		"disease_type" : null,
+		"answer_seq" : 837,
+		"answer" : "각막이형성증",
+		"metadata_seq" : 635,
+		"metadata_text" : "disease_eye:corneal_dysplasia"
+	},
+	{
+		"disease_id" : 157,
+		"disease_name" : "건성 각결막염(KCS)",
+		"disease_type" : null,
+		"answer_seq" : 292,
+		"answer" : "건성 각결막염(KCS)",
+		"metadata_seq" : 1141,
+		"metadata_text" : "disease_eye:keratoconjunctivitis_sicca"
+	},
+	{
+		"disease_id" : 157,
+		"disease_name" : "건성 각결막염(KCS)",
+		"disease_type" : null,
+		"answer_seq" : 838,
+		"answer" : "건성 각결막염(KCS)",
+		"metadata_seq" : 650,
+		"metadata_text" : "disease_eye:keratoconjunctivitis_sicca"
+	},
+	{
+		"disease_id" : 158,
+		"disease_name" : "결막염",
+		"disease_type" : null,
+		"answer_seq" : 292,
+		"answer" : "건성 각결막염(KCS)",
+		"metadata_seq" : 1141,
+		"metadata_text" : "disease_eye:keratoconjunctivitis_sicca"
+	},
+	{
+		"disease_id" : 158,
+		"disease_name" : "결막염",
+		"disease_type" : null,
+		"answer_seq" : 293,
+		"answer" : "결막염",
+		"metadata_seq" : 1125,
+		"metadata_text" : "disease_eye:conjunctivitis"
+	},
+	{
+		"disease_id" : 158,
+		"disease_name" : "결막염",
+		"disease_type" : null,
+		"answer_seq" : 838,
+		"answer" : "건성 각결막염(KCS)",
+		"metadata_seq" : 650,
+		"metadata_text" : "disease_eye:keratoconjunctivitis_sicca"
+	},
+	{
+		"disease_id" : 158,
+		"disease_name" : "결막염",
+		"disease_type" : null,
+		"answer_seq" : 839,
+		"answer" : "결막염",
+		"metadata_seq" : 634,
+		"metadata_text" : "disease_eye:conjunctivitis"
+	},
+	{
+		"disease_id" : 159,
+		"disease_name" : "급성후천성망막변성(SARD)",
+		"disease_type" : null,
+		"answer_seq" : 294,
+		"answer" : "급성후천성망막변성(SARD)",
+		"metadata_seq" : 1152,
+		"metadata_text" : "disease_eye:sard"
+	},
+	{
+		"disease_id" : 159,
+		"disease_name" : "급성후천성망막변성(SARD)",
+		"disease_type" : null,
+		"answer_seq" : 840,
+		"answer" : "급성후천성망막변성(SARD)",
+		"metadata_seq" : 661,
+		"metadata_text" : "disease_eye:sard"
+	},
+	{
+		"disease_id" : 160,
+		"disease_name" : "녹내장",
+		"disease_type" : null,
+		"answer_seq" : 295,
+		"answer" : "녹내장",
+		"metadata_seq" : 1137,
+		"metadata_text" : "disease_eye:glaucoma"
+	},
+	{
+		"disease_id" : 160,
+		"disease_name" : "녹내장",
+		"disease_type" : null,
+		"answer_seq" : 841,
+		"answer" : "녹내장",
+		"metadata_seq" : 646,
+		"metadata_text" : "disease_eye:glaucoma"
+	},
+	{
+		"disease_id" : 161,
+		"disease_name" : "눈꺼풀 내반증",
+		"disease_type" : null,
+		"answer_seq" : 296,
+		"answer" : "눈꺼풀 내반증",
+		"metadata_seq" : 1133,
+		"metadata_text" : "disease_eye:entropion"
+	},
+	{
+		"disease_id" : 161,
+		"disease_name" : "눈꺼풀 내반증",
+		"disease_type" : null,
+		"answer_seq" : 842,
+		"answer" : "눈꺼풀 내반증",
+		"metadata_seq" : 642,
+		"metadata_text" : "disease_eye:entropion"
+	},
+	{
+		"disease_id" : 162,
+		"disease_name" : "눈꺼풀 외반증",
+		"disease_type" : null,
+		"answer_seq" : 297,
+		"answer" : "눈꺼풀 외반증",
+		"metadata_seq" : 1132,
+		"metadata_text" : "disease_eye:ectropion"
+	},
+	{
+		"disease_id" : 162,
+		"disease_name" : "눈꺼풀 외반증",
+		"disease_type" : null,
+		"answer_seq" : 843,
+		"answer" : "눈꺼풀 외반증",
+		"metadata_seq" : 641,
+		"metadata_text" : "disease_eye:ectropion"
+	},
+	{
+		"disease_id" : 163,
+		"disease_name" : "눈꺼풀 종양",
+		"disease_type" : null,
+		"answer_seq" : 298,
+		"answer" : "눈꺼풀 종양",
+		"metadata_seq" : 1136,
+		"metadata_text" : "disease_eye:eyelid_tumor"
+	},
+	{
+		"disease_id" : 163,
+		"disease_name" : "눈꺼풀 종양",
+		"disease_type" : null,
+		"answer_seq" : 844,
+		"answer" : "눈꺼풀 종양",
+		"metadata_seq" : 645,
+		"metadata_text" : "disease_eye:eyelid_tumor"
+	},
+	{
+		"disease_id" : 164,
+		"disease_name" : "눈다래끼",
+		"disease_type" : null,
+		"answer_seq" : 299,
+		"answer" : "눈다래끼",
+		"metadata_seq" : 1121,
+		"metadata_text" : "disease_eye:chalazion"
+	},
+	{
+		"disease_id" : 164,
+		"disease_name" : "눈다래끼",
+		"disease_type" : null,
+		"answer_seq" : 845,
+		"answer" : "눈다래끼",
+		"metadata_seq" : 630,
+		"metadata_text" : "disease_eye:chalazion"
+	},
+	{
+		"disease_id" : 165,
+		"disease_name" : "눈물샘 결석증(결막 결석증)",
+		"disease_type" : null,
+		"answer_seq" : 300,
+		"answer" : "눈물샘 결석증(결막 결석증)",
+		"metadata_seq" : 1144,
+		"metadata_text" : "disease_eye:lacrimal_stone"
+	},
+	{
+		"disease_id" : 165,
+		"disease_name" : "눈물샘 결석증(결막 결석증)",
+		"disease_type" : null,
+		"answer_seq" : 846,
+		"answer" : "눈물샘 결석증(결막 결석증)",
+		"metadata_seq" : 653,
+		"metadata_text" : "disease_eye:lacrimal_stone"
+	},
+	{
+		"disease_id" : 166,
+		"disease_name" : "눈물샘 막힘",
+		"disease_type" : null,
+		"answer_seq" : 301,
+		"answer" : "눈물샘 막힘",
+		"metadata_seq" : 1142,
+		"metadata_text" : "disease_eye:lacrimal_blockage"
+	},
+	{
+		"disease_id" : 166,
+		"disease_name" : "눈물샘 막힘",
+		"disease_type" : null,
+		"answer_seq" : 847,
+		"answer" : "눈물샘 막힘",
+		"metadata_seq" : 651,
+		"metadata_text" : "disease_eye:lacrimal_blockage"
+	},
+	{
+		"disease_id" : 167,
+		"disease_name" : "눈물샘 확대증",
+		"disease_type" : null,
+		"answer_seq" : 302,
+		"answer" : "눈물샘 확대증",
+		"metadata_seq" : 1143,
+		"metadata_text" : "disease_eye:lacrimal_gland_enlargement"
+	},
+	{
+		"disease_id" : 167,
+		"disease_name" : "눈물샘 확대증",
+		"disease_type" : null,
+		"answer_seq" : 848,
+		"answer" : "눈물샘 확대증",
+		"metadata_seq" : 652,
+		"metadata_text" : "disease_eye:lacrimal_gland_enlargement"
+	},
+	{
+		"disease_id" : 168,
+		"disease_name" : "눈물흘림증(유루증)",
+		"disease_type" : null,
+		"answer_seq" : 303,
+		"answer" : "눈물흘림증(유루증)",
+		"metadata_seq" : 1134,
+		"metadata_text" : "disease_eye:epiphora"
+	},
+	{
+		"disease_id" : 168,
+		"disease_name" : "눈물흘림증(유루증)",
+		"disease_type" : null,
+		"answer_seq" : 849,
+		"answer" : "눈물흘림증(유루증)",
+		"metadata_seq" : 643,
+		"metadata_text" : "disease_eye:epiphora"
+	},
+	{
+		"disease_id" : 169,
+		"disease_name" : "망막이형성증",
+		"disease_type" : null,
+		"answer_seq" : 304,
+		"answer" : "망막이형성증",
+		"metadata_seq" : 1151,
+		"metadata_text" : "disease_eye:retinal_dysplasia"
+	},
+	{
+		"disease_id" : 169,
+		"disease_name" : "망막이형성증",
+		"disease_type" : null,
+		"answer_seq" : 850,
+		"answer" : "망막이형성증",
+		"metadata_seq" : 660,
+		"metadata_text" : "disease_eye:retinal_dysplasia"
+	},
+	{
+		"disease_id" : 170,
+		"disease_name" : "맥락막염",
+		"disease_type" : null,
+		"answer_seq" : 305,
+		"answer" : "맥락막염",
+		"metadata_seq" : 1123,
+		"metadata_text" : "disease_eye:choroiditis"
+	},
+	{
+		"disease_id" : 170,
+		"disease_name" : "맥락막염",
+		"disease_type" : null,
+		"answer_seq" : 851,
+		"answer" : "맥락막염",
+		"metadata_seq" : 632,
+		"metadata_text" : "disease_eye:choroiditis"
+	},
+	{
+		"disease_id" : 171,
+		"disease_name" : "백내장",
+		"disease_type" : null,
+		"answer_seq" : 306,
+		"answer" : "백내장",
+		"metadata_seq" : 1120,
+		"metadata_text" : "disease_eye:cataract"
+	},
+	{
+		"disease_id" : 171,
+		"disease_name" : "백내장",
+		"disease_type" : null,
+		"answer_seq" : 852,
+		"answer" : "백내장",
+		"metadata_seq" : 629,
+		"metadata_text" : "disease_eye:cataract"
+	},
+	{
+		"disease_id" : 172,
+		"disease_name" : "사시",
+		"disease_type" : null,
+		"answer_seq" : 307,
+		"answer" : "사시",
+		"metadata_seq" : 1153,
+		"metadata_text" : "disease_eye:strabismus"
+	},
+	{
+		"disease_id" : 172,
+		"disease_name" : "사시",
+		"disease_type" : null,
+		"answer_seq" : 853,
+		"answer" : "사시",
+		"metadata_seq" : 662,
+		"metadata_text" : "disease_eye:strabismus"
+	},
+	{
+		"disease_id" : 173,
+		"disease_name" : "수정체 탈구",
+		"disease_type" : null,
+		"answer_seq" : 308,
+		"answer" : "수정체 탈구",
+		"metadata_seq" : 1145,
+		"metadata_text" : "disease_eye:lens_luxation"
+	},
+	{
+		"disease_id" : 173,
+		"disease_name" : "수정체 탈구",
+		"disease_type" : null,
+		"answer_seq" : 854,
+		"answer" : "수정체 탈구",
+		"metadata_seq" : 654,
+		"metadata_text" : "disease_eye:lens_luxation"
+	},
+	{
+		"disease_id" : 174,
+		"disease_name" : "시력 소실",
+		"disease_type" : null,
+		"answer_seq" : 309,
+		"answer" : "시력 소실",
+		"metadata_seq" : 1156,
+		"metadata_text" : "disease_eye:vision_loss"
+	},
+	{
+		"disease_id" : 174,
+		"disease_name" : "시력 소실",
+		"disease_type" : null,
+		"answer_seq" : 855,
+		"answer" : "시력 소실",
+		"metadata_seq" : 665,
+		"metadata_text" : "disease_eye:vision_loss"
+	},
+	{
+		"disease_id" : 175,
+		"disease_name" : "안검염",
+		"disease_type" : null,
+		"answer_seq" : 310,
+		"answer" : "안검염",
+		"metadata_seq" : 1119,
+		"metadata_text" : "disease_eye:blepharitis"
+	},
+	{
+		"disease_id" : 175,
+		"disease_name" : "안검염",
+		"disease_type" : null,
+		"answer_seq" : 856,
+		"answer" : "안검염",
+		"metadata_seq" : 628,
+		"metadata_text" : "disease_eye:blepharitis"
+	},
+	{
+		"disease_id" : 176,
+		"disease_name" : "안구 발육이상",
+		"disease_type" : null,
+		"answer_seq" : 311,
+		"answer" : "안구 발육이상",
+		"metadata_seq" : 1124,
+		"metadata_text" : "disease_eye:congenital_ocular_abnormality"
+	},
+	{
+		"disease_id" : 176,
+		"disease_name" : "안구 발육이상",
+		"disease_type" : null,
+		"answer_seq" : 857,
+		"answer" : "안구 발육이상",
+		"metadata_seq" : 633,
+		"metadata_text" : "disease_eye:congenital_ocular_abnormality"
+	},
+	{
+		"disease_id" : 177,
+		"disease_name" : "안구 소실",
+		"disease_type" : null,
+		"answer_seq" : 314,
+		"answer" : "안구 소실",
+		"metadata_seq" : 1135,
+		"metadata_text" : "disease_eye:eyeball_loss"
+	},
+	{
+		"disease_id" : 177,
+		"disease_name" : "안구 소실",
+		"disease_type" : null,
+		"answer_seq" : 860,
+		"answer" : "안구 소실",
+		"metadata_seq" : 644,
+		"metadata_text" : "disease_eye:eyeball_loss"
+	},
+	{
+		"disease_id" : 178,
+		"disease_name" : "안구 종괴",
+		"disease_type" : null,
+		"answer_seq" : 312,
+		"answer" : "안구 종괴",
+		"metadata_seq" : 1148,
+		"metadata_text" : "disease_eye:ocular_tumor"
+	},
+	{
+		"disease_id" : 178,
+		"disease_name" : "안구 종괴",
+		"disease_type" : null,
+		"answer_seq" : 858,
+		"answer" : "안구 종괴",
+		"metadata_seq" : 657,
+		"metadata_text" : "disease_eye:ocular_tumor"
+	},
+	{
+		"disease_id" : 179,
+		"disease_name" : "안구 천공",
+		"disease_type" : null,
+		"answer_seq" : 313,
+		"answer" : "안구 천공",
+		"metadata_seq" : 1147,
+		"metadata_text" : "disease_eye:ocular_perforation"
+	},
+	{
+		"disease_id" : 179,
+		"disease_name" : "안구 천공",
+		"disease_type" : null,
+		"answer_seq" : 859,
+		"answer" : "안구 천공",
+		"metadata_seq" : 656,
+		"metadata_text" : "disease_eye:ocular_perforation"
+	},
+	{
+		"disease_id" : 180,
+		"disease_name" : "안구건조증",
+		"disease_type" : null,
+		"answer_seq" : 315,
+		"answer" : "안구건조증",
+		"metadata_seq" : 1131,
+		"metadata_text" : "disease_eye:dry_eye"
+	},
+	{
+		"disease_id" : 180,
+		"disease_name" : "안구건조증",
+		"disease_type" : null,
+		"answer_seq" : 861,
+		"answer" : "안구건조증",
+		"metadata_seq" : 640,
+		"metadata_text" : "disease_eye:dry_eye"
+	},
+	{
+		"disease_id" : 181,
+		"disease_name" : "안구내 출혈",
+		"disease_type" : null,
+		"answer_seq" : 316,
+		"answer" : "안구내 출혈",
+		"metadata_seq" : 1138,
+		"metadata_text" : "disease_eye:intraorbital_hemorrhage"
+	},
+	{
+		"disease_id" : 181,
+		"disease_name" : "안구내 출혈",
+		"disease_type" : null,
+		"answer_seq" : 862,
+		"answer" : "안구내 출혈",
+		"metadata_seq" : 647,
+		"metadata_text" : "disease_eye:intraorbital_hemorrhage"
+	},
+	{
+		"disease_id" : 182,
+		"disease_name" : "외상성 각막 염증",
+		"disease_type" : null,
+		"answer_seq" : 317,
+		"answer" : "외상성 각막 염증",
+		"metadata_seq" : 1154,
+		"metadata_text" : "disease_eye:traumatic_corneal_inflammation"
+	},
+	{
+		"disease_id" : 182,
+		"disease_name" : "외상성 각막 염증",
+		"disease_type" : null,
+		"answer_seq" : 863,
+		"answer" : "외상성 각막 염증",
+		"metadata_seq" : 663,
+		"metadata_text" : "disease_eye:traumatic_corneal_inflammation"
+	},
+	{
+		"disease_id" : 183,
+		"disease_name" : "진행성망막위축증(PRA)",
+		"disease_type" : null,
+		"answer_seq" : 318,
+		"answer" : "진행성망막위축증(PRA)",
+		"metadata_seq" : 1150,
+		"metadata_text" : "disease_eye:progressive_retinal_atrophy"
+	},
+	{
+		"disease_id" : 183,
+		"disease_name" : "진행성망막위축증(PRA)",
+		"disease_type" : null,
+		"answer_seq" : 864,
+		"answer" : "진행성망막위축증(PRA)",
+		"metadata_seq" : 659,
+		"metadata_text" : "disease_eye:progressive_retinal_atrophy"
+	},
+	{
+		"disease_id" : 184,
+		"disease_name" : "체리아이(삼안검탈출증)",
+		"disease_type" : null,
+		"answer_seq" : 319,
+		"answer" : "체리아이(삼안검탈출증)",
+		"metadata_seq" : 1122,
+		"metadata_text" : "disease_eye:cherry_eye"
+	},
+	{
+		"disease_id" : 184,
+		"disease_name" : "체리아이(삼안검탈출증)",
+		"disease_type" : null,
+		"answer_seq" : 865,
+		"answer" : "체리아이(삼안검탈출증)",
+		"metadata_seq" : 631,
+		"metadata_text" : "disease_eye:cherry_eye"
+	},
+	{
+		"disease_id" : 186,
+		"disease_name" : "판누스",
+		"disease_type" : null,
+		"answer_seq" : 320,
+		"answer" : "판누스",
+		"metadata_seq" : 1149,
+		"metadata_text" : "disease_eye:pannus"
+	},
+	{
+		"disease_id" : 186,
+		"disease_name" : "판누스",
+		"disease_type" : null,
+		"answer_seq" : 866,
+		"answer" : "판누스",
+		"metadata_seq" : 658,
+		"metadata_text" : "disease_eye:pannus"
+	},
+	{
+		"disease_id" : 187,
+		"disease_name" : "포도막염",
+		"disease_type" : null,
+		"answer_seq" : 321,
+		"answer" : "포도막염",
+		"metadata_seq" : 1155,
+		"metadata_text" : "disease_eye:uvetitis"
+	},
+	{
+		"disease_id" : 187,
+		"disease_name" : "포도막염",
+		"disease_type" : null,
+		"answer_seq" : 867,
+		"answer" : "포도막염",
+		"metadata_seq" : 664,
+		"metadata_text" : "disease_eye:uvetitis"
+	},
+	{
+		"disease_id" : 188,
+		"disease_name" : "핵 경화증",
+		"disease_type" : null,
+		"answer_seq" : 322,
+		"answer" : "핵 경화증",
+		"metadata_seq" : 1146,
+		"metadata_text" : "disease_eye:nuclear_sclerosis"
+	},
+	{
+		"disease_id" : 188,
+		"disease_name" : "핵 경화증",
+		"disease_type" : null,
+		"answer_seq" : 868,
+		"answer" : "핵 경화증",
+		"metadata_seq" : 655,
+		"metadata_text" : "disease_eye:nuclear_sclerosis"
+	},
+	{
+		"disease_id" : 189,
+		"disease_name" : "홍채염",
+		"disease_type" : null,
+		"answer_seq" : 323,
+		"answer" : "홍채염",
+		"metadata_seq" : 1139,
+		"metadata_text" : "disease_eye:iris_inflammation"
+	},
+	{
+		"disease_id" : 189,
+		"disease_name" : "홍채염",
+		"disease_type" : null,
+		"answer_seq" : 869,
+		"answer" : "홍채염",
+		"metadata_seq" : 648,
+		"metadata_text" : "disease_eye:iris_inflammation"
+	},
+	{
+		"disease_id" : 190,
+		"disease_name" : "고환암",
+		"disease_type" : null,
+		"answer_seq" : 420,
+		"answer" : "고환암",
+		"metadata_seq" : 1183,
+		"metadata_text" : "disease_genitourinary:testicular_cancer"
+	},
+	{
+		"disease_id" : 190,
+		"disease_name" : "고환암",
+		"disease_type" : null,
+		"answer_seq" : 968,
+		"answer" : "고환암",
+		"metadata_seq" : 692,
+		"metadata_text" : "disease_genitourinary:testicular_cancer"
+	},
+	{
+		"disease_id" : 191,
+		"disease_name" : "난소 낭종",
+		"disease_type" : null,
+		"answer_seq" : 421,
+		"answer" : "난소 낭종",
+		"metadata_seq" : 1176,
+		"metadata_text" : "disease_genitourinary:ovarian_cyst"
+	},
+	{
+		"disease_id" : 191,
+		"disease_name" : "난소 낭종",
+		"disease_type" : null,
+		"answer_seq" : 969,
+		"answer" : "난소 낭종",
+		"metadata_seq" : 685,
+		"metadata_text" : "disease_genitourinary:ovarian_cyst"
+	},
+	{
+		"disease_id" : 192,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 422,
+		"answer" : "난소암",
+		"metadata_seq" : 1175,
+		"metadata_text" : "disease_genitourinary:ovarian_cancer"
+	},
+	{
+		"disease_id" : 192,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 534,
+		"answer" : "난소암",
+		"metadata_seq" : 1036,
+		"metadata_text" : "disease_cancer:ovarian_cancer"
+	},
+	{
+		"disease_id" : 192,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 970,
+		"answer" : "난소암",
+		"metadata_seq" : 684,
+		"metadata_text" : "disease_genitourinary:ovarian_cancer"
+	},
+	{
+		"disease_id" : 192,
+		"disease_name" : "난소암",
+		"disease_type" : null,
+		"answer_seq" : 1081,
+		"answer" : "난소암",
+		"metadata_seq" : 547,
+		"metadata_text" : "disease_cancer:ovarian_cancer"
+	},
+	{
+		"disease_id" : 193,
+		"disease_name" : "방광 결석",
+		"disease_type" : null,
+		"answer_seq" : 423,
+		"answer" : "방광 결석",
+		"metadata_seq" : 1161,
+		"metadata_text" : "disease_genitourinary:bladder_stones"
+	},
+	{
+		"disease_id" : 193,
+		"disease_name" : "방광 결석",
+		"disease_type" : null,
+		"answer_seq" : 971,
+		"answer" : "방광 결석",
+		"metadata_seq" : 670,
+		"metadata_text" : "disease_genitourinary:bladder_stones"
+	},
+	{
+		"disease_id" : 196,
+		"disease_name" : "방광 낭종",
+		"disease_type" : null,
+		"answer_seq" : 424,
+		"answer" : "방광 낭종",
+		"metadata_seq" : 1159,
+		"metadata_text" : "disease_genitourinary:bladder_cyst"
+	},
+	{
+		"disease_id" : 196,
+		"disease_name" : "방광 낭종",
+		"disease_type" : null,
+		"answer_seq" : 972,
+		"answer" : "방광 낭종",
+		"metadata_seq" : 668,
+		"metadata_text" : "disease_genitourinary:bladder_cyst"
+	},
+	{
+		"disease_id" : 197,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 425,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 1158,
+		"metadata_text" : "disease_genitourinary:bladder_cancer"
+	},
+	{
+		"disease_id" : 197,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 541,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 1026,
+		"metadata_text" : "disease_cancer:bladder_cancer"
+	},
+	{
+		"disease_id" : 197,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 973,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 667,
+		"metadata_text" : "disease_genitourinary:bladder_cancer"
+	},
+	{
+		"disease_id" : 197,
+		"disease_name" : "방광암(이행세포암종)",
+		"disease_type" : null,
+		"answer_seq" : 1088,
+		"answer" : "방광암(이행세포암종)",
+		"metadata_seq" : 537,
+		"metadata_text" : "disease_cancer:bladder_cancer"
+	},
+	{
+		"disease_id" : 198,
+		"disease_name" : "방광염",
+		"disease_type" : null,
+		"answer_seq" : 426,
+		"answer" : "방광염",
+		"metadata_seq" : 1160,
+		"metadata_text" : "disease_genitourinary:bladder_inflammation"
+	},
+	{
+		"disease_id" : 198,
+		"disease_name" : "방광염",
+		"disease_type" : null,
+		"answer_seq" : 974,
+		"answer" : "방광염",
+		"metadata_seq" : 669,
+		"metadata_text" : "disease_genitourinary:bladder_inflammation"
+	},
+	{
+		"disease_id" : 199,
+		"disease_name" : "비뇨생식기계 해부학적 이상",
+		"disease_type" : null,
+		"answer_seq" : 427,
+		"answer" : "비뇨생식기계 해부학적 이상",
+		"metadata_seq" : 1168,
+		"metadata_text" : "disease_genitourinary:genitourinary_anatomical_abnormalities"
+	},
+	{
+		"disease_id" : 199,
+		"disease_name" : "비뇨생식기계 해부학적 이상",
+		"disease_type" : null,
+		"answer_seq" : 975,
+		"answer" : "비뇨생식기계 해부학적 이상",
+		"metadata_seq" : 677,
+		"metadata_text" : "disease_genitourinary:genitourinary_anatomical_abnormalities"
+	},
+	{
+		"disease_id" : 200,
+		"disease_name" : "산후염(자간증)",
+		"disease_type" : null,
+		"answer_seq" : 428,
+		"answer" : "산후염(자간증)",
+		"metadata_seq" : 1164,
+		"metadata_text" : "disease_genitourinary:eclampsia"
+	},
+	{
+		"disease_id" : 200,
+		"disease_name" : "산후염(자간증)",
+		"disease_type" : null,
+		"answer_seq" : 976,
+		"answer" : "산후염(자간증)",
+		"metadata_seq" : 673,
+		"metadata_text" : "disease_genitourinary:eclampsia"
+	},
+	{
+		"disease_id" : 201,
+		"disease_name" : "여성호르몬 과잉생산",
+		"disease_type" : null,
+		"answer_seq" : 429,
+		"answer" : "여성호르몬 과잉생산",
+		"metadata_seq" : 1167,
+		"metadata_text" : "disease_genitourinary:excessive_female_hormone_production"
+	},
+	{
+		"disease_id" : 201,
+		"disease_name" : "여성호르몬 과잉생산",
+		"disease_type" : null,
+		"answer_seq" : 977,
+		"answer" : "여성호르몬 과잉생산",
+		"metadata_seq" : 676,
+		"metadata_text" : "disease_genitourinary:excessive_female_hormone_production"
+	},
+	{
+		"disease_id" : 202,
+		"disease_name" : "위임신",
+		"disease_type" : null,
+		"answer_seq" : 430,
+		"answer" : "위임신",
+		"metadata_seq" : 1181,
+		"metadata_text" : "disease_genitourinary:psuedopregnancy"
+	},
+	{
+		"disease_id" : 202,
+		"disease_name" : "위임신",
+		"disease_type" : null,
+		"answer_seq" : 978,
+		"answer" : "위임신",
+		"metadata_seq" : 690,
+		"metadata_text" : "disease_genitourinary:psuedopregnancy"
+	},
+	{
+		"disease_id" : 203,
+		"disease_name" : "유선 낭종",
+		"disease_type" : null,
+		"answer_seq" : 431,
+		"answer" : "유선 낭종",
+		"metadata_seq" : 1171,
+		"metadata_text" : "disease_genitourinary:mammary_cyst"
+	},
+	{
+		"disease_id" : 203,
+		"disease_name" : "유선 낭종",
+		"disease_type" : null,
+		"answer_seq" : 979,
+		"answer" : "유선 낭종",
+		"metadata_seq" : 680,
+		"metadata_text" : "disease_genitourinary:mammary_cyst"
+	},
+	{
+		"disease_id" : 204,
+		"disease_name" : "유선 농양",
+		"disease_type" : null,
+		"answer_seq" : 432,
+		"answer" : "유선 농양",
+		"metadata_seq" : 1170,
+		"metadata_text" : "disease_genitourinary:mammary_abscess"
+	},
+	{
+		"disease_id" : 204,
+		"disease_name" : "유선 농양",
+		"disease_type" : null,
+		"answer_seq" : 980,
+		"answer" : "유선 농양",
+		"metadata_seq" : 679,
+		"metadata_text" : "disease_genitourinary:mammary_abscess"
+	},
+	{
+		"disease_id" : 205,
+		"disease_name" : "유선 종양",
+		"disease_type" : null,
+		"answer_seq" : 433,
+		"answer" : "유선 종양",
+		"metadata_seq" : 1173,
+		"metadata_text" : "disease_genitourinary:mammary_tumor"
+	},
+	{
+		"disease_id" : 205,
+		"disease_name" : "유선 종양",
+		"disease_type" : null,
+		"answer_seq" : 981,
+		"answer" : "유선 종양",
+		"metadata_seq" : 682,
+		"metadata_text" : "disease_genitourinary:mammary_tumor"
+	},
+	{
+		"disease_id" : 206,
+		"disease_name" : "유선염",
+		"disease_type" : null,
+		"answer_seq" : 434,
+		"answer" : "유선염",
+		"metadata_seq" : 1172,
+		"metadata_text" : "disease_genitourinary:mammary_inflammation"
+	},
+	{
+		"disease_id" : 206,
+		"disease_name" : "유선염",
+		"disease_type" : null,
+		"answer_seq" : 982,
+		"answer" : "유선염",
+		"metadata_seq" : 681,
+		"metadata_text" : "disease_genitourinary:mammary_inflammation"
+	},
+	{
+		"disease_id" : 207,
+		"disease_name" : "음낭염",
+		"disease_type" : null,
+		"answer_seq" : 435,
+		"answer" : "음낭염",
+		"metadata_seq" : 1174,
+		"metadata_text" : "disease_genitourinary:orchitis"
+	},
+	{
+		"disease_id" : 207,
+		"disease_name" : "음낭염",
+		"disease_type" : null,
+		"answer_seq" : 983,
+		"answer" : "음낭염",
+		"metadata_seq" : 683,
+		"metadata_text" : "disease_genitourinary:orchitis"
+	},
+	{
+		"disease_id" : 208,
+		"disease_name" : "자궁경부 폐색",
+		"disease_type" : null,
+		"answer_seq" : 436,
+		"answer" : "자궁경부 폐색",
+		"metadata_seq" : 1162,
+		"metadata_text" : "disease_genitourinary:cervical_atresia"
+	},
+	{
+		"disease_id" : 208,
+		"disease_name" : "자궁경부 폐색",
+		"disease_type" : null,
+		"answer_seq" : 984,
+		"answer" : "자궁경부 폐색",
+		"metadata_seq" : 671,
+		"metadata_text" : "disease_genitourinary:cervical_atresia"
+	},
+	{
+		"disease_id" : 209,
+		"disease_name" : "자궁내막증",
+		"disease_type" : null,
+		"answer_seq" : 437,
+		"answer" : "자궁내막증",
+		"metadata_seq" : 1166,
+		"metadata_text" : "disease_genitourinary:endometriosis"
+	},
+	{
+		"disease_id" : 209,
+		"disease_name" : "자궁내막증",
+		"disease_type" : null,
+		"answer_seq" : 438,
+		"answer" : "자궁내막증식증",
+		"metadata_seq" : 1165,
+		"metadata_text" : "disease_genitourinary:endometrial_hyperplasia"
+	},
+	{
+		"disease_id" : 209,
+		"disease_name" : "자궁내막증",
+		"disease_type" : null,
+		"answer_seq" : 985,
+		"answer" : "자궁내막증",
+		"metadata_seq" : 675,
+		"metadata_text" : "disease_genitourinary:endometriosis"
+	},
+	{
+		"disease_id" : 209,
+		"disease_name" : "자궁내막증",
+		"disease_type" : null,
+		"answer_seq" : 986,
+		"answer" : "자궁내막증식증",
+		"metadata_seq" : 674,
+		"metadata_text" : "disease_genitourinary:endometrial_hyperplasia"
+	},
+	{
+		"disease_id" : 210,
+		"disease_name" : "자궁내막증식증",
+		"disease_type" : null,
+		"answer_seq" : 438,
+		"answer" : "자궁내막증식증",
+		"metadata_seq" : 1165,
+		"metadata_text" : "disease_genitourinary:endometrial_hyperplasia"
+	},
+	{
+		"disease_id" : 210,
+		"disease_name" : "자궁내막증식증",
+		"disease_type" : null,
+		"answer_seq" : 986,
+		"answer" : "자궁내막증식증",
+		"metadata_seq" : 674,
+		"metadata_text" : "disease_genitourinary:endometrial_hyperplasia"
+	},
+	{
+		"disease_id" : 211,
+		"disease_name" : "자궁수종",
+		"disease_type" : null,
+		"answer_seq" : 439,
+		"answer" : "자궁수종",
+		"metadata_seq" : 1185,
+		"metadata_text" : "disease_genitourinary:uterine_cyst"
+	},
+	{
+		"disease_id" : 211,
+		"disease_name" : "자궁수종",
+		"disease_type" : null,
+		"answer_seq" : 987,
+		"answer" : "자궁수종",
+		"metadata_seq" : 694,
+		"metadata_text" : "disease_genitourinary:uterine_cyst"
+	},
+	{
+		"disease_id" : 212,
+		"disease_name" : "자궁암",
+		"disease_type" : null,
+		"answer_seq" : 440,
+		"answer" : "자궁암",
+		"metadata_seq" : 1184,
+		"metadata_text" : "disease_genitourinary:uterine_cancer"
+	},
+	{
+		"disease_id" : 212,
+		"disease_name" : "자궁암",
+		"disease_type" : null,
+		"answer_seq" : 988,
+		"answer" : "자궁암",
+		"metadata_seq" : 693,
+		"metadata_text" : "disease_genitourinary:uterine_cancer"
+	},
+	{
+		"disease_id" : 213,
+		"disease_name" : "자궁축농증",
+		"disease_type" : null,
+		"answer_seq" : 441,
+		"answer" : "자궁축농증",
+		"metadata_seq" : 1182,
+		"metadata_text" : "disease_genitourinary:pyometra"
+	},
+	{
+		"disease_id" : 213,
+		"disease_name" : "자궁축농증",
+		"disease_type" : null,
+		"answer_seq" : 989,
+		"answer" : "자궁축농증",
+		"metadata_seq" : 691,
+		"metadata_text" : "disease_genitourinary:pyometra"
+	},
+	{
+		"disease_id" : 214,
+		"disease_name" : "잠복고환",
+		"disease_type" : null,
+		"answer_seq" : 442,
+		"answer" : "잠복고환",
+		"metadata_seq" : 1163,
+		"metadata_text" : "disease_genitourinary:cryptorchidism"
+	},
+	{
+		"disease_id" : 214,
+		"disease_name" : "잠복고환",
+		"disease_type" : null,
+		"answer_seq" : 990,
+		"answer" : "잠복고환",
+		"metadata_seq" : 672,
+		"metadata_text" : "disease_genitourinary:cryptorchidism"
+	},
+	{
+		"disease_id" : 215,
+		"disease_name" : "전립선 낭종",
+		"disease_type" : null,
+		"answer_seq" : 444,
+		"answer" : "전립선 낭종",
+		"metadata_seq" : 1177,
+		"metadata_text" : "disease_genitourinary:prostatic_cyst"
+	},
+	{
+		"disease_id" : 215,
+		"disease_name" : "전립선 낭종",
+		"disease_type" : null,
+		"answer_seq" : 992,
+		"answer" : "전립선 낭종",
+		"metadata_seq" : 686,
+		"metadata_text" : "disease_genitourinary:prostatic_cyst"
+	},
+	{
+		"disease_id" : 216,
+		"disease_name" : "전립선 비대",
+		"disease_type" : null,
+		"answer_seq" : 443,
+		"answer" : "전립선 비대",
+		"metadata_seq" : 1178,
+		"metadata_text" : "disease_genitourinary:prostatic_hyperplasia"
+	},
+	{
+		"disease_id" : 216,
+		"disease_name" : "전립선 비대",
+		"disease_type" : null,
+		"answer_seq" : 991,
+		"answer" : "전립선 비대",
+		"metadata_seq" : 687,
+		"metadata_text" : "disease_genitourinary:prostatic_hyperplasia"
+	},
+	{
+		"disease_id" : 217,
+		"disease_name" : "전립선 종양",
+		"disease_type" : null,
+		"answer_seq" : 445,
+		"answer" : "전립선 종양",
+		"metadata_seq" : 1179,
+		"metadata_text" : "disease_genitourinary:prostatic_tumor"
+	},
+	{
+		"disease_id" : 217,
+		"disease_name" : "전립선 종양",
+		"disease_type" : null,
+		"answer_seq" : 993,
+		"answer" : "전립선 종양",
+		"metadata_seq" : 688,
+		"metadata_text" : "disease_genitourinary:prostatic_tumor"
+	},
+	{
+		"disease_id" : 218,
+		"disease_name" : "전립선염",
+		"disease_type" : null,
+		"answer_seq" : 446,
+		"answer" : "전립선염",
+		"metadata_seq" : 1180,
+		"metadata_text" : "disease_genitourinary:prostatitis"
+	},
+	{
+		"disease_id" : 218,
+		"disease_name" : "전립선염",
+		"disease_type" : null,
+		"answer_seq" : 994,
+		"answer" : "전립선염",
+		"metadata_seq" : 689,
+		"metadata_text" : "disease_genitourinary:prostatitis"
+	},
+	{
+		"disease_id" : 219,
+		"disease_name" : "전염성 생식기 종양",
+		"disease_type" : null,
+		"answer_seq" : 447,
+		"answer" : "전염성 생식기 종양",
+		"metadata_seq" : 1169,
+		"metadata_text" : "disease_genitourinary:infectious_genital_tumors"
+	},
+	{
+		"disease_id" : 219,
+		"disease_name" : "전염성 생식기 종양",
+		"disease_type" : null,
+		"answer_seq" : 995,
+		"answer" : "전염성 생식기 종양",
+		"metadata_seq" : 678,
+		"metadata_text" : "disease_genitourinary:infectious_genital_tumors"
+	},
+	{
+		"disease_id" : 220,
+		"disease_name" : "질 협착",
+		"disease_type" : null,
+		"answer_seq" : 448,
+		"answer" : "질 협착",
+		"metadata_seq" : 1186,
+		"metadata_text" : "disease_genitourinary:vaginal_stricture"
+	},
+	{
+		"disease_id" : 220,
+		"disease_name" : "질 협착",
+		"disease_type" : null,
+		"answer_seq" : 996,
+		"answer" : "질 협착",
+		"metadata_seq" : 695,
+		"metadata_text" : "disease_genitourinary:vaginal_stricture"
+	},
+	{
+		"disease_id" : 221,
+		"disease_name" : "질염",
+		"disease_type" : null,
+		"answer_seq" : 449,
+		"answer" : "질염",
+		"metadata_seq" : 1187,
+		"metadata_text" : "disease_genitourinary:vaginitis"
+	},
+	{
+		"disease_id" : 221,
+		"disease_name" : "질염",
+		"disease_type" : null,
+		"answer_seq" : 997,
+		"answer" : "질염",
+		"metadata_seq" : 696,
+		"metadata_text" : "disease_genitourinary:vaginitis"
+	},
+	{
+		"disease_id" : 222,
+		"disease_name" : "질탈",
+		"disease_type" : null,
+		"answer_seq" : 450,
+		"answer" : "질탈",
+		"metadata_seq" : 1188,
+		"metadata_text" : "disease_genitourinary:vulvar_prolapse"
+	},
+	{
+		"disease_id" : 222,
+		"disease_name" : "질탈",
+		"disease_type" : null,
+		"answer_seq" : 998,
+		"answer" : "질탈",
+		"metadata_seq" : 697,
+		"metadata_text" : "disease_genitourinary:vulvar_prolapse"
+	},
+	{
+		"disease_id" : 223,
+		"disease_name" : "포피염",
+		"disease_type" : null,
+		"answer_seq" : 451,
+		"answer" : "포피염",
+		"metadata_seq" : 1157,
+		"metadata_text" : "disease_genitourinary:balanoposthitis"
+	},
+	{
+		"disease_id" : 223,
+		"disease_name" : "포피염",
+		"disease_type" : null,
+		"answer_seq" : 999,
+		"answer" : "포피염",
+		"metadata_seq" : 666,
+		"metadata_text" : "disease_genitourinary:balanoposthitis"
+	},
+	{
+		"disease_id" : 224,
+		"disease_name" : "간 낭종",
+		"disease_type" : null,
+		"answer_seq" : 404,
+		"answer" : "간 낭종",
+		"metadata_seq" : 1201,
+		"metadata_text" : "disease_hepatobiliary:hepatic_cyst"
+	},
+	{
+		"disease_id" : 224,
+		"disease_name" : "간 낭종",
+		"disease_type" : null,
+		"answer_seq" : 951,
+		"answer" : "간 낭종",
+		"metadata_seq" : 709,
+		"metadata_text" : "disease_hepatobiliary:hepatic_cyst"
+	},
+	{
+		"disease_id" : 225,
+		"disease_name" : "간 아밀로이드침착증",
+		"disease_type" : null,
+		"answer_seq" : 405,
+		"answer" : "간 아밀로이드침착증",
+		"metadata_seq" : 1199,
+		"metadata_text" : "disease_hepatobiliary:hepatic_amyloidosis"
+	},
+	{
+		"disease_id" : 225,
+		"disease_name" : "간 아밀로이드침착증",
+		"disease_type" : null,
+		"answer_seq" : 952,
+		"answer" : "간 아밀로이드침착증",
+		"metadata_seq" : 707,
+		"metadata_text" : "disease_hepatobiliary:hepatic_amyloidosis"
+	},
+	{
+		"disease_id" : 226,
+		"disease_name" : "간경화",
+		"disease_type" : null,
+		"answer_seq" : 406,
+		"answer" : "간경화",
+		"metadata_seq" : 1200,
+		"metadata_text" : "disease_hepatobiliary:hepatic_cirrhosis"
+	},
+	{
+		"disease_id" : 226,
+		"disease_name" : "간경화",
+		"disease_type" : null,
+		"answer_seq" : 953,
+		"answer" : "간경화",
+		"metadata_seq" : 708,
+		"metadata_text" : "disease_hepatobiliary:hepatic_cirrhosis"
+	},
+	{
+		"disease_id" : 227,
+		"disease_name" : "간문맥전신단락증(PSS)",
+		"disease_type" : null,
+		"answer_seq" : 407,
+		"answer" : "간문맥전신단락증(PSS)",
+		"metadata_seq" : 1204,
+		"metadata_text" : "disease_hepatobiliary:portosystemic_shunt"
+	},
+	{
+		"disease_id" : 227,
+		"disease_name" : "간문맥전신단락증(PSS)",
+		"disease_type" : null,
+		"answer_seq" : 954,
+		"answer" : "간문맥전신단락증(PSS)",
+		"metadata_seq" : 713,
+		"metadata_text" : "disease_hepatobiliary:portosystemic_shunt"
+	},
+	{
+		"disease_id" : 228,
+		"disease_name" : "간수치 상승",
+		"disease_type" : null,
+		"answer_seq" : 408,
+		"answer" : "간수치 상승",
+		"metadata_seq" : 1194,
+		"metadata_text" : "disease_hepatobiliary:elevated_liver_enzymes"
+	},
+	{
+		"disease_id" : 228,
+		"disease_name" : "간수치 상승",
+		"disease_type" : null,
+		"answer_seq" : 955,
+		"answer" : "간수치 상승",
+		"metadata_seq" : 702,
+		"metadata_text" : "disease_hepatobiliary:elevated_liver_enzymes"
+	},
+	{
+		"disease_id" : 229,
+		"disease_name" : "간외담도폐색(EHBO)",
+		"disease_type" : null,
+		"answer_seq" : 409,
+		"answer" : "간외담도폐색(EHBO)",
+		"metadata_seq" : 1195,
+		"metadata_text" : "disease_hepatobiliary:extrahepatic_bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 229,
+		"disease_name" : "간외담도폐색(EHBO)",
+		"disease_type" : null,
+		"answer_seq" : 956,
+		"answer" : "간외담도폐색(EHBO)",
+		"metadata_seq" : 703,
+		"metadata_text" : "disease_hepatobiliary:extrahepatic_bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 230,
+		"disease_name" : "구리침착증",
+		"disease_type" : null,
+		"answer_seq" : 410,
+		"answer" : "구리침착증",
+		"metadata_seq" : 1193,
+		"metadata_text" : "disease_hepatobiliary:copper_accumulation"
+	},
+	{
+		"disease_id" : 232,
+		"disease_name" : "국소 결정성 과증식",
+		"disease_type" : null,
+		"answer_seq" : 411,
+		"answer" : "국소 결정성 과증식",
+		"metadata_seq" : 1203,
+		"metadata_text" : "disease_hepatobiliary:nodular_hyperplasia"
+	},
+	{
+		"disease_id" : 232,
+		"disease_name" : "국소 결정성 과증식",
+		"disease_type" : null,
+		"answer_seq" : 957,
+		"answer" : "국소 결정성 과증식",
+		"metadata_seq" : 712,
+		"metadata_text" : "disease_hepatobiliary:nodular_hyperplasia"
+	},
+	{
+		"disease_id" : 233,
+		"disease_name" : "급성 간염",
+		"disease_type" : null,
+		"answer_seq" : 412,
+		"answer" : "급성 간염",
+		"metadata_seq" : 1189,
+		"metadata_text" : "disease_hepatobiliary:acute_hepatitis"
+	},
+	{
+		"disease_id" : 233,
+		"disease_name" : "급성 간염",
+		"disease_type" : null,
+		"answer_seq" : 958,
+		"answer" : "급성 간염",
+		"metadata_seq" : 698,
+		"metadata_text" : "disease_hepatobiliary:acute_hepatitis"
+	},
+	{
+		"disease_id" : 234,
+		"disease_name" : "담낭결석",
+		"disease_type" : null,
+		"answer_seq" : 413,
+		"answer" : "담낭결석",
+		"metadata_seq" : 1198,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_stones"
+	},
+	{
+		"disease_id" : 234,
+		"disease_name" : "담낭결석",
+		"disease_type" : null,
+		"answer_seq" : 959,
+		"answer" : "담낭결석",
+		"metadata_seq" : 706,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_stones"
+	},
+	{
+		"disease_id" : 235,
+		"disease_name" : "담낭슬러지",
+		"disease_type" : null,
+		"answer_seq" : 414,
+		"answer" : "담낭슬러지",
+		"metadata_seq" : 1197,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_sludge"
+	},
+	{
+		"disease_id" : 235,
+		"disease_name" : "담낭슬러지",
+		"disease_type" : null,
+		"answer_seq" : 960,
+		"answer" : "담낭슬러지",
+		"metadata_seq" : 705,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_sludge"
+	},
+	{
+		"disease_id" : 236,
+		"disease_name" : "담낭염",
+		"disease_type" : null,
+		"answer_seq" : 415,
+		"answer" : "담낭염",
+		"metadata_seq" : 1191,
+		"metadata_text" : "disease_hepatobiliary:cholecystitis"
+	},
+	{
+		"disease_id" : 236,
+		"disease_name" : "담낭염",
+		"disease_type" : null,
+		"answer_seq" : 961,
+		"answer" : "담낭염",
+		"metadata_seq" : 700,
+		"metadata_text" : "disease_hepatobiliary:cholecystitis"
+	},
+	{
+		"disease_id" : 237,
+		"disease_name" : "담낭점액종",
+		"disease_type" : null,
+		"answer_seq" : 416,
+		"answer" : "담낭점액종",
+		"metadata_seq" : 1196,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_mucocele"
+	},
+	{
+		"disease_id" : 237,
+		"disease_name" : "담낭점액종",
+		"disease_type" : null,
+		"answer_seq" : 962,
+		"answer" : "담낭점액종",
+		"metadata_seq" : 704,
+		"metadata_text" : "disease_hepatobiliary:gallbladder_mucocele"
+	},
+	{
+		"disease_id" : 238,
+		"disease_name" : "담도폐색",
+		"disease_type" : null,
+		"answer_seq" : 409,
+		"answer" : "간외담도폐색(EHBO)",
+		"metadata_seq" : 1195,
+		"metadata_text" : "disease_hepatobiliary:extrahepatic_bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 238,
+		"disease_name" : "담도폐색",
+		"disease_type" : null,
+		"answer_seq" : 417,
+		"answer" : "담도폐색",
+		"metadata_seq" : 1190,
+		"metadata_text" : "disease_hepatobiliary:bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 238,
+		"disease_name" : "담도폐색",
+		"disease_type" : null,
+		"answer_seq" : 956,
+		"answer" : "간외담도폐색(EHBO)",
+		"metadata_seq" : 703,
+		"metadata_text" : "disease_hepatobiliary:extrahepatic_bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 238,
+		"disease_name" : "담도폐색",
+		"disease_type" : null,
+		"answer_seq" : 963,
+		"answer" : "담도폐색",
+		"metadata_seq" : 699,
+		"metadata_text" : "disease_hepatobiliary:bile_duct_obstruction"
+	},
+	{
+		"disease_id" : 239,
+		"disease_name" : "만성 간염",
+		"disease_type" : null,
+		"answer_seq" : 418,
+		"answer" : "만성 간염",
+		"metadata_seq" : 1192,
+		"metadata_text" : "disease_hepatobiliary:chronic_hepatitis"
+	},
+	{
+		"disease_id" : 239,
+		"disease_name" : "만성 간염",
+		"disease_type" : null,
+		"answer_seq" : 964,
+		"answer" : "만성 간염",
+		"metadata_seq" : 701,
+		"metadata_text" : "disease_hepatobiliary:chronic_hepatitis"
+	},
+	{
+		"disease_id" : 240,
+		"disease_name" : "황달",
+		"disease_type" : null,
+		"answer_seq" : 419,
+		"answer" : "황달",
+		"metadata_seq" : 1202,
+		"metadata_text" : "disease_hepatobiliary:jaundice"
+	},
+	{
+		"disease_id" : 240,
+		"disease_name" : "황달",
+		"disease_type" : null,
+		"answer_seq" : 967,
+		"answer" : "황달",
+		"metadata_seq" : 711,
+		"metadata_text" : "disease_hepatobiliary:jaundice"
+	},
+	{
+		"disease_id" : 241,
+		"disease_name" : "구강 궤양",
+		"disease_type" : null,
+		"answer_seq" : 324,
+		"answer" : "구강 궤양",
+		"metadata_seq" : 1227,
+		"metadata_text" : "disease_oral:ulcer"
+	},
+	{
+		"disease_id" : 241,
+		"disease_name" : "구강 궤양",
+		"disease_type" : null,
+		"answer_seq" : 870,
+		"answer" : "구강 궤양",
+		"metadata_seq" : 738,
+		"metadata_text" : "disease_oral:ulcer"
+	},
+	{
+		"disease_id" : 242,
+		"disease_name" : "구강 종양",
+		"disease_type" : null,
+		"answer_seq" : 325,
+		"answer" : "구강 종양",
+		"metadata_seq" : 1226,
+		"metadata_text" : "disease_oral:tumor"
+	},
+	{
+		"disease_id" : 242,
+		"disease_name" : "구강 종양",
+		"disease_type" : null,
+		"answer_seq" : 871,
+		"answer" : "구강 종양",
+		"metadata_seq" : 737,
+		"metadata_text" : "disease_oral:tumor"
+	},
+	{
+		"disease_id" : 243,
+		"disease_name" : "구내염",
+		"disease_type" : null,
+		"answer_seq" : 326,
+		"answer" : "구내염",
+		"metadata_seq" : 1213,
+		"metadata_text" : "disease_oral:stomatitis"
+	},
+	{
+		"disease_id" : 243,
+		"disease_name" : "구내염",
+		"disease_type" : null,
+		"answer_seq" : 872,
+		"answer" : "구내염",
+		"metadata_seq" : 723,
+		"metadata_text" : "disease_oral:stomatitis"
+	},
+	{
+		"disease_id" : 244,
+		"disease_name" : "부정 교합",
+		"disease_type" : null,
+		"answer_seq" : 327,
+		"answer" : "부정 교합",
+		"metadata_seq" : 1210,
+		"metadata_text" : "disease_oral:malocclusion"
+	},
+	{
+		"disease_id" : 244,
+		"disease_name" : "부정 교합",
+		"disease_type" : null,
+		"answer_seq" : 873,
+		"answer" : "부정 교합",
+		"metadata_seq" : 720,
+		"metadata_text" : "disease_oral:malocclusion"
+	},
+	{
+		"disease_id" : 245,
+		"disease_name" : "에나멜층 형성부전",
+		"disease_type" : null,
+		"answer_seq" : 328,
+		"answer" : "에나멜층 형성부전",
+		"metadata_seq" : 1208,
+		"metadata_text" : "disease_oral:enamel_hypoplasia"
+	},
+	{
+		"disease_id" : 245,
+		"disease_name" : "에나멜층 형성부전",
+		"disease_type" : null,
+		"answer_seq" : 874,
+		"answer" : "에나멜층 형성부전",
+		"metadata_seq" : 718,
+		"metadata_text" : "disease_oral:enamel_hypoplasia"
+	},
+	{
+		"disease_id" : 247,
+		"disease_name" : "잔존 유치",
+		"disease_type" : null,
+		"answer_seq" : 329,
+		"answer" : "잔존 유치",
+		"metadata_seq" : 1212,
+		"metadata_text" : "disease_oral:retained_deciduous_teeth"
+	},
+	{
+		"disease_id" : 247,
+		"disease_name" : "잔존 유치",
+		"disease_type" : null,
+		"answer_seq" : 875,
+		"answer" : "잔존 유치",
+		"metadata_seq" : 722,
+		"metadata_text" : "disease_oral:retained_deciduous_teeth"
+	},
+	{
+		"disease_id" : 248,
+		"disease_name" : "치근단 농양",
+		"disease_type" : null,
+		"answer_seq" : 330,
+		"answer" : "치근단 농양",
+		"metadata_seq" : 1205,
+		"metadata_text" : "disease_oral:apical_abscess"
+	},
+	{
+		"disease_id" : 248,
+		"disease_name" : "치근단 농양",
+		"disease_type" : null,
+		"answer_seq" : 876,
+		"answer" : "치근단 농양",
+		"metadata_seq" : 715,
+		"metadata_text" : "disease_oral:apical_abscess"
+	},
+	{
+		"disease_id" : 249,
+		"disease_name" : "치석",
+		"disease_type" : null,
+		"answer_seq" : 331,
+		"answer" : "치석",
+		"metadata_seq" : 1207,
+		"metadata_text" : "disease_oral:dental_calculus"
+	},
+	{
+		"disease_id" : 249,
+		"disease_name" : "치석",
+		"disease_type" : null,
+		"answer_seq" : 877,
+		"answer" : "치석",
+		"metadata_seq" : 717,
+		"metadata_text" : "disease_oral:dental_calculus"
+	},
+	{
+		"disease_id" : 249,
+		"disease_name" : "치석",
+		"disease_type" : null,
+		"answer_seq" : 1328,
+		"answer" : "치약만 잇몸이나 치아에 발라주고 있거나, 마시는 물에 치석 방지 제품을 섞어줘요.",
+		"metadata_seq" : 301,
+		"metadata_text" : "toothbrushing:only_toothpaste"
+	},
+	{
+		"disease_id" : 249,
+		"disease_name" : "치석",
+		"disease_type" : null,
+		"answer_seq" : 1504,
+		"answer" : "치약만 잇몸이나 치아에 발라주고 있거나, 마시는 물에 치석 방지 제품을 섞어줘요.",
+		"metadata_seq" : 134,
+		"metadata_text" : "toothbrushing:only_toothpaste"
+	},
+	{
+		"disease_id" : 250,
+		"disease_name" : "치아 결손",
+		"disease_type" : null,
+		"answer_seq" : 332,
+		"answer" : "치아 결손",
+		"metadata_seq" : 1216,
+		"metadata_text" : "disease_oral:tooth_defect"
+	},
+	{
+		"disease_id" : 250,
+		"disease_name" : "치아 결손",
+		"disease_type" : null,
+		"answer_seq" : 878,
+		"answer" : "치아 결손",
+		"metadata_seq" : 726,
+		"metadata_text" : "disease_oral:tooth_defect"
+	},
+	{
+		"disease_id" : 251,
+		"disease_name" : "치아 골절",
+		"disease_type" : null,
+		"answer_seq" : 333,
+		"answer" : "치아 골절",
+		"metadata_seq" : 1220,
+		"metadata_text" : "disease_oral:tooth_fracture"
+	},
+	{
+		"disease_id" : 251,
+		"disease_name" : "치아 골절",
+		"disease_type" : null,
+		"answer_seq" : 879,
+		"answer" : "치아 골절",
+		"metadata_seq" : 730,
+		"metadata_text" : "disease_oral:tooth_fracture"
+	},
+	{
+		"disease_id" : 252,
+		"disease_name" : "치아 과잉",
+		"disease_type" : null,
+		"answer_seq" : 334,
+		"answer" : "치아 과잉",
+		"metadata_seq" : 1222,
+		"metadata_text" : "disease_oral:tooth_overgrowth"
+	},
+	{
+		"disease_id" : 252,
+		"disease_name" : "치아 과잉",
+		"disease_type" : null,
+		"answer_seq" : 880,
+		"answer" : "치아 과잉",
+		"metadata_seq" : 732,
+		"metadata_text" : "disease_oral:tooth_overgrowth"
+	},
+	{
+		"disease_id" : 253,
+		"disease_name" : "치아 교정",
+		"disease_type" : null,
+		"answer_seq" : 335,
+		"answer" : "치아 교정",
+		"metadata_seq" : 1206,
+		"metadata_text" : "disease_oral:dental_braces"
+	},
+	{
+		"disease_id" : 253,
+		"disease_name" : "치아 교정",
+		"disease_type" : null,
+		"answer_seq" : 881,
+		"answer" : "치아 교정",
+		"metadata_seq" : 716,
+		"metadata_text" : "disease_oral:dental_braces"
+	},
+	{
+		"disease_id" : 254,
+		"disease_name" : "치아 낭종",
+		"disease_type" : null,
+		"answer_seq" : 336,
+		"answer" : "치아 낭종",
+		"metadata_seq" : 1215,
+		"metadata_text" : "disease_oral:tooth_cyst"
+	},
+	{
+		"disease_id" : 254,
+		"disease_name" : "치아 낭종",
+		"disease_type" : null,
+		"answer_seq" : 882,
+		"answer" : "치아 낭종",
+		"metadata_seq" : 725,
+		"metadata_text" : "disease_oral:tooth_cyst"
+	},
+	{
+		"disease_id" : 255,
+		"disease_name" : "치아 농양",
+		"disease_type" : null,
+		"answer_seq" : 337,
+		"answer" : "치아 농양",
+		"metadata_seq" : 1214,
+		"metadata_text" : "disease_oral:tooth_abscess"
+	},
+	{
+		"disease_id" : 255,
+		"disease_name" : "치아 농양",
+		"disease_type" : null,
+		"answer_seq" : 883,
+		"answer" : "치아 농양",
+		"metadata_seq" : 724,
+		"metadata_text" : "disease_oral:tooth_abscess"
+	},
+	{
+		"disease_id" : 256,
+		"disease_name" : "강박장애",
+		"disease_type" : null,
+		"answer_seq" : 513,
+		"answer" : "강박장애",
+		"metadata_seq" : 1017,
+		"metadata_text" : "disease_behavior:obsessive_compulsive_disorder"
+	},
+	{
+		"disease_id" : 256,
+		"disease_name" : "강박장애",
+		"disease_type" : null,
+		"answer_seq" : 1060,
+		"answer" : "강박장애",
+		"metadata_seq" : 528,
+		"metadata_text" : "disease_behavior:obsessive_compulsive_disorder"
+	},
+	{
+		"disease_id" : 257,
+		"disease_name" : "공격성",
+		"disease_type" : null,
+		"answer_seq" : 514,
+		"answer" : "공격성",
+		"metadata_seq" : 1006,
+		"metadata_text" : "disease_behavior:aggression"
+	},
+	{
+		"disease_id" : 257,
+		"disease_name" : "공격성",
+		"disease_type" : null,
+		"answer_seq" : 1061,
+		"answer" : "공격성",
+		"metadata_seq" : 517,
+		"metadata_text" : "disease_behavior:aggression"
+	},
+	{
+		"disease_id" : 257,
+		"disease_name" : "공격성",
+		"disease_type" : null,
+		"answer_seq" : 1525,
+		"answer" : "방어 태세를 취하거나, 때로는 공격성을 보여요.",
+		"metadata_seq" : 30,
+		"metadata_text" : "cat_social_behavior:defensive_aggressive"
+	},
+	{
+		"disease_id" : 258,
+		"disease_name" : "과도한 짖음",
+		"disease_type" : null,
+		"answer_seq" : 515,
+		"answer" : "과도한 짖음",
+		"metadata_seq" : 1012,
+		"metadata_text" : "disease_behavior:excessive_barking"
+	},
+	{
+		"disease_id" : 258,
+		"disease_name" : "과도한 짖음",
+		"disease_type" : null,
+		"answer_seq" : 1062,
+		"answer" : "과도한 짖음",
+		"metadata_seq" : 523,
+		"metadata_text" : "disease_behavior:excessive_barking"
+	},
+	{
+		"disease_id" : 259,
+		"disease_name" : "분리불안증",
+		"disease_type" : null,
+		"answer_seq" : 516,
+		"answer" : "분리불안증",
+		"metadata_seq" : 1022,
+		"metadata_text" : "disease_behavior:separation_anxiety"
+	},
+	{
+		"disease_id" : 259,
+		"disease_name" : "분리불안증",
+		"disease_type" : null,
+		"answer_seq" : 1063,
+		"answer" : "분리불안증",
+		"metadata_seq" : 533,
+		"metadata_text" : "disease_behavior:separation_anxiety"
+	},
+	{
+		"disease_id" : 260,
+		"disease_name" : "수면장애",
+		"disease_type" : null,
+		"answer_seq" : 518,
+		"answer" : "수면장애",
+		"metadata_seq" : 1023,
+		"metadata_text" : "disease_behavior:sleep_disorder"
+	},
+	{
+		"disease_id" : 260,
+		"disease_name" : "수면장애",
+		"disease_type" : null,
+		"answer_seq" : 1065,
+		"answer" : "수면장애",
+		"metadata_seq" : 534,
+		"metadata_text" : "disease_behavior:sleep_disorder"
+	},
+	{
+		"disease_id" : 261,
+		"disease_name" : "식분증",
+		"disease_type" : null,
+		"answer_seq" : 519,
+		"answer" : "식분증",
+		"metadata_seq" : 1010,
+		"metadata_text" : "disease_behavior:coprophagia"
+	},
+	{
+		"disease_id" : 261,
+		"disease_name" : "식분증",
+		"disease_type" : null,
+		"answer_seq" : 1066,
+		"answer" : "식분증",
+		"metadata_seq" : 521,
+		"metadata_text" : "disease_behavior:coprophagia"
+	},
+	{
+		"disease_id" : 262,
+		"disease_name" : "식탐",
+		"disease_type" : null,
+		"answer_seq" : 520,
+		"answer" : "식탐",
+		"metadata_seq" : 1009,
+		"metadata_text" : "disease_behavior:bulimia"
+	},
+	{
+		"disease_id" : 262,
+		"disease_name" : "식탐",
+		"disease_type" : null,
+		"answer_seq" : 1067,
+		"answer" : "식탐",
+		"metadata_seq" : 520,
+		"metadata_text" : "disease_behavior:bulimia"
+	},
+	{
+		"disease_id" : 265,
+		"disease_name" : "애착형성",
+		"disease_type" : null,
+		"answer_seq" : 521,
+		"answer" : "애착형성",
+		"metadata_seq" : 1008,
+		"metadata_text" : "disease_behavior:attachment_disorder"
+	},
+	{
+		"disease_id" : 265,
+		"disease_name" : "애착형성",
+		"disease_type" : null,
+		"answer_seq" : 1068,
+		"answer" : "애착형성",
+		"metadata_seq" : 519,
+		"metadata_text" : "disease_behavior:attachment_disorder"
+	},
+	{
+		"disease_id" : 266,
+		"disease_name" : "오버그루밍",
+		"disease_type" : null,
+		"answer_seq" : 522,
+		"answer" : "오버그루밍",
+		"metadata_seq" : 1019,
+		"metadata_text" : "disease_behavior:overgrooming"
+	},
+	{
+		"disease_id" : 266,
+		"disease_name" : "오버그루밍",
+		"disease_type" : null,
+		"answer_seq" : 1069,
+		"answer" : "오버그루밍",
+		"metadata_seq" : 530,
+		"metadata_text" : "disease_behavior:overgrooming"
+	},
+	{
+		"disease_id" : 268,
+		"disease_name" : "외부 자극에 과도한 반응",
+		"disease_type" : null,
+		"answer_seq" : 523,
+		"answer" : "외부 자극에 과도한 반응",
+		"metadata_seq" : 1013,
+		"metadata_text" : "disease_behavior:excessive_startling_to_external_stimuli"
+	},
+	{
+		"disease_id" : 268,
+		"disease_name" : "외부 자극에 과도한 반응",
+		"disease_type" : null,
+		"answer_seq" : 1070,
+		"answer" : "외부 자극에 과도한 반응",
+		"metadata_seq" : 524,
+		"metadata_text" : "disease_behavior:excessive_startling_to_external_stimuli"
+	},
+	{
+		"disease_id" : 270,
+		"disease_name" : "외상 후 스트레스 장애(PTSD)",
+		"disease_type" : null,
+		"answer_seq" : 524,
+		"answer" : "외상 후 스트레스 장애(PTSD)",
+		"metadata_seq" : 1020,
+		"metadata_text" : "disease_behavior:post_traumatic_stress_disorder"
+	},
+	{
+		"disease_id" : 270,
+		"disease_name" : "외상 후 스트레스 장애(PTSD)",
+		"disease_type" : null,
+		"answer_seq" : 1071,
+		"answer" : "외상 후 스트레스 장애(PTSD)",
+		"metadata_seq" : 531,
+		"metadata_text" : "disease_behavior:post_traumatic_stress_disorder"
+	},
+	{
+		"disease_id" : 271,
+		"disease_name" : "우울증",
+		"disease_type" : null,
+		"answer_seq" : 512,
+		"answer" : "우울증",
+		"metadata_seq" : 1011,
+		"metadata_text" : "disease_behavior:depression"
+	},
+	{
+		"disease_id" : 271,
+		"disease_name" : "우울증",
+		"disease_type" : null,
+		"answer_seq" : 1059,
+		"answer" : "우울증",
+		"metadata_seq" : 522,
+		"metadata_text" : "disease_behavior:depression"
+	},
+	{
+		"disease_id" : 272,
+		"disease_name" : "음식 거부증",
+		"disease_type" : null,
+		"answer_seq" : 525,
+		"answer" : "음식 거부증",
+		"metadata_seq" : 1014,
+		"metadata_text" : "disease_behavior:food_aversion"
+	},
+	{
+		"disease_id" : 272,
+		"disease_name" : "음식 거부증",
+		"disease_type" : null,
+		"answer_seq" : 1072,
+		"answer" : "음식 거부증",
+		"metadata_seq" : 525,
+		"metadata_text" : "disease_behavior:food_aversion"
+	},
+	{
+		"disease_id" : 273,
+		"disease_name" : "이식증",
+		"disease_type" : null,
+		"answer_seq" : 526,
+		"answer" : "이식증",
+		"metadata_seq" : 1024,
+		"metadata_text" : "disease_behavior:transplantation_syndrome"
+	},
+	{
+		"disease_id" : 273,
+		"disease_name" : "이식증",
+		"disease_type" : null,
+		"answer_seq" : 1073,
+		"answer" : "이식증",
+		"metadata_seq" : 535,
+		"metadata_text" : "disease_behavior:transplantation_syndrome"
+	},
+	{
+		"disease_id" : 274,
+		"disease_name" : "자해 행동",
+		"disease_type" : null,
+		"answer_seq" : 527,
+		"answer" : "자해 행동",
+		"metadata_seq" : 1021,
+		"metadata_text" : "disease_behavior:self_injurious_behavior"
+	},
+	{
+		"disease_id" : 274,
+		"disease_name" : "자해 행동",
+		"disease_type" : null,
+		"answer_seq" : 1074,
+		"answer" : "자해 행동",
+		"metadata_seq" : 532,
+		"metadata_text" : "disease_behavior:self_injurious_behavior"
+	},
+	{
+		"disease_id" : 275,
+		"disease_name" : "잡식성 행동",
+		"disease_type" : null,
+		"answer_seq" : 528,
+		"answer" : "잡식성 행동",
+		"metadata_seq" : 1018,
+		"metadata_text" : "disease_behavior:omnivorous_behavior"
+	},
+	{
+		"disease_id" : 275,
+		"disease_name" : "잡식성 행동",
+		"disease_type" : null,
+		"answer_seq" : 1075,
+		"answer" : "잡식성 행동",
+		"metadata_seq" : 529,
+		"metadata_text" : "disease_behavior:omnivorous_behavior"
+	},
+	{
+		"disease_id" : 276,
+		"disease_name" : "털 뜯기",
+		"disease_type" : null,
+		"answer_seq" : 529,
+		"answer" : "털 뜯기",
+		"metadata_seq" : 1015,
+		"metadata_text" : "disease_behavior:hair_plucking"
+	},
+	{
+		"disease_id" : 276,
+		"disease_name" : "털 뜯기",
+		"disease_type" : null,
+		"answer_seq" : 1076,
+		"answer" : "털 뜯기",
+		"metadata_seq" : 526,
+		"metadata_text" : "disease_behavior:hair_plucking"
+	},
+	{
+		"disease_id" : 277,
+		"disease_name" : "활동항진",
+		"disease_type" : null,
+		"answer_seq" : 530,
+		"answer" : "활동항진",
+		"metadata_seq" : 1016,
+		"metadata_text" : "disease_behavior:hyperactivity"
+	},
+	{
+		"disease_id" : 277,
+		"disease_name" : "활동항진",
+		"disease_type" : null,
+		"answer_seq" : 1077,
+		"answer" : "활동항진",
+		"metadata_seq" : 527,
+		"metadata_text" : "disease_behavior:hyperactivity"
+	},
+	{
+		"disease_id" : 278,
+		"disease_name" : "치아 마모",
+		"disease_type" : null,
+		"answer_seq" : 338,
+		"answer" : "치아 마모",
+		"metadata_seq" : 1225,
+		"metadata_text" : "disease_oral:tooth_wear"
+	},
+	{
+		"disease_id" : 278,
+		"disease_name" : "치아 마모",
+		"disease_type" : null,
+		"answer_seq" : 884,
+		"answer" : "치아 마모",
+		"metadata_seq" : 736,
+		"metadata_text" : "disease_oral:tooth_wear"
+	},
+	{
+		"disease_id" : 279,
+		"disease_name" : "치아 박리",
+		"disease_type" : null,
+		"answer_seq" : 339,
+		"answer" : "치아 박리",
+		"metadata_seq" : 1219,
+		"metadata_text" : "disease_oral:tooth_dislocation"
+	},
+	{
+		"disease_id" : 279,
+		"disease_name" : "치아 박리",
+		"disease_type" : null,
+		"answer_seq" : 885,
+		"answer" : "치아 박리",
+		"metadata_seq" : 729,
+		"metadata_text" : "disease_oral:tooth_dislocation"
+	},
+	{
+		"disease_id" : 280,
+		"disease_name" : "치아 발생 이상",
+		"disease_type" : null,
+		"answer_seq" : 340,
+		"answer" : "치아 발생 이상",
+		"metadata_seq" : 1218,
+		"metadata_text" : "disease_oral:tooth_developmental_abnormality"
+	},
+	{
+		"disease_id" : 280,
+		"disease_name" : "치아 발생 이상",
+		"disease_type" : null,
+		"answer_seq" : 886,
+		"answer" : "치아 발생 이상",
+		"metadata_seq" : 728,
+		"metadata_text" : "disease_oral:tooth_developmental_abnormality"
+	},
+	{
+		"disease_id" : 281,
+		"disease_name" : "치아 부족",
+		"disease_type" : null,
+		"answer_seq" : 341,
+		"answer" : "치아 부족",
+		"metadata_seq" : 1217,
+		"metadata_text" : "disease_oral:tooth_deficiency"
+	},
+	{
+		"disease_id" : 281,
+		"disease_name" : "치아 부족",
+		"disease_type" : null,
+		"answer_seq" : 887,
+		"answer" : "치아 부족",
+		"metadata_seq" : 727,
+		"metadata_text" : "disease_oral:tooth_deficiency"
+	},
+	{
+		"disease_id" : 282,
+		"disease_name" : "치아 손상",
+		"disease_type" : null,
+		"answer_seq" : 342,
+		"answer" : "치아 손상",
+		"metadata_seq" : 1221,
+		"metadata_text" : "disease_oral:tooth_injury"
+	},
+	{
+		"disease_id" : 282,
+		"disease_name" : "치아 손상",
+		"disease_type" : null,
+		"answer_seq" : 888,
+		"answer" : "치아 손상",
+		"metadata_seq" : 731,
+		"metadata_text" : "disease_oral:tooth_injury"
+	},
+	{
+		"disease_id" : 283,
+		"disease_name" : "치아 위치 이상(밀집)",
+		"disease_type" : null,
+		"answer_seq" : 343,
+		"answer" : "치아 위치 이상(밀집)",
+		"metadata_seq" : 1223,
+		"metadata_text" : "disease_oral:tooth_position_abnormality"
+	},
+	{
+		"disease_id" : 283,
+		"disease_name" : "치아 위치 이상(밀집)",
+		"disease_type" : null,
+		"answer_seq" : 889,
+		"answer" : "치아 위치 이상(밀집)",
+		"metadata_seq" : 733,
+		"metadata_text" : "disease_oral:tooth_position_abnormality"
+	},
+	{
+		"disease_id" : 284,
+		"disease_name" : "치아 종양",
+		"disease_type" : null,
+		"answer_seq" : 344,
+		"answer" : "치아 종양",
+		"metadata_seq" : 1224,
+		"metadata_text" : "disease_oral:tooth_tumor"
+	},
+	{
+		"disease_id" : 284,
+		"disease_name" : "치아 종양",
+		"disease_type" : null,
+		"answer_seq" : 890,
+		"answer" : "치아 종양",
+		"metadata_seq" : 735,
+		"metadata_text" : "disease_oral:tooth_tumor"
+	},
+	{
+		"disease_id" : 285,
+		"disease_name" : "치은염(잇몸염증)",
+		"disease_type" : null,
+		"answer_seq" : 345,
+		"answer" : "치은염(잇몸염증)",
+		"metadata_seq" : 1209,
+		"metadata_text" : "disease_oral:gingivitis"
+	},
+	{
+		"disease_id" : 285,
+		"disease_name" : "치은염(잇몸염증)",
+		"disease_type" : null,
+		"answer_seq" : 892,
+		"answer" : "치은염(잇몸염증)",
+		"metadata_seq" : 719,
+		"metadata_text" : "disease_oral:gingivitis"
+	},
+	{
+		"disease_id" : 286,
+		"disease_name" : "치주염",
+		"disease_type" : null,
+		"answer_seq" : 346,
+		"answer" : "치주염",
+		"metadata_seq" : 1211,
+		"metadata_text" : "disease_oral:periodontitis"
+	},
+	{
+		"disease_id" : 286,
+		"disease_name" : "치주염",
+		"disease_type" : null,
+		"answer_seq" : 893,
+		"answer" : "치주염",
+		"metadata_seq" : 721,
+		"metadata_text" : "disease_oral:periodontitis"
+	},
+	{
+		"disease_id" : 287,
+		"disease_name" : "고관절 이형성",
+		"disease_type" : null,
+		"answer_seq" : 486,
+		"answer" : "고관절 이형성",
+		"metadata_seq" : 1230,
+		"metadata_text" : "disease_orthopedic:congenital_hip_dysplasia"
+	},
+	{
+		"disease_id" : 287,
+		"disease_name" : "고관절 이형성",
+		"disease_type" : null,
+		"answer_seq" : 1033,
+		"answer" : "고관절 이형성",
+		"metadata_seq" : 741,
+		"metadata_text" : "disease_orthopedic:congenital_hip_dysplasia"
+	},
+	{
+		"disease_id" : 288,
+		"disease_name" : "고관절 탈구",
+		"disease_type" : null,
+		"answer_seq" : 487,
+		"answer" : "고관절 탈구",
+		"metadata_seq" : 1231,
+		"metadata_text" : "disease_orthopedic:coxofemoral_luxation"
+	},
+	{
+		"disease_id" : 288,
+		"disease_name" : "고관절 탈구",
+		"disease_type" : null,
+		"answer_seq" : 1034,
+		"answer" : "고관절 탈구",
+		"metadata_seq" : 742,
+		"metadata_text" : "disease_orthopedic:coxofemoral_luxation"
+	},
+	{
+		"disease_id" : 289,
+		"disease_name" : "골/관절종양",
+		"disease_type" : null,
+		"answer_seq" : 488,
+		"answer" : "골/관절종양",
+		"metadata_seq" : 1229,
+		"metadata_text" : "disease_orthopedic:bone_joint_tumors"
+	},
+	{
+		"disease_id" : 289,
+		"disease_name" : "골/관절종양",
+		"disease_type" : null,
+		"answer_seq" : 1035,
+		"answer" : "골/관절종양",
+		"metadata_seq" : 740,
+		"metadata_text" : "disease_orthopedic:bone_joint_tumors"
+	},
+	{
+		"disease_id" : 290,
+		"disease_name" : "골수증식성 병증",
+		"disease_type" : null,
+		"answer_seq" : 489,
+		"answer" : "골수증식성 병증",
+		"metadata_seq" : 1238,
+		"metadata_text" : "disease_orthopedic:hematogenous_osteomyelitis"
+	},
+	{
+		"disease_id" : 290,
+		"disease_name" : "골수증식성 병증",
+		"disease_type" : null,
+		"answer_seq" : 1036,
+		"answer" : "골수증식성 병증",
+		"metadata_seq" : 749,
+		"metadata_text" : "disease_orthopedic:hematogenous_osteomyelitis"
+	},
+	{
+		"disease_id" : 291,
+		"disease_name" : "골연골분리증(OCD)",
+		"disease_type" : null,
+		"answer_seq" : 490,
+		"answer" : "골연골분리증(OCD)",
+		"metadata_seq" : 1246,
+		"metadata_text" : "disease_orthopedic:ocd_osteochondritis_dissecans"
+	},
+	{
+		"disease_id" : 291,
+		"disease_name" : "골연골분리증(OCD)",
+		"disease_type" : null,
+		"answer_seq" : 1037,
+		"answer" : "골연골분리증(OCD)",
+		"metadata_seq" : 757,
+		"metadata_text" : "disease_orthopedic:ocd_osteochondritis_dissecans"
+	},
+	{
+		"disease_id" : 292,
+		"disease_name" : "골염",
+		"disease_type" : null,
+		"answer_seq" : 491,
+		"answer" : "골염",
+		"metadata_seq" : 1228,
+		"metadata_text" : "disease_orthopedic:bone_inflammation"
+	},
+	{
+		"disease_id" : 292,
+		"disease_name" : "골염",
+		"disease_type" : null,
+		"answer_seq" : 498,
+		"answer" : "범골염",
+		"metadata_seq" : 1248,
+		"metadata_text" : "disease_orthopedic:panosteitis"
+	},
+	{
+		"disease_id" : 292,
+		"disease_name" : "골염",
+		"disease_type" : null,
+		"answer_seq" : 1038,
+		"answer" : "골염",
+		"metadata_seq" : 739,
+		"metadata_text" : "disease_orthopedic:bone_inflammation"
+	},
+	{
+		"disease_id" : 292,
+		"disease_name" : "골염",
+		"disease_type" : null,
+		"answer_seq" : 1045,
+		"answer" : "범골염",
+		"metadata_seq" : 759,
+		"metadata_text" : "disease_orthopedic:panosteitis"
+	},
+	{
+		"disease_id" : 293,
+		"disease_name" : "골절",
+		"disease_type" : null,
+		"answer_seq" : 333,
+		"answer" : "치아 골절",
+		"metadata_seq" : 1220,
+		"metadata_text" : "disease_oral:tooth_fracture"
+	},
+	{
+		"disease_id" : 293,
+		"disease_name" : "골절",
+		"disease_type" : null,
+		"answer_seq" : 492,
+		"answer" : "골절",
+		"metadata_seq" : 1237,
+		"metadata_text" : "disease_orthopedic:fracture"
+	},
+	{
+		"disease_id" : 293,
+		"disease_name" : "골절",
+		"disease_type" : null,
+		"answer_seq" : 879,
+		"answer" : "치아 골절",
+		"metadata_seq" : 730,
+		"metadata_text" : "disease_oral:tooth_fracture"
+	},
+	{
+		"disease_id" : 293,
+		"disease_name" : "골절",
+		"disease_type" : null,
+		"answer_seq" : 1039,
+		"answer" : "골절",
+		"metadata_seq" : 748,
+		"metadata_text" : "disease_orthopedic:fracture"
+	},
+	{
+		"disease_id" : 294,
+		"disease_name" : "근육파열",
+		"disease_type" : null,
+		"answer_seq" : 493,
+		"answer" : "근육파열",
+		"metadata_seq" : 1245,
+		"metadata_text" : "disease_orthopedic:muscle_rupture"
+	},
+	{
+		"disease_id" : 294,
+		"disease_name" : "근육파열",
+		"disease_type" : null,
+		"answer_seq" : 1040,
+		"answer" : "근육파열",
+		"metadata_seq" : 756,
+		"metadata_text" : "disease_orthopedic:muscle_rupture"
+	},
+	{
+		"disease_id" : 295,
+		"disease_name" : "다발성골수종",
+		"disease_type" : null,
+		"answer_seq" : 494,
+		"answer" : "다발성골수종",
+		"metadata_seq" : 1244,
+		"metadata_text" : "disease_orthopedic:multiple_myeloma"
+	},
+	{
+		"disease_id" : 295,
+		"disease_name" : "다발성골수종",
+		"disease_type" : null,
+		"answer_seq" : 1041,
+		"answer" : "다발성골수종",
+		"metadata_seq" : 755,
+		"metadata_text" : "disease_orthopedic:multiple_myeloma"
+	},
+	{
+		"disease_id" : 296,
+		"disease_name" : "디스크 병변",
+		"disease_type" : null,
+		"answer_seq" : 495,
+		"answer" : "디스크 병변",
+		"metadata_seq" : 1235,
+		"metadata_text" : "disease_orthopedic:disk_lesion"
+	},
+	{
+		"disease_id" : 296,
+		"disease_name" : "디스크 병변",
+		"disease_type" : null,
+		"answer_seq" : 1042,
+		"answer" : "디스크 병변",
+		"metadata_seq" : 746,
+		"metadata_text" : "disease_orthopedic:disk_lesion"
+	},
+	{
+		"disease_id" : 297,
+		"disease_name" : "면역매개성 골관절염",
+		"disease_type" : null,
+		"answer_seq" : 496,
+		"answer" : "면역매개성 골관절염",
+		"metadata_seq" : 1239,
+		"metadata_text" : "disease_orthopedic:immunomediated_osteoarthritis"
+	},
+	{
+		"disease_id" : 297,
+		"disease_name" : "면역매개성 골관절염",
+		"disease_type" : null,
+		"answer_seq" : 1043,
+		"answer" : "면역매개성 골관절염",
+		"metadata_seq" : 750,
+		"metadata_text" : "disease_orthopedic:immunomediated_osteoarthritis"
+	},
+	{
+		"disease_id" : 298,
+		"disease_name" : "발목 과신전",
+		"disease_type" : null,
+		"answer_seq" : 497,
+		"answer" : "발목 과신전",
+		"metadata_seq" : 1247,
+		"metadata_text" : "disease_orthopedic:overextension_of_the_ankle"
+	},
+	{
+		"disease_id" : 298,
+		"disease_name" : "발목 과신전",
+		"disease_type" : null,
+		"answer_seq" : 1044,
+		"answer" : "발목 과신전",
+		"metadata_seq" : 758,
+		"metadata_text" : "disease_orthopedic:overextension_of_the_ankle"
+	},
+	{
+		"disease_id" : 299,
+		"disease_name" : "범골염",
+		"disease_type" : null,
+		"answer_seq" : 498,
+		"answer" : "범골염",
+		"metadata_seq" : 1248,
+		"metadata_text" : "disease_orthopedic:panosteitis"
+	},
+	{
+		"disease_id" : 299,
+		"disease_name" : "범골염",
+		"disease_type" : null,
+		"answer_seq" : 1045,
+		"answer" : "범골염",
+		"metadata_seq" : 759,
+		"metadata_text" : "disease_orthopedic:panosteitis"
+	},
+	{
+		"disease_id" : 300,
+		"disease_name" : "슬개골 내측 탈구",
+		"disease_type" : null,
+		"answer_seq" : 499,
+		"answer" : "슬개골 내측 탈구",
+		"metadata_seq" : 1243,
+		"metadata_text" : "disease_orthopedic:medial_patellar_luxation"
+	},
+	{
+		"disease_id" : 300,
+		"disease_name" : "슬개골 내측 탈구",
+		"disease_type" : null,
+		"answer_seq" : 1046,
+		"answer" : "슬개골 내측 탈구",
+		"metadata_seq" : 754,
+		"metadata_text" : "disease_orthopedic:medial_patellar_luxation"
+	},
+	{
+		"disease_id" : 301,
+		"disease_name" : "슬개골 외측 탈구",
+		"disease_type" : null,
+		"answer_seq" : 500,
+		"answer" : "슬개골 외측 탈구",
+		"metadata_seq" : 1240,
+		"metadata_text" : "disease_orthopedic:lateral_patellar_luxation"
+	},
+	{
+		"disease_id" : 301,
+		"disease_name" : "슬개골 외측 탈구",
+		"disease_type" : null,
+		"answer_seq" : 1047,
+		"answer" : "슬개골 외측 탈구",
+		"metadata_seq" : 751,
+		"metadata_text" : "disease_orthopedic:lateral_patellar_luxation"
+	},
+	{
+		"disease_id" : 302,
+		"disease_name" : "십자인대 파열",
+		"disease_type" : null,
+		"answer_seq" : 501,
+		"answer" : "십자인대 파열",
+		"metadata_seq" : 1232,
+		"metadata_text" : "disease_orthopedic:cranial_cruciate_ligament_rupture"
+	},
+	{
+		"disease_id" : 302,
+		"disease_name" : "십자인대 파열",
+		"disease_type" : null,
+		"answer_seq" : 1048,
+		"answer" : "십자인대 파열",
+		"metadata_seq" : 743,
+		"metadata_text" : "disease_orthopedic:cranial_cruciate_ligament_rupture"
+	},
+	{
+		"disease_id" : 303,
+		"disease_name" : "어깨 탈구",
+		"disease_type" : null,
+		"answer_seq" : 502,
+		"answer" : "어깨 탈구",
+		"metadata_seq" : 1249,
+		"metadata_text" : "disease_orthopedic:shoulder_luxation"
+	},
+	{
+		"disease_id" : 303,
+		"disease_name" : "어깨 탈구",
+		"disease_type" : null,
+		"answer_seq" : 1049,
+		"answer" : "어깨 탈구",
+		"metadata_seq" : 760,
+		"metadata_text" : "disease_orthopedic:shoulder_luxation"
+	},
+	{
+		"disease_id" : 304,
+		"disease_name" : "인대손상",
+		"disease_type" : null,
+		"answer_seq" : 503,
+		"answer" : "인대손상",
+		"metadata_seq" : 1241,
+		"metadata_text" : "disease_orthopedic:ligament_injury"
+	},
+	{
+		"disease_id" : 304,
+		"disease_name" : "인대손상",
+		"disease_type" : null,
+		"answer_seq" : 1050,
+		"answer" : "인대손상",
+		"metadata_seq" : 752,
+		"metadata_text" : "disease_orthopedic:ligament_injury"
+	},
+	{
+		"disease_id" : 305,
+		"disease_name" : "인대파열",
+		"disease_type" : null,
+		"answer_seq" : 504,
+		"answer" : "인대파열",
+		"metadata_seq" : 1242,
+		"metadata_text" : "disease_orthopedic:ligament_tear"
+	},
+	{
+		"disease_id" : 305,
+		"disease_name" : "인대파열",
+		"disease_type" : null,
+		"answer_seq" : 1051,
+		"answer" : "인대파열",
+		"metadata_seq" : 753,
+		"metadata_text" : "disease_orthopedic:ligament_tear"
+	},
+	{
+		"disease_id" : 306,
+		"disease_name" : "척추 변형증",
+		"disease_type" : null,
+		"answer_seq" : 505,
+		"answer" : "척추 변형증",
+		"metadata_seq" : 1250,
+		"metadata_text" : "disease_orthopedic:spinal_deformity"
+	},
+	{
+		"disease_id" : 306,
+		"disease_name" : "척추 변형증",
+		"disease_type" : null,
+		"answer_seq" : 1052,
+		"answer" : "척추 변형증",
+		"metadata_seq" : 761,
+		"metadata_text" : "disease_orthopedic:spinal_deformity"
+	},
+	{
+		"disease_id" : 307,
+		"disease_name" : "척추 이형성",
+		"disease_type" : null,
+		"answer_seq" : 506,
+		"answer" : "척추 이형성",
+		"metadata_seq" : 1251,
+		"metadata_text" : "disease_orthopedic:spinal_dysplasia"
+	},
+	{
+		"disease_id" : 307,
+		"disease_name" : "척추 이형성",
+		"disease_type" : null,
+		"answer_seq" : 1053,
+		"answer" : "척추 이형성",
+		"metadata_seq" : 762,
+		"metadata_text" : "disease_orthopedic:spinal_dysplasia"
+	},
+	{
+		"disease_id" : 308,
+		"disease_name" : "척추 탈구",
+		"disease_type" : null,
+		"answer_seq" : 507,
+		"answer" : "척추 탈구",
+		"metadata_seq" : 1252,
+		"metadata_text" : "disease_orthopedic:spinal_luxation"
+	},
+	{
+		"disease_id" : 308,
+		"disease_name" : "척추 탈구",
+		"disease_type" : null,
+		"answer_seq" : 1054,
+		"answer" : "척추 탈구",
+		"metadata_seq" : 763,
+		"metadata_text" : "disease_orthopedic:spinal_luxation"
+	},
+	{
+		"disease_id" : 309,
+		"disease_name" : "척추굳음증",
+		"disease_type" : null,
+		"answer_seq" : 508,
+		"answer" : "척추굳음증",
+		"metadata_seq" : 1253,
+		"metadata_text" : "disease_orthopedic:spondylosis"
+	},
+	{
+		"disease_id" : 309,
+		"disease_name" : "척추굳음증",
+		"disease_type" : null,
+		"answer_seq" : 1055,
+		"answer" : "척추굳음증",
+		"metadata_seq" : 764,
+		"metadata_text" : "disease_orthopedic:spondylosis"
+	},
+	{
+		"disease_id" : 310,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 509,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 1234,
+		"metadata_text" : "disease_orthopedic:disc_disease"
+	},
+	{
+		"disease_id" : 310,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 570,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 1073,
+		"metadata_text" : "disease_cns:intervertebral_disc_disease"
+	},
+	{
+		"disease_id" : 310,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 1056,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 745,
+		"metadata_text" : "disease_orthopedic:disc_disease"
+	},
+	{
+		"disease_id" : 310,
+		"disease_name" : "추간판질환(디스크질환)",
+		"disease_type" : null,
+		"answer_seq" : 1117,
+		"answer" : "추간판질환(디스크질환)",
+		"metadata_seq" : 584,
+		"metadata_text" : "disease_cns:intervertebral_disc_disease"
+	},
+	{
+		"disease_id" : 311,
+		"disease_name" : "퇴행성 골관절염",
+		"disease_type" : null,
+		"answer_seq" : 510,
+		"answer" : "퇴행성 골관절염",
+		"metadata_seq" : 1233,
+		"metadata_text" : "disease_orthopedic:degenerative_osteoarthritis"
+	},
+	{
+		"disease_id" : 311,
+		"disease_name" : "퇴행성 골관절염",
+		"disease_type" : null,
+		"answer_seq" : 1057,
+		"answer" : "퇴행성 골관절염",
+		"metadata_seq" : 744,
+		"metadata_text" : "disease_orthopedic:degenerative_osteoarthritis"
+	},
+	{
+		"disease_id" : 312,
+		"disease_name" : "팔꿈치 이형성증",
+		"disease_type" : null,
+		"answer_seq" : 511,
+		"answer" : "팔꿈치 이형성증",
+		"metadata_seq" : 1236,
+		"metadata_text" : "disease_orthopedic:elbow_dysplasia"
+	},
+	{
+		"disease_id" : 312,
+		"disease_name" : "팔꿈치 이형성증",
+		"disease_type" : null,
+		"answer_seq" : 1058,
+		"answer" : "팔꿈치 이형성증",
+		"metadata_seq" : 747,
+		"metadata_text" : "disease_orthopedic:elbow_dysplasia"
+	},
+	{
+		"disease_id" : 313,
+		"disease_name" : "만성신부전",
+		"disease_type" : null,
+		"answer_seq" : 452,
+		"answer" : "만성신부전",
+		"metadata_seq" : 1254,
+		"metadata_text" : "disease_renal:chronic_kidney_disease"
+	},
+	{
+		"disease_id" : 313,
+		"disease_name" : "만성신부전",
+		"disease_type" : null,
+		"answer_seq" : 1001,
+		"answer" : "만성신부전",
+		"metadata_seq" : 765,
+		"metadata_text" : "disease_renal:chronic_kidney_disease"
+	},
+	{
+		"disease_id" : 314,
+		"disease_name" : "신우신염",
+		"disease_type" : null,
+		"answer_seq" : 453,
+		"answer" : "신우신염",
+		"metadata_seq" : 1260,
+		"metadata_text" : "disease_renal:pyelonephritis"
+	},
+	{
+		"disease_id" : 314,
+		"disease_name" : "신우신염",
+		"disease_type" : null,
+		"answer_seq" : 1002,
+		"answer" : "신우신염",
+		"metadata_seq" : 772,
+		"metadata_text" : "disease_renal:pyelonephritis"
+	},
+	{
+		"disease_id" : 315,
+		"disease_name" : "신장 낭종",
+		"disease_type" : null,
+		"answer_seq" : 454,
+		"answer" : "신장 낭종",
+		"metadata_seq" : 1256,
+		"metadata_text" : "disease_renal:kidney_cysts"
+	},
+	{
+		"disease_id" : 315,
+		"disease_name" : "신장 낭종",
+		"disease_type" : null,
+		"answer_seq" : 1003,
+		"answer" : "신장 낭종",
+		"metadata_seq" : 767,
+		"metadata_text" : "disease_renal:kidney_cysts"
+	},
+	{
+		"disease_id" : 316,
+		"disease_name" : "신장 아밀로이드침착증",
+		"disease_type" : null,
+		"answer_seq" : 455,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 1255,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"disease_id" : 316,
+		"disease_name" : "신장 아밀로이드침착증",
+		"disease_type" : null,
+		"answer_seq" : 1004,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 766,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"disease_id" : 317,
+		"disease_name" : "신장 염증성 섬유증",
+		"disease_type" : null,
+		"answer_seq" : 456,
+		"answer" : "신장 염증성 섬유증",
+		"metadata_seq" : 1261,
+		"metadata_text" : "disease_renal:renal_inflammatory_fibrosis"
+	},
+	{
+		"disease_id" : 317,
+		"disease_name" : "신장 염증성 섬유증",
+		"disease_type" : null,
+		"answer_seq" : 1005,
+		"answer" : "신장 염증성 섬유증",
+		"metadata_seq" : 773,
+		"metadata_text" : "disease_renal:renal_inflammatory_fibrosis"
+	},
+	{
+		"disease_id" : 318,
+		"disease_name" : "신장결석",
+		"disease_type" : null,
+		"answer_seq" : 457,
+		"answer" : "신장결석",
+		"metadata_seq" : 1258,
+		"metadata_text" : "disease_renal:kidney_stones"
+	},
+	{
+		"disease_id" : 318,
+		"disease_name" : "신장결석",
+		"disease_type" : null,
+		"answer_seq" : 1006,
+		"answer" : "신장결석",
+		"metadata_seq" : 769,
+		"metadata_text" : "disease_renal:kidney_stones"
+	},
+	{
+		"disease_id" : 319,
+		"disease_name" : "신장염",
+		"disease_type" : null,
+		"answer_seq" : 458,
+		"answer" : "신장염",
+		"metadata_seq" : 1257,
+		"metadata_text" : "disease_renal:kidney_inflammation"
+	},
+	{
+		"disease_id" : 319,
+		"disease_name" : "신장염",
+		"disease_type" : null,
+		"answer_seq" : 1007,
+		"answer" : "신장염",
+		"metadata_seq" : 768,
+		"metadata_text" : "disease_renal:kidney_inflammation"
+	},
+	{
+		"disease_id" : 320,
+		"disease_name" : "신장이식 후 합병증",
+		"disease_type" : null,
+		"answer_seq" : 459,
+		"answer" : "신장이식 후 합병증",
+		"metadata_seq" : 1259,
+		"metadata_text" : "disease_renal:kidney_transplant_complications"
+	},
+	{
+		"disease_id" : 320,
+		"disease_name" : "신장이식 후 합병증",
+		"disease_type" : null,
+		"answer_seq" : 1008,
+		"answer" : "신장이식 후 합병증",
+		"metadata_seq" : 770,
+		"metadata_text" : "disease_renal:kidney_transplant_complications"
+	},
+	{
+		"disease_id" : 321,
+		"disease_name" : "신장종양",
+		"disease_type" : null,
+		"answer_seq" : 460,
+		"answer" : "신장종양",
+		"metadata_seq" : 1262,
+		"metadata_text" : "disease_renal:renal_tumors"
+	},
+	{
+		"disease_id" : 321,
+		"disease_name" : "신장종양",
+		"disease_type" : null,
+		"answer_seq" : 1009,
+		"answer" : "신장종양",
+		"metadata_seq" : 774,
+		"metadata_text" : "disease_renal:renal_tumors"
+	},
+	{
+		"disease_id" : 322,
+		"disease_name" : "급성 기관지염",
+		"disease_type" : null,
+		"answer_seq" : 347,
+		"answer" : "급성 기관지염",
+		"metadata_seq" : 1263,
+		"metadata_text" : "disease_respiratory:acute_bronchitis"
+	},
+	{
+		"disease_id" : 322,
+		"disease_name" : "급성 기관지염",
+		"disease_type" : null,
+		"answer_seq" : 894,
+		"answer" : "급성 기관지염",
+		"metadata_seq" : 775,
+		"metadata_text" : "disease_respiratory:acute_bronchitis"
+	},
+	{
+		"disease_id" : 323,
+		"disease_name" : "기관 저형성",
+		"disease_type" : null,
+		"answer_seq" : 348,
+		"answer" : "기관 저형성",
+		"metadata_seq" : 1290,
+		"metadata_text" : "disease_respiratory:tracheal_hypoplasia"
+	},
+	{
+		"disease_id" : 323,
+		"disease_name" : "기관 저형성",
+		"disease_type" : null,
+		"answer_seq" : 895,
+		"answer" : "기관 저형성",
+		"metadata_seq" : 802,
+		"metadata_text" : "disease_respiratory:tracheal_hypoplasia"
+	},
+	{
+		"disease_id" : 324,
+		"disease_name" : "기관 허탈",
+		"disease_type" : null,
+		"answer_seq" : 349,
+		"answer" : "기관 허탈",
+		"metadata_seq" : 1289,
+		"metadata_text" : "disease_respiratory:tracheal_collapse"
+	},
+	{
+		"disease_id" : 324,
+		"disease_name" : "기관 허탈",
+		"disease_type" : null,
+		"answer_seq" : 896,
+		"answer" : "기관 허탈",
+		"metadata_seq" : 801,
+		"metadata_text" : "disease_respiratory:tracheal_collapse"
+	},
+	{
+		"disease_id" : 325,
+		"disease_name" : "기관지 허탈",
+		"disease_type" : null,
+		"answer_seq" : 350,
+		"answer" : "기관지 허탈",
+		"metadata_seq" : 1269,
+		"metadata_text" : "disease_respiratory:bronchial_collapse"
+	},
+	{
+		"disease_id" : 325,
+		"disease_name" : "기관지 허탈",
+		"disease_type" : null,
+		"answer_seq" : 897,
+		"answer" : "기관지 허탈",
+		"metadata_seq" : 781,
+		"metadata_text" : "disease_respiratory:bronchial_collapse"
+	},
+	{
+		"disease_id" : 326,
+		"disease_name" : "기관지확장증",
+		"disease_type" : null,
+		"answer_seq" : 351,
+		"answer" : "기관지확장증",
+		"metadata_seq" : 1270,
+		"metadata_text" : "disease_respiratory:bronchiectasis"
+	},
+	{
+		"disease_id" : 326,
+		"disease_name" : "기관지확장증",
+		"disease_type" : null,
+		"answer_seq" : 898,
+		"answer" : "기관지확장증",
+		"metadata_seq" : 782,
+		"metadata_text" : "disease_respiratory:bronchiectasis"
+	},
+	{
+		"disease_id" : 327,
+		"disease_name" : "기도건조증",
+		"disease_type" : null,
+		"answer_seq" : 352,
+		"answer" : "기도건조증",
+		"metadata_seq" : 1264,
+		"metadata_text" : "disease_respiratory:airway_dryness"
+	},
+	{
+		"disease_id" : 327,
+		"disease_name" : "기도건조증",
+		"disease_type" : null,
+		"answer_seq" : 899,
+		"answer" : "기도건조증",
+		"metadata_seq" : 776,
+		"metadata_text" : "disease_respiratory:airway_dryness"
+	},
+	{
+		"disease_id" : 328,
+		"disease_name" : "기도이물질",
+		"disease_type" : null,
+		"answer_seq" : 353,
+		"answer" : "기도이물질",
+		"metadata_seq" : 1265,
+		"metadata_text" : "disease_respiratory:airway_foreign_body"
+	},
+	{
+		"disease_id" : 328,
+		"disease_name" : "기도이물질",
+		"disease_type" : null,
+		"answer_seq" : 900,
+		"answer" : "기도이물질",
+		"metadata_seq" : 777,
+		"metadata_text" : "disease_respiratory:airway_foreign_body"
+	},
+	{
+		"disease_id" : 329,
+		"disease_name" : "단두종 호흡기 증후군",
+		"disease_type" : null,
+		"answer_seq" : 354,
+		"answer" : "단두종 호흡기 증후군",
+		"metadata_seq" : 1268,
+		"metadata_text" : "disease_respiratory:brachycephalic_respiratory_syndrome"
+	},
+	{
+		"disease_id" : 329,
+		"disease_name" : "단두종 호흡기 증후군",
+		"disease_type" : null,
+		"answer_seq" : 901,
+		"answer" : "단두종 호흡기 증후군",
+		"metadata_seq" : 780,
+		"metadata_text" : "disease_respiratory:brachycephalic_respiratory_syndrome"
+	},
+	{
+		"disease_id" : 330,
+		"disease_name" : "만성 기관지염",
+		"disease_type" : null,
+		"answer_seq" : 355,
+		"answer" : "만성 기관지염",
+		"metadata_seq" : 1271,
+		"metadata_text" : "disease_respiratory:chronic_bronchitis"
+	},
+	{
+		"disease_id" : 330,
+		"disease_name" : "만성 기관지염",
+		"disease_type" : null,
+		"answer_seq" : 902,
+		"answer" : "만성 기관지염",
+		"metadata_seq" : 783,
+		"metadata_text" : "disease_respiratory:chronic_bronchitis"
+	},
+	{
+		"disease_id" : 331,
+		"disease_name" : "바이러스성 기관지폐렴",
+		"disease_type" : null,
+		"answer_seq" : 356,
+		"answer" : "바이러스성 기관지폐렴",
+		"metadata_seq" : 1291,
+		"metadata_text" : "disease_respiratory:viral_bronchopneumonia"
+	},
+	{
+		"disease_id" : 331,
+		"disease_name" : "바이러스성 기관지폐렴",
+		"disease_type" : null,
+		"answer_seq" : 903,
+		"answer" : "바이러스성 기관지폐렴",
+		"metadata_seq" : 803,
+		"metadata_text" : "disease_respiratory:viral_bronchopneumonia"
+	},
+	{
+		"disease_id" : 332,
+		"disease_name" : "비염",
+		"disease_type" : null,
+		"answer_seq" : 357,
+		"answer" : "비염",
+		"metadata_seq" : 1287,
+		"metadata_text" : "disease_respiratory:rhinitis"
+	},
+	{
+		"disease_id" : 332,
+		"disease_name" : "비염",
+		"disease_type" : null,
+		"answer_seq" : 904,
+		"answer" : "비염",
+		"metadata_seq" : 799,
+		"metadata_text" : "disease_respiratory:rhinitis"
+	},
+	{
+		"disease_id" : 333,
+		"disease_name" : "비인두 비갑개 확장",
+		"disease_type" : null,
+		"answer_seq" : 358,
+		"answer" : "비인두 비갑개 확장",
+		"metadata_seq" : 1277,
+		"metadata_text" : "disease_respiratory:pharyngeal_soft_palate_elongation"
+	},
+	{
+		"disease_id" : 333,
+		"disease_name" : "비인두 비갑개 확장",
+		"disease_type" : null,
+		"answer_seq" : 905,
+		"answer" : "비인두 비갑개 확장",
+		"metadata_seq" : 789,
+		"metadata_text" : "disease_respiratory:pharyngeal_soft_palate_elongation"
+	},
+	{
+		"disease_id" : 334,
+		"disease_name" : "세균성 기관지폐렴",
+		"disease_type" : null,
+		"answer_seq" : 359,
+		"answer" : "세균성 기관지폐렴",
+		"metadata_seq" : 1267,
+		"metadata_text" : "disease_respiratory:bacterial_bronchopneumonia"
+	},
+	{
+		"disease_id" : 334,
+		"disease_name" : "세균성 기관지폐렴",
+		"disease_type" : null,
+		"answer_seq" : 906,
+		"answer" : "세균성 기관지폐렴",
+		"metadata_seq" : 779,
+		"metadata_text" : "disease_respiratory:bacterial_bronchopneumonia"
+	},
+	{
+		"disease_id" : 335,
+		"disease_name" : "심인성 폐수종",
+		"disease_type" : null,
+		"answer_seq" : 360,
+		"answer" : "심인성 폐수종",
+		"metadata_seq" : 1272,
+		"metadata_text" : "disease_respiratory:congestive_heart_failure"
+	},
+	{
+		"disease_id" : 335,
+		"disease_name" : "심인성 폐수종",
+		"disease_type" : null,
+		"answer_seq" : 907,
+		"answer" : "심인성 폐수종",
+		"metadata_seq" : 784,
+		"metadata_text" : "disease_respiratory:congestive_heart_failure"
+	},
+	{
+		"disease_id" : 336,
+		"disease_name" : "인후두염",
+		"disease_type" : null,
+		"answer_seq" : 361,
+		"answer" : "인후두염",
+		"metadata_seq" : 1275,
+		"metadata_text" : "disease_respiratory:laryngitis"
+	},
+	{
+		"disease_id" : 336,
+		"disease_name" : "인후두염",
+		"disease_type" : null,
+		"answer_seq" : 908,
+		"answer" : "인후두염",
+		"metadata_seq" : 787,
+		"metadata_text" : "disease_respiratory:laryngitis"
+	},
+	{
+		"disease_id" : 337,
+		"disease_name" : "좁은 콧구멍",
+		"disease_type" : null,
+		"answer_seq" : 362,
+		"answer" : "좁은 콧구멍",
+		"metadata_seq" : 1276,
+		"metadata_text" : "disease_respiratory:narrow_nostrils"
+	},
+	{
+		"disease_id" : 337,
+		"disease_name" : "좁은 콧구멍",
+		"disease_type" : null,
+		"answer_seq" : 909,
+		"answer" : "좁은 콧구멍",
+		"metadata_seq" : 788,
+		"metadata_text" : "disease_respiratory:narrow_nostrils"
+	},
+	{
+		"disease_id" : 338,
+		"disease_name" : "코골이",
+		"disease_type" : null,
+		"answer_seq" : 363,
+		"answer" : "코골이",
+		"metadata_seq" : 1288,
+		"metadata_text" : "disease_respiratory:snoring"
+	},
+	{
+		"disease_id" : 338,
+		"disease_name" : "코골이",
+		"disease_type" : null,
+		"answer_seq" : 910,
+		"answer" : "코골이",
+		"metadata_seq" : 800,
+		"metadata_text" : "disease_respiratory:snoring"
+	},
+	{
+		"disease_id" : 339,
+		"disease_name" : "폐기종",
+		"disease_type" : null,
+		"answer_seq" : 364,
+		"answer" : "폐기종",
+		"metadata_seq" : 1284,
+		"metadata_text" : "disease_respiratory:pulmonary_emphysema"
+	},
+	{
+		"disease_id" : 339,
+		"disease_name" : "폐기종",
+		"disease_type" : null,
+		"answer_seq" : 911,
+		"answer" : "폐기종",
+		"metadata_seq" : 796,
+		"metadata_text" : "disease_respiratory:pulmonary_emphysema"
+	},
+	{
+		"disease_id" : 340,
+		"disease_name" : "폐농양",
+		"disease_type" : null,
+		"answer_seq" : 365,
+		"answer" : "폐농양",
+		"metadata_seq" : 1281,
+		"metadata_text" : "disease_respiratory:pulmonary_abscess"
+	},
+	{
+		"disease_id" : 340,
+		"disease_name" : "폐농양",
+		"disease_type" : null,
+		"answer_seq" : 912,
+		"answer" : "폐농양",
+		"metadata_seq" : 793,
+		"metadata_text" : "disease_respiratory:pulmonary_abscess"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 356,
+		"answer" : "바이러스성 기관지폐렴",
+		"metadata_seq" : 1291,
+		"metadata_text" : "disease_respiratory:viral_bronchopneumonia"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 359,
+		"answer" : "세균성 기관지폐렴",
+		"metadata_seq" : 1267,
+		"metadata_text" : "disease_respiratory:bacterial_bronchopneumonia"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 366,
+		"answer" : "폐렴",
+		"metadata_seq" : 1280,
+		"metadata_text" : "disease_respiratory:pneumonia"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 903,
+		"answer" : "바이러스성 기관지폐렴",
+		"metadata_seq" : 803,
+		"metadata_text" : "disease_respiratory:viral_bronchopneumonia"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 906,
+		"answer" : "세균성 기관지폐렴",
+		"metadata_seq" : 779,
+		"metadata_text" : "disease_respiratory:bacterial_bronchopneumonia"
+	},
+	{
+		"disease_id" : 341,
+		"disease_name" : "폐렴",
+		"disease_type" : null,
+		"answer_seq" : 913,
+		"answer" : "폐렴",
+		"metadata_seq" : 792,
+		"metadata_text" : "disease_respiratory:pneumonia"
+	},
+	{
+		"disease_id" : 342,
+		"disease_name" : "폐부종",
+		"disease_type" : null,
+		"answer_seq" : 367,
+		"answer" : "폐부종",
+		"metadata_seq" : 1282,
+		"metadata_text" : "disease_respiratory:pulmonary_edema"
+	},
+	{
+		"disease_id" : 342,
+		"disease_name" : "폐부종",
+		"disease_type" : null,
+		"answer_seq" : 914,
+		"answer" : "폐부종",
+		"metadata_seq" : 794,
+		"metadata_text" : "disease_respiratory:pulmonary_edema"
+	},
+	{
+		"disease_id" : 343,
+		"disease_name" : "폐색전증",
+		"disease_type" : null,
+		"answer_seq" : 368,
+		"answer" : "폐색전증",
+		"metadata_seq" : 1283,
+		"metadata_text" : "disease_respiratory:pulmonary_embolism"
+	},
+	{
+		"disease_id" : 343,
+		"disease_name" : "폐색전증",
+		"disease_type" : null,
+		"answer_seq" : 915,
+		"answer" : "폐색전증",
+		"metadata_seq" : 795,
+		"metadata_text" : "disease_respiratory:pulmonary_embolism"
+	},
+	{
+		"disease_id" : 345,
+		"disease_name" : "폐신장증후군",
+		"disease_type" : null,
+		"answer_seq" : 369,
+		"answer" : "폐신장증후군",
+		"metadata_seq" : 1285,
+		"metadata_text" : "disease_respiratory:pulmonary_renal_syndrome"
+	},
+	{
+		"disease_id" : 345,
+		"disease_name" : "폐신장증후군",
+		"disease_type" : null,
+		"answer_seq" : 916,
+		"answer" : "폐신장증후군",
+		"metadata_seq" : 797,
+		"metadata_text" : "disease_respiratory:pulmonary_renal_syndrome"
+	},
+	{
+		"disease_id" : 346,
+		"disease_name" : "폐포파열",
+		"disease_type" : null,
+		"answer_seq" : 370,
+		"answer" : "폐포파열",
+		"metadata_seq" : 1266,
+		"metadata_text" : "disease_respiratory:alveolar_rupture"
+	},
+	{
+		"disease_id" : 346,
+		"disease_name" : "폐포파열",
+		"disease_type" : null,
+		"answer_seq" : 917,
+		"answer" : "폐포파열",
+		"metadata_seq" : 778,
+		"metadata_text" : "disease_respiratory:alveolar_rupture"
+	},
+	{
+		"disease_id" : 347,
+		"disease_name" : "폐혈전증",
+		"disease_type" : null,
+		"answer_seq" : 371,
+		"answer" : "폐혈전증",
+		"metadata_seq" : 1286,
+		"metadata_text" : "disease_respiratory:pulmonary_thrombosis"
+	},
+	{
+		"disease_id" : 347,
+		"disease_name" : "폐혈전증",
+		"disease_type" : null,
+		"answer_seq" : 918,
+		"answer" : "폐혈전증",
+		"metadata_seq" : 798,
+		"metadata_text" : "disease_respiratory:pulmonary_thrombosis"
+	},
+	{
+		"disease_id" : 348,
+		"disease_name" : "호흡근막염",
+		"disease_type" : null,
+		"answer_seq" : 372,
+		"answer" : "호흡근막염",
+		"metadata_seq" : 1273,
+		"metadata_text" : "disease_respiratory:fasciitis"
+	},
+	{
+		"disease_id" : 348,
+		"disease_name" : "호흡근막염",
+		"disease_type" : null,
+		"answer_seq" : 919,
+		"answer" : "호흡근막염",
+		"metadata_seq" : 785,
+		"metadata_text" : "disease_respiratory:fasciitis"
+	},
+	{
+		"disease_id" : 349,
+		"disease_name" : "후두경련",
+		"disease_type" : null,
+		"answer_seq" : 373,
+		"answer" : "후두경련",
+		"metadata_seq" : 1274,
+		"metadata_text" : "disease_respiratory:laryngeal_dyskinesis"
+	},
+	{
+		"disease_id" : 349,
+		"disease_name" : "후두경련",
+		"disease_type" : null,
+		"answer_seq" : 920,
+		"answer" : "후두경련",
+		"metadata_seq" : 786,
+		"metadata_text" : "disease_respiratory:laryngeal_dyskinesis"
+	},
+	{
+		"disease_id" : 350,
+		"disease_name" : "흉막염",
+		"disease_type" : null,
+		"answer_seq" : 374,
+		"answer" : "흉막염",
+		"metadata_seq" : 1279,
+		"metadata_text" : "disease_respiratory:pleuritis"
+	},
+	{
+		"disease_id" : 350,
+		"disease_name" : "흉막염",
+		"disease_type" : null,
+		"answer_seq" : 921,
+		"answer" : "흉막염",
+		"metadata_seq" : 791,
+		"metadata_text" : "disease_respiratory:pleuritis"
+	},
+	{
+		"disease_id" : 351,
+		"disease_name" : "흉수",
+		"disease_type" : null,
+		"answer_seq" : 375,
+		"answer" : "흉수",
+		"metadata_seq" : 1278,
+		"metadata_text" : "disease_respiratory:pleural_effusion"
+	},
+	{
+		"disease_id" : 351,
+		"disease_name" : "흉수",
+		"disease_type" : null,
+		"answer_seq" : 922,
+		"answer" : "흉수",
+		"metadata_seq" : 790,
+		"metadata_text" : "disease_respiratory:pleural_effusion"
+	},
+	{
+		"disease_id" : 352,
+		"disease_name" : "곰팡이성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 250,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 1304,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"disease_id" : 352,
+		"disease_name" : "곰팡이성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 794,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 818,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"disease_id" : 353,
+		"disease_name" : "과각화증",
+		"disease_type" : null,
+		"answer_seq" : 251,
+		"answer" : "과각화증",
+		"metadata_seq" : 1311,
+		"metadata_text" : "disease_skin:keratosis"
+	},
+	{
+		"disease_id" : 353,
+		"disease_name" : "과각화증",
+		"disease_type" : null,
+		"answer_seq" : 795,
+		"answer" : "과각화증",
+		"metadata_seq" : 825,
+		"metadata_text" : "disease_skin:keratosis"
+	},
+	{
+		"disease_id" : 354,
+		"disease_name" : "급성 습진성 피부염 (핫스팟)",
+		"disease_type" : null,
+		"answer_seq" : 252,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 1307,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 354,
+		"disease_name" : "급성 습진성 피부염 (핫스팟)",
+		"disease_type" : null,
+		"answer_seq" : 796,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 821,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 355,
+		"disease_name" : "낙엽성 천포창",
+		"disease_type" : null,
+		"answer_seq" : 253,
+		"answer" : "낙엽성 천포창",
+		"metadata_seq" : 1318,
+		"metadata_text" : "disease_skin:pemphigus_foliaceus"
+	},
+	{
+		"disease_id" : 355,
+		"disease_name" : "낙엽성 천포창",
+		"disease_type" : null,
+		"answer_seq" : 797,
+		"answer" : "낙엽성 천포창",
+		"metadata_seq" : 832,
+		"metadata_text" : "disease_skin:pemphigus_foliaceus"
+	},
+	{
+		"disease_id" : 356,
+		"disease_name" : "다형 홍반",
+		"disease_type" : null,
+		"answer_seq" : 254,
+		"answer" : "다형 홍반",
+		"metadata_seq" : 1302,
+		"metadata_text" : "disease_skin:erythema_multiforme"
+	},
+	{
+		"disease_id" : 356,
+		"disease_name" : "다형 홍반",
+		"disease_type" : null,
+		"answer_seq" : 798,
+		"answer" : "다형 홍반",
+		"metadata_seq" : 816,
+		"metadata_text" : "disease_skin:erythema_multiforme"
+	},
+	{
+		"disease_id" : 357,
+		"disease_name" : "두드러기",
+		"disease_type" : null,
+		"answer_seq" : 255,
+		"answer" : "두드러기",
+		"metadata_seq" : 1325,
+		"metadata_text" : "disease_skin:urticaria"
+	},
+	{
+		"disease_id" : 357,
+		"disease_name" : "두드러기",
+		"disease_type" : null,
+		"answer_seq" : 799,
+		"answer" : "두드러기",
+		"metadata_seq" : 839,
+		"metadata_text" : "disease_skin:urticaria"
+	},
+	{
+		"disease_id" : 358,
+		"disease_name" : "면역매개성피부염",
+		"disease_type" : null,
+		"answer_seq" : 256,
+		"answer" : "면역매개성피부염",
+		"metadata_seq" : 1309,
+		"metadata_text" : "disease_skin:immune_mediated_dermatitis"
+	},
+	{
+		"disease_id" : 358,
+		"disease_name" : "면역매개성피부염",
+		"disease_type" : null,
+		"answer_seq" : 800,
+		"answer" : "면역매개성피부염",
+		"metadata_seq" : 823,
+		"metadata_text" : "disease_skin:immune_mediated_dermatitis"
+	},
+	{
+		"disease_id" : 359,
+		"disease_name" : "모낭충",
+		"disease_type" : null,
+		"answer_seq" : 257,
+		"answer" : "모낭충",
+		"metadata_seq" : 1299,
+		"metadata_text" : "disease_skin:demodex"
+	},
+	{
+		"disease_id" : 359,
+		"disease_name" : "모낭충",
+		"disease_type" : null,
+		"answer_seq" : 801,
+		"answer" : "모낭충",
+		"metadata_seq" : 812,
+		"metadata_text" : "disease_skin:demodex"
+	},
+	{
+		"disease_id" : 360,
+		"disease_name" : "발가락 피부염(발습진)",
+		"disease_type" : null,
+		"answer_seq" : 258,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 1310,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 360,
+		"disease_name" : "발가락 피부염(발습진)",
+		"disease_type" : null,
+		"answer_seq" : 802,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 824,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 361,
+		"disease_name" : "사마귀",
+		"disease_type" : null,
+		"answer_seq" : 259,
+		"answer" : "사마귀",
+		"metadata_seq" : 1326,
+		"metadata_text" : "disease_skin:warts"
+	},
+	{
+		"disease_id" : 361,
+		"disease_name" : "사마귀",
+		"disease_type" : null,
+		"answer_seq" : 803,
+		"answer" : "사마귀",
+		"metadata_seq" : 840,
+		"metadata_text" : "disease_skin:warts"
+	},
+	{
+		"disease_id" : 362,
+		"disease_name" : "색소침착증",
+		"disease_type" : null,
+		"answer_seq" : 260,
+		"answer" : "색소침착증",
+		"metadata_seq" : 1321,
+		"metadata_text" : "disease_skin:pigmentation"
+	},
+	{
+		"disease_id" : 362,
+		"disease_name" : "색소침착증",
+		"disease_type" : null,
+		"answer_seq" : 804,
+		"answer" : "색소침착증",
+		"metadata_seq" : 835,
+		"metadata_text" : "disease_skin:pigmentation"
+	},
+	{
+		"disease_id" : 363,
+		"disease_name" : "세균성 피부염(농피증)",
+		"disease_type" : null,
+		"answer_seq" : 261,
+		"answer" : "세균성 피부염(농피증)",
+		"metadata_seq" : 1322,
+		"metadata_text" : "disease_skin:pyoderma"
+	},
+	{
+		"disease_id" : 363,
+		"disease_name" : "세균성 피부염(농피증)",
+		"disease_type" : null,
+		"answer_seq" : 805,
+		"answer" : "세균성 피부염(농피증)",
+		"metadata_seq" : 836,
+		"metadata_text" : "disease_skin:pyoderma"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 252,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 1307,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 258,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 1310,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 262,
+		"answer" : "습진",
+		"metadata_seq" : 1300,
+		"metadata_text" : "disease_skin:eczema"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 796,
+		"answer" : "급성 습진성 피부염 (핫스팟)",
+		"metadata_seq" : 821,
+		"metadata_text" : "disease_skin:hotspot"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 802,
+		"answer" : "발가락 피부염(발습진)",
+		"metadata_seq" : 824,
+		"metadata_text" : "disease_skin:interdigital_dermatitis"
+	},
+	{
+		"disease_id" : 364,
+		"disease_name" : "습진",
+		"disease_type" : null,
+		"answer_seq" : 806,
+		"answer" : "습진",
+		"metadata_seq" : 813,
+		"metadata_text" : "disease_skin:eczema"
+	},
+	{
+		"disease_id" : 365,
+		"disease_name" : "아토피성피부염",
+		"disease_type" : null,
+		"answer_seq" : 263,
+		"answer" : "아토피성피부염",
+		"metadata_seq" : 1295,
+		"metadata_text" : "disease_skin:atopic_dermatitis"
+	},
+	{
+		"disease_id" : 365,
+		"disease_name" : "아토피성피부염",
+		"disease_type" : null,
+		"answer_seq" : 807,
+		"answer" : "아토피성피부염",
+		"metadata_seq" : 807,
+		"metadata_text" : "disease_skin:atopic_dermatitis"
+	},
+	{
+		"disease_id" : 366,
+		"disease_name" : "알러지성피부염",
+		"disease_type" : null,
+		"answer_seq" : 264,
+		"answer" : "알러지성피부염",
+		"metadata_seq" : 1293,
+		"metadata_text" : "disease_skin:allergic_dermatitis"
+	},
+	{
+		"disease_id" : 366,
+		"disease_name" : "알러지성피부염",
+		"disease_type" : null,
+		"answer_seq" : 808,
+		"answer" : "알러지성피부염",
+		"metadata_seq" : 805,
+		"metadata_text" : "disease_skin:allergic_dermatitis"
+	},
+	{
+		"disease_id" : 367,
+		"disease_name" : "외이염(귓병)",
+		"disease_type" : null,
+		"answer_seq" : 265,
+		"answer" : "외이염(귓병)",
+		"metadata_seq" : 1314,
+		"metadata_text" : "disease_skin:otitis_externa"
+	},
+	{
+		"disease_id" : 367,
+		"disease_name" : "외이염(귓병)",
+		"disease_type" : null,
+		"answer_seq" : 809,
+		"answer" : "외이염(귓병)",
+		"metadata_seq" : 828,
+		"metadata_text" : "disease_skin:otitis_externa"
+	},
+	{
+		"disease_id" : 368,
+		"disease_name" : "자기면역성피부염",
+		"disease_type" : "",
+		"answer_seq" : 266,
+		"answer" : "자기면역성피부염",
+		"metadata_seq" : 1296,
+		"metadata_text" : "disease_skin:autoimmune_dermatitis"
+	},
+	{
+		"disease_id" : 368,
+		"disease_name" : "자기면역성피부염",
+		"disease_type" : "",
+		"answer_seq" : 810,
+		"answer" : "자기면역성피부염",
+		"metadata_seq" : 808,
+		"metadata_text" : "disease_skin:autoimmune_dermatitis"
+	},
+	{
+		"disease_id" : 369,
+		"disease_name" : "자상성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 267,
+		"answer" : "자상성 피부염",
+		"metadata_seq" : 1305,
+		"metadata_text" : "disease_skin:granulomatous_dermatitis"
+	},
+	{
+		"disease_id" : 369,
+		"disease_name" : "자상성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 811,
+		"answer" : "자상성 피부염",
+		"metadata_seq" : 819,
+		"metadata_text" : "disease_skin:granulomatous_dermatitis"
+	},
+	{
+		"disease_id" : 370,
+		"disease_name" : "자외선 피부염(햇빛알러지)",
+		"disease_type" : null,
+		"answer_seq" : 268,
+		"answer" : "자외선 피부염(햇빛알러지)",
+		"metadata_seq" : 1320,
+		"metadata_text" : "disease_skin:photosensitivity_dermatitis"
+	},
+	{
+		"disease_id" : 370,
+		"disease_name" : "자외선 피부염(햇빛알러지)",
+		"disease_type" : null,
+		"answer_seq" : 812,
+		"answer" : "자외선 피부염(햇빛알러지)",
+		"metadata_seq" : 834,
+		"metadata_text" : "disease_skin:photosensitivity_dermatitis"
+	},
+	{
+		"disease_id" : 371,
+		"disease_name" : "접촉성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 269,
+		"answer" : "접촉성 피부염",
+		"metadata_seq" : 1297,
+		"metadata_text" : "disease_skin:contact_dermatitis"
+	},
+	{
+		"disease_id" : 371,
+		"disease_name" : "접촉성 피부염",
+		"disease_type" : null,
+		"answer_seq" : 813,
+		"answer" : "접촉성 피부염",
+		"metadata_seq" : 810,
+		"metadata_text" : "disease_skin:contact_dermatitis"
+	},
+	{
+		"disease_id" : 372,
+		"disease_name" : "조직구종",
+		"disease_type" : null,
+		"answer_seq" : 270,
+		"answer" : "조직구종",
+		"metadata_seq" : 1306,
+		"metadata_text" : "disease_skin:histiocytoma"
+	},
+	{
+		"disease_id" : 372,
+		"disease_name" : "조직구종",
+		"disease_type" : null,
+		"answer_seq" : 814,
+		"answer" : "조직구종",
+		"metadata_seq" : 820,
+		"metadata_text" : "disease_skin:histiocytoma"
+	},
+	{
+		"disease_id" : 374,
+		"disease_name" : "지루성피부염",
+		"disease_type" : null,
+		"answer_seq" : 271,
+		"answer" : "지루성피부염",
+		"metadata_seq" : 1324,
+		"metadata_text" : "disease_skin:seborrheic_dermatitis"
+	},
+	{
+		"disease_id" : 374,
+		"disease_name" : "지루성피부염",
+		"disease_type" : null,
+		"answer_seq" : 815,
+		"answer" : "지루성피부염",
+		"metadata_seq" : 838,
+		"metadata_text" : "disease_skin:seborrheic_dermatitis"
+	},
+	{
+		"disease_id" : 375,
+		"disease_name" : "진드기 감염",
+		"disease_type" : null,
+		"answer_seq" : 272,
+		"answer" : "진드기 감염",
+		"metadata_seq" : 1312,
+		"metadata_text" : "disease_skin:mite_infestation"
+	},
+	{
+		"disease_id" : 375,
+		"disease_name" : "진드기 감염",
+		"disease_type" : null,
+		"answer_seq" : 816,
+		"answer" : "진드기 감염",
+		"metadata_seq" : 826,
+		"metadata_text" : "disease_skin:mite_infestation"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 253,
+		"answer" : "낙엽성 천포창",
+		"metadata_seq" : 1318,
+		"metadata_text" : "disease_skin:pemphigus_foliaceus"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 273,
+		"answer" : "천포창",
+		"metadata_seq" : 1316,
+		"metadata_text" : "disease_skin:pemphigus"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 285,
+		"answer" : "홍반성 천포창",
+		"metadata_seq" : 1317,
+		"metadata_text" : "disease_skin:pemphigus_erythematosus"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 797,
+		"answer" : "낙엽성 천포창",
+		"metadata_seq" : 832,
+		"metadata_text" : "disease_skin:pemphigus_foliaceus"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 817,
+		"answer" : "천포창",
+		"metadata_seq" : 830,
+		"metadata_text" : "disease_skin:pemphigus"
+	},
+	{
+		"disease_id" : 376,
+		"disease_name" : "천포창",
+		"disease_type" : null,
+		"answer_seq" : 830,
+		"answer" : "홍반성 천포창",
+		"metadata_seq" : 831,
+		"metadata_text" : "disease_skin:pemphigus_erythematosus"
+	},
+	{
+		"disease_id" : 377,
+		"disease_name" : "내분비계",
+		"disease_type" : null,
+		"answer_seq" : 243,
+		"answer" : "내분비계",
+		"metadata_seq" : 996,
+		"metadata_text" : "disease:endocrine"
+	},
+	{
+		"disease_id" : 377,
+		"disease_name" : "내분비계",
+		"disease_type" : null,
+		"answer_seq" : 787,
+		"answer" : "내분비계",
+		"metadata_seq" : 507,
+		"metadata_text" : "disease:endocrine"
+	},
+	{
+		"disease_id" : 378,
+		"disease_name" : "탈모(알로페시아)",
+		"disease_type" : null,
+		"answer_seq" : 274,
+		"answer" : "탈모(알로페시아)",
+		"metadata_seq" : 1294,
+		"metadata_text" : "disease_skin:alopecia"
+	},
+	{
+		"disease_id" : 378,
+		"disease_name" : "탈모(알로페시아)",
+		"disease_type" : null,
+		"answer_seq" : 818,
+		"answer" : "탈모(알로페시아)",
+		"metadata_seq" : 806,
+		"metadata_text" : "disease_skin:alopecia"
+	},
+	{
+		"disease_id" : 379,
+		"disease_name" : "표피낭종",
+		"disease_type" : null,
+		"answer_seq" : 275,
+		"answer" : "표피낭종",
+		"metadata_seq" : 1301,
+		"metadata_text" : "disease_skin:epidermal_cyst"
+	},
+	{
+		"disease_id" : 379,
+		"disease_name" : "표피낭종",
+		"disease_type" : null,
+		"answer_seq" : 819,
+		"answer" : "표피낭종",
+		"metadata_seq" : 815,
+		"metadata_text" : "disease_skin:epidermal_cyst"
+	},
+	{
+		"disease_id" : 380,
+		"disease_name" : "피부 궤양",
+		"disease_type" : null,
+		"answer_seq" : 276,
+		"answer" : "피부 궤양",
+		"metadata_seq" : 1298,
+		"metadata_text" : "disease_skin:cutaneous_ulcer"
+	},
+	{
+		"disease_id" : 380,
+		"disease_name" : "피부 궤양",
+		"disease_type" : null,
+		"answer_seq" : 820,
+		"answer" : "피부 궤양",
+		"metadata_seq" : 811,
+		"metadata_text" : "disease_skin:cutaneous_ulcer"
+	},
+	{
+		"disease_id" : 381,
+		"disease_name" : "피부 농양",
+		"disease_type" : null,
+		"answer_seq" : 277,
+		"answer" : "피부 농양",
+		"metadata_seq" : 1292,
+		"metadata_text" : "disease_skin:abscess"
+	},
+	{
+		"disease_id" : 381,
+		"disease_name" : "피부 농양",
+		"disease_type" : null,
+		"answer_seq" : 821,
+		"answer" : "피부 농양",
+		"metadata_seq" : 804,
+		"metadata_text" : "disease_skin:abscess"
+	},
+	{
+		"disease_id" : 382,
+		"disease_name" : "피부 섬유종",
+		"disease_type" : null,
+		"answer_seq" : 278,
+		"answer" : "피부 섬유종",
+		"metadata_seq" : 1303,
+		"metadata_text" : "disease_skin:fibroma"
+	},
+	{
+		"disease_id" : 382,
+		"disease_name" : "피부 섬유종",
+		"disease_type" : null,
+		"answer_seq" : 822,
+		"answer" : "피부 섬유종",
+		"metadata_seq" : 817,
+		"metadata_text" : "disease_skin:fibroma"
+	},
+	{
+		"disease_id" : 383,
+		"disease_name" : "피부각질증",
+		"disease_type" : null,
+		"answer_seq" : 279,
+		"answer" : "피부각질증",
+		"metadata_seq" : 1308,
+		"metadata_text" : "disease_skin:hyperkeratosis"
+	},
+	{
+		"disease_id" : 383,
+		"disease_name" : "피부각질증",
+		"disease_type" : null,
+		"answer_seq" : 823,
+		"answer" : "피부각질증",
+		"metadata_seq" : 822,
+		"metadata_text" : "disease_skin:hyperkeratosis"
+	},
+	{
+		"disease_id" : 384,
+		"disease_name" : "피부건조증",
+		"disease_type" : null,
+		"answer_seq" : 280,
+		"answer" : "피부건조증",
+		"metadata_seq" : 1327,
+		"metadata_text" : "disease_skin:xerosis"
+	},
+	{
+		"disease_id" : 384,
+		"disease_name" : "피부건조증",
+		"disease_type" : null,
+		"answer_seq" : 824,
+		"answer" : "피부건조증",
+		"metadata_seq" : 841,
+		"metadata_text" : "disease_skin:xerosis"
+	},
+	{
+		"disease_id" : 385,
+		"disease_name" : "피부괴사",
+		"disease_type" : null,
+		"answer_seq" : 281,
+		"answer" : "피부괴사",
+		"metadata_seq" : 1313,
+		"metadata_text" : "disease_skin:necrosis"
+	},
+	{
+		"disease_id" : 385,
+		"disease_name" : "피부괴사",
+		"disease_type" : null,
+		"answer_seq" : 825,
+		"answer" : "피부괴사",
+		"metadata_seq" : 827,
+		"metadata_text" : "disease_skin:necrosis"
+	},
+	{
+		"disease_id" : 386,
+		"disease_name" : "피지낭종(피지선종)",
+		"disease_type" : null,
+		"answer_seq" : 282,
+		"answer" : "피지낭종(피지선종)",
+		"metadata_seq" : 1323,
+		"metadata_text" : "disease_skin:sebaceous_cyst"
+	},
+	{
+		"disease_id" : 386,
+		"disease_name" : "피지낭종(피지선종)",
+		"disease_type" : null,
+		"answer_seq" : 826,
+		"answer" : "피지낭종(피지선종)",
+		"metadata_seq" : 837,
+		"metadata_text" : "disease_skin:sebaceous_cyst"
+	},
+	{
+		"disease_id" : 387,
+		"disease_name" : "항문낭염",
+		"disease_type" : null,
+		"answer_seq" : 283,
+		"answer" : "항문낭염",
+		"metadata_seq" : 1319,
+		"metadata_text" : "disease_skin:perianal_fistula"
+	},
+	{
+		"disease_id" : 387,
+		"disease_name" : "항문낭염",
+		"disease_type" : null,
+		"answer_seq" : 827,
+		"answer" : "항문낭염",
+		"metadata_seq" : 833,
+		"metadata_text" : "disease_skin:perianal_fistula"
+	},
+	{
+		"disease_id" : 388,
+		"disease_name" : "홍반성 낭창",
+		"disease_type" : null,
+		"answer_seq" : 284,
+		"answer" : "홍반성 낭창",
+		"metadata_seq" : 1315,
+		"metadata_text" : "disease_skin:papular_pustular_dermatitis"
+	},
+	{
+		"disease_id" : 388,
+		"disease_name" : "홍반성 낭창",
+		"disease_type" : null,
+		"answer_seq" : 829,
+		"answer" : "홍반성 낭창",
+		"metadata_seq" : 829,
+		"metadata_text" : "disease_skin:papular_pustular_dermatitis"
+	},
+	{
+		"disease_id" : 389,
+		"disease_name" : "홍반성 천포창",
+		"disease_type" : null,
+		"answer_seq" : 285,
+		"answer" : "홍반성 천포창",
+		"metadata_seq" : 1317,
+		"metadata_text" : "disease_skin:pemphigus_erythematosus"
+	},
+	{
+		"disease_id" : 389,
+		"disease_name" : "홍반성 천포창",
+		"disease_type" : null,
+		"answer_seq" : 830,
+		"answer" : "홍반성 천포창",
+		"metadata_seq" : 831,
+		"metadata_text" : "disease_skin:pemphigus_erythematosus"
+	},
+	{
+		"disease_id" : 390,
+		"disease_name" : "턱 여드름",
+		"disease_type" : null,
+		"answer_seq" : 831,
+		"answer" : "턱 여드름",
+		"metadata_seq" : 809,
+		"metadata_text" : "disease_skin:chin_acne"
+	},
+	{
+		"disease_id" : 391,
+		"disease_name" : "호산구성 육아종",
+		"disease_type" : null,
+		"answer_seq" : 828,
+		"answer" : "호산구성 육아종",
+		"metadata_seq" : 814,
+		"metadata_text" : "disease_skin:eosinophilic_granuloma"
+	},
+	{
+		"disease_id" : 392,
+		"disease_name" : "비대성심근병증(HCM)",
+		"disease_type" : null,
+		"answer_seq" : 1014,
+		"answer" : "비대성심근병증(HCM)",
+		"metadata_seq" : 565,
+		"metadata_text" : "disease_cardiovascular:hypertrophic_cardiomyopathy"
+	},
+	{
+		"disease_id" : 393,
+		"disease_name" : "갑상선 기능 항진증",
+		"disease_type" : null,
+		"answer_seq" : 482,
+		"answer" : "부갑상선 기능 항진증",
+		"metadata_seq" : 1115,
+		"metadata_text" : "disease_endocrine:hyperparathyroidism"
+	},
+	{
+		"disease_id" : 393,
+		"disease_name" : "갑상선 기능 항진증",
+		"disease_type" : null,
+		"answer_seq" : 1029,
+		"answer" : "갑상선 기능 항진증",
+		"metadata_seq" : 625,
+		"metadata_text" : "disease_endocrine:hyperthyroidism"
+	},
+	{
+		"disease_id" : 393,
+		"disease_name" : "갑상선 기능 항진증",
+		"disease_type" : null,
+		"answer_seq" : 1031,
+		"answer" : "부갑상선 기능 항진증",
+		"metadata_seq" : 624,
+		"metadata_text" : "disease_endocrine:hyperparathyroidism"
+	},
+	{
+		"disease_id" : 394,
+		"disease_name" : "세동이염",
+		"disease_type" : null,
+		"answer_seq" : 965,
+		"answer" : "세동이염",
+		"metadata_seq" : 714,
+		"metadata_text" : "disease_hepatobiliary:triaditis"
+	},
+	{
+		"disease_id" : 395,
+		"disease_name" : "지방간증",
+		"disease_type" : null,
+		"answer_seq" : 966,
+		"answer" : "지방간증",
+		"metadata_seq" : 710,
+		"metadata_text" : "disease_hepatobiliary:hepatolipidosis"
+	},
+	{
+		"disease_id" : 396,
+		"disease_name" : "치아흡수성병변",
+		"disease_type" : null,
+		"answer_seq" : 891,
+		"answer" : "치아흡수성병변",
+		"metadata_seq" : 734,
+		"metadata_text" : "disease_oral:tooth_resorptive_lesion"
+	},
+	{
+		"disease_id" : 397,
+		"disease_name" : "다낭성신장질환(PKD)",
+		"disease_type" : null,
+		"answer_seq" : 1000,
+		"answer" : "다낭성신장질환(PKD)",
+		"metadata_seq" : 771,
+		"metadata_text" : "disease_renal:polycystic_kidney_disease"
+	}
+]

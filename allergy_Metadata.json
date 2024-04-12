@@ -1,0 +1,2054 @@
+[
+	{
+		"allergy_id" : 1,
+		"allergy_name" : "소고기",
+		"allergy_type" : "",
+		"answer_seq" : 594,
+		"answer" : "소고기",
+		"metadata_seq" : 887,
+		"metadata_text" : "allergy:beef"
+	},
+	{
+		"allergy_id" : 1,
+		"allergy_name" : "소고기",
+		"allergy_type" : "",
+		"answer_seq" : 1141,
+		"answer" : "소고기",
+		"metadata_seq" : 345,
+		"metadata_text" : "allergy:beef"
+	},
+	{
+		"allergy_id" : 2,
+		"allergy_name" : "닭고기",
+		"allergy_type" : "",
+		"answer_seq" : 596,
+		"answer" : "닭고기",
+		"metadata_seq" : 898,
+		"metadata_text" : "allergy:chicken"
+	},
+	{
+		"allergy_id" : 2,
+		"allergy_name" : "닭고기",
+		"allergy_type" : "",
+		"answer_seq" : 1143,
+		"answer" : "닭고기",
+		"metadata_seq" : 356,
+		"metadata_text" : "allergy:chicken"
+	},
+	{
+		"allergy_id" : 3,
+		"allergy_name" : "돼지고기",
+		"allergy_type" : null,
+		"answer_seq" : 593,
+		"answer" : "돼지고기",
+		"metadata_seq" : 949,
+		"metadata_text" : "allergy:pork"
+	},
+	{
+		"allergy_id" : 3,
+		"allergy_name" : "돼지고기",
+		"allergy_type" : null,
+		"answer_seq" : 1140,
+		"answer" : "돼지고기",
+		"metadata_seq" : 407,
+		"metadata_text" : "allergy:pork"
+	},
+	{
+		"allergy_id" : 4,
+		"allergy_name" : "오렌지",
+		"allergy_type" : null,
+		"answer_seq" : 651,
+		"answer" : "오렌지",
+		"metadata_seq" : 936,
+		"metadata_text" : "allergy:orange"
+	},
+	{
+		"allergy_id" : 4,
+		"allergy_name" : "오렌지",
+		"allergy_type" : null,
+		"answer_seq" : 1198,
+		"answer" : "오렌지",
+		"metadata_seq" : 394,
+		"metadata_text" : "allergy:orange"
+	},
+	{
+		"allergy_id" : 5,
+		"allergy_name" : "애플민트",
+		"allergy_type" : null,
+		"answer_seq" : 648,
+		"answer" : "애플민트",
+		"metadata_seq" : 880,
+		"metadata_text" : "allergy:apple_mint"
+	},
+	{
+		"allergy_id" : 5,
+		"allergy_name" : "애플민트",
+		"allergy_type" : null,
+		"answer_seq" : 1195,
+		"answer" : "애플민트",
+		"metadata_seq" : 338,
+		"metadata_text" : "allergy:apple_mint"
+	},
+	{
+		"allergy_id" : 6,
+		"allergy_name" : "가지",
+		"allergy_type" : null,
+		"answer_seq" : 598,
+		"answer" : "가지",
+		"metadata_seq" : 911,
+		"metadata_text" : "allergy:eggplant"
+	},
+	{
+		"allergy_id" : 6,
+		"allergy_name" : "가지",
+		"allergy_type" : null,
+		"answer_seq" : 1145,
+		"answer" : "가지",
+		"metadata_seq" : 369,
+		"metadata_text" : "allergy:eggplant"
+	},
+	{
+		"allergy_id" : 7,
+		"allergy_name" : "감자",
+		"allergy_type" : null,
+		"answer_seq" : 599,
+		"answer" : "감자",
+		"metadata_seq" : 950,
+		"metadata_text" : "allergy:potato"
+	},
+	{
+		"allergy_id" : 7,
+		"allergy_name" : "감자",
+		"allergy_type" : null,
+		"answer_seq" : 1146,
+		"answer" : "감자",
+		"metadata_seq" : 408,
+		"metadata_text" : "allergy:potato"
+	},
+	{
+		"allergy_id" : 8,
+		"allergy_name" : "건자두",
+		"allergy_type" : null,
+		"answer_seq" : 600,
+		"answer" : "건자두",
+		"metadata_seq" : 908,
+		"metadata_text" : "allergy:dried_plum"
+	},
+	{
+		"allergy_id" : 8,
+		"allergy_name" : "건자두",
+		"allergy_type" : null,
+		"answer_seq" : 1147,
+		"answer" : "건자두",
+		"metadata_seq" : 366,
+		"metadata_text" : "allergy:dried_plum"
+	},
+	{
+		"allergy_id" : 9,
+		"allergy_name" : "건포도",
+		"allergy_type" : null,
+		"answer_seq" : 601,
+		"answer" : "건포도",
+		"metadata_seq" : 907,
+		"metadata_text" : "allergy:dried_grape"
+	},
+	{
+		"allergy_id" : 9,
+		"allergy_name" : "건포도",
+		"allergy_type" : null,
+		"answer_seq" : 1148,
+		"answer" : "건포도",
+		"metadata_seq" : 365,
+		"metadata_text" : "allergy:dried_grape"
+	},
+	{
+		"allergy_id" : 10,
+		"allergy_name" : "계란(닭, 오리)",
+		"allergy_type" : null,
+		"answer_seq" : 602,
+		"answer" : "계란(닭, 오리)",
+		"metadata_seq" : 910,
+		"metadata_text" : "allergy:egg"
+	},
+	{
+		"allergy_id" : 10,
+		"allergy_name" : "계란(닭, 오리)",
+		"allergy_type" : null,
+		"answer_seq" : 1149,
+		"answer" : "계란(닭, 오리)",
+		"metadata_seq" : 368,
+		"metadata_text" : "allergy:egg"
+	},
+	{
+		"allergy_id" : 11,
+		"allergy_name" : "고무",
+		"allergy_type" : null,
+		"answer_seq" : 603,
+		"answer" : "고무",
+		"metadata_seq" : 958,
+		"metadata_text" : "allergy:rubber"
+	},
+	{
+		"allergy_id" : 11,
+		"allergy_name" : "고무",
+		"allergy_type" : null,
+		"answer_seq" : 1150,
+		"answer" : "고무",
+		"metadata_seq" : 416,
+		"metadata_text" : "allergy:rubber"
+	},
+	{
+		"allergy_id" : 12,
+		"allergy_name" : "곰팡이",
+		"allergy_type" : null,
+		"answer_seq" : 250,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 1304,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"allergy_id" : 12,
+		"allergy_name" : "곰팡이",
+		"allergy_type" : null,
+		"answer_seq" : 604,
+		"answer" : "곰팡이",
+		"metadata_seq" : 927,
+		"metadata_text" : "allergy:mold"
+	},
+	{
+		"allergy_id" : 12,
+		"allergy_name" : "곰팡이",
+		"allergy_type" : null,
+		"answer_seq" : 794,
+		"answer" : "곰팡이성 피부염",
+		"metadata_seq" : 818,
+		"metadata_text" : "disease_skin:fungal"
+	},
+	{
+		"allergy_id" : 12,
+		"allergy_name" : "곰팡이",
+		"allergy_type" : null,
+		"answer_seq" : 1151,
+		"answer" : "곰팡이",
+		"metadata_seq" : 385,
+		"metadata_text" : "allergy:mold"
+	},
+	{
+		"allergy_id" : 13,
+		"allergy_name" : "귀리",
+		"allergy_type" : null,
+		"answer_seq" : 605,
+		"answer" : "귀리",
+		"metadata_seq" : 934,
+		"metadata_text" : "allergy:oats"
+	},
+	{
+		"allergy_id" : 13,
+		"allergy_name" : "귀리",
+		"allergy_type" : null,
+		"answer_seq" : 606,
+		"answer" : "귀리 가루",
+		"metadata_seq" : 933,
+		"metadata_text" : "allergy:oat_flour"
+	},
+	{
+		"allergy_id" : 13,
+		"allergy_name" : "귀리",
+		"allergy_type" : null,
+		"answer_seq" : 1152,
+		"answer" : "귀리",
+		"metadata_seq" : 392,
+		"metadata_text" : "allergy:oats"
+	},
+	{
+		"allergy_id" : 13,
+		"allergy_name" : "귀리",
+		"allergy_type" : null,
+		"answer_seq" : 1153,
+		"answer" : "귀리 가루",
+		"metadata_seq" : 391,
+		"metadata_text" : "allergy:oat_flour"
+	},
+	{
+		"allergy_id" : 14,
+		"allergy_name" : "귀리 가루",
+		"allergy_type" : null,
+		"answer_seq" : 606,
+		"answer" : "귀리 가루",
+		"metadata_seq" : 933,
+		"metadata_text" : "allergy:oat_flour"
+	},
+	{
+		"allergy_id" : 14,
+		"allergy_name" : "귀리 가루",
+		"allergy_type" : null,
+		"answer_seq" : 1153,
+		"answer" : "귀리 가루",
+		"metadata_seq" : 391,
+		"metadata_text" : "allergy:oat_flour"
+	},
+	{
+		"allergy_id" : 15,
+		"allergy_name" : "꽃가루",
+		"allergy_type" : null,
+		"answer_seq" : 607,
+		"answer" : "꽃가루",
+		"metadata_seq" : 947,
+		"metadata_text" : "allergy:pollen"
+	},
+	{
+		"allergy_id" : 15,
+		"allergy_name" : "꽃가루",
+		"allergy_type" : null,
+		"answer_seq" : 1154,
+		"answer" : "꽃가루",
+		"metadata_seq" : 405,
+		"metadata_text" : "allergy:pollen"
+	},
+	{
+		"allergy_id" : 16,
+		"allergy_name" : "꿀",
+		"allergy_type" : null,
+		"answer_seq" : 608,
+		"answer" : "꿀",
+		"metadata_seq" : 917,
+		"metadata_text" : "allergy:honey"
+	},
+	{
+		"allergy_id" : 16,
+		"allergy_name" : "꿀",
+		"allergy_type" : null,
+		"answer_seq" : 1155,
+		"answer" : "꿀",
+		"metadata_seq" : 375,
+		"metadata_text" : "allergy:honey"
+	},
+	{
+		"allergy_id" : 17,
+		"allergy_name" : "니켈",
+		"allergy_type" : null,
+		"answer_seq" : 609,
+		"answer" : "니켈",
+		"metadata_seq" : 931,
+		"metadata_text" : "allergy:nickel"
+	},
+	{
+		"allergy_id" : 17,
+		"allergy_name" : "니켈",
+		"allergy_type" : null,
+		"answer_seq" : 1156,
+		"answer" : "니켈",
+		"metadata_seq" : 389,
+		"metadata_text" : "allergy:nickel"
+	},
+	{
+		"allergy_id" : 18,
+		"allergy_name" : "당근",
+		"allergy_type" : null,
+		"answer_seq" : 610,
+		"answer" : "당근",
+		"metadata_seq" : 894,
+		"metadata_text" : "allergy:carrot"
+	},
+	{
+		"allergy_id" : 18,
+		"allergy_name" : "당근",
+		"allergy_type" : null,
+		"answer_seq" : 1157,
+		"answer" : "당근",
+		"metadata_seq" : 352,
+		"metadata_text" : "allergy:carrot"
+	},
+	{
+		"allergy_id" : 19,
+		"allergy_name" : "대구",
+		"allergy_type" : null,
+		"answer_seq" : 611,
+		"answer" : "대구",
+		"metadata_seq" : 903,
+		"metadata_text" : "allergy:cod"
+	},
+	{
+		"allergy_id" : 19,
+		"allergy_name" : "대구",
+		"allergy_type" : null,
+		"answer_seq" : 1158,
+		"answer" : "대구",
+		"metadata_seq" : 361,
+		"metadata_text" : "allergy:cod"
+	},
+	{
+		"allergy_id" : 20,
+		"allergy_name" : "대파",
+		"allergy_type" : null,
+		"answer_seq" : 504,
+		"answer" : "인대파열",
+		"metadata_seq" : 1242,
+		"metadata_text" : "disease_orthopedic:ligament_tear"
+	},
+	{
+		"allergy_id" : 20,
+		"allergy_name" : "대파",
+		"allergy_type" : null,
+		"answer_seq" : 612,
+		"answer" : "대파",
+		"metadata_seq" : 916,
+		"metadata_text" : "allergy:green_onion"
+	},
+	{
+		"allergy_id" : 20,
+		"allergy_name" : "대파",
+		"allergy_type" : null,
+		"answer_seq" : 1051,
+		"answer" : "인대파열",
+		"metadata_seq" : 753,
+		"metadata_text" : "disease_orthopedic:ligament_tear"
+	},
+	{
+		"allergy_id" : 20,
+		"allergy_name" : "대파",
+		"allergy_type" : null,
+		"answer_seq" : 1159,
+		"answer" : "대파",
+		"metadata_seq" : 374,
+		"metadata_text" : "allergy:green_onion"
+	},
+	{
+		"allergy_id" : 21,
+		"allergy_name" : "딸기",
+		"allergy_type" : null,
+		"answer_seq" : 613,
+		"answer" : "딸기",
+		"metadata_seq" : 967,
+		"metadata_text" : "allergy:strawberry"
+	},
+	{
+		"allergy_id" : 21,
+		"allergy_name" : "딸기",
+		"allergy_type" : null,
+		"answer_seq" : 1160,
+		"answer" : "딸기",
+		"metadata_seq" : 425,
+		"metadata_text" : "allergy:strawberry"
+	},
+	{
+		"allergy_id" : 22,
+		"allergy_name" : "땅콩",
+		"allergy_type" : null,
+		"answer_seq" : 614,
+		"answer" : "땅콩",
+		"metadata_seq" : 941,
+		"metadata_text" : "allergy:peanut"
+	},
+	{
+		"allergy_id" : 22,
+		"allergy_name" : "땅콩",
+		"allergy_type" : null,
+		"answer_seq" : 1161,
+		"answer" : "땅콩",
+		"metadata_seq" : 399,
+		"metadata_text" : "allergy:peanut"
+	},
+	{
+		"allergy_id" : 23,
+		"allergy_name" : "라임",
+		"allergy_type" : null,
+		"answer_seq" : 615,
+		"answer" : "라임",
+		"metadata_seq" : 924,
+		"metadata_text" : "allergy:lime"
+	},
+	{
+		"allergy_id" : 23,
+		"allergy_name" : "라임",
+		"allergy_type" : null,
+		"answer_seq" : 1162,
+		"answer" : "라임",
+		"metadata_seq" : 382,
+		"metadata_text" : "allergy:lime"
+	},
+	{
+		"allergy_id" : 24,
+		"allergy_name" : "라즈베리",
+		"allergy_type" : null,
+		"answer_seq" : 616,
+		"answer" : "라즈베리",
+		"metadata_seq" : 953,
+		"metadata_text" : "allergy:raspberry"
+	},
+	{
+		"allergy_id" : 24,
+		"allergy_name" : "라즈베리",
+		"allergy_type" : null,
+		"answer_seq" : 1163,
+		"answer" : "라즈베리",
+		"metadata_seq" : 411,
+		"metadata_text" : "allergy:raspberry"
+	},
+	{
+		"allergy_id" : 25,
+		"allergy_name" : "레몬",
+		"allergy_type" : null,
+		"answer_seq" : 617,
+		"answer" : "레몬",
+		"metadata_seq" : 921,
+		"metadata_text" : "allergy:lemon"
+	},
+	{
+		"allergy_id" : 25,
+		"allergy_name" : "레몬",
+		"allergy_type" : null,
+		"answer_seq" : 618,
+		"answer" : "레몬밤",
+		"metadata_seq" : 922,
+		"metadata_text" : "allergy:lemon_balm"
+	},
+	{
+		"allergy_id" : 25,
+		"allergy_name" : "레몬",
+		"allergy_type" : null,
+		"answer_seq" : 1164,
+		"answer" : "레몬",
+		"metadata_seq" : 379,
+		"metadata_text" : "allergy:lemon"
+	},
+	{
+		"allergy_id" : 25,
+		"allergy_name" : "레몬",
+		"allergy_type" : null,
+		"answer_seq" : 1165,
+		"answer" : "레몬밤",
+		"metadata_seq" : 380,
+		"metadata_text" : "allergy:lemon_balm"
+	},
+	{
+		"allergy_id" : 26,
+		"allergy_name" : "레몬밤",
+		"allergy_type" : null,
+		"answer_seq" : 618,
+		"answer" : "레몬밤",
+		"metadata_seq" : 922,
+		"metadata_text" : "allergy:lemon_balm"
+	},
+	{
+		"allergy_id" : 26,
+		"allergy_name" : "레몬밤",
+		"allergy_type" : null,
+		"answer_seq" : 1165,
+		"answer" : "레몬밤",
+		"metadata_seq" : 380,
+		"metadata_text" : "allergy:lemon_balm"
+	},
+	{
+		"allergy_id" : 27,
+		"allergy_name" : "로즈마리",
+		"allergy_type" : null,
+		"answer_seq" : 619,
+		"answer" : "로즈마리",
+		"metadata_seq" : 957,
+		"metadata_text" : "allergy:rosemary"
+	},
+	{
+		"allergy_id" : 27,
+		"allergy_name" : "로즈마리",
+		"allergy_type" : null,
+		"answer_seq" : 1166,
+		"answer" : "로즈마리",
+		"metadata_seq" : 415,
+		"metadata_text" : "allergy:rosemary"
+	},
+	{
+		"allergy_id" : 28,
+		"allergy_name" : "마늘",
+		"allergy_type" : null,
+		"answer_seq" : 620,
+		"answer" : "마늘",
+		"metadata_seq" : 913,
+		"metadata_text" : "allergy:garlic"
+	},
+	{
+		"allergy_id" : 28,
+		"allergy_name" : "마늘",
+		"allergy_type" : null,
+		"answer_seq" : 1167,
+		"answer" : "마늘",
+		"metadata_seq" : 371,
+		"metadata_text" : "allergy:garlic"
+	},
+	{
+		"allergy_id" : 29,
+		"allergy_name" : "말고기",
+		"allergy_type" : null,
+		"answer_seq" : 621,
+		"answer" : "말고기",
+		"metadata_seq" : 918,
+		"metadata_text" : "allergy:horse_meat"
+	},
+	{
+		"allergy_id" : 29,
+		"allergy_name" : "말고기",
+		"allergy_type" : null,
+		"answer_seq" : 1168,
+		"answer" : "말고기",
+		"metadata_seq" : 376,
+		"metadata_text" : "allergy:horse_meat"
+	},
+	{
+		"allergy_id" : 30,
+		"allergy_name" : "망고",
+		"allergy_type" : null,
+		"answer_seq" : 622,
+		"answer" : "망고",
+		"metadata_seq" : 925,
+		"metadata_text" : "allergy:mango"
+	},
+	{
+		"allergy_id" : 30,
+		"allergy_name" : "망고",
+		"allergy_type" : null,
+		"answer_seq" : 1169,
+		"answer" : "망고",
+		"metadata_seq" : 383,
+		"metadata_text" : "allergy:mango"
+	},
+	{
+		"allergy_id" : 31,
+		"allergy_name" : "모기",
+		"allergy_type" : null,
+		"answer_seq" : 623,
+		"answer" : "모기",
+		"metadata_seq" : 928,
+		"metadata_text" : "allergy:mosquito"
+	},
+	{
+		"allergy_id" : 31,
+		"allergy_name" : "모기",
+		"allergy_type" : null,
+		"answer_seq" : 1170,
+		"answer" : "모기",
+		"metadata_seq" : 386,
+		"metadata_text" : "allergy:mosquito"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 343,
+		"answer" : "치아 위치 이상(밀집)",
+		"metadata_seq" : 1223,
+		"metadata_text" : "disease_oral:tooth_position_abnormality"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 405,
+		"answer" : "간 아밀로이드침착증",
+		"metadata_seq" : 1199,
+		"metadata_text" : "disease_hepatobiliary:hepatic_amyloidosis"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 455,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 1255,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 624,
+		"answer" : "밀",
+		"metadata_seq" : 973,
+		"metadata_text" : "allergy:wheat"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 723,
+		"answer" : "버밀라",
+		"metadata_seq" : 456,
+		"metadata_text" : "cat_breed:burmilla"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 889,
+		"answer" : "치아 위치 이상(밀집)",
+		"metadata_seq" : 733,
+		"metadata_text" : "disease_oral:tooth_position_abnormality"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 952,
+		"answer" : "간 아밀로이드침착증",
+		"metadata_seq" : 707,
+		"metadata_text" : "disease_hepatobiliary:hepatic_amyloidosis"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 1004,
+		"answer" : "신장 아밀로이드침착증",
+		"metadata_seq" : 766,
+		"metadata_text" : "disease_renal:kidney_amyloidosis"
+	},
+	{
+		"allergy_id" : 32,
+		"allergy_name" : "밀",
+		"allergy_type" : null,
+		"answer_seq" : 1171,
+		"answer" : "밀",
+		"metadata_seq" : 431,
+		"metadata_text" : "allergy:wheat"
+	},
+	{
+		"allergy_id" : 33,
+		"allergy_name" : "바나나",
+		"allergy_type" : null,
+		"answer_seq" : 625,
+		"answer" : "바나나",
+		"metadata_seq" : 882,
+		"metadata_text" : "allergy:banana"
+	},
+	{
+		"allergy_id" : 33,
+		"allergy_name" : "바나나",
+		"allergy_type" : null,
+		"answer_seq" : 1172,
+		"answer" : "바나나",
+		"metadata_seq" : 340,
+		"metadata_text" : "allergy:banana"
+	},
+	{
+		"allergy_id" : 34,
+		"allergy_name" : "바질",
+		"allergy_type" : null,
+		"answer_seq" : 626,
+		"answer" : "바질",
+		"metadata_seq" : 884,
+		"metadata_text" : "allergy:basil"
+	},
+	{
+		"allergy_id" : 34,
+		"allergy_name" : "바질",
+		"allergy_type" : null,
+		"answer_seq" : 1173,
+		"answer" : "바질",
+		"metadata_seq" : 342,
+		"metadata_text" : "allergy:basil"
+	},
+	{
+		"allergy_id" : 35,
+		"allergy_name" : "배추",
+		"allergy_type" : null,
+		"answer_seq" : 627,
+		"answer" : "배추",
+		"metadata_seq" : 892,
+		"metadata_text" : "allergy:cabbage"
+	},
+	{
+		"allergy_id" : 35,
+		"allergy_name" : "배추",
+		"allergy_type" : null,
+		"answer_seq" : 649,
+		"answer" : "양배추",
+		"metadata_seq" : 923,
+		"metadata_text" : "allergy:lettuce"
+	},
+	{
+		"allergy_id" : 35,
+		"allergy_name" : "배추",
+		"allergy_type" : null,
+		"answer_seq" : 1174,
+		"answer" : "배추",
+		"metadata_seq" : 350,
+		"metadata_text" : "allergy:cabbage"
+	},
+	{
+		"allergy_id" : 35,
+		"allergy_name" : "배추",
+		"allergy_type" : null,
+		"answer_seq" : 1196,
+		"answer" : "양배추",
+		"metadata_seq" : 381,
+		"metadata_text" : "allergy:lettuce"
+	},
+	{
+		"allergy_id" : 36,
+		"allergy_name" : "버터",
+		"allergy_type" : null,
+		"answer_seq" : 628,
+		"answer" : "버터",
+		"metadata_seq" : 891,
+		"metadata_text" : "allergy:butter"
+	},
+	{
+		"allergy_id" : 36,
+		"allergy_name" : "버터",
+		"allergy_type" : null,
+		"answer_seq" : 1175,
+		"answer" : "버터",
+		"metadata_seq" : 349,
+		"metadata_text" : "allergy:butter"
+	},
+	{
+		"allergy_id" : 37,
+		"allergy_name" : "벌",
+		"allergy_type" : null,
+		"answer_seq" : 54,
+		"answer" : "벌고 포인팅 독",
+		"metadata_seq" : 1378,
+		"metadata_text" : "dog_breed:burgos_pointing_dog"
+	},
+	{
+		"allergy_id" : 37,
+		"allergy_name" : "벌",
+		"allergy_type" : null,
+		"answer_seq" : 629,
+		"answer" : "벌",
+		"metadata_seq" : 886,
+		"metadata_text" : "allergy:bee"
+	},
+	{
+		"allergy_id" : 37,
+		"allergy_name" : "벌",
+		"allergy_type" : null,
+		"answer_seq" : 1176,
+		"answer" : "벌",
+		"metadata_seq" : 344,
+		"metadata_text" : "allergy:bee"
+	},
+	{
+		"allergy_id" : 38,
+		"allergy_name" : "벼룩",
+		"allergy_type" : null,
+		"answer_seq" : 630,
+		"answer" : "벼룩",
+		"metadata_seq" : 912,
+		"metadata_text" : "allergy:flea"
+	},
+	{
+		"allergy_id" : 38,
+		"allergy_name" : "벼룩",
+		"allergy_type" : null,
+		"answer_seq" : 1177,
+		"answer" : "벼룩",
+		"metadata_seq" : 370,
+		"metadata_text" : "allergy:flea"
+	},
+	{
+		"allergy_id" : 39,
+		"allergy_name" : "보리",
+		"allergy_type" : null,
+		"answer_seq" : 631,
+		"answer" : "보리",
+		"metadata_seq" : 883,
+		"metadata_text" : "allergy:barley"
+	},
+	{
+		"allergy_id" : 39,
+		"allergy_name" : "보리",
+		"allergy_type" : null,
+		"answer_seq" : 1178,
+		"answer" : "보리",
+		"metadata_seq" : 341,
+		"metadata_text" : "allergy:barley"
+	},
+	{
+		"allergy_id" : 40,
+		"allergy_name" : "복숭아",
+		"allergy_type" : null,
+		"answer_seq" : 632,
+		"answer" : "복숭아",
+		"metadata_seq" : 940,
+		"metadata_text" : "allergy:peach"
+	},
+	{
+		"allergy_id" : 40,
+		"allergy_name" : "복숭아",
+		"allergy_type" : null,
+		"answer_seq" : 1179,
+		"answer" : "복숭아",
+		"metadata_seq" : 398,
+		"metadata_text" : "allergy:peach"
+	},
+	{
+		"allergy_id" : 41,
+		"allergy_name" : "부추",
+		"allergy_type" : null,
+		"answer_seq" : 633,
+		"answer" : "부추",
+		"metadata_seq" : 899,
+		"metadata_text" : "allergy:chives"
+	},
+	{
+		"allergy_id" : 41,
+		"allergy_name" : "부추",
+		"allergy_type" : null,
+		"answer_seq" : 1180,
+		"answer" : "부추",
+		"metadata_seq" : 357,
+		"metadata_text" : "allergy:chives"
+	},
+	{
+		"allergy_id" : 42,
+		"allergy_name" : "브로콜리",
+		"allergy_type" : null,
+		"answer_seq" : 634,
+		"answer" : "브로콜리",
+		"metadata_seq" : 890,
+		"metadata_text" : "allergy:broccoli"
+	},
+	{
+		"allergy_id" : 42,
+		"allergy_name" : "브로콜리",
+		"allergy_type" : null,
+		"answer_seq" : 1181,
+		"answer" : "브로콜리",
+		"metadata_seq" : 348,
+		"metadata_text" : "allergy:broccoli"
+	},
+	{
+		"allergy_id" : 43,
+		"allergy_name" : "블루베리",
+		"allergy_type" : null,
+		"answer_seq" : 635,
+		"answer" : "블루베리",
+		"metadata_seq" : 889,
+		"metadata_text" : "allergy:blueberry"
+	},
+	{
+		"allergy_id" : 43,
+		"allergy_name" : "블루베리",
+		"allergy_type" : null,
+		"answer_seq" : 1182,
+		"answer" : "블루베리",
+		"metadata_seq" : 347,
+		"metadata_text" : "allergy:blueberry"
+	},
+	{
+		"allergy_id" : 44,
+		"allergy_name" : "사과",
+		"allergy_type" : null,
+		"answer_seq" : 636,
+		"answer" : "사과",
+		"metadata_seq" : 879,
+		"metadata_text" : "allergy:apple"
+	},
+	{
+		"allergy_id" : 44,
+		"allergy_name" : "사과",
+		"allergy_type" : null,
+		"answer_seq" : 1183,
+		"answer" : "사과",
+		"metadata_seq" : 337,
+		"metadata_text" : "allergy:apple"
+	},
+	{
+		"allergy_id" : 45,
+		"allergy_name" : "사프란",
+		"allergy_type" : null,
+		"answer_seq" : 637,
+		"answer" : "사프란",
+		"metadata_seq" : 959,
+		"metadata_text" : "allergy:saffron"
+	},
+	{
+		"allergy_id" : 45,
+		"allergy_name" : "사프란",
+		"allergy_type" : null,
+		"answer_seq" : 1184,
+		"answer" : "사프란",
+		"metadata_seq" : 417,
+		"metadata_text" : "allergy:saffron"
+	},
+	{
+		"allergy_id" : 46,
+		"allergy_name" : "새우",
+		"allergy_type" : null,
+		"answer_seq" : 638,
+		"answer" : "새우",
+		"metadata_seq" : 962,
+		"metadata_text" : "allergy:shrimp"
+	},
+	{
+		"allergy_id" : 46,
+		"allergy_name" : "새우",
+		"allergy_type" : null,
+		"answer_seq" : 1185,
+		"answer" : "새우",
+		"metadata_seq" : 420,
+		"metadata_text" : "allergy:shrimp"
+	},
+	{
+		"allergy_id" : 47,
+		"allergy_name" : "석류",
+		"allergy_type" : null,
+		"answer_seq" : 639,
+		"answer" : "석류",
+		"metadata_seq" : 948,
+		"metadata_text" : "allergy:pomegranate"
+	},
+	{
+		"allergy_id" : 47,
+		"allergy_name" : "석류",
+		"allergy_type" : null,
+		"answer_seq" : 1186,
+		"answer" : "석류",
+		"metadata_seq" : 406,
+		"metadata_text" : "allergy:pomegranate"
+	},
+	{
+		"allergy_id" : 48,
+		"allergy_name" : "설파계 항생제",
+		"allergy_type" : null,
+		"answer_seq" : 640,
+		"answer" : "설파계 항생제",
+		"metadata_seq" : 968,
+		"metadata_text" : "allergy:sulfa_antibiotics"
+	},
+	{
+		"allergy_id" : 48,
+		"allergy_name" : "설파계 항생제",
+		"allergy_type" : null,
+		"answer_seq" : 1187,
+		"answer" : "설파계 항생제",
+		"metadata_seq" : 426,
+		"metadata_text" : "allergy:sulfa_antibiotics"
+	},
+	{
+		"allergy_id" : 49,
+		"allergy_name" : "송진가루",
+		"allergy_type" : null,
+		"answer_seq" : 641,
+		"answer" : "송진가루",
+		"metadata_seq" : 963,
+		"metadata_text" : "allergy:songjina_powder"
+	},
+	{
+		"allergy_id" : 49,
+		"allergy_name" : "송진가루",
+		"allergy_type" : null,
+		"answer_seq" : 1188,
+		"answer" : "송진가루",
+		"metadata_seq" : 421,
+		"metadata_text" : "allergy:songjina_powder"
+	},
+	{
+		"allergy_id" : 50,
+		"allergy_name" : "수박",
+		"allergy_type" : null,
+		"answer_seq" : 642,
+		"answer" : "수박",
+		"metadata_seq" : 972,
+		"metadata_text" : "allergy:watermelon"
+	},
+	{
+		"allergy_id" : 50,
+		"allergy_name" : "수박",
+		"allergy_type" : null,
+		"answer_seq" : 1189,
+		"answer" : "수박",
+		"metadata_seq" : 430,
+		"metadata_text" : "allergy:watermelon"
+	},
+	{
+		"allergy_id" : 51,
+		"allergy_name" : "스테로이드",
+		"allergy_type" : null,
+		"answer_seq" : 643,
+		"answer" : "스테로이드",
+		"metadata_seq" : 966,
+		"metadata_text" : "allergy:steroids"
+	},
+	{
+		"allergy_id" : 51,
+		"allergy_name" : "스테로이드",
+		"allergy_type" : null,
+		"answer_seq" : 1190,
+		"answer" : "스테로이드",
+		"metadata_seq" : 424,
+		"metadata_text" : "allergy:steroids"
+	},
+	{
+		"allergy_id" : 52,
+		"allergy_name" : "시금치",
+		"allergy_type" : null,
+		"answer_seq" : 644,
+		"answer" : "시금치",
+		"metadata_seq" : 964,
+		"metadata_text" : "allergy:spinach"
+	},
+	{
+		"allergy_id" : 52,
+		"allergy_name" : "시금치",
+		"allergy_type" : null,
+		"answer_seq" : 1191,
+		"answer" : "시금치",
+		"metadata_seq" : 422,
+		"metadata_text" : "allergy:spinach"
+	},
+	{
+		"allergy_id" : 53,
+		"allergy_name" : "쌀",
+		"allergy_type" : null,
+		"answer_seq" : 645,
+		"answer" : "쌀",
+		"metadata_seq" : 956,
+		"metadata_text" : "allergy:rice"
+	},
+	{
+		"allergy_id" : 53,
+		"allergy_name" : "쌀",
+		"allergy_type" : null,
+		"answer_seq" : 1192,
+		"answer" : "쌀",
+		"metadata_seq" : 414,
+		"metadata_text" : "allergy:rice"
+	},
+	{
+		"allergy_id" : 55,
+		"allergy_name" : "아몬드",
+		"allergy_type" : null,
+		"answer_seq" : 646,
+		"answer" : "아몬드",
+		"metadata_seq" : 876,
+		"metadata_text" : "allergy:almonds"
+	},
+	{
+		"allergy_id" : 55,
+		"allergy_name" : "아몬드",
+		"allergy_type" : null,
+		"answer_seq" : 1193,
+		"answer" : "아몬드",
+		"metadata_seq" : 334,
+		"metadata_text" : "allergy:almonds"
+	},
+	{
+		"allergy_id" : 56,
+		"allergy_name" : "아스피린",
+		"allergy_type" : null,
+		"answer_seq" : 647,
+		"answer" : "아스피린",
+		"metadata_seq" : 881,
+		"metadata_text" : "allergy:aspirin"
+	},
+	{
+		"allergy_id" : 56,
+		"allergy_name" : "아스피린",
+		"allergy_type" : null,
+		"answer_seq" : 1194,
+		"answer" : "아스피린",
+		"metadata_seq" : 339,
+		"metadata_text" : "allergy:aspirin"
+	},
+	{
+		"allergy_id" : 57,
+		"allergy_name" : "양고기",
+		"allergy_type" : null,
+		"answer_seq" : 595,
+		"answer" : "양고기",
+		"metadata_seq" : 930,
+		"metadata_text" : "allergy:mutton"
+	},
+	{
+		"allergy_id" : 57,
+		"allergy_name" : "양고기",
+		"allergy_type" : null,
+		"answer_seq" : 1142,
+		"answer" : "양고기",
+		"metadata_seq" : 388,
+		"metadata_text" : "allergy:mutton"
+	},
+	{
+		"allergy_id" : 58,
+		"allergy_name" : "양배추",
+		"allergy_type" : null,
+		"answer_seq" : 649,
+		"answer" : "양배추",
+		"metadata_seq" : 923,
+		"metadata_text" : "allergy:lettuce"
+	},
+	{
+		"allergy_id" : 58,
+		"allergy_name" : "양배추",
+		"allergy_type" : null,
+		"answer_seq" : 1196,
+		"answer" : "양배추",
+		"metadata_seq" : 381,
+		"metadata_text" : "allergy:lettuce"
+	},
+	{
+		"allergy_id" : 59,
+		"allergy_name" : "연어",
+		"allergy_type" : null,
+		"answer_seq" : 650,
+		"answer" : "연어",
+		"metadata_seq" : 960,
+		"metadata_text" : "allergy:salmon"
+	},
+	{
+		"allergy_id" : 59,
+		"allergy_name" : "연어",
+		"allergy_type" : null,
+		"answer_seq" : 1197,
+		"answer" : "연어",
+		"metadata_seq" : 418,
+		"metadata_text" : "allergy:salmon"
+	},
+	{
+		"allergy_id" : 60,
+		"allergy_name" : "오리고기",
+		"allergy_type" : null,
+		"answer_seq" : 597,
+		"answer" : "오리고기",
+		"metadata_seq" : 909,
+		"metadata_text" : "allergy:duck"
+	},
+	{
+		"allergy_id" : 60,
+		"allergy_name" : "오리고기",
+		"allergy_type" : null,
+		"answer_seq" : 1144,
+		"answer" : "오리고기",
+		"metadata_seq" : 367,
+		"metadata_text" : "allergy:duck"
+	},
+	{
+		"allergy_id" : 61,
+		"allergy_name" : "오징어",
+		"allergy_type" : null,
+		"answer_seq" : 652,
+		"answer" : "오징어",
+		"metadata_seq" : 965,
+		"metadata_text" : "allergy:squid"
+	},
+	{
+		"allergy_id" : 61,
+		"allergy_name" : "오징어",
+		"allergy_type" : null,
+		"answer_seq" : 1199,
+		"answer" : "오징어",
+		"metadata_seq" : 423,
+		"metadata_text" : "allergy:squid"
+	},
+	{
+		"allergy_id" : 62,
+		"allergy_name" : "옥수수",
+		"allergy_type" : null,
+		"answer_seq" : 653,
+		"answer" : "옥수수",
+		"metadata_seq" : 905,
+		"metadata_text" : "allergy:corn"
+	},
+	{
+		"allergy_id" : 62,
+		"allergy_name" : "옥수수",
+		"allergy_type" : null,
+		"answer_seq" : 1200,
+		"answer" : "옥수수",
+		"metadata_seq" : 363,
+		"metadata_text" : "allergy:corn"
+	},
+	{
+		"allergy_id" : 63,
+		"allergy_name" : "올리브 오일",
+		"allergy_type" : null,
+		"answer_seq" : 654,
+		"answer" : "올리브 오일",
+		"metadata_seq" : 935,
+		"metadata_text" : "allergy:olive_oil"
+	},
+	{
+		"allergy_id" : 63,
+		"allergy_name" : "올리브 오일",
+		"allergy_type" : null,
+		"answer_seq" : 1201,
+		"answer" : "올리브 오일",
+		"metadata_seq" : 393,
+		"metadata_text" : "allergy:olive_oil"
+	},
+	{
+		"allergy_id" : 64,
+		"allergy_name" : "유제품",
+		"allergy_type" : null,
+		"answer_seq" : 655,
+		"answer" : "유제품",
+		"metadata_seq" : 906,
+		"metadata_text" : "allergy:dairy_products"
+	},
+	{
+		"allergy_id" : 64,
+		"allergy_name" : "유제품",
+		"allergy_type" : null,
+		"answer_seq" : 1202,
+		"answer" : "유제품",
+		"metadata_seq" : 364,
+		"metadata_text" : "allergy:dairy_products"
+	},
+	{
+		"allergy_id" : 65,
+		"allergy_name" : "자몽",
+		"allergy_type" : null,
+		"answer_seq" : 656,
+		"answer" : "자몽",
+		"metadata_seq" : 914,
+		"metadata_text" : "allergy:grapefruit"
+	},
+	{
+		"allergy_id" : 65,
+		"allergy_name" : "자몽",
+		"allergy_type" : null,
+		"answer_seq" : 1203,
+		"answer" : "자몽",
+		"metadata_seq" : 372,
+		"metadata_text" : "allergy:grapefruit"
+	},
+	{
+		"allergy_id" : 66,
+		"allergy_name" : "적양파",
+		"allergy_type" : null,
+		"answer_seq" : 657,
+		"answer" : "적양파",
+		"metadata_seq" : 955,
+		"metadata_text" : "allergy:red_onion"
+	},
+	{
+		"allergy_id" : 66,
+		"allergy_name" : "적양파",
+		"allergy_type" : null,
+		"answer_seq" : 1204,
+		"answer" : "적양파",
+		"metadata_seq" : 413,
+		"metadata_text" : "allergy:red_onion"
+	},
+	{
+		"allergy_id" : 67,
+		"allergy_name" : "적포도",
+		"allergy_type" : null,
+		"answer_seq" : 658,
+		"answer" : "적포도",
+		"metadata_seq" : 954,
+		"metadata_text" : "allergy:red_grapes"
+	},
+	{
+		"allergy_id" : 67,
+		"allergy_name" : "적포도",
+		"allergy_type" : null,
+		"answer_seq" : 1205,
+		"answer" : "적포도",
+		"metadata_seq" : 412,
+		"metadata_text" : "allergy:red_grapes"
+	},
+	{
+		"allergy_id" : 68,
+		"allergy_name" : "조개류",
+		"allergy_type" : null,
+		"answer_seq" : 659,
+		"answer" : "조개류",
+		"metadata_seq" : 961,
+		"metadata_text" : "allergy:shellfish"
+	},
+	{
+		"allergy_id" : 68,
+		"allergy_name" : "조개류",
+		"allergy_type" : null,
+		"answer_seq" : 1206,
+		"answer" : "조개류",
+		"metadata_seq" : 419,
+		"metadata_text" : "allergy:shellfish"
+	},
+	{
+		"allergy_id" : 69,
+		"allergy_name" : "진드기",
+		"allergy_type" : null,
+		"answer_seq" : 272,
+		"answer" : "진드기 감염",
+		"metadata_seq" : 1312,
+		"metadata_text" : "disease_skin:mite_infestation"
+	},
+	{
+		"allergy_id" : 69,
+		"allergy_name" : "진드기",
+		"allergy_type" : null,
+		"answer_seq" : 660,
+		"answer" : "진드기",
+		"metadata_seq" : 926,
+		"metadata_text" : "allergy:mites"
+	},
+	{
+		"allergy_id" : 69,
+		"allergy_name" : "진드기",
+		"allergy_type" : null,
+		"answer_seq" : 816,
+		"answer" : "진드기 감염",
+		"metadata_seq" : 826,
+		"metadata_text" : "disease_skin:mite_infestation"
+	},
+	{
+		"allergy_id" : 69,
+		"allergy_name" : "진드기",
+		"allergy_type" : null,
+		"answer_seq" : 1207,
+		"answer" : "진드기",
+		"metadata_seq" : 384,
+		"metadata_text" : "allergy:mites"
+	},
+	{
+		"allergy_id" : 70,
+		"allergy_name" : "진통제(아세트아미노펜 등)",
+		"allergy_type" : null,
+		"answer_seq" : 661,
+		"answer" : "진통제(아세트아미노펜 등)",
+		"metadata_seq" : 937,
+		"metadata_text" : "allergy:painkillers"
+	},
+	{
+		"allergy_id" : 70,
+		"allergy_name" : "진통제(아세트아미노펜 등)",
+		"allergy_type" : null,
+		"answer_seq" : 1208,
+		"answer" : "진통제(아세트아미노펜 등)",
+		"metadata_seq" : 395,
+		"metadata_text" : "allergy:painkillers"
+	},
+	{
+		"allergy_id" : 71,
+		"allergy_name" : "참외",
+		"allergy_type" : null,
+		"answer_seq" : 662,
+		"answer" : "참외",
+		"metadata_seq" : 929,
+		"metadata_text" : "allergy:muskmelon"
+	},
+	{
+		"allergy_id" : 71,
+		"allergy_name" : "참외",
+		"allergy_type" : null,
+		"answer_seq" : 1209,
+		"answer" : "참외",
+		"metadata_seq" : 387,
+		"metadata_text" : "allergy:muskmelon"
+	},
+	{
+		"allergy_id" : 72,
+		"allergy_name" : "참치",
+		"allergy_type" : null,
+		"answer_seq" : 663,
+		"answer" : "참치",
+		"metadata_seq" : 970,
+		"metadata_text" : "allergy:tuna"
+	},
+	{
+		"allergy_id" : 72,
+		"allergy_name" : "참치",
+		"allergy_type" : null,
+		"answer_seq" : 1210,
+		"answer" : "참치",
+		"metadata_seq" : 428,
+		"metadata_text" : "allergy:tuna"
+	},
+	{
+		"allergy_id" : 73,
+		"allergy_name" : "체리",
+		"allergy_type" : null,
+		"answer_seq" : 319,
+		"answer" : "체리아이(삼안검탈출증)",
+		"metadata_seq" : 1122,
+		"metadata_text" : "disease_eye:cherry_eye"
+	},
+	{
+		"allergy_id" : 73,
+		"allergy_name" : "체리",
+		"allergy_type" : null,
+		"answer_seq" : 664,
+		"answer" : "체리",
+		"metadata_seq" : 897,
+		"metadata_text" : "allergy:cherries"
+	},
+	{
+		"allergy_id" : 73,
+		"allergy_name" : "체리",
+		"allergy_type" : null,
+		"answer_seq" : 865,
+		"answer" : "체리아이(삼안검탈출증)",
+		"metadata_seq" : 631,
+		"metadata_text" : "disease_eye:cherry_eye"
+	},
+	{
+		"allergy_id" : 73,
+		"allergy_name" : "체리",
+		"allergy_type" : null,
+		"answer_seq" : 1211,
+		"answer" : "체리",
+		"metadata_seq" : 355,
+		"metadata_text" : "allergy:cherries"
+	},
+	{
+		"allergy_id" : 74,
+		"allergy_name" : "초콜릿",
+		"allergy_type" : null,
+		"answer_seq" : 665,
+		"answer" : "초콜릿",
+		"metadata_seq" : 900,
+		"metadata_text" : "allergy:chocolate"
+	},
+	{
+		"allergy_id" : 74,
+		"allergy_name" : "초콜릿",
+		"allergy_type" : null,
+		"answer_seq" : 1212,
+		"answer" : "초콜릿",
+		"metadata_seq" : 358,
+		"metadata_text" : "allergy:chocolate"
+	},
+	{
+		"allergy_id" : 75,
+		"allergy_name" : "카카오",
+		"allergy_type" : null,
+		"answer_seq" : 666,
+		"answer" : "카카오",
+		"metadata_seq" : 901,
+		"metadata_text" : "allergy:cocoa"
+	},
+	{
+		"allergy_id" : 75,
+		"allergy_name" : "카카오",
+		"allergy_type" : null,
+		"answer_seq" : 1213,
+		"answer" : "카카오",
+		"metadata_seq" : 359,
+		"metadata_text" : "allergy:cocoa"
+	},
+	{
+		"allergy_id" : 76,
+		"allergy_name" : "캐모마일",
+		"allergy_type" : null,
+		"answer_seq" : 667,
+		"answer" : "캐모마일",
+		"metadata_seq" : 893,
+		"metadata_text" : "allergy:camomile"
+	},
+	{
+		"allergy_id" : 76,
+		"allergy_name" : "캐모마일",
+		"allergy_type" : null,
+		"answer_seq" : 1214,
+		"answer" : "캐모마일",
+		"metadata_seq" : 351,
+		"metadata_text" : "allergy:camomile"
+	},
+	{
+		"allergy_id" : 77,
+		"allergy_name" : "캐비어",
+		"allergy_type" : null,
+		"answer_seq" : 668,
+		"answer" : "캐비어",
+		"metadata_seq" : 896,
+		"metadata_text" : "allergy:caviar"
+	},
+	{
+		"allergy_id" : 77,
+		"allergy_name" : "캐비어",
+		"allergy_type" : null,
+		"answer_seq" : 1215,
+		"answer" : "캐비어",
+		"metadata_seq" : 354,
+		"metadata_text" : "allergy:caviar"
+	},
+	{
+		"allergy_id" : 78,
+		"allergy_name" : "캐슈넛",
+		"allergy_type" : null,
+		"answer_seq" : 669,
+		"answer" : "캐슈넛",
+		"metadata_seq" : 895,
+		"metadata_text" : "allergy:cashew_nuts"
+	},
+	{
+		"allergy_id" : 78,
+		"allergy_name" : "캐슈넛",
+		"allergy_type" : null,
+		"answer_seq" : 1216,
+		"answer" : "캐슈넛",
+		"metadata_seq" : 353,
+		"metadata_text" : "allergy:cashew_nuts"
+	},
+	{
+		"allergy_id" : 79,
+		"allergy_name" : "케일",
+		"allergy_type" : null,
+		"answer_seq" : 670,
+		"answer" : "케일",
+		"metadata_seq" : 919,
+		"metadata_text" : "allergy:kale"
+	},
+	{
+		"allergy_id" : 79,
+		"allergy_name" : "케일",
+		"allergy_type" : null,
+		"answer_seq" : 1217,
+		"answer" : "케일",
+		"metadata_seq" : 377,
+		"metadata_text" : "allergy:kale"
+	},
+	{
+		"allergy_id" : 80,
+		"allergy_name" : "코리앤더",
+		"allergy_type" : null,
+		"answer_seq" : 671,
+		"answer" : "코리앤더",
+		"metadata_seq" : 904,
+		"metadata_text" : "allergy:coriander"
+	},
+	{
+		"allergy_id" : 80,
+		"allergy_name" : "코리앤더",
+		"allergy_type" : null,
+		"answer_seq" : 1218,
+		"answer" : "코리앤더",
+		"metadata_seq" : 362,
+		"metadata_text" : "allergy:coriander"
+	},
+	{
+		"allergy_id" : 81,
+		"allergy_name" : "코코넛 오일",
+		"allergy_type" : null,
+		"answer_seq" : 672,
+		"answer" : "코코넛 오일",
+		"metadata_seq" : 902,
+		"metadata_text" : "allergy:coconut_oil"
+	},
+	{
+		"allergy_id" : 81,
+		"allergy_name" : "코코넛 오일",
+		"allergy_type" : null,
+		"answer_seq" : 1219,
+		"answer" : "코코넛 오일",
+		"metadata_seq" : 360,
+		"metadata_text" : "allergy:coconut_oil"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 614,
+		"answer" : "땅콩",
+		"metadata_seq" : 941,
+		"metadata_text" : "allergy:peanut"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 673,
+		"answer" : "콩",
+		"metadata_seq" : 885,
+		"metadata_text" : "allergy:beans"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 1161,
+		"answer" : "땅콩",
+		"metadata_seq" : 399,
+		"metadata_text" : "allergy:peanut"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 1220,
+		"answer" : "콩",
+		"metadata_seq" : 343,
+		"metadata_text" : "allergy:beans"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 1260,
+		"answer" : "식물성 단백질 일반 사료 (두부, 콩 단백질 등 포함)",
+		"metadata_seq" : 185,
+		"metadata_text" : "diet:plant_protein"
+	},
+	{
+		"allergy_id" : 82,
+		"allergy_name" : "콩",
+		"allergy_type" : null,
+		"answer_seq" : 1432,
+		"answer" : "식물성 단백질 일반 사료 (두부, 콩 단백질 등 포함)",
+		"metadata_seq" : 48,
+		"metadata_text" : "diet:plant_protein"
+	},
+	{
+		"allergy_id" : 83,
+		"allergy_name" : "키위",
+		"allergy_type" : null,
+		"answer_seq" : 674,
+		"answer" : "키위",
+		"metadata_seq" : 920,
+		"metadata_text" : "allergy:kiwi"
+	},
+	{
+		"allergy_id" : 83,
+		"allergy_name" : "키위",
+		"allergy_type" : null,
+		"answer_seq" : 1221,
+		"answer" : "키위",
+		"metadata_seq" : 378,
+		"metadata_text" : "allergy:kiwi"
+	},
+	{
+		"allergy_id" : 84,
+		"allergy_name" : "토끼고기",
+		"allergy_type" : null,
+		"answer_seq" : 675,
+		"answer" : "토끼고기",
+		"metadata_seq" : 952,
+		"metadata_text" : "allergy:rabbit_meat"
+	},
+	{
+		"allergy_id" : 84,
+		"allergy_name" : "토끼고기",
+		"allergy_type" : null,
+		"answer_seq" : 1222,
+		"answer" : "토끼고기",
+		"metadata_seq" : 410,
+		"metadata_text" : "allergy:rabbit_meat"
+	},
+	{
+		"allergy_id" : 85,
+		"allergy_name" : "토마토",
+		"allergy_type" : null,
+		"answer_seq" : 676,
+		"answer" : "토마토",
+		"metadata_seq" : 969,
+		"metadata_text" : "allergy:tomatoes"
+	},
+	{
+		"allergy_id" : 85,
+		"allergy_name" : "토마토",
+		"allergy_type" : null,
+		"answer_seq" : 1223,
+		"answer" : "토마토",
+		"metadata_seq" : 427,
+		"metadata_text" : "allergy:tomatoes"
+	},
+	{
+		"allergy_id" : 86,
+		"allergy_name" : "파슬리",
+		"allergy_type" : null,
+		"answer_seq" : 677,
+		"answer" : "파슬리",
+		"metadata_seq" : 939,
+		"metadata_text" : "allergy:parsley"
+	},
+	{
+		"allergy_id" : 86,
+		"allergy_name" : "파슬리",
+		"allergy_type" : null,
+		"answer_seq" : 1224,
+		"answer" : "파슬리",
+		"metadata_seq" : 397,
+		"metadata_text" : "allergy:parsley"
+	},
+	{
+		"allergy_id" : 87,
+		"allergy_name" : "파인애플",
+		"allergy_type" : null,
+		"answer_seq" : 678,
+		"answer" : "파인애플",
+		"metadata_seq" : 944,
+		"metadata_text" : "allergy:pineapple"
+	},
+	{
+		"allergy_id" : 87,
+		"allergy_name" : "파인애플",
+		"allergy_type" : null,
+		"answer_seq" : 1225,
+		"answer" : "파인애플",
+		"metadata_seq" : 402,
+		"metadata_text" : "allergy:pineapple"
+	},
+	{
+		"allergy_id" : 88,
+		"allergy_name" : "파프리카",
+		"allergy_type" : null,
+		"answer_seq" : 679,
+		"answer" : "파프리카",
+		"metadata_seq" : 938,
+		"metadata_text" : "allergy:paprika"
+	},
+	{
+		"allergy_id" : 88,
+		"allergy_name" : "파프리카",
+		"allergy_type" : null,
+		"answer_seq" : 1226,
+		"answer" : "파프리카",
+		"metadata_seq" : 396,
+		"metadata_text" : "allergy:paprika"
+	},
+	{
+		"allergy_id" : 89,
+		"allergy_name" : "페니실린계 항생제",
+		"allergy_type" : null,
+		"answer_seq" : 680,
+		"answer" : "페니실린계 항생제",
+		"metadata_seq" : 942,
+		"metadata_text" : "allergy:penicillin_antibiotics"
+	},
+	{
+		"allergy_id" : 89,
+		"allergy_name" : "페니실린계 항생제",
+		"allergy_type" : null,
+		"answer_seq" : 1227,
+		"answer" : "페니실린계 항생제",
+		"metadata_seq" : 400,
+		"metadata_text" : "allergy:penicillin_antibiotics"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 321,
+		"answer" : "포도막염",
+		"metadata_seq" : 1155,
+		"metadata_text" : "disease_eye:uvetitis"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 601,
+		"answer" : "건포도",
+		"metadata_seq" : 907,
+		"metadata_text" : "allergy:dried_grape"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 658,
+		"answer" : "적포도",
+		"metadata_seq" : 954,
+		"metadata_text" : "allergy:red_grapes"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 681,
+		"answer" : "포도",
+		"metadata_seq" : 915,
+		"metadata_text" : "allergy:grapes"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 867,
+		"answer" : "포도막염",
+		"metadata_seq" : 664,
+		"metadata_text" : "disease_eye:uvetitis"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 1148,
+		"answer" : "건포도",
+		"metadata_seq" : 365,
+		"metadata_text" : "allergy:dried_grape"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 1205,
+		"answer" : "적포도",
+		"metadata_seq" : 412,
+		"metadata_text" : "allergy:red_grapes"
+	},
+	{
+		"allergy_id" : 90,
+		"allergy_name" : "포도",
+		"allergy_type" : null,
+		"answer_seq" : 1228,
+		"answer" : "포도",
+		"metadata_seq" : 373,
+		"metadata_text" : "allergy:grapes"
+	},
+	{
+		"allergy_id" : 91,
+		"allergy_name" : "플라스틱",
+		"allergy_type" : null,
+		"answer_seq" : 682,
+		"answer" : "플라스틱",
+		"metadata_seq" : 946,
+		"metadata_text" : "allergy:plastic"
+	},
+	{
+		"allergy_id" : 91,
+		"allergy_name" : "플라스틱",
+		"allergy_type" : null,
+		"answer_seq" : 1229,
+		"answer" : "플라스틱",
+		"metadata_seq" : 404,
+		"metadata_text" : "allergy:plastic"
+	},
+	{
+		"allergy_id" : 92,
+		"allergy_name" : "피망",
+		"allergy_type" : null,
+		"answer_seq" : 683,
+		"answer" : "피망",
+		"metadata_seq" : 888,
+		"metadata_text" : "allergy:bell_peppers"
+	},
+	{
+		"allergy_id" : 92,
+		"allergy_name" : "피망",
+		"allergy_type" : null,
+		"answer_seq" : 1230,
+		"answer" : "피망",
+		"metadata_seq" : 346,
+		"metadata_text" : "allergy:bell_peppers"
+	},
+	{
+		"allergy_id" : 93,
+		"allergy_name" : "피스타치오",
+		"allergy_type" : null,
+		"answer_seq" : 684,
+		"answer" : "피스타치오",
+		"metadata_seq" : 945,
+		"metadata_text" : "allergy:pistachios"
+	},
+	{
+		"allergy_id" : 93,
+		"allergy_name" : "피스타치오",
+		"allergy_type" : null,
+		"answer_seq" : 1231,
+		"answer" : "피스타치오",
+		"metadata_seq" : 403,
+		"metadata_text" : "allergy:pistachios"
+	},
+	{
+		"allergy_id" : 94,
+		"allergy_name" : "피클",
+		"allergy_type" : null,
+		"answer_seq" : 685,
+		"answer" : "피클",
+		"metadata_seq" : 943,
+		"metadata_text" : "allergy:pickles"
+	},
+	{
+		"allergy_id" : 94,
+		"allergy_name" : "피클",
+		"allergy_type" : null,
+		"answer_seq" : 1232,
+		"answer" : "피클",
+		"metadata_seq" : 401,
+		"metadata_text" : "allergy:pickles"
+	},
+	{
+		"allergy_id" : 95,
+		"allergy_name" : "항히스타민제",
+		"allergy_type" : null,
+		"answer_seq" : 686,
+		"answer" : "항히스타민제",
+		"metadata_seq" : 878,
+		"metadata_text" : "allergy:antihistamines"
+	},
+	{
+		"allergy_id" : 95,
+		"allergy_name" : "항히스타민제",
+		"allergy_type" : null,
+		"answer_seq" : 1233,
+		"answer" : "항히스타민제",
+		"metadata_seq" : 336,
+		"metadata_text" : "allergy:antihistamines"
+	},
+	{
+		"allergy_id" : 96,
+		"allergy_name" : "혈액항응고제",
+		"allergy_type" : null,
+		"answer_seq" : 687,
+		"answer" : "혈액항응고제",
+		"metadata_seq" : 877,
+		"metadata_text" : "allergy:anticoagulants"
+	},
+	{
+		"allergy_id" : 96,
+		"allergy_name" : "혈액항응고제",
+		"allergy_type" : null,
+		"answer_seq" : 1234,
+		"answer" : "혈액항응고제",
+		"metadata_seq" : 335,
+		"metadata_text" : "allergy:anticoagulants"
+	},
+	{
+		"allergy_id" : 97,
+		"allergy_name" : "호두",
+		"allergy_type" : null,
+		"answer_seq" : 688,
+		"answer" : "호두",
+		"metadata_seq" : 971,
+		"metadata_text" : "allergy:walnuts"
+	},
+	{
+		"allergy_id" : 97,
+		"allergy_name" : "호두",
+		"allergy_type" : null,
+		"answer_seq" : 1235,
+		"answer" : "호두",
+		"metadata_seq" : 429,
+		"metadata_text" : "allergy:walnuts"
+	},
+	{
+		"allergy_id" : 98,
+		"allergy_name" : "호박",
+		"allergy_type" : null,
+		"answer_seq" : 689,
+		"answer" : "호박",
+		"metadata_seq" : 951,
+		"metadata_text" : "allergy:pumpkin"
+	},
+	{
+		"allergy_id" : 98,
+		"allergy_name" : "호박",
+		"allergy_type" : null,
+		"answer_seq" : 1236,
+		"answer" : "호박",
+		"metadata_seq" : 409,
+		"metadata_text" : "allergy:pumpkin"
+	},
+	{
+		"allergy_id" : 99,
+		"allergy_name" : "흰양파",
+		"allergy_type" : null,
+		"answer_seq" : 690,
+		"answer" : "흰양파",
+		"metadata_seq" : 974,
+		"metadata_text" : "allergy:white_onion"
+	},
+	{
+		"allergy_id" : 99,
+		"allergy_name" : "흰양파",
+		"allergy_type" : null,
+		"answer_seq" : 1237,
+		"answer" : "흰양파",
+		"metadata_seq" : 432,
+		"metadata_text" : "allergy:white_onion"
+	}
+]
