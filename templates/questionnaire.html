@@ -506,6 +506,7 @@
 
             // Handle different types of questions based on answerType
             if (question.answer_type === 'Multichoice - Single') {
+                console.log('question.answer_type === Multichoice - Single: ', question.answer_choices)
                 const choices = question.answer_choices.split('\n');
                 const btnGroup = document.createElement('div');
                 btnGroup.className = 'btn-group';
@@ -541,12 +542,36 @@
                     
                     // Check if choice contains ':', split if it does, otherwise use the whole string
                     const choiceParts = choice.includes(':') ? choice.split(':').map(s => s.trim()) : [choice, choice];
-                    
                     choiceElement.textContent = choiceParts[1]; // Display the human-readable text
+
+                    if (choiceParts[0].toLowerCase() === 'other') {
+                        // Create an input field for the 'Other' option
+                        const inputField = document.createElement('input');
+                        inputField.type = 'text';
+                        inputField.className = 'form-control';
+                        //inputField.style.display = 'none'; // Initially hidden
+                        inputField.placeholder = 'Please specify...';
+            
+                        choiceElement.appendChild(inputField);
+                        choiceElement.addEventListener('click', function() {
+                            // Show input field when 'Other' is selected
+                            handleChoiceSelection(question.question_id, choiceElement, choiceParts[0], inputField);
+                        });
+                    } else {
+                        choiceElement.addEventListener('click', function() {
+                            handleChoiceSelection(question.question_id, choiceElement, choiceParts[0]);
+                        });
+                    }
+            
                     
                     // Check if this was the user's answer and mark it as selected
                     if (userAnswer === choiceParts[0]) {
-                        choiceElement.classList.add('selected'); // Add 'selected' class or another appropriate class you use to indicate selection
+                        choiceElement.classList.add('selected'); 
+                        if (choiceParts[1].toLowerCase() === 'other' && userAnswer.includes(':')) {
+                            // Extract the user-specified text if present
+                            choiceElement.querySelector('input').value = userAnswer.split(':')[1];
+                            choiceElement.querySelector('input').style.display = 'block';
+                        }
                     }
 
                     choiceElement.addEventListener('click', function() {
@@ -555,7 +580,6 @@
                 
                     choiceContainer.appendChild(choiceElement);
                 });
-                
                 card.appendChild(choiceContainer);
             } else if (question.answer_type === 'Text input - Image Attached') {
                 // Add text input for pet's name
@@ -659,6 +683,7 @@
                 // Function to update tags based on search
                 function updateTags(filter = '') {
                     tagContainer.innerHTML = '';
+                    console.log('answer_choices => ', question.answer_choices)
                     question.answer_choices.split('\n')
                         .filter(choice => {
                             const [, tagName] = choice.split(':').map(s => s.trim());
@@ -859,17 +884,32 @@
             
         }
 
-        function handleChoiceSelection(questionId, choiceElement, choice) {
+        function handleChoiceSelection(questionId, choiceElement, choice, inputField = null) {
+            console.log("handleChoiceSelection inputField: "+inputField)
             // Remove 'selected' class from all choices in the same container
             choiceElement.parentElement.querySelectorAll('.choice-item').forEach(item => {
                 item.classList.remove('selected');
+                // Hide input fields that may be in any "other" choice items
+                if (item.querySelector('input')) {
+                    console.log("item.querySelector('input'): "+item.querySelector('input'))
+                    item.querySelector('input').style.display = 'none';
+                }
             });
         
             // Add 'selected' class to the clicked choice
             choiceElement.classList.add('selected');
-        
-            // Process the selected answer
-            processAnswer(questionId, choice);
+            
+            if (inputField) {
+                // Show the input field if "other" is selected
+                inputField.style.display = 'block';
+                inputField.focus();
+                inputField.oninput = () => { // Update to process answer as user types
+                    // processAnswer(questionId, choice + ':' + inputField.value.trim());
+                };
+            } else {
+                // Process the answer normally if not "other"
+                processAnswer(questionId, choice);
+            }
         }
         let totalQuestions = 10; // Set the total number of questions
         let answeredQuestions = 0; // Initialize answered questions
@@ -995,7 +1035,7 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
