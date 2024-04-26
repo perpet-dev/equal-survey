@@ -41,7 +41,12 @@ class Parser:
         logger.info(f"Parser parse: {self.parsed_statements}")
         
         return self.parsed_statements
-
+    
+    def parse_redirect(self):
+        # Assuming 'REDIRECT:' token has already been validated
+        url_token = self.tokenizer.expect_token('URL')  # Consume the URL token
+        return {'type': 'redirect', 'url': url_token['value']}
+    
     def parse_array(self, token):
         # Handle array-specific logic here
         array_name = token['value']  # This contains the array variable name like '@Pizza[size][]'
@@ -196,15 +201,27 @@ class Parser:
 
     def parse_action(self):
         actions = []
+        paren_depth = 0
         while True:
-            if self.tokenizer.peek_next_token() is None:
+            token = self.tokenizer.peek_next_token()
+            logger.debug(f"Debugging: parse_action peek_next_token: {token}")  # Debugging statement
+            if not token or token['type'].lower() == 'close_paren':
                 break
-            
+            if token['type'] == 'OPEN_PAREN':
+                paren_depth += 1
+                self.tokenizer.get_next_token()  # consume the token
+                continue
             token = self.tokenizer.get_next_token()
             logger.debug(f"Debugging: parse_action token: {token}")  # Debugging statement
             action = {'type': token['type'].lower(), 'variables': []}
-            
-            if action['type'] == 'add':
+            logger.debug(f"Debugging: action: {action}")  # Debugging statement
+
+            if action['type'] == 'redirect':
+                logger.debug(f"parse_action - Found REDIRECT action: {action}")
+                url_token = self.tokenizer.expect_token('URL')  # Assume next token must be URL
+                logger.debug(f"parse_action - Found REDIRECT url_token: {url_token}")
+                actions.append({'type': 'redirect', 'url': url_token['value']})
+            elif action['type'] == 'add':
                 # Process the value (number or variable) to be added
                 next_token = self.tokenizer.peek_next_token()
                 if next_token['type'] == 'NUMBER':
@@ -266,10 +283,10 @@ class Parser:
                         var_token = self.tokenizer.get_next_token()
                         action['variables'].append(var_token['value'])
                         self.tokenizer.expect_token('CLOSE_PAREN')
-                    if self.tokenizer.peek_next_token() and self.tokenizer.peek_next_token()['type'] in ['BY', 'TO']:
+                    if self.tokenizer.peek_next_token() and self.tokenizer.peek_next_token()['type'] in ['BY', 'TO','REDIRECT', 'ADD', 'MULTIPLY', 'SET']:
                         self.tokenizer.get_next_token()
                         continue
-                    if not self.tokenizer.peek_next_token() or self.tokenizer.peek_next_token()['type'] in ['CLOSE_PAREN', 'GOTO', 'ADD', 'MULTIPLY', 'SET']:
+                    if not self.tokenizer.peek_next_token() or self.tokenizer.peek_next_token()['type'] in ['CLOSE_PAREN', 'OPEN_PAREN', 'GOTO', 'ADD', 'MULTIPLY', 'SET', 'REDIRECT', 'URL']:
                         break
                     
             # actions.append(action)
@@ -279,8 +296,9 @@ class Parser:
                 logger.debug(f"Action appended: {action}")
             if self.tokenizer.peek_next_token() and self.tokenizer.peek_next_token()['type'] == 'CLOSE_PAREN':
                 self.tokenizer.get_next_token()
-            if not self.tokenizer.peek_next_token() or self.tokenizer.peek_next_token()['type'] not in ['ADD', 'MULTIPLY', 'GOTO', 'SET']:
+            if not self.tokenizer.peek_next_token() or self.tokenizer.peek_next_token()['type'] not in ['ADD', 'MULTIPLY', 'GOTO', 'SET', 'REDIRECT']:
                 break
+        logger.debug(f"parse_action: {actions}")
         return actions
 
 #logic_lines="SET (@Dessert.quantity) \nTHEN (MULTIPLY) (@Dessert.quantity) (BY) (@Dessert.price) (ADD) TO (@Price) \n GOTO: 13"logic_lines = 
@@ -296,7 +314,11 @@ class Parser:
 #logic_line = "IF (#Y) THEN (GOTO: 11) ELSE (GOTO: 13)"
 
 # logic_line = "IF (#N) THEN IF (@type==dog) THEN (GOTO: 21) ELSE (GOTO: 24)"
-logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@type==dog) THEN (GOTO: 21) ELSE (GOTO: 24)"
+# logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@type==dog) THEN (GOTO: 21) ELSE (GOTO: 24)"
+# logic_line = "IF (#Y) THEN (REDIRECT: http://0.0.0.0:9090/questionnaire/Back_Questionnaire?user_id={user_id}&pet_type={@pet_type}&petname={@petname})"
+# logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@pet_type==dog) THEN (GOTO: 21) ELSE (GOTO: 23)"
+
+# logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@pet_type==dog) THEN (GOTO: 21) ELSE (GOTO: 23)"
 # logic_lines = logic_line.split("\n")
 # for line in logic_lines:
 #     if line.strip() == "":

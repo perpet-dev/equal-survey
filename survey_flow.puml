@@ -1,0 +1,51 @@
+@startuml
+!define RECTANGLE participant
+
+RECTANGLE User as "User App (Flutter/React)"
+RECTANGLE Server as "FastAPI Server"
+RECTANGLE DB as "Database"
+
+User -> Server : Login/Register
+Server -> DB : Store User Data
+DB --> Server : Confirmation
+
+User -> Server : Check Session State
+Server -> DB : Query Existing Session
+DB --> Server : Session Status (new, ongoing, completed)
+
+alt New Session
+    Server --> User : Initialize New Session
+    User -> Server : Initialize Session (Start Questionnaire)
+    Server -> DB : Create Session
+    DB --> Server : Session ID
+else Ongoing Session
+    Server --> User : Restore Session (Current Question, Answers)
+else Completed Session
+    Server --> User : Inform Session Completed
+end
+
+loop Questionnaire Interaction
+    alt Session Active
+        User -> Server : Submit Answer
+        Server -> DB : Save Answer
+        DB --> Server : Update State
+        Server --> User : Next Question
+    else Session Inactive
+        Server --> User : Session Inactive (Redirect or Close)
+    end
+end
+
+alt Session Active
+    User -> Server : Complete Questionnaire
+    Server -> DB : Mark Session Complete, Generate Report
+    DB --> Server : Report Ready
+else Session Inactive
+    Server --> User : No Active Session (Redirect or Close)
+end
+
+opt Report Requested
+    User -> Server : Request Report
+    Server --> User : Download Report
+end
+
+@enduml

@@ -15,5 +15,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 ENV OPENAI_API_KEY="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"
 # Expose port and define command to run the app
-EXPOSE 10000
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "10000"]
+ENV PORT 10080
+CMD ["python", "server.py"]

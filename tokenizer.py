@@ -1,4 +1,5 @@
 import re
+from urllib.parse import urlparse
 #from logicparser import ParserError
 
 import logging
@@ -9,8 +10,10 @@ class Tokenizer:
         self.position = 0
         # Define the token patterns
         token_patterns = {
+            'URL': r'http[s]?://[^\s{}()]+(?:\{[^{}()]*\}[^\s{}()]*)*',# URL pattern supportting variables in curly braces
             'GOTO': r'GOTO\s*:\s*(\d+)',  # Match the 'GOTO' keyword followed by a colon and a step number
             'NUMBER': r'(\d+(\.\d+)?)',
+            'REDIRECT': r'REDIRECT:',
             'IF': r'IF',
             'LITERAL': r'#\w+',
             'EQUALS': r'==',  # Equality comparison
@@ -50,7 +53,11 @@ class Tokenizer:
                             # Extract step number for GOTO token
                             step_number = int(match.group(1))
                             self.tokens.append({'type': 'GOTO', 'value': step_number})
-                            self.osition = match.end()  # Consume the GOTO token by updating the position
+                            self.position = match.end()  # Consume the GOTO token by updating the position
+                        elif token_type == 'URL':
+                            value = match.group(0)
+                            logger.debug(f"URL: {value}")
+                            self.tokens.append({'type': 'URL', 'value': value})
                         elif token_type == 'EQUALS':
                             self.tokens.append({'type': 'EQUALS', 'value': '=='})
                         elif token_type == 'LITERAL':
@@ -93,7 +100,7 @@ class Tokenizer:
     def peek_next_token(self):
         if self.position < len(self.tokens):
             return self.tokens[self.position]
-        else:
+        else:   
             return None
     
     def expect_token(self, expected_type):
@@ -112,16 +119,28 @@ class Tokenizer:
 # for token in tokens:
 #     print(token)
 
-#Test
-# tokenizer = Tokenizer()
-# # logic_statement = "IF (@petType==고양이) THEN (GOTO: 5) ELSE (GOTO: 6)"
-# # logic_statement = "IF(#강아지) THEN SET(@petType=dog) ELSE SET(@petType=cat)\nGOTO 2"
-# # logic_statement = "IF (#강아지) THEN (SET(@petType=dog)) ELSE (SET(@petType=cat))"
-# logic_statement = "IF (#Y) THEN (GOTO: 19) ELIF (@type==dog) THEN (GOTO: 21) ELSE (GOTO: 24)"
-# # # Tokenize the logic statement
-# tokens = tokenizer.tokenize(logic_statement)
-# # Print the tokens for inspection
-# for token in tokens:
-#     print(token)
     
-    
+def test_tokenizer():
+    tokenizer = Tokenizer()
+    test_statements = [
+        # "GOTO: 123",
+        "IF (#Y) THEN (REDIRECT: http://0.0.0.0:9090/questionnaire?user_id={user_id}&pet_type={@pet_type}&petname={@petname})",
+        # "SET (@Price) THEN (ADD (TO) (@Total))",
+        # "IF (@petType==dog) THEN (MULTIPLY (@Price) (BY) (1.2))",
+        #"REDIRECT: http://example.com/page?query=value&session={session_id}"
+    ]
+
+    for statement in test_statements:
+        try:
+            if isinstance(statement, str):
+                tokens = tokenizer.tokenize(statement)
+                print(f"Tokens for '{statement}':")
+                for token in tokens:
+                    print(token)
+            else:
+                print(f"Skipping non-string input: {statement}")
+        except Exception as e:
+            print(f"Error tokenizing '{statement}': {str(e)}")
+
+if __name__ == "__main__":
+    test_tokenizer()

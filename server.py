@@ -1,15 +1,17 @@
 # server.py
-from math import log
-from fastapi import FastAPI, Body, Form, Header, HTTPException, Depends, Response, Request, File, UploadFile
+from fastapi import FastAPI, Body, Form, Header, HTTPException, Depends, Response, Request, File, UploadFile, status, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
+from datetime import datetime, timezone
 from pydantic import BaseModel
-from typing import Optional, Tuple, List, Dict
-import os
+from typing import Any, Optional, Tuple, List, Dict
+
+from sympy import use
 from automaton import Automaton
+import base64
+from io import BytesIO
 #import firebase_admin
 #from firebase_admin import credentials, firestore
 import uvicorn
@@ -18,12 +20,17 @@ from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 import re
 import uuid
 from pymongo import MongoClient, UpdateOne, ASCENDING
+from pymongo.errors import DuplicateKeyError
 from bson.objectid import ObjectId
 import json
 from config import LOGGING_CONFIG, MONGODB
 import logging
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
+from config import LOGGING_LEVEL, serverip
+from userdb import UserInfo
+# Assuming UserInfo class is already imported
+user_db = UserInfo()  # Global instance for reusing the connection pool
 
 class AnswerSubmission(BaseModel):
     question_id: str
@@ -40,13 +47,19 @@ client = MongoClient(MONGODB)
 mongo_db = client.perpet_healthcheck
 automaton_collection = mongo_db.automatons
 session_collection = mongo_db.automaton_sessions
+images_collection = mongo_db.pet_images
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",
+    "http://dev.promptinsight.ai:10095",
+    "http://dev.promptinsight.ai:10071"
+]
 # Allow all origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=origins,#["*"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
@@ -61,9 +74,116 @@ allergyid_map = {}
 diseaseid_map = {} 
 # Set the URL for the POST request
 # serverip = "http://localhost:10075"
-serverip = "http://dev.promptinsight.ai:10002"
 
-def registerUser(session_id: str):
+
+@app.post("/initialize_session/{questionnaire_id}")
+async def initialize_session(
+    request: Request,
+    questionnaire_id: str,
+    user_id: str = Header(None, alias='X-User-ID'),
+    access_token: str = Header(None, alias='X-Access-Token'),
+    query_params: Optional[Dict[str, Any]] = Body(default={}, embed=True)  # Use embed=True if needed
+):
+    # Extract pet_type and petname from the query_params if available
+    pet_type = query_params.get('pet_type')
+    petname = query_params.get('petname')
+    if not user_id:
+        user_id = query_params.get('user_id')
+    session_id = query_params.get('session_id')
+    gender = query_params.get('gender')
+    logger.debug(f"User ID: {user_id}, session_id: {session_id}, Questionnaire ID: {questionnaire_id}, petname: {petname}, pet_type: {pet_type}, gender:{gender}")
+
+    if not user_id:
+        # Generate new session for anonymous users
+        session_id = str(uuid.uuid4())
+        user_data = await registerUser(session_id)  # Assuming register_user is an async function
+        if user_data.get('id') and user_data.get('accessToken'):
+            user_id = user_data['id']
+            access_token = user_data['accessToken']
+            logger.debug(f"Registered anonymous user: {user_id} with access token: {access_token}")
+        else:
+            raise HTTPException(status_code=500, detail="Failed to register anonymous user")
+
+    # For logged-in users or newly registered anonymous users
+    session_id = await retrieve_or_create_session_for_user(user_id, str(user_id) + "_" + petname, questionnaire_id, query_params)
+
+    return JSONResponse(status_code=200, content={
+        "session_id": session_id,
+        "user_id": user_id,
+        "access_token": access_token,
+        "questionnaire_id": questionnaire_id,
+        "petname": petname,
+        "pet_type": pet_type
+    })
+
+async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, questionnaire_id: str, query_params: Dict[str, Any]):
+    # This function should handle the retrieval or creation of sessions and automatons asynchronously
+    session_key = f"{pet_info}_{questionnaire_id}"
+    logger.debug(f"Retrieving or creating session for session_key: {session_key}")
+    
+    session_data = session_collection.find_one({"session_key": session_key})
+
+    # Get the current time with timezone set to UTC
+    now_utc = datetime.now(timezone.utc)
+
+    # Format the datetime object to the desired string format
+    formatted_datetime = now_utc.strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+    variables = {}
+    user_answers = {}
+    goto = '1'
+    if not session_data:
+        logger.debug("No session data found, creating new session and automaton.")
+        session_id = str(uuid.uuid4())
+        automaton = Automaton()
+        automaton_data = await create_or_update_automaton(automaton, questionnaire_id)
+        petname = query_params.get('petname')
+        if petname:
+            variables['@petname'] = petname
+            automaton.set_variable_value("@petname", petname)
+        gender = query_params.get('gender')
+        if gender:
+            variables['@gender'] = gender
+            automaton.set_variable_value("@gender", gender)
+        pet_type = query_params.get('pet_type')
+        if pet_type:
+            automaton.set_variable_value("@pet_type", pet_type)
+            variables['@pet_type'] = pet_type
+            if questionnaire_id == "PerpetHealthCheckIntro":
+                user_answers['1'] = pet_type
+                goto = '2'
+        
+        session_collection.insert_one({
+            "session_key": session_key,
+            "session_id": session_id,
+            "questionnaire_id": questionnaire_id,
+            "insertDate": formatted_datetime,
+            "automaton_id": automaton_data['_id'],
+            "user_id": int(user_id),
+            "goto": goto,
+            "user_answers": user_answers,
+            "variables": variables,
+            "questions_history": {}
+        })
+    else:
+        automaton = Automaton()
+        logger.debug(f"Found existing session data, loading automaton.{session_data}")
+        automaton.deserialize_data(session_data)
+        session_id = session_data['session_id']
+
+    return session_id
+
+async def create_or_update_automaton(automaton, questionnaire_id):
+    # Load or create new automaton configurations asynchronously
+    automaton_data = automaton_collection.find_one({"name": questionnaire_id})
+    if not automaton_data:
+        automaton.load_from_excel(f"{questionnaire_id}.xlsx")
+        automaton_data = automaton.serialized_states()
+        automaton_collection.insert_one(automaton_data)
+    else:
+        automaton.deserialize_states(automaton_data)
+    return automaton_data
+
+async def registerUser(session_id: str):
     url = f"{serverip}/user-service/v1/auth/social"
     # Define the data payload for the POST request
     data = {
@@ -81,9 +201,8 @@ def registerUser(session_id: str):
         logger.debug("Success registering user:", response.json())  # Print the JSON response from the server
     else:
         logger.error(f"Failed to register user: Status Code:{response.status_code} Response Text:{response.text}")
-    signup_json = response.json()
-    
-    return signup_json
+    user_data = response.json()
+    return user_data['data']  # Return the nested 'data' dictionary
 
 async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tuple[Automaton, str]:
     """
@@ -106,30 +225,22 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
         automaton.deserialize_states(automaton_data)
 
     # Create a unique composite key for session and questionnaire
-    session_key = f"{session_id}_{questionnaire_id}"
-    
-    # Find or create the session
-    session_data = session_collection.find_one({"session_key": session_key})
-    if not session_data:
-        logger.debug(f"No session data for session_key: {session_key}, creating new session.")
-        signup_json = registerUser(session_id)
-        user_id = signup_json.get('data', {}).get('id', None)
-        accessToken = signup_json.get('data', {}).get('accessToken', None)
-        logger.debug(f"FastAPI: for session_id: {session_id} => User Signup JSON: {signup_json} \
-                    \n=> signup_json_id: {user_id}") 
-        new_session_data = {
-            "session_key": session_key,
-            "session_id": session_id,
-            "questionnaire_id": questionnaire_id,
-            "automaton_id": automaton_id,
-            "user_id": user_id,
-            "accessToken": accessToken
-        }
-        session_collection.insert_one(new_session_data)
-    else:
-        logger.debug(f"Found existing session data for session_key: {session_key}")
+    #session_key = f"{session_id}_{questionnaire_id}"
+    # # Find or create the session
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id
+    })
+    # logger.debug(f"get_automaton_for_user => Session data: {session_data}")
+    # session_collection.find_one({"session_key": session_key})
+    # logger.debug(f"Session data: {session_data}")
+    # if not session_data:
+    #     logger.debug(f"No session data for session_id: {session_id}.")
+    #     raise HTTPException(status_code=500, detail="No session id found")
+    if session_data:
         automaton.deserialize_data(session_data)
-
+        
+    logger.debug(f"get_automaton_for_user Automaton data: {session_data} for session_id: {session_id}")
     return automaton, session_id
 
 @app.get("/questionnaire/{questionnaire_id}/{session_id}/restore")
@@ -140,17 +251,17 @@ async def restore_session(questionnaire_id: str, session_id: str):
     """
     # Retrieve or create the Automaton and the session using the unique session_key
     automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
-
-    # Create a unique composite key for session and questionnaire
-    session_key = f"{session_id}_{questionnaire_id}"
+    logger.debug(f"restore_session; automaton found => automaton_data = {automaton.serialize_data()}")
 
     # Retrieve the session data using the session_key
-    session_data = session_collection.find_one({"session_key": session_key})
-
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id
+    })
     if not session_data:
-        logger.info(f"No session data found for session_key: {session_key}, initializing new session.")
+        logger.info(f"No session data found... initializing new session.")
         session_data = {
-            "session_key": session_key,
+            "session_key": session_id + "_" + questionnaire_id,
             "session_id": session_id,
             "questionnaire_id": questionnaire_id,
             "automaton_id": automaton.name,
@@ -158,10 +269,37 @@ async def restore_session(questionnaire_id: str, session_id: str):
             "user_answers": {}
         }
         session_collection.insert_one(session_data)
-
+    session_key = session_data['session_key']
+    logger.debug(f"Restore => Session data: {session_data} for session_key: {session_key}")
+    
     # Proceed with session restoration logic
     questions_history = session_data.get("questions_history", {})
     current_question_id = automaton.goto  # or some default value
+    if questions_history is None:
+        questions_history = {}
+    if current_question_id not in questions_history:
+        node = automaton.states.get(current_question_id)
+        question = automaton.substitute_placeholders(node['Question'])
+        question_data = {
+                "session_id": session_id,
+                "question_id": current_question_id,
+                "question": question,
+                "answer_type": node.get("AnswerType"),
+                "answer_choices": node.get("AnswerChoices", ""),
+                "page_number": node.get("Page"),
+                "why_we_asked": node.get("WhyWeAsk"),
+                "updated_questions": [],
+                "redo_questions": [],
+                "remove_questions": []
+            }
+        questions_history = {current_question_id: question_data}
+        logger.info(f"Questions history: {questions_history}")
+        update_history_query = {"$set": {f"questions_history.{current_question_id}": question_data}}
+        
+        logger.info(f"Updating questions history: {update_history_query} for session_key: {session_key}")
+        if session_key:
+            session_collection.update_one({"session_key": f"{session_key}"}, update_history_query, upsert=True)
+    
     restored_session_data = {
         "session_id": session_id,
         "questionnaire_id": questionnaire_id,
@@ -170,94 +308,95 @@ async def restore_session(questionnaire_id: str, session_id: str):
         "variables": automaton.variables,  # Include other automaton states if needed
         "user_answers": session_data.get("user_answers", {})
     }
-
+    
     logger.info(f"Restored session data: {restored_session_data}")
     return restored_session_data
 
 @app.post("/get_question/{questionnaire_id}/{question_id}")
-async def get_question(response: Response, request: Request, questionnaire_id: str, question_id: str, query_params: Optional[dict] = Body(default=None)):
+async def get_question(
+    questionnaire_id: str,
+    question_id: str,
+    session_id: str = Header(None),  # Header parameter
+    query_params: Optional[Dict[str, Any]] = Body(default={})
+):
+    print("Received session_id:", session_id)
+    print("Received query_params:", query_params)
     global session_collection  # Add this line to use the global session_collection
-    session_id = request.headers.get('session_id', None) or request.cookies.get('session_id', None)
 
     if not session_id:
-        session_id = str(uuid.uuid4())
-        logger.info(f"Generated new session_id: {session_id}")
-        # Set the cookie for the session
-        response.set_cookie(key="session_id", value=session_id)
+        raise HTTPException(status_code=500, detail="A session_id is required to proceed.")
 
     logger.info(f"Session ID: {session_id}, Questionnaire ID: {questionnaire_id}, Question ID: {question_id}")
     
     automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
     logger.info(f"Loaded automaton for Session ID: {session_id}, Questionnaire ID: {questionnaire_id}")
 
-    #if question_id == "1" and query_params:
     if query_params:
         logger.debug(f"Query Parameters: {query_params}")
-        actual_params = query_params.get('queryParams', {})
-        for key, value in actual_params.items():
+        #actual_params = query_params.get('queryParams', {})
+        for key, value in query_params.items():
             formatted_key = f"@{key}"
             logger.debug(f"Setting variable: {formatted_key} => {value}")
             automaton.set_variable_value(formatted_key, value)
     
     # Check if the pet type is already known and skip the first question if it is.
-    if question_id == "1" and query_params:
-        pet_type = actual_params.get('pet_type', None)
+    if question_id == "1" and query_params and questionnaire_id == "PerpetHealthCheckIntro":
+        #actual_params = query_params.get('query_params', {})
+        pet_type = query_params.get('pet_type', None)
+        logger.debug(f"Pet type: {pet_type}")
         if pet_type:
             # Assuming you have a mapping of pet types to the next question ID
             next_question_id_map = {
                 'cat': '2',  # If pet type is cat, go to question ID 2
                 'dog': '2',  # If pet type is dog, go to question ID 2
-                # Add other pet types and corresponding question IDs if needed
             }
             next_question_id = next_question_id_map.get(pet_type.lower(), '1')  # Default to question ID 1 if pet type is unknown
-
+            
+            logger.info(f"Skipping question ID 1 for pet type: {pet_type}, moving to question ID: {next_question_id}")
+            automaton.goto = next_question_id
             # Serialize and save the automaton's current state before moving to the next question
             automaton_data = automaton.serialize_data()
             session_collection.update_one({"session_key": f"{session_id}_{questionnaire_id}"}, {"$set": automaton_data}, upsert=True)
 
             # If the next question ID is different from the current, fetch the next question data
             if next_question_id != question_id:
-                return await get_question(response, request, questionnaire_id, next_question_id, query_params)
+                return await get_question(response, questionnaire_id, next_question_id, query_params)
     ##############################
-
 
     node = automaton.states.get(question_id)
     if node is None:
         raise HTTPException(status_code=404, detail="Question not found")
-
+    logger.debug(f"Node: {node}")
+    logger.debug(f"Question of node: {node['Question']}")
     question = automaton.substitute_placeholders(node['Question'])
     answer_choices = node.get("AnswerChoices", "")
 
     if "APICALL" in answer_choices:
+        logger.debug("Should make API CALL")
         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
         api_call = automaton.substitute_placeholders(api_call)
-        response = make_api_call(api_call)
-        # if "EXTRACT(" in answer_choices:
-        #     extract_key = extract_from_function(answer_choices)
-        #     answer_choices = extract_data(response, extract_key)
-        # else:
-        #     answer_choices = response
-            
-        if "EXTRACT(" in answer_choices:
+        logger.debug(f"API CALL: {api_call}")
+        if "EXTRACT" in answer_choices:
             extract_key = extract_from_function(answer_choices)
-            aggregated_data = []
-            for single_response in response:
-                extracted_data = extract_data(single_response, extract_key)
-                logger.debug(f"Extracted data: {extracted_data}")
-                aggregated_data.append(extracted_data)
-            answer_choices = aggregated_data  
-            logger.debug(f"EXTRACT answer_choices: {answer_choices}")
+            response = make_api_call(api_call)
+            #logger.info(f"API Call response: {response}")
+            #logger.debug(f"submit_answers - Should Extract data: {extract_key}")
+            answer_choices = extract_data(response, extract_key)
+            logger.info(f"answer_choices: {answer_choices}")
         else:
-            # This assumes that if not extracting, you're handling raw responses
-            answer_choices = [resp for resp in response]  # Just a placeholder, customize as needed
-            logger.debug(f"NNEXTRACT answer_choices: {answer_choices}")
+            response = make_api_call(api_call)
+            answer_choices = response
 
-    if " - " in answer_choices:
+    if "IMG(" in answer_choices:
+        #case of images answer choices
+        logger.info(f"answer_choices: {answer_choices}")
         parsed_choices = parse_answer_choices(answer_choices, automaton)
+        logger.debug(f"Images: {parsed_choices}")
     else:
         parsed_choices = answer_choices
 
     question_data = {
+        "session_id": session_id,
         "question_id": question_id,
         "question": question,
         "answer_type": node.get("AnswerType"),
@@ -275,212 +414,36 @@ async def get_question(response: Response, request: Request, questionnaire_id: s
     automaton_data = automaton.serialize_data()
     logger.debug(f"Automaton data: {automaton_data}")
     session_collection = mongo_db.automaton_sessions
-    session_collection.update_one({"session_key": f"{session_id}_{questionnaire_id}"}, {"$set": automaton_data}, upsert=True)
+    
+    
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id
+    })
+    session_key = session_data['session_key']
+    
+    
+    
+    session_collection.update_one({"session_key": f"{session_key}"}, {"$set": automaton_data}, upsert=True)
     
     update_history_query = {"$set": {f"questions_history.{question_id}": question_data}}
-    session_collection.update_one({"session_key": f"{session_id}_{questionnaire_id}"}, update_history_query, upsert=True)
+    session_collection.update_one({"session_key": f"{session_key}"}, update_history_query, upsert=True)
 
     return question_data
 
-# @app.post("/get_question/{questionaire_id}/{question_id}")
-# async def get_question(response: Response, request: Request, questionaire_id: str, question_id: str, query_params: Optional[dict] = Body(default=None)):
-#     session_id = request.headers.get('session_id', None) or request.cookies.get('session_id', None)
-
-#     if not session_id:
-#         session_id = str(uuid.uuid4())
-#         logger.info(f"FastAPI generated new session_id: {session_id}")
-#         # Set the cookie
-#         response.set_cookie(key="session_id", value=session_id)
-
-#     logger.info(f"FastAPI session_id: {session_id} => Question ID: {question_id}")
-#     logger.info(f"Query Parameters: {query_params}")
-
-#     automaton, session_id = await get_automaton_for_user(session_id, questionaire_id)
-#     logger.info(f"Found automaton for session_id: {session_id}, questionaire_id: {questionaire_id}, automaton: {automaton.serialize_data()}")
-    
-#     if question_id == "1" and query_params:
-#         for key, inner_dict in query_params.items():
-#             if isinstance(inner_dict, dict):
-#                 for inner_key, value in inner_dict.items():
-#                     formatted_key = f"@{inner_key}"
-#                     if len(formatted_key) > 1:
-#                         automaton.set_variable_value(formatted_key, value)
-
-#         # Serialize and save the state to 
-#         # Firestore
-#         # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-#         # MongoDB: Serialize and save or update the state
-#         automaton_data = automaton.serialize_data()
-#         automaton_sessions_collection = mongo_db.automaton_sessions
-#         automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-
-#     node = automaton.states.get(question_id)
-#     if node is None:
-#         raise HTTPException(status_code=404, detail="Question not found")
-
-#     question = automaton.substitute_placeholders(node['Question'])
-#     answer_choices = node.get("AnswerChoices")
-#     logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
-#     if "APICALL" in answer_choices:
-#         logger.debug("Should make API CALL")
-#         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-#         api_call = automaton.substitute_placeholders(api_call)
-#         logger.debug(f"API CALL: {api_call}")
-#         if "EXTRACT" in answer_choices:
-#             logger.debug(f"get_question - answer_choices: {answer_choices}")
-#             extract_key = extract_from_function(answer_choices)
-#             response = make_api_call(api_call)
-#             logger.debug(f"get_question - Should Extract data: {extract_key}")
-#             answer_choices = extract_data(response, extract_key)
-#         else:
-#             response = make_api_call(api_call)
-#             answer_choices = response
-            
-#     if " - " in answer_choices:
-#         #case of images answer choices
-#         parsed_choices = parse_answer_choices(answer_choices, automaton)
-#         logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
-#     else:
-#         parsed_choices = answer_choices
-        
-#     question_data = { 
-#         "question_id": question_id,
-#         "question": question,
-#         "answer_type": node.get("AnswerType"),
-#         "answer_choices": parsed_choices,
-#         "page_number": node.get("Page"),
-#         "why_we_asked": node.get("WhyWeAsk"),
-#         #"design": node.get("Design"),
-#         "updated_questions": [],
-#         "redo_questions": [],
-#         "remove_questions": []
-#     }
-    
-#     logger.debug(f"FastAPI:/get_question/{questionaire_id}/{question_id} => Next question: {question_data}")
-#     # MongoDB: Serialize and save or update the state
-#     automaton.update_questions_path(question_id)
-#     automaton_data = automaton.serialize_data()
-#     automaton_sessions_collection = mongo_db.automaton_sessions
-#     automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-#     # Add the current question data to `questions_history`
-#     update_history_query = {"$set": {f"questions_history.{question_id}": question_data}}
-#     automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
-#     return question_data
-
-# @app.post("/submit_answer/{questionnaireId}")
-# async def submit_answer(request: Request, questionnaireId: str, submission: AnswerSubmission, response: Response):
-#     session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
-#     if not session_id:
-#         # Generate a new session_id if not present
-#         session_id = str(uuid.uuid4())
-#         # Set the cookie
-#         response.set_cookie(key="session_id", value=session_id)
-
-#     automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
-    
-#     question_id = submission.question_id
-#     answer = submission.user_answer
-#     logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Answer: {answer}")
-#     next_step, updated_affected_questions, redo_questions, remove_questions = automaton.process(question_id, answer)
-    
-#     logger.debug(f"FastAPI: => current question:{question_id} => next_step: {next_step} => affected_questions: {updated_affected_questions}")
-    
-#     # First, update the user's answer for the current question in the questions_history
-#     automaton_sessions_collection = mongo_db.automaton_sessions
-#     update_fields = {
-#         f"questions_history.{question_id}.update_questions": updated_affected_questions,
-#         f"questions_history.{question_id}.redo_questions": redo_questions,
-#         f"questions_history.{question_id}.remove_questions": remove_questions,
-#         f"questions_history.{question_id}.user_answer": answer
-#     }
-#     update_history_query = {"$set": update_fields}
-#     automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
-    
-#     if next_step is None:
-#         logger.info("FastAPI: No further action required")
-#         return {"message": "No further action required"}
-    
-#     node = automaton.states.get(str(next_step))
-#     if node is None:
-#         raise HTTPException(status_code=404, detail="Question not found")
-
-#     question = automaton.substitute_placeholders(node['Question'])
-#     answer_choices = node.get("AnswerChoices")
-#     logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
-
-#     'Start Next Phase'
-    
-#     if "APICALL" in answer_choices:
-#         logger.debug("Should make API CALL")
-#         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-#         api_call = automaton.substitute_placeholders(api_call)
-#         logger.debug(f"API CALL: {api_call}")
-#         if "EXTRACT" in answer_choices:
-#             extract_key = extract_from_function(answer_choices)
-#             response = make_api_call(api_call)
-#             #logger.info(f"API Call response: {response}")
-#             logger.debug(f"submit_answer - Should Extract data: {extract_key}")
-#             answer_choices = extract_data(response, extract_key)
-#             logger.info(f"answer_choices: {answer_choices}")
-#         else:
-#             response = make_api_call(api_call)
-#             answer_choices = response
-
-#     if " - " in answer_choices:
-#         #case of images answer choices
-#         parsed_choices = parse_answer_choices(answer_choices, automaton)
-#         logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
-#     else:
-#         parsed_choices = answer_choices
-    
-#     question_data = {
-#         "question_id": node.get("ID"),
-#         "question": question,
-#         "answer_type": node.get("AnswerType"),
-#         "answer_choices": parsed_choices,
-#         "why_we_asked": node.get("WhyWeAsk"),
-#         #"design": node.get("Design"),
-#         #"page_number": node.get("Page"),
-#         "updated_questions": updated_affected_questions, 
-#         "redo_questions": redo_questions,
-#         "remove_questions": remove_questions
-#     }
-#     next_question_id = node.get("ID")
-#     # MongoDB: Serialize and save or update the state
-#     automaton_sessions_collection = mongo_db.automaton_sessions
-#     automaton.update_questions_path(next_question_id)
-#     automaton_data = automaton.serialize_data()
-#     automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-#     bulk_operations = []
-
-#     # Handle updates to affected questions
-#     for q_id, new_question_text in updated_affected_questions.items():
-#         update_field = {
-#             f"questions_history.{q_id}.question": new_question_text
-#         }
-#         bulk_operations.append(UpdateOne({'_id': session_id}, {'$set': update_field}))
-
-#     # Execute bulk operations
-#     if bulk_operations:
-#         result = automaton_sessions_collection.bulk_write(bulk_operations)
-#         print(f"Bulk operation results: {result.bulk_api_result}")
-    
-#     update_history_query = {"$set": {f"questions_history.{next_question_id}": question_data}}
-#     automaton_sessions_collection.update_one({"_id": session_id}, update_history_query, upsert=True)
-    
-#     logger.debug(f"FastAPI:submit_answer => next_step: {next_step}, Next question: {question_data}")
-    
-#     return question_data
-
 @app.post("/submit_answer/{questionnaireId}")
-async def submit_answer(request: Request, questionnaireId: str, submission: AnswerSubmission, response: Response):
-    session_id = request.headers.get('session_id', None) or request.cookies.get('session_id', None)
-    if not session_id:
-        session_id = str(uuid.uuid4())
-        response.set_cookie(key="session_id", value=session_id)
-        logger.info(f"Generated new session_id: {session_id}")
-
+async def submit_answer(
+    questionnaireId: str,
+    submission: AnswerSubmission,
+    session_id: str = Header(None, alias='Session-Id'),  # Correctly aliased as it appears in the fetch headers
+    user_id: str = Header(None, alias='X-User-ID'),  # Header parameter for user ID
+    access_token: str = Header(None, alias='X-Access-Token')  # Header parameter for access token
+):
+    # Here you can use user_id and access_token as needed
+    logger.debug(f"Received user_id: {user_id}, access_token: {access_token}")
     automaton, _ = await get_automaton_for_user(session_id, questionnaireId)
+    
+    
     question_id = submission.question_id
     user_answer = submission.user_answer
 
@@ -488,7 +451,15 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
     
     # Process the answer and determine next steps in the questionnaire
     next_step, affected_questions, redo_questions, remove_questions = automaton.process(question_id, user_answer)
-    session_key = f"{session_id}_{questionnaireId}"
+    
+    #session_key = f"{session_id}_{questionnaireId}"
+    # Retrieve the session data using the session_key
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaireId
+    })
+    session_key = session_data['session_key']
+    logger.debug(f"Restore => Session data: {session_data} for session_key: {session_key}")
     
     # Update session data with the current answers
     update_fields = {
@@ -503,6 +474,7 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
     if next_step is None:
         return {"message": "No further action required"}
 
+
     # Load the next question node
     node = automaton.states.get(str(next_step))
     if node is None:
@@ -510,7 +482,8 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
     
     question = automaton.substitute_placeholders(node['Question'])
     answer_choices = node.get("AnswerChoices")
-
+    logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
+    
     if "APICALL" in answer_choices:
         logger.debug("Should make API CALL")
         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
@@ -521,32 +494,60 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
             response = make_api_call(api_call)
             #logger.info(f"API Call response: {response}")
             logger.debug(f"submit_answers - Should Extract data: {extract_key}")
-            # for single_response in response:
-            #     answer_choices = extract_data(single_response, extract_key)
-            #     logger.info(f"answer_choices: {answer_choices}")
             answer_choices = extract_data(response, extract_key)
             logger.info(f"answer_choices: {answer_choices}")
         else:
             response = make_api_call(api_call)
             answer_choices = response
 
-    if " - " in answer_choices:
+    if "IMG(" in answer_choices:
         #case of images answer choices
+        logger.info(f"answer_choices: {answer_choices}")
         parsed_choices = parse_answer_choices(answer_choices, automaton)
-        logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
+        logger.debug(f"Images: {parsed_choices}")
     else:
         parsed_choices = answer_choices
-
+    
+    logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
+    
     question_data = {
+        "session_id": session_id,
         "question_id": next_step,
         "question": question,
         "answer_type": node.get("AnswerType"),
         "answer_choices": parsed_choices,
+        "page_number": node.get("Page"),
         "why_we_asked": node.get("WhyWeAsk"),
         "updated_questions": affected_questions, 
         "redo_questions": redo_questions,
         "remove_questions": remove_questions
     }
+    if "REDIRECT:" in answer_choices:
+        redirect_url_template = answer_choices.split("REDIRECT:")[1]
+        if redirect_url_template:
+            redirect_url_template = redirect_url_template.strip()
+            logger.debug(f"Found Redirect URL Template: {redirect_url_template}")
+            # Substitute placeholders in the redirect URL with actual values
+            pet_type=automaton.get_variable_value("@pet_type")
+            logger.debug(f"Pet Type: {pet_type}")
+            petname=automaton.get_variable_value("@petname")
+            gender=automaton.get_variable_value("@gender")
+            # If placeholders in your template use the at symbol '@', remove it from the variable names
+            redirect_url_template = redirect_url_template.replace("{@pet_type}", "{pet_type}")
+            redirect_url_template = redirect_url_template.replace("{@petname}", "{petname}")
+            redirect_url_template = redirect_url_template.replace("{@gender}", "{gender}")
+
+            # Now perform the substitution
+            redirect_url = redirect_url_template.format(
+                user_id=user_id,
+                access_token=access_token,
+                pet_type=pet_type,
+                petname=petname,
+                gender=gender
+            )
+            logger.debug(f"Found Redirect URL: {redirect_url}")
+            # Return the redirect URL in the response
+            question_data['redirect_url'] = redirect_url
     
     # Serialize and update the automaton's state
     automaton.update_questions_path(next_step)
@@ -564,133 +565,177 @@ async def submit_answer(request: Request, questionnaireId: str, submission: Answ
     logger.debug(f"Next question details: {question_data}")
     return question_data
 
-# #Endpoint to process in case of multiple answers for multiple variables
-# @app.post("/submit_answers/{questionnaireId}")
-# async def submit_answers(request: Request, questionnaireId: str, submission: AnswersSubmission, response: Response):
-#     session_id = request.headers.get('session_id', None)  or request.cookies.get('session_id', None)
-#     if not session_id:
-#         # Generate a new session_id if not present
-#         session_id = str(uuid.uuid4())
-#         # Set the cookie
-#         response.set_cookie(key="session_id", value=session_id)
-
-#     automaton, session_id = await get_automaton_for_user(session_id, questionnaireId)
-#     question_id = submission.question_id
-#     answers = submission.answers
-#     for answer in answers:
-#         logger.debug(f"FastAPI session_id: {session_id} => Question ID: {question_id}, Variable:{answer.variable_name} Value: {answer.value}")
-#         automaton.set_variable_value(answer.variable_name, answer.value)
-
-#     # Process the user's answer
-#     next_step, affected_questions, redo_questions, remove_questions = automaton.process(question_id, answer)
-
-#     # Serialize and save the state to Firestore
-#     # db.collection("automaton_sessions").document(session_id).set(automaton.serialize())
-#     # MongoDB: Serialize and save or update the state
-#     automaton_data = automaton.serialize_data()
-#     #logger.debug(f"FastAPI: => {automaton_data}")
-#     automaton_sessions_collection = mongo_db.automaton_sessions
-#     automaton_sessions_collection.update_one({"_id": session_id}, {"$set": automaton_data}, upsert=True)
-#     #questions_history
-    
-#     if next_step is None:
-#         logger.debug("FastAPI: No further action required")
-#         return {"message": "No further action required"}
-
-#     node = automaton.states.get(str(next_step))
-
-#     if node is None:
-#         raise HTTPException(status_code=404, detail="Question not found")
-
-#     question = automaton.substitute_placeholders(node['Question'])
-#     answer_choices = node.get("AnswerChoices")
-#     logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
-
-#     if "APICALL" in answer_choices:
-#         logger.debug("Should make API CALL")
-#         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-#         api_call = automaton.substitute_placeholders(api_call)
-#         logger.debug(f"API CALL: {api_call}")
-#         if "EXTRACT" in answer_choices:
-#             extract_key = extract_from_function(answer_choices)
-#             response = make_api_call(api_call)
-#             #logger.info(f"API Call response: {response}")
-#             logger.debug(f"submit_answers - Should Extract data: {extract_key}")
-#             answer_choices = extract_data(response, extract_key)
-#             logger.info(f"answer_choices: {answer_choices}")
-#         else:
-#             response = make_api_call(api_call)
-#             answer_choices = response
-
-#     if " - " in answer_choices:
-#         #case of images answer choices
-#         parsed_choices = parse_answer_choices(answer_choices, automaton)
-#         logger.debug(f"FastAPI: => Parsed choices: {parsed_choices}")
-#     else:
-#         parsed_choices = answer_choices
-
-#     question_data = {
-#         "question_id": node.get("ID"),
-#         "question": question,
-#         "answer_type": node.get("AnswerType"),
-#         "answer_choices": parsed_choices,
-#         "page_number": node.get("Page"),
-#         "why_we_asked": node.get("WhyWeAsk"),
-#         "design": node.get("Design"),
-#         #"redo_questions": affected_questions
-#         "updated_questions": affected_questions, 
-#         "redo_questions": redo_questions,
-#         "remove_questions": remove_questions
-#     }
-
-#     logger.debug(f"FastAPI:submit_answer => next_step: {next_step}, Next question: {question_data}")
-#     return question_data
-@app.get("/questionnaire/{questionnaire_id}/{session_id}/pet_register")
-async def register_pet(questionnaire_id: str, session_id: str):
+@app.get("/healthscan/{session_id}")
+async def healthcheck(session_id: str):
+    questionnaire_register_id = "PerpetHealthCheckIntro"
+    questionnaire_id = "Back_Questionnaire"
+    #logger.info(f"check registered session ID: {session_id}, Questionnaire ID: {questionnaire_register_id}")
     # Retrieve or create the Automaton and the session using the unique session_key
-    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
+    automaton, _ = await get_automaton_for_user(session_id, questionnaire_register_id)
+    
+    #logger.info(f"got automation data: {automaton}")
     # Create a unique composite key for session and questionnaire
-    session_key = f"{session_id}_{questionnaire_id}"
-
+    #session_key = f"{session_id}_{questionnaire_register_id}"
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_register_id
+    })
+    session_key = session_data['session_key']
     # Retrieve the session data using the session_key
     session_data = session_collection.find_one({"session_key": session_key})
+    # logger.debug(f"Session data: {session_data}")
     # Retrieve user_id from session data
     user_id = session_data.get("user_id")
     if user_id is None:
         raise HTTPException(status_code=404, detail="User ID not found in session")
-    accessToken = session_data.get("accessToken")
-    if accessToken is None:
-        raise HTTPException(status_code=404, detail="Access Token not found in session")
+    access_token = session_data.get("access_token")
+    # if access_token is None:
+    #     raise HTTPException(status_code=404, detail="Access Token not found in session")
     
+    petname = automaton.get_variable_value("@petname")
+    pet_type = automaton.get_variable_value("@pet_type")
+    gender = automaton.get_variable_value("@gender")
+    redirect_url_template = "Back_Questionnaire?user_id={user_id}&access_token={access_token}&pet_type={pet_type}&petname={petname}&gender={gender}"
+    
+    redirect_url = redirect_url_template.format(
+                user_id=user_id,
+                access_token=access_token,
+                pet_type=pet_type,
+                petname=petname,
+                gender=gender
+            )
+    logger.debug(f"Found Redirect URL: {redirect_url}")
+    return {"redirect_url": redirect_url}
+
+def retrieve_first_image(user_id: int, pet_name: str):
+    """ Retrieves image data for a given user and pet from MongoDB """
+    try:
+        # Define the filter for the document to find
+        filter = {"user_id": user_id, "pet_name": pet_name}
+        document = images_collection.find_one(filter)
+        if document:
+            images = document.get("images", [])
+            first_image = images[0] if images else None
+            # Delete the document after retrieving the image
+            images_collection.delete_one(filter)
+
+            return first_image
+        else:
+            return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve image data")
+
+def post_pet_profile_img(user_id, petname, pet_id, access_token):
+    """Post images to the external pet profile image registration API."""
+    api_url = f'{serverip}/user-service/v1/pet/profile_img'
+    headers = {
+        "Authorization": f"Bearer {access_token}"
+    }
+    first_image = retrieve_first_image(user_id, petname)
+    logger.debug(f"image found for user_id:{user_id} and petname:{petname}")
+    
+    if first_image:
+        # Strip the prefix and decode the Base64 string
+        if first_image.startswith('data:image/jpeg;base64,'):
+            first_image = first_image.split(',', 1)[1]
+        image_data = base64.b64decode(first_image)
+        image_file = BytesIO(image_data)
+        image_file.name = f'{user_id}_{petname}.jpeg'  # Naming the file
+        
+        #files = {'image': image_file}
+        files = {'image': ('filename.jpg', image_file, 'image/jpeg')}
+        data = {'pet_id': str(pet_id)}
+        
+        response = requests.post(api_url, headers=headers, files=files, data=data)
+        
+        # Handle the response
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise Exception(f"Failed to upload image: {response.status_code} {response.text}")
+    
+@app.get("/pet_register/{session_id}")
+async def register_pet(session_id: str):
+    questionnaire_id = "PerpetHealthCheckIntro"
+    logger.info(f"Registering pet for session ID: {session_id}, Questionnaire ID: {questionnaire_id}")
+    # Retrieve or create the Automaton and the session using the unique session_key
+    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
+    # Create a unique composite key for session and questionnaire
+    #session_key = f"{session_id}_{questionnaire_id}"
+    session_data = session_collection.find_one({
+        "session_id": session_id,
+        "questionnaire_id": questionnaire_id
+    })
+    session_key = session_data['session_key']
+    # Retrieve the session data using the session_key
+    session_data = session_collection.find_one({"session_key": session_key})
+    
+    logger.debug(f"Session data: {session_data}")
+    # Retrieve user_id from session data
+    user_id = session_data.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=404, detail="User ID not found in session")
+    else:
+        logger.debug(f"User ID: {user_id}")
+
+    from register_map import health_map
+    logger.info("Questionnaire completed => Must register pet")
+    # register_pet(questionnaireId, session_id)
+    logger.debug(f"variables: {automaton.variables}")
     # Prepare the data to be sent
+    earfold = automaton.get_variable_value("@ear_folded")
+    if earfold is not None:
+        earfold = health_map["ear_folded_" + earfold]
+    petname = automaton.get_variable_value("@petname")
     pet_data = {
         "user_id": user_id,
-        "type": automaton.get_variable_value("@type"),
-        "name": automaton.get_variable_value("@name"),
+        "type": automaton.get_variable_value("@pet_type"),
+        "name": automaton.get_variable_value("@petname"),
         "breeds_id": convert_to_number(automaton.get_variable_value("@breeds_id")),
         "age": format_date(automaton.get_variable_value("@age")),
-        "gender": automaton.get_variable_value("@gender"),
+        "gender": health_map["gender_"+automaton.get_variable_value("@gender")],
         "profile": {
-            "neutralization_code": convert_to_number(automaton.get_variable_value("@neutralization_code")),
-            "main_act_place_code": convert_to_number(automaton.get_variable_value("@main_act_place_code")),
-            "relationship_code": convert_to_number(automaton.get_variable_value("@relationship_code")),
-            "weight": convert_to_number(automaton.get_variable_value("@weight")),
-            "body_form_code": convert_to_number(automaton.get_variable_value("@body_form_code")),
-            "disease_id": automaton.get_variable_value("@disease_id"),  # Assuming it's a comma-separated string of numbers
-            "disease_treat_code": convert_to_number(automaton.get_variable_value("@disease_treat_code")),
-            "conditions_code": convert_to_number(automaton.get_variable_value("@conditions_code")),
-            "appetite_change_code": convert_to_number(automaton.get_variable_value("@appetite_change_code")),
-            "feed_amount_code": convert_to_number(automaton.get_variable_value("@feed_amount_code")),
-            "snack": automaton.get_variable_value("@snack"),  # Assuming it's a string "Y" or "N"
-            "drinking_amount_code": convert_to_number(automaton.get_variable_value("@drinking_amount_code")),
-            "allergy_id": automaton.get_variable_value("@allergy_id"),  # Assuming it's a comma-separated string of numbers
-            "how_to_know_allergy_code": convert_to_number(automaton.get_variable_value("@how_to_know_allergy_code")),
-            "walk_code": convert_to_number(automaton.get_variable_value("@walk_code"))
+            "neutralization_code": convert_to_number(health_map["neutering_surgery_"+automaton.get_variable_value("@neutering_surgery")]),
+            #"relationship_code": convert_to_number(health_map["multi_animal_environment_"+automaton.get_variable_value("@multi_animal_environment")]),
+            "weight": convert_to_number(automaton.get_variable_value("@body_weight")),
+            "body_form_code": convert_to_number(health_map["body_shape_"+automaton.get_variable_value("@body_shape")]),
+            
+            "conditions_code": convert_to_number(health_map["energetic_"+automaton.get_variable_value("@energetic")]),
+            "appetite_change_code": convert_to_number(health_map["appetite_"+automaton.get_variable_value("@appetite")]),
+            "feed_amount_code": convert_to_number(health_map["pet_food_"+automaton.get_variable_value("@pet_food")]),
+            "snack": health_map["treat_"+automaton.get_variable_value("@treat")],  # Assuming it's a string "Y" or "N"
+            "drinking_amount_code": convert_to_number(health_map["water_intake_"+automaton.get_variable_value("@water_intake")])
         }
     }
+    
+    if earfold:
+        pet_data["profile"]["ear_folded"] = earfold
+    if automaton.get_variable_value("@multi_animal_environment"):
+        pet_data["profile"]["relationship_code"] = health_map["multi_animal_environment_" + automaton.get_variable_value("@multi_animal_environment")]
+    if automaton.get_variable_value("@living_space"):
+        pet_data["profile"]["main_act_place_code"] = convert_to_number(health_map["living_space_"+automaton.get_variable_value("@living_space")])
+    if automaton.get_variable_value("@daily_walk"):
+        pet_data["profile"]["walk_code"] = convert_to_number(health_map["daily_walk_"+automaton.get_variable_value("@daily_walk")])   
+    if automaton.get_variable_value("@allergy_detect"):
+        pet_data["profile"]["how_to_know_allergy_code"] = convert_to_number(health_map["allergy_detect_"+automaton.get_variable_value("@allergy_detect")])
+    if automaton.get_variable_value("@allergy_id"):
+        pet_data["profile"]["allergy_id"] = automaton.get_variable_value("@allergy_id")  # Assuming it's a comma-separated string of numbers
+    if automaton.get_variable_value("@disease_treatment"):
+        pet_data["profile"]["disease_treat_code"] = convert_to_number(health_map["disease_treatment_"+automaton.get_variable_value("@disease_treatment")])
+    else:
+        pet_data["profile"]["allergy_id"] = ""
+    if automaton.get_variable_value("@disease_id"):
+        pet_data["profile"]["disease_id"] = automaton.get_variable_value("@disease_id")  # Assuming it's a comma-separated string of numbers
+    else:
+        pet_data["profile"]["disease_id"] = ""
 
     # Log the data for debugging purposes
     logger.debug(f"FastAPI: Sending pet registration data: {pet_data}")
+    
+    login_info = loginUser(user_id)
+    logger.debug(f"Login info: {login_info}")
+    accessToken = login_info['accessToken']
     # Set up headers for authorization
     headers = {
         'Authorization': f'Bearer {accessToken}'
@@ -699,311 +744,125 @@ async def register_pet(questionnaire_id: str, session_id: str):
     try:
         response = requests.post(f'{serverip}/user-service/v1/pet', json=pet_data, headers=headers)
         response.raise_for_status()  # This will raise an HTTPError for bad responses
-        return response.json()  # Return the JSON response content
+        # should update the session with the pet_id and survey_id
+        answer = response.json()
+        logger.info(f"Pet registration response: {answer}")
+        pet_id = answer['data']['id']
+        logger.debug(f"Pet id: {pet_id}")
+        # Record the session completion and pet_id
+        completion_info = {
+            'session_complete': True,
+            'completion_date': datetime.now(timezone.utc).isoformat(),
+            'pet_id': pet_id
+        }
+        # Update the session data with the completion info
+        automaton_sessions_collection = mongo_db.automaton_sessions
+        automaton_sessions_collection.update_one(
+            {"session_key": session_key},
+            {"$set": completion_info},
+            upsert=True
+        )
+        
+        post_pet_profile_img(user_id, petname, pet_id, accessToken)
+        
+        return  answer # Return the JSON response content
     except requests.RequestException as e:
         logger.error(f"Failed to register pet: {str(e)}")
-        raise HTTPException(status_code=400, detail="Failed to register pet") from e     
-    
+        raise HTTPException(status_code=400, detail="Failed to register pet") from e   
 
-@app.get("/questionnaire/{session_id}/get_metadatatext")
-async def get_metadatext(session_id: str):
+def get_provider_id(user_id: int):
+    """
+    Retrieves the provider details from the user's profile and extracts the provider type and the rest of the provider_id.
+    """
+    user_profile = user_db.get_user_profile(user_id)
+    if user_profile:
+        if isinstance(user_profile, dict) and "error" in user_profile:
+            raise HTTPException(status_code=404, detail=user_profile["error"])
+        
+        # Assuming 'provider_id' is directly stored in the user_profile dictionary
+        provider_id = user_profile.get('provider_id')
+        logger.debug(f"Provider ID: {provider_id}")
+        if not provider_id:
+            raise HTTPException(status_code=404, detail="Provider ID not found")
+        
+        # Split the provider_id at the first underscore
+        parts = provider_id.split('_', 1)
+        if len(parts) > 1:
+            provider_type, rest = parts
+        else:
+            provider_type = parts[0]
+            rest = None  # If there's no underscore
+        logger.debug(f"Provider Type: {provider_type}, ID: {rest}")
+        return provider_type, rest
+    else:
+        raise HTTPException(status_code=500, detail="Unable to retrieve user profile")
     
-    metadatatexts_map = {
-        "main_act_place_code": {
-            "metadatatext": "living_space",
-            "values": {
-                0: "indoor_apartment",
-                1: "indoor_with_yard",
-                2: "indoor_without_yard",
-                3: "outdoor"
-            }
-        },
-        "relationship_code": {
-            "metadatatext": "multi_animal_environment",
-            "values": {
-                0: "no",
-                1: "two_animal",
-                2: "more_than_three_animal"
-            }
-        },
-        "walk_code": {
-            "metadatatext": "daily_walk",
-            "values": {
-                0: "once_a_day",
-                1: "twice_a_day",
-                2: "more_than_three_times_a_day",
-                3: "not_every_day"
-            }
-        },
-        "how_to_know_allergy_code": {
-            "metadatatext": "allergy_detect",
-            "values": {
-                0: "diagnosed",
-                1: "suspected",
-            }
-        },
-        "drinking_amount_code": {
-            "metadatatext": "water_intake",
-            "values": {
-                0: "low",
-                1: "normal",
-                2: "high",
-                3: "excessive"
-            }
-        },
-        "snack": {
-            "metadatatext": "treat",
-            "values": {
-                'Y': "yes",
-                'N': "no"
-            }
-        },
-        "feed_amount_code": {
-            "metadatatext": "pet_food",
-            "values": {
-                0: "less_than_recommended",
-                1: "less_for_weight_loss",
-                2: "approximate_amount",
-                3: "self_regulated",
-            }
-        },
-        "appetite_change_code": {
-            "metadatatext": "appetite",
-            "values": {
-                0: "decreased",
-                1: "unchanged",
-                2: "increased"
-            }
-        },
-        "conditions_code": {
-            "metadatatext": "energetic",
-            "values": {
-                0: "stable",
-                1: "slightly_decreased",
-                2: "significantly_decreased"
-            }
-        },
-        "disease_treat_code": {
-            "metadatatext": "disease_treatment",
-            "values": {
-                0: "ongoing",
-                1: "diagnosed_only"
-            }
-        },
-        "body_form_code": {
-            "metadatatext": "body_shape",
-            "values": {
-                0: "underweight_severe",
-                1: "underweight_slight",
-                2: "normal",
-                3: "overweight_slight",
-                4: "obese_severe"
-            }
-        },
-        "neutralization_code": {
-            "metadatatext": "neutering_surgery",
-            "values": {
-                0: "performed",
-                1: "planned",
-                2: "not_planned"
-            }
-        },
-        "foldEar": {
-            "metadatatext": "ear_folded",
-            "values": {
-                0: "yes",
-                1: "no"
-            }
-        },
-        "weight": {
-            "metadatatext": "body_weight",
-            "direct_value": True
-        },
-        "name": {
-            "metadatatext": "pet_name",
-            "direct_value": True
-        },
-        "age": {
-            "metadatatext": "pet_age",
-            "direct_value": True
-        },
-        "gender": {
-            "metadatatext": "gender",
-            "values": {
-                'M': "male",
-                'F': "female"
-            }
-        },
-        "type": {
-            "metadatatext": "pet_type",
-            "direct_value": True
-        },
+# @app.get("/login/{user_id}")
+# async def loggin(user_id: str):
+#     return loginUser(user_id)
+
+def loginUser(user_id: str):
+    provider, id = get_provider_id(user_id)
+    logger.debug(f"provider: {provider}, id={id}")
+    url = f"{serverip}/user-service/v1/auth/social"
+    data = {
+        "id": id,
+        "type": provider
     }
-    
+    logger.debug(f"Logging in user: {data}")
 
-    questionnaire_id = "PerpetHealthCheckIntro"
-    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
-    variables_front = automaton.variables
-    session_key = f"{session_id}_{questionnaire_id}"
-    response_id_front = f"{session_id}_{questionnaire_id}"
-    
-    questionnaire_id = "Back_Questionnaire"
-    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
-    variables_back = automaton.variables
-    response_id_back = f"{session_id}_{questionnaire_id}"
-    # Retrieve the session data using the session_key
-    session_data = session_collection.find_one({"session_key": session_key})
-    # Retrieve user_id from session data
-    user_id = session_data.get("user_id")
-    
-    logger.debug(f"FastAPI: => User ID: {user_id}\n \
-                => Variables Back: {variables_back}\n \
-                => Variables Front: {variables_front} \n \
-                ")
-    
-    metadata_text = [] 
+    try:
+        # Make the POST request to external service
+        response = requests.post(url, json=data)
+        response.raise_for_status()  # Will raise an HTTPError if the HTTP request returned an unsuccessful status code
+        user_data = response.json()['data']
+        logger.debug("Success login user:", user_data)
 
-    required_keys = {'disease_id', 'allergy_id'}  # Keys that need default values if absent or empty
+        # Fetch user profile from internal database
+        user_profile = user_db.get_user_profile(user_data['id'])
+        if user_profile:
+            logger.debug(f"Retrieved internal user profile successfully: {user_profile}")
+        else:
+            logger.warning(f"No internal profile found for user_id: {user_data['id']}")
+        
+        return user_data  # or return user_profile based on your requirements
 
-    # First check and add default values if necessary
-    for key in required_keys:
-        if f'@{key}' not in variables_front or not variables_front[f'@{key}'].strip():
-            default_value = "no"
-            metadata_text.append(f"{key[:-3]}:{default_value}")  # Append default value, like 'disease:no'
-            logger.debug(f"{key}: {default_value}")
-    for key, value in variables_front.items():
-        if key.startswith('@'):
-            logger.debug(f"variable => {key}: {value}")
-            metadata_key = key[1:]  # Remove '@' to match keys in the map
-            
-            if metadata_key == 'breeds_id':
-                logger.debug(f"breeds_id: {value}")
-                metadata = getBreedMetaText(convert_to_number(value))
-                logger.debug(f"metadata: {metadata}")
-                metadata_text.append(metadata)
-            elif metadata_key == 'disease_id':
-                if value.strip():  # Check if value is not empty
-                    for disease_id in value.split(","):
-                        logger.debug(f"disease_id: {disease_id}")
-                        metadata = getDiseaseMetaText(disease_id)
-                        metadata_text.append(metadata)
-                        logger.debug(f"metadata: {metadata}")
-                else:
-                    metadata_text.append("disease:no")
-                    logger.debug("disease:no")
-            elif metadata_key == 'allergy_id':
-                if value.strip():  # Check if value is not empty
-                    for allergy_id in value.split(","):
-                        logger.debug(f"allergy_id: {allergy_id}")
-                        metadata = getAllergyMetaText(allergy_id)
-                        metadata_text.append(metadata)
-                        logger.debug(f"metadata: {metadata}")
-                else:
-                    metadata_text.append("allergy:no")
-                    logger.debug("allergy:no")
-            elif metadata_key == 'age' and value.strip():
-                print(f"age: {value}")
-                try:
-                    # Extract YYYY-MM from YYYY-MM-DD and ensure the date is valid
-                    year, month, _ = map(int, value.split('-'))
-                    birth_date = datetime(year=year, month=month, day=1)
-                    today = datetime.now()
-                    age_in_months = (today.year - birth_date.year) * 12 + (today.month - birth_date.month)
-                    
-                    # Determine age category
-                    if 0 <= age_in_months < 12:
-                        age_category = "growth"#"0-12"
-                    elif 12 <= age_in_months < 48:
-                        age_category = "young_adult"#"12-48"
-                    elif 48 <= age_in_months < 120:
-                        age_category = "adult"#"48-120"
-                    elif 120 <= age_in_months < 156:
-                        age_category = "old_adult"#"120-156"
-                    elif age_in_months >= 156:
-                        age_category = "geriatric"#"156+"
-                    else:
-                        age_category = "Undefined"  # In case of future dates or incorrect values
-                    #print(f"age_category: {age_category}")
-                    # Append formatted data to metadata text
-                    formatted_age = f"{birth_date.year}-{birth_date.month:02}"
-                    #metadata_text.append(f"age:{formatted_age}")
-                    metadata_text.append(f"age:{age_category}")
-                    
-                except ValueError as e:
-                    # Log and raise an error if the date is incorrect
-                    print(f"Error processing the date: {e}")
-                    raise HTTPException(status_code=400, detail=f"Invalid date format for age: {value}")
-                
-            elif metadata_key in metadatatexts_map:
-                metadata_info = metadatatexts_map[metadata_key]
-                if metadata_info.get("direct_value"):
-                    metadata_description = f"{metadata_info['metadatatext']}:{value}"
-                    metadata_text.append(metadata_description)
-                    logger.debug(f"metadata: {metadata_description}")
-                elif 'values' in metadata_info and value in metadata_info['values']:
-                    metadata_description = metadata_info['values'][value]
-                    full_metadata = f"{metadata_info['metadatatext']}:{metadata_description}"
-                    metadata_text.append(full_metadata)
-                    logger.debug(f"metadata_text: {full_metadata}")
-                else:
-                    try:
-                        int_value = int(value)
-                        if int_value in metadata_info['values']:
-                            metadata_description = metadata_info['values'][int_value]
-                            full_metadata = f"{metadata_info['metadatatext']}:{metadata_description}"
-                            metadata_text.append(full_metadata)
-                            logger.debug(f"metadata_text: {full_metadata}")
-                    except ValueError:
-                        logger.error(f"Invalid value `{value}` for metadata key `{metadata_key}`")
+    except requests.HTTPError as http_err:
+        logger.error(f"HTTP error occurred: {http_err}")
+        raise HTTPException(status_code=response.status_code, detail=str(http_err))
+    except Exception as err:
+        logger.error(f"An error occurred: {err}")
+        raise HTTPException(status_code=500, detail=str(err))
 
-    logger.debug(f"Final for Front metadata_text: {metadata_text}")
-    source = "front"
-    front_metadata_texts = {
-            "survey_id": "PerpetHealthCheckIntro",
-            "response_id": response_id_front,
-            "source": source,
-            "metadata_texts": metadata_text
-    }
-    metadata_text = []
-    # Set of variables to ignore
-    ignored_variables = {'type', 'user_id', 'pet_id', 'petname', 'gender', 'target', 'queryParams'}
-    for key, value in variables_back.items():
-        if key.startswith('@'):
-            #logger.debug(f"back variable => {key}: {value}")
-            metadata_key = key[1:]  # Remove '@' to match keys in the map
-            logger.debug(f"variable => {metadata_key}: {value}")
-            if metadata_key not in ignored_variables:
-                # Process and log if the variable is not in the ignored set
-                full_metadata = f"{metadata_key}:{value}"
-                metadata_text.append(full_metadata)
-                logger.debug(f"Processed variable => {metadata_key}: {value}")
-            else:
-                # Log that the variable is ignored
-                logger.debug(f"Ignored variable => {metadata_key}: {value}")
-    
-    logger.debug(f"Final with Back metadata_text: {metadata_text}")
-    
-    source = "back"
-    back_metadata_texts = {
-            "survey_id": "Back_Questionnaire",
-            "response_id": response_id_back,
-            "source": source,
-            "metadata_texts": metadata_text
-    }
-    response_data = [front_metadata_texts, back_metadata_texts]
-    
-    logger.debug(response_data)
-    return response_data
-    
+def load_metadata_text(filepath='metadatatext.json'):
+    try:
+        with open(filepath, 'r') as file:
+            data = json.load(file)
+            return data
+    except FileNotFoundError:
+        print("The file was not found.")
+    except json.JSONDecodeError:
+        print("Error decoding JSON from the file.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 def convert_to_number(value):
     if value == "" or value is None:
         return None
     try:
-        return float(value)
+        # First try converting directly to an int
+        value = int(value)
+        #logger.debug(f"Converted value to int: {value}")
+        return value
     except ValueError:
+        # If int conversion fails, try float
         try:
-            return int(value)
+            value = float(value)
+            #logger.debug(f"Converted value to int: {value}")
+            return value
         except ValueError:
+            # Return the original value if it's neither int nor float
+            #logger.debug(f"Converted value failed: {value}")
             return value
 
 def format_date(date_str):
@@ -1017,43 +876,6 @@ def format_date(date_str):
         except ValueError:
             return None  # Return None if the date format is incorrect
     return None  # Return None if the input is None or empty
-
-# def make_api_call(url: str):
-#     try:
-#         response = requests.get(url)
-#         response.raise_for_status()
-#         return response.json()
-#     except requests.RequestException as e:
-#         raise HTTPException(status_code=400, detail=str(e)) from e
-    
-
-# def make_api_call(url: str) -> List[dict]:
-#     try:
-#         # Checking if the URL contains a list of IDs (indicated by square brackets)
-#         base_url, query_param = url.split("?")
-#         param_name, param_value = query_param.split("=")
-        
-#         # Normalize and parse the ID values
-#         if param_value.startswith('[') and param_value.endswith(']'):
-#             # It's a list of IDs, remove brackets and split by comma
-#             ids = param_value[1:-1].split(',')
-#         else:
-#             # Single ID, make it a list for uniform handling
-#             ids = [param_value]
-        
-#         combined_results = []
-        
-#         # Make individual API calls for each ID
-#         for id_value in ids:
-#             id_clean = id_value.strip(" '")  # Remove spaces and quotes
-#             modified_url = f"{base_url}?{param_name}={id_clean}"
-#             response = requests.get(modified_url)
-#             response.raise_for_status()
-#             combined_results.append(response.json())  # Each ID's result is added to the list
-        
-#         return combined_results  # Return the combined list of all results
-#     except requests.RequestException as e:
-#         raise HTTPException(status_code=400, detail=str(e)) from e
 
 def make_api_call(url: str) -> List[dict]:
     try:
@@ -1093,44 +915,10 @@ def make_api_call(url: str) -> List[dict]:
             response = requests.get(url)
             response.raise_for_status()
             combined_results.append(response.json())
-        logger.debug(f"FastAPI: API Call response of url {url}\n: {combined_results} ")
+        #logger.debug(f"FastAPI: API Call response of url {url}\n: {combined_results} ")
         return combined_results
     except requests.RequestException as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
-    
-
-# def extract_data(json_data, path):
-#     logger.debug(f"FastAPI: Extract data from JSON: {json_data} => Path: {path}\n\n")
-#     """
-#     Extracts data from json_data based on the provided path and returns a list of values or
-#     dictionaries with specified fields in the path.
-
-#     :param json_data: The JSON data from which to extract information.
-#     :param path: The path to the data to extract, in the format 'key1.key2[*].field' or 'key1.key2[*].(field1,field2)'.
-#     :return: A list of values or dictionaries with specified fields.
-#     """
-#     elements = path.split('.')
-#     current_data = json_data
-
-#     for elem in elements[:-1]:  # Process all elements except the last
-#         if elem.endswith('[*]'):
-#             key = elem[:-3]
-#             if key in current_data and isinstance(current_data[key], list):
-#                 current_data = current_data[key]
-#             else:
-#                 return []  # Key not found or not a list
-#         elif elem in current_data:
-#             current_data = current_data[elem]
-#         else:
-#             return []  # Key not found
-
-#     last_element = elements[-1]
-#     if '(' in last_element and last_element.endswith(')'):
-#         return extracted_from_extract_data(last_element, current_data)
-#     # For a single field, return a list of values
-#     choices =  [item.get(last_element) for item in current_data if isinstance(item, dict)]
-#     logger.debug(f"FastAPI: Extracted choices - simple key: {choices}")
-#     return '\n'.join(choices)
 
 def extract_data(json_data, path):
     logger.debug(f"FastAPI: Extract data from JSON: {json_data} => Path: {path}")
@@ -1180,8 +968,6 @@ def extract_data(json_data, path):
     logger.debug(f"FastAPI: Extracted choices - {results_str}")
     return results_str
 
-
-
 def extracted_from_extract_data(last_element, current_data):
     fields = last_element.replace(' ', '').strip('()').split(',')
     choices = [{field: item.get(field) for field in fields} for item in current_data if isinstance(item, dict)]
@@ -1203,57 +989,45 @@ def format_dict_array_to_string(dict_array):
 
     return '\n'.join(formatted_lines)
 
-
-def parse_answer_choices(answer_choices: str, automaton: Automaton) -> str:
-    """
-    Parses the answer choices string into a structured list of dictionaries.
-    Handles both conditional and non-conditional image choices.
-
-    :param answer_choices: The string containing the choices and conditions.
-    :param automaton: The automaton instance that can provide variable values.
-    :return: A list of dictionaries with parsed data.
-    """
-    options = answer_choices.split('\n')
-
-    # Define a pattern to extract the description and details
-    pattern = re.compile(
-        r"(?P<description>[^\-]+) - "  # Capture everything up to the first dash as the description
-        r"(?P<details>[^IF]+)"  # Capture everything up to "IF" as details
+def extract_image_key(option_str: str, automaton) -> str:
+    # Regex to handle conditional images
+    conditional_pattern = re.compile(
+        r"IF\(@(?P<var_name>\w+)==(?P<value>\w+)\) THEN IMG\((?P<true_img>[^\)]+)\) ELSE IMG\((?P<false_img>[^\)]+)\)"
     )
-
-    formatted_options = []
-    for option in options:
-        if match := pattern.match(option.strip()):
-            groups = match.groupdict()
-            description = groups['description'].strip()
-            details = groups['details'].strip().rstrip(" -")
-
-            # Extract conditional or unconditional image part
-            image_key = extract_image_key(option, automaton)
-
-            formatted_option = f"{description} - {details} - <img src={image_key}>"
-            formatted_options.append(formatted_option)
-
-    return '\n'.join(formatted_options)
-
-def extract_image_key(option_str: str, automaton: Automaton) -> str:
-    """
-    Extracts the image key from the option string based on conditional logic.
-
-    :param option_str: The individual option string.
-    :param automaton: The automaton instance.
-    :return: The image key or None.
-    """
-    conditional_pattern = re.compile(r"IF\(@(?P<var_name>\w+)==(?P<value>\w+)\) THEN IMG\((?P<true_img>[^\)]+)\) ELSE IMG\((?P<false_img>[^\)]+)\)")
-    unconditional_pattern = re.compile(r"IMG\((?P<img>[^\)]+)\)")
-
-    if conditional_match := conditional_pattern.search(option_str):
-        var_name, value, true_img, false_img = conditional_match.groups()
+    # Check if the condition exists in the option string
+    match = conditional_pattern.search(option_str)
+    if match:
+        var_name = match.group('var_name')
+        value = match.group('value')
+        true_img = match.group('true_img')
+        false_img = match.group('false_img')
+        
+        # Obtain the current value from the automaton, simulate it here
         actual_value = automaton.get_variable_value(f"@{var_name}")
+        # Return the appropriate image based on the condition
         return true_img if actual_value == value else false_img
     else:
-        unconditional_match = unconditional_pattern.search(option_str)
-        return unconditional_match['img'] if unconditional_match else None
+        # Default image if no conditional logic is found
+        return "default_image.png"
+
+def parse_answer_choices(answer_choices: str, automaton) -> List[str]:
+    """
+    Parses and formats the answer choices from a provided string for UI.
+    """
+    options = answer_choices.split('\n')
+    formatted_options = []
+    for option in options:
+        # Split based on the first occurrence of ' - '
+        parts = option.split(' - ', 1)
+        if len(parts) == 2:
+            description, condition = parts
+            img_src = extract_image_key(condition, automaton)
+            formatted_option = f"{description.strip()} - <img src='{img_src}'>"
+            formatted_options.append(formatted_option)
+        else:
+            # Log or handle the error if the option does not split into two parts
+            formatted_options.append("Error in option format.")
+    return '\n'.join(formatted_options)
 
 def extract_from_function(input_string):
     start = input_string.find("EXTRACT(")
@@ -1274,17 +1048,6 @@ def extract_from_function(input_string):
         end += 1
 
     return None if parenthesis_count != 0 else input_string[start:end - 1]
-
-
-def getBreedMetaText(breed_id):
-    logger.debug(f"breed_id_map: {breedid_map}")
-    return breedid_map.get(breed_id)
-
-def getDiseaseMetaText(disease_id):
-    return diseaseid_map.get(disease_id)
-
-def getAllergyMetaText(allergy_id):
-    return allergyid_map.get(allergy_id)
 
 @app.get("/questionnaire/{questionnaire_id}", response_class=HTMLResponse)
 async def get_questionnaire(request: Request, questionnaire_id: str):
@@ -1310,22 +1073,194 @@ async def healthreport(request: Request):
 async def home(request: Request, response: Response):
     return templates.TemplateResponse("intro.html", {"request": request})
 
+@app.get("/questionnaire/{session_id}/get_metadatatext")
+async def get_metadatext(session_id: str):
+    logger.debug(f"FastAPI: Getting metadata text for session ID: {session_id} and mapping to metadata text {metadatatexts_map}")
+    questionnaire_id = "PerpetHealthCheckIntro"
+    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
+    variables_front = automaton.variables
+    session_key = f"{session_id}_{questionnaire_id}"
+    response_id_front = f"{session_id}_{questionnaire_id}"
+    
+    questionnaire_id = "Back_Questionnaire"
+    automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
+    variables_back = automaton.variables
+    response_id_back = f"{session_id}_{questionnaire_id}"
+    # Retrieve the session data using the session_key
+    session_data = session_collection.find_one({"session_key": session_key})
+    # Retrieve user_id from session data
+    user_id = session_data.get("user_id")
+    
+    logger.debug(f"FastAPI: => User ID: {user_id}\n \
+                => Variables Back: {variables_back}\n \
+                => Variables Front: {variables_front} \n \
+                ")
+    
+    metadata_text = [] 
+
+    required_keys = {'disease_id', 'allergy_id'}  # Keys that need default values if absent or empty
+
+    # First check and add default values if necessary
+    for key in required_keys:
+        logger.debug(f"Checking key: {key}")
+        vf=variables_front[f'@{key}']
+        logger.debug(f"variables_front: {vf}")
+        if f'@{key}' not in variables_front or not variables_front[f'@{key}']:
+            default_value = "no"
+            metadata_text.append(f"{key[:-3]}:{default_value}")  # Append default value, like 'disease:no'
+            logger.debug(f"{key}: {default_value}")
+    for key, value in variables_front.items():
+        if key.startswith('@'):
+            metadata_key = key[1:]  # Remove '@' to match keys in the map
+            logger.debug(f"variable => {metadata_key}: value={value}")
+            if metadata_key == 'breeds_id':
+                logger.debug(f"breeds_id: {value}")
+                metadata = getBreedMetaText(convert_to_number(value))
+                logger.debug(f"metadata: {metadata}")
+                metadata_text.append(metadata)
+            elif metadata_key == 'disease_id':
+                if value:  # Check if value is not empty
+                    for disease_id in value:
+                        logger.debug(f"disease_id: {disease_id}")
+                        metadata = getDiseaseMetaText(disease_id)
+                        metadata_text.append(metadata)
+                        logger.debug(f"metadata: {metadata}")
+                else:
+                    metadata_text.append("disease:no")
+                    logger.debug("disease:no")
+            elif metadata_key == 'sub_disease_id':
+                if value.strip():  # Check if value is not empty
+                    for sub_disease_id in value.split(","):
+                        logger.debug(f"sub_disease_id: {sub_disease_id}")
+                        metadata = getDiseaseMetaText(sub_disease_id)
+                        metadata_text.append(metadata)
+                        logger.debug(f"metadata: {metadata}")
+            elif metadata_key == 'allergy_id':
+                if value.strip():  # Check if value is not empty
+                    for allergy_id in value.split(","):
+                        logger.debug(f"allergy_id: {allergy_id}")
+                        metadata = getAllergyMetaText(allergy_id)
+                        metadata_text.append(metadata)
+                        logger.debug(f"metadata: {metadata}")
+                else:
+                    metadata_text.append("allergy:no")
+                    logger.debug("allergy:no")
+            elif metadata_key == 'age' and value.strip():
+                print(f"age: {value}")
+                try:
+                    # Extract YYYY-MM from YYYY-MM-DD and ensure the date is valid
+                    year, month, _ = map(int, value.split('-'))
+                    birth_date = datetime(year=year, month=month, day=1)
+                    today = datetime.now()
+                    age_in_months = (today.year - birth_date.year) * 12 + (today.month - birth_date.month)
+                    
+                    # Determine age category
+                    if 0 <= age_in_months < 12:
+                        age_category = "growth"#"0-12"
+                    elif 12 <= age_in_months < 48:
+                        age_category = "young_adult"#"12-48"
+                    elif 48 <= age_in_months < 120:
+                        age_category = "adult"#"48-120"
+                    elif 120 <= age_in_months < 156:
+                        age_category = "old_adult"#"120-156"
+                    elif age_in_months >= 156:
+                        age_category = "geriatric"#"156+"
+                    else:
+                        age_category = "Undefined"  # In case of future dates or incorrect values
+                    # Append formatted data to metadata text
+                    formatted_age = f"{birth_date.year}-{birth_date.month:02}"
+                    #metadata_text.append(f"age:{formatted_age}")
+                    metadata_text.append(f"age:{age_category}")
+                    
+                except ValueError as e:
+                    # Log and raise an error if the date is incorrect
+                    print(f"Error processing the date: {e}")
+                    raise HTTPException(status_code=400, detail=f"Invalid date format for age: {value}")
+                
+            elif metadata_key in metadatatexts_map:
+                metadata_info = metadatatexts_map[metadata_key]
+                logger.debug(f"metadata_key: {metadata_key}, metadata_info: {metadata_info}")
+                if metadata_info.get("direct_value"):
+                    metadata_description = f"{metadata_info['metadatatext']}:{value}"
+                    metadata_text.append(metadata_description)
+                    logger.debug(f"metadata: {metadata_description}")
+                elif 'values' in metadata_info and value in metadata_info['values']:
+                    metadata_description = metadata_info['values'][value]
+                    full_metadata = f"{metadata_info['metadatatext']}:{metadata_description}"
+                    metadata_text.append(full_metadata)
+                    logger.debug(f"metadata_text: {full_metadata}")
+                else:
+                    try:
+                        int_value = int(value)
+                        if int_value in metadata_info['values']:
+                            metadata_description = metadata_info['values'][int_value]
+                            full_metadata = f"{metadata_info['metadatatext']}:{metadata_description}"
+                            metadata_text.append(full_metadata)
+                            logger.debug(f"metadata_text: {full_metadata}")
+                    except ValueError:
+                        logger.error(f"Invalid value `{value}` for metadata key `{metadata_key}`")
+            else:
+                logger.debug(f"metadata_key: {metadata_key} not found in the metadata map")
+                full_metadata = f"{metadata_key}:{value}"
+                metadata_text.append(full_metadata)
+                
+    logger.debug(f"Final for Front metadata_text: {metadata_text}")
+    source = "front"
+    front_metadata_texts = {
+            "survey_id": "PerpetHealthCheckIntro",
+            "response_id": response_id_front,
+            "source": source,
+            "metadata_texts": metadata_text
+    }
+    metadata_text = []
+    # Set of variables to ignore
+    ignored_variables = {'type', 'user_id', 'pet_id', 'petname', 'gender', 'target', 'queryParams'}
+    for key, value in variables_back.items():
+        if key.startswith('@'):
+            #logger.debug(f"back variable => {key}: {value}")
+            metadata_key = key[1:]  # Remove '@' to match keys in the map
+            logger.debug(f"variable => {metadata_key}: {value}")
+            if metadata_key not in ignored_variables:
+                # Process and log if the variable is not in the ignored set
+                full_metadata = f"{metadata_key}:{value}"
+                metadata_text.append(full_metadata)
+                logger.debug(f"Processed variable => {metadata_key}: {value}")
+            else:
+                # Log that the variable is ignored
+                logger.debug(f"Ignored variable => {metadata_key}: {value}")
+    
+    logger.debug(f"Final with Back metadata_text: {metadata_text}")
+    
+    source = "back"
+    back_metadata_texts = {
+            "survey_id": "Back_Questionnaire",
+            "response_id": response_id_back,
+            "source": source,
+            "metadata_texts": metadata_text
+    }
+    response_data = [front_metadata_texts, back_metadata_texts]
+    
+    logger.debug(response_data)
+    return response_data
+    
 breedid_map, allergyid_map, diseaseid_map = {}, {}, {}
+metadatatexts_map = {}
 def getBreedMetaText(breed_id: str) -> str:
-    logger.debug(f"breedid_map: {breedid_map}")
+    #logger.debug(f"breedid_map: {breedid_map}")
     return breedid_map.get(breed_id, "No metadata found for this breed ID")
 
 def getDiseaseMetaText(disease_id: str) -> str:
-    logger.debug(f"breedid_map: {breedid_map}")
-    return diseaseid_map.get(disease_id, "No metadata found for this disease ID")
+    logger.debug(f"diseaseid_map: {diseaseid_map}")
+    return diseaseid_map.get(int(disease_id), "No metadata found for this disease ID")
 
 def getAllergyMetaText(allergy_id: str) -> str:
-    logger.debug(f"breedid_map: {breedid_map}")
-    return allergyid_map.get(allergy_id, "No metadata found for this disease ID")
+    logger.debug(f"allergy_id: {allergy_id}")
+    return allergyid_map.get(int(allergy_id), "No metadata found for this allergy ID")
 
 @app.on_event("startup")
 async def startup_event():
-    global breedid_map, allergyid_map, diseaseid_map
+    global breedid_map, allergyid_map, diseaseid_map, metadatatexts_map
+    metadatatexts_map = load_metadata_text()
     # Load the JSON data from a file
     with open('breed_Metadata.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -1336,7 +1271,7 @@ async def startup_event():
         for item in data
         if '_breed' in item['metadata_text']
     }
-    logger.debug(f"breedid_map:{breedid_map}")
+    #logger.debug(f"breedid_map:{breedid_map}")
 
     with open('allergy_Metadata.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -1347,7 +1282,7 @@ async def startup_event():
         for item in data
         if item['metadata_text'].startswith('allergy')
     }
-    logger.debug(f"allergyid_map:{allergyid_map}")
+    #logger.debug(f"allergyid_map:{allergyid_map}")
 
     with open('disease_Metadata.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -1358,23 +1293,23 @@ async def startup_event():
         for item in data
         if item['metadata_text'].startswith('disease')
     }
-    logger.debug(f"diseaseid_map:{diseaseid_map}")
-    # logger.debug(f"breedid_map:{breedid_map}")
-    # logger.debug(f"diseaseid_map:{diseaseid_map}")
-    # logger.debug(f"allergyid_map:{allergyid_map}")
+    #logger.debug(f"diseaseid_map:{diseaseid_map}")
     session_collection.create_index([("session_id", ASCENDING), ("questionnaire_id", ASCENDING)], unique=True)
-    print("Database initialized and indexes created.")
+    
 
 LOGLEVEL = logging.DEBUG
 # Set the logging level for Uvicorn loggers
 logging.getLogger("uvicorn").setLevel(LOGLEVEL)
 logging.getLogger("uvicorn.error").setLevel(LOGLEVEL)
 logging.getLogger("uvicorn.access").setLevel(LOGLEVEL)
+
 # Attempt to set the level for "uvicorn.asgi" only if it exists
 if logging.getLogger("uvicorn.asgi"):
     logging.getLogger("uvicorn.asgi").setLevel(LOGLEVEL)
 
 # Set the root logger level if you want to adjust the overall logging level
 logging.getLogger().setLevel(LOGLEVEL)
+from config import PORT
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=10000, log_level="debug")
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=PORT, log_level="debug")

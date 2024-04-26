@@ -2,6 +2,8 @@ from enum import auto
 import logging
 import pandas as pd
 import json
+
+from sympy import use
 from tokenizer import Tokenizer
 from logicparser import Parser
 import re
@@ -63,18 +65,6 @@ class Automaton:
         self.user_answers = {}  # Separate dictionary for user answers
         self.dependency_map ={} # Initialize the dependency map dictionary
         self.goto = "1"  # The next step to go to"
-        
-    # def get_questions_for_page(self, page_number):
-    #     """
-    #     Retrieves the questions for a given page number.
-
-    #     Args:
-    #         page_number (int): The page number.
-
-    #     Returns:
-    #         list: The list of questions for the page.
-    #     """
-    #     return self.pages.get(page_number)
     
     def get_variable_value(self, variable_name):
         return self.variables.get(variable_name)
@@ -361,11 +351,11 @@ class Automaton:
             
             #answerChoices = self.normalize_string(answerChoices)
             
-            # try:
-            #     pageid = int(float(str(row['Page']).strip()))
-            # except ValueError:
-            #     # Handle the error, e.g., by setting a default value or logging an error message
-            #     pageid = 1  # Replace with an appropriate default value
+            try:
+                pageid = int(float(str(row['Page']).strip()))
+            except ValueError:
+                # Handle the error, e.g., by setting a default value or logging an error message
+                pageid = 1  # Replace with an appropriate default value
             
             if 'WhyWeAsk' in df.columns:
                 # Check if the value in 'WhyWeAsk' is NaN, and handle accordingly
@@ -380,8 +370,8 @@ class Automaton:
                 "AnswerType": str(row['AnswerType']).strip(),
                 "AnswerChoices": str(answerChoices).strip(),
                 "Logic": logic.strip(),
-                "WhyWeAsk": WhyWeAsk.strip()
-                #"Page": pageid
+                "WhyWeAsk": WhyWeAsk.strip(),
+                "Page": pageid
             }
             # nodeofpage = self.pages.get(pageid, [])
             # nodeofpage.append({
@@ -488,7 +478,7 @@ class Automaton:
             list: A list of question IDs that need to be revisited.
         """
         logger.debug(f"Updating dependents for variable: {variable}")
-        logger.debug(f"dependency_map = {self.dependency_map}")
+        #logger.debug(f"dependency_map = {self.dependency_map}")
         affected_questions = []
         if variable in self.dependency_map:
             # Add all questions that depend on the updated variables and have already been answered
@@ -511,7 +501,7 @@ class Automaton:
             list: A list of question IDs that need to be revisited.
         """
         logger.debug(f"Updating dependents for variable: {variable}")
-        logger.debug(f"dependency_map = {self.dependency_map}")
+        #logger.debug(f"dependency_map = {self.dependency_map}")
         affected_questions = []
         if variable in self.dependency_map:
             for q_id in self.dependency_map[variable]['redo']:
@@ -520,7 +510,7 @@ class Automaton:
 
         # Optionally, remove duplicates if any
         affected_questions = list(set(affected_questions))
-        logger.debug(f"must redo the following questions: {affected_questions}")
+        #logger.debug(f"must redo the following questions: {affected_questions}")
         
         return affected_questions
     
@@ -550,11 +540,6 @@ class Automaton:
                     # Check if the candidate question is in the path
                     if candidate in self.question_path:
                         remove_questions.append(candidate)
-                redo_candidates = self.dependency_map[question_id].get('redo', [])
-                for candidate in redo_candidates:
-                    # Check if the candidate question is in the path
-                    if candidate in self.question_path:
-                        redo_candidates.append(candidate)
 
         # Store the user's answer
         # logger.debug(f"self.states: {self.states}")
@@ -684,7 +669,8 @@ class Automaton:
         # Use updated variables to identify dependent questions that need revisiting
         affected_questions = []
         for var in updated_variables:
-            affected_questions.extend(self.update_dependents_questions(var))
+            if var.startswith('@'):
+                affected_questions.extend(self.update_dependents_questions(var))
         
         # Ensure the current question_id is not in the affected_questions list
         if question_id in affected_questions:
@@ -710,44 +696,61 @@ class Automaton:
             redo_questions.remove(question_id)
         logger.debug(f"must redo questions: {redo_questions}")
         
-        # # Gather questions for removal based on dependencies
-        # remove_questions = []
-        for question_id in redo_questions:
-            if question_id in self.dependency_map:
-                # Assuming 'remove' key holds questions that depend on this one
-                remove_candidates = self.dependency_map[question_id].get('remove', [])
-                for candidate in remove_candidates:
-                    # Check if the candidate question is in the path
-                    if candidate in self.question_path:
-                        remove_questions.append(candidate)
+        # # # Gather questions for removal based on dependencies
+        # # remove_questions = []
+        # for question_id in redo_questions:
+        #     if question_id in self.dependency_map:
+        #         # Assuming 'remove' key holds questions that depend on this one
+        #         remove_candidates = self.dependency_map[question_id].get('remove', [])
+        #         for candidate in remove_candidates:
+        #             # Check if the candidate question is in the path
+        #             if candidate in self.question_path:
+        #                 remove_questions.append(candidate)
+        
 
+        
+                
+        # # Now, remove questions from `question_path` and potentially from `user_answers`
+        # for question_id in redo_questions:
+        #     if question_id in self.question_path:
+        #         self.question_path.remove(question_id)
+        #     if question_id in self.user_answers:
+        #         del self.user_answers[question_id]
+        for question_id in redo_questions:
+            if question_id in self.question_path:
+                remove_questions.append(question_id)
+        
         # Now, remove questions from `question_path` and potentially from `user_answers`
         for question_id in remove_questions:
             if question_id in self.question_path:
                 self.question_path.remove(question_id)
             if question_id in self.user_answers:
                 del self.user_answers[question_id]
-                
-        # Now, remove questions from `question_path` and potentially from `user_answers`
-        for question_id in redo_questions:
-            if question_id in self.question_path:
-                self.question_path.remove(question_id)
-            if question_id in self.user_answers:
-                del self.user_answers[question_id]
 
         logger.debug(f"Removed questions: {remove_questions}")
-        logger.debug(f"Should go next step: {next_step}")
-        if next_step not in self.question_path:
+        
+        if(len(redo_questions)>1):
+            redo_questions.sort()
+            next_step = redo_questions[0]
+            logger.debug(f"Found next redo question => next_step: {next_step}")
             self.goto = next_step
-        else :
-            for q_id in self.question_path:
-                if self.user_answers.get(q_id) is None:
+        else:
+            if next_step not in self.question_path:
+                self.goto = next_step
+            else :
+                for q_id in self.question_path:
+                    if self.user_answers.get(q_id) is None:
+                        next_step = q_id
+                        logger.debug(f"Found a non answered question => next_step: {next_step}")
+                        self.goto = next_step
+                        break
+            if (self.user_answers.get(next_step) is not None):
+                next_step = self.goto
+                for q_id in redo_questions: 
                     next_step = q_id
-                    logger.debug(f"Found a non answered question => next_step: {next_step}")
-                    self.goto = next_step
-                    break
-
+                    break    
         logger.debug(f"After process answer, found next step: {next_step}")
+        
         return next_step, updated_affected_questions, redo_questions, remove_questions
 
     def build_dependency_map(self):
@@ -786,6 +789,29 @@ class Automaton:
     def extract_variables(self, text):
         # Extract variables from the text using a regex pattern
         return re.findall(r'@\w+', text)
+    
+    def get_redirect_info(self, node_id):
+        """
+        Retrieves redirect information for a given node ID.
+
+        Args:
+            node_id (str): The ID of the node to retrieve the redirect information from.
+
+        Returns:
+            dict: A dictionary containing the redirect URL or None if no redirect logic is present.
+        """
+        # Retrieve the node from the automaton
+        node = self.states.get(node_id)
+        if node:
+            # Look for redirect logic in the 'Logic' attribute
+            logic = node.get('AnswerChoices', '')
+            redirect_pattern = re.compile(r'http[s]?://[^\s{}()]+(?:\{[^{}()]*\}[^\s{}()]*)*')
+            match = redirect_pattern.search(logic)
+            if match:
+                # Extract the URL and remove any extraneous characters like quotes or brackets
+                redirect_url = match.group(1).strip(" '\"")
+                return {'redirect_url': redirect_url}
+        return None  # If no redirect logic is found, return None
     
     def start_console_execution(self):
         current_question_id = "1"  # Starting with the first question

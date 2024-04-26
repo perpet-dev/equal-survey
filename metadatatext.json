@@ -1,0 +1,139 @@
+{
+    "main_act_place_code": {
+        "metadatatext": "living_space",
+        "values": {
+            "0": "indoor_apartment",
+            "1": "indoor_with_yard",
+            "2": "indoor_without_yard",
+            "3": "outdoor"
+        }
+    },
+    "relationship_code": {
+        "metadatatext": "multi_animal_environment",
+        "values": {
+            "0": "no",
+            "1": "two_animal",
+            "2": "more_than_three_animal"
+        }
+    },
+    "walk_code": {
+        "metadatatext": "daily_walk",
+        "values": {
+            "0": "once_a_day",
+            "1": "twice_a_day",
+            "2": "more_than_three_times_a_day",
+            "3": "not_every_day"
+        }
+    },
+    "how_to_know_allergy_code": {
+        "metadatatext": "allergy_detect",
+        "values": {
+            "0": "diagnosed",
+            "1": "suspected"
+        }
+    },
+    "drinking_amount_code": {
+        "metadatatext": "water_intake",
+        "values": {
+            "0": "low",
+            "1": "normal",
+            "2": "high",
+            "3": "excessive"
+        }
+    },
+    "snack": {
+        "metadatatext": "treat",
+        "values": {
+            "Y": "yes",
+            "N": "no"
+        }
+    },
+    "feed_amount_code": {
+        "metadatatext": "pet_food",
+        "values": {
+            "0": "less_than_recommended",
+            "1": "less_for_weight_loss",
+            "2": "approximate_amount",
+            "3": "self_regulated"
+        }
+    },
+    "appetite_change_code": {
+        "metadatatext": "appetite",
+        "values": {
+            "0": "decreased",
+            "1": "unchanged",
+            "2": "increased",
+            "decreased": "decreased",
+            "unchanged": "unchanged",
+            "increased": "increased"
+        }
+    },
+    "conditions_code": {
+        "metadatatext": "energetic",
+        "values": {
+            "0": "stable",
+            "1": "slightly_decreased",
+            "2": "significantly_decreased"
+        }
+    },
+    "disease_treat_code": {
+        "metadatatext": "disease_treatment",
+        "values": {
+            "0": "ongoing",
+            "1": "diagnosed_only"
+        }
+    },
+    "body_form_code": {
+        "metadatatext": "body_shape",
+        "values": {
+            "0": "underweight_severe",
+            "1": "underweight_slight",
+            "2": "normal",
+            "3": "overweight_slight",
+            "4": "obese_severe"
+        }
+    },
+    "neutralization_code": {
+        "metadatatext": "neutering_surgery",
+        "values": {
+            "0": "performed",
+            "1": "planned",
+            "2": "not_planned",
+            "performed": "performed",
+            "planned": "planned",
+            "not_planned": "not_planned"
+        }
+    },
+    "foldEar": {
+        "metadatatext": "ear_folded",
+        "values": {
+            "0": "yes",
+            "1": "no"
+        }
+    },
+    "weight": {
+        "metadatatext": "body_weight",
+        "direct_value": true
+    },
+    "name": {
+        "metadatatext": "pet_name",
+        "direct_value": true
+    },
+    "age": {
+        "metadatatext": "pet_age",
+        "direct_value": true
+    },
+    "gender": {
+        "metadatatext": "gender",
+        "values": {
+            "M": "male",
+            "F": "female",
+            "male": "male",
+            "female": "female"
+        }
+    },
+    "type": {
+        "metadatatext": "pet_type",
+        "direct_value": true
+    }
+}

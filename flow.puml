@@ -1,0 +1,54 @@
+@startuml
+
+participant "Flutter App" as Flutter
+participant "React Web View" as React
+participant "FastAPI Backend" as FastAPI
+database "MongoDB"
+
+== User Login ==
+Flutter -> React : [Initialize WebView]\nParameters: user_id, access_token (From Login)
+[GET /start_survey?user_id=...&access_token=...]
+== Start Survey ==
+React -> FastAPI : [GET /start_survey]
+note over React : User inputs pet details and may upload an image.
+FastAPI -> MongoDB : Analyze input and determine pet_type, pet_breed
+MongoDB -> FastAPI : Analysis Results
+FastAPI -> React : Display pet_type, pet_breed
+React -> FastAPI : [POST /initialize_session/{questionnaire_id}]\nHeader: [X-User-ID, X-Access-Token]\nBody: [petname, pet_type, pet_breed]
+FastAPI -> MongoDB : Retrieve/Create Session, Store pet info
+MongoDB -> FastAPI : Session ID, Questionnaire State
+FastAPI -> React : Session details (session_id, access_token)
+
+== Survey Handling ==
+React -> FastAPI : [GET /questionnaire/{questionnaire_id}/restore]\nHeader: [Session-ID]
+FastAPI -> MongoDB : Restore Questionnaire State
+MongoDB -> FastAPI : Current State
+FastAPI -> React : Current Question, State
+React -> FastAPI : [POST /submit_answer/{...}]\nHeader: [Session-ID]\nBody: [Answers]
+FastAPI -> MongoDB : Update Answers, Determine Next Question
+alt General Case
+    MongoDB -> FastAPI : Next Question
+    FastAPI -> React : Next Question
+else Last Answer
+    FastAPI -> MongoDB : Initiate Pet Registration
+    MongoDB -> FastAPI : Pet Registration Status
+    FastAPI -> React : URL to Health Check (with parameters)
+end
+
+== Health Check ==
+React -> FastAPI : [GET /get_question/{health_check}]\nHeader: [Session-ID]\nURL Parameters: [pet_id, pet_type, petname, user_id]
+FastAPI -> MongoDB : Get First Health Check Question
+MongoDB -> FastAPI : First Question, Answer Choices
+FastAPI -> React : Display Question, Answer Choices
+React -> FastAPI : [POST /submit_answer/{health_check}]\nBody: [Answers]
+FastAPI -> MongoDB : Update Answers, Determine Next or Generate Report
+alt General Case
+    MongoDB -> FastAPI : Next Question
+    FastAPI -> React : Next Question
+else Last Answer
+    FastAPI -> MongoDB : Generate Report
+    MongoDB -> FastAPI : Report Details
+    FastAPI -> React : URL to Report, Report Details
+end
+
+@enduml

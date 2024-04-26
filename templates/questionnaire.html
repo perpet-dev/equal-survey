@@ -195,46 +195,114 @@
     <script>
         let currentState = 1; // Variable to track the current state of the form
         let question_data = null;
-
+        let user_id = null;
+        let access_token = null;
+        let session_id = null;
+        async function initializeSession(questionnaireId) {
+            // Extract parameters from URL
+            const queryParams = new URLSearchParams(window.location.search);
+            user_id = queryParams.get('user_id');  // Assuming the URL parameter is named 'user_id'
+            access_token = queryParams.get('access_token');  // Assuming the URL parameter is named 'access_token'
+            pet_type = queryParams.get('pet_type');  // Assuming the URL parameter is named 'pet_type'
+            petname = queryParams.get('petname');  // Assuming the URL parameter is named 'petname'
+            gender = queryParams.get('gender');  // Assuming the URL parameter is named 'petname'
+            // Define the URL for the API endpoint
+            const url = `/initialize_session/${questionnaireId}`;
+        
+            try {
+                // Set headers dynamically based on available URL parameters
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                if (user_id) headers['X-User-ID'] = user_id;
+                if (access_token) headers['X-Access-Token'] = access_token;
+                // Prepare the body data including pet_type and petname
+                const bodyData = {
+                    query_params: {
+                        pet_type: pet_type,
+                        petname: petname,
+                        gender: gender
+                    }
+                };
+                console.log('Initializing session with body data:', bodyData);
+                // send the POST request
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(bodyData)  // Convert the JavaScript object to a JSON string
+                });
+        
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Session initialized:', data);
+                    return data;
+                } else {
+                    throw new Error(`Failed to initialize session: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error during session initialization:', error);
+            }
+        }
         // Get the questionnaire_id from the HTML
         document.addEventListener('DOMContentLoaded', function() {
-            // Try to get session_id from cookies
-            var session_id = getCookie('session_id');
-            console.log("session_id: " + session_id);
-            
-            if(session_id) {
-                // Restore session using the session_id
-                fetch(`/questionnaire/${questionnaireId}/${session_id}/restore`)
-                .then(response => {
-                    if(response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Failed to restore session');
-                    }
-                })
-                .then(data => {
-                    console.log("Restored session data: ", data);
-                    // Use restored session data to redraw UI or continue questionnaire
-                    // This could involve loading the current question, previous answers, etc.
-                    // const { current_question_id, current_question, questions_history } = data;
-                    current_question_id = data.current_question_id;
-                    currentState = current_question_id;
-                    questions_history = data.questions_history
-                    console.log("questions_history: ", questions_history);
-                    user_answers = data.user_answers;
-                    drawPreviousQuestions(questions_history, user_answers);
-                    // Continue with the questionnaire, setting up event listeners, etc.
-                    setupQuestionnaireFlow(current_question_id, questionnaireId);
-                })
-                .catch(error => {
-                    console.error('Error restoring session:', error);
-                    // Handle case where session cannot be restored - maybe start a new session
-                });
-            } else {
-                // No session_id, start a new questionnaire session
-                // You may need to create a new session_id here and save it as a cookie
-                startNewQuestionnaireSession();
-            }
+             // Get the current URL
+            const url = new URL(window.location.href);
+
+            // Extract the questionnaire_id from the pathname
+            const pathSegments = url.pathname.split('/').filter(Boolean);  // split and remove empty segments
+            const questionnaireId = pathSegments[pathSegments.length - 1];  // Assuming the ID is the last segment
+
+             // Use URLSearchParams to get query parameters
+            const queryParams = new URLSearchParams(url.search);
+            const userId = queryParams.get('user_id');
+            const accessToken = queryParams.get('access_token');
+
+            console.log("Questionnaire ID:", questionnaireId);
+            console.log("User ID:", userId);
+            console.log("Access Token:", accessToken);
+
+             // Now you can use these to initialize the session or any other operations
+            session_info = initializeSession(questionnaireId, userId, accessToken);
+            //console.log("session_info: ", session_info);
+            session_info.then(data => {
+                console.log("session_info: ", data);
+                user_id = data.user_id,  // Use the returned user_id or fallback to the supplied
+                access_token = data.access_token  // Use the returned access token or fallback
+                session_id = data.session_id;
+                if(session_id) {
+                    // Restore session using the session_id
+                    fetch(`/questionnaire/${questionnaireId}/${session_id}/restore`)
+                    .then(response => {
+                        if(response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Failed to restore session');
+                        }
+                    })
+                    .then(data => {
+                        console.log("Restored session data: ", data);
+                        // Use restored session data to redraw UI or continue questionnaire
+                        // This could involve loading the current question, previous answers, etc.
+                        // const { current_question_id, current_question, questions_history } = data;
+                        current_question_id = data.current_question_id;
+                        currentState = current_question_id;
+                        questions_history = data.questions_history
+                        console.log("questions_history: ", questions_history);
+                        user_answers = data.user_answers;
+                        drawPreviousQuestions(questions_history, user_answers);
+                        // Continue with the questionnaire, setting up event listeners, etc.
+                        setupQuestionnaireFlow(current_question_id, questionnaireId);
+                    })
+                    .catch(error => {
+                        console.error('Error restoring session:', error);
+                        // Handle case where session cannot be restored - maybe start a new session
+                    });
+                } else {
+                    // No session_id, start a new questionnaire session
+                    // You may need to create a new session_id here and save it as a cookie
+                    startNewQuestionnaireSession();
+                }
+            });
         });
         
         function getCookie(name) {
@@ -245,16 +313,20 @@
         }
 
         function startNewQuestionnaireSession() {
-            // Logic to start a new session, possibly setting a new session_id cookie
             console.log("Starting a new questionnaire session");
             // For example, request the first question of the questionnaire
             // and handle new session creation on the server side
+            console.log("startNewQuestionnaireSession queryparams: "+getQueryParams())
+            const headers = {
+                'Content-Type': 'application/json',
+                'Session-Id': session_id
+            };
+            if (user_id) headers['X-User-ID'] = user_id;
+            if (access_token) headers['X-Access-Token'] = access_token;
             fetch('/get_question/'+questionnaireId+'/1', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ queryParams: getQueryParams() })
+                headers: headers,
+                body: JSON.stringify({query_params: getQueryParams()})
             })
             .then(response => response.json())
             .then(data => {
@@ -301,13 +373,14 @@
             // Update progress as needed
             // Fetch and display subsequent questions upon answering the current question
             const queryParams = getQueryParams();
-
+            console.log("setupQuestionnaireFlow: queryParams = "+queryParams)
             fetch('/get_question/'+questionnaireId+'/'+current_question_id, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Session-Id': session_id
                 },
-                body: JSON.stringify({ queryParams })
+                body: JSON.stringify({ "query_params": queryParams })
             })
             .then(response => response.json())
             .then(data => {
@@ -331,17 +404,23 @@
                 const [key, value] = param.split('=');
                 queryParams[decodeURIComponent(key)] = decodeURIComponent(value);
             }
+            console.log("queryParams: ");
+            console.log(queryParams);
             return queryParams;
         }
 
         function submitAnswer(questionId, answer) {
             currentState = questionId;
-
+            const headers = {
+                'Content-Type': 'application/json',
+                'Session-Id': session_id
+            };
+            if (user_id) headers['X-User-ID'] = user_id;
+            if (access_token) headers['X-Access-Token'] = access_token;
+            console.log("user_id: "+user_id + " access_token: "+access_token)
             fetch('/submit_answer/'+questionnaireId, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: headers,
                 body: JSON.stringify(
                     {   
                         question_id: questionId,
@@ -437,14 +516,14 @@
 
             // Handle redo questions
             if (question.redo_questions && question.redo_questions.length > 0) {
-                const queryParams = getQueryParams();
                 question.redo_questions.forEach(questionId => {
                     fetch('/get_question/'+questionnaireId+'/'+questionId, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Session-Id': session_id
                         },
-                        body: JSON.stringify({ queryParams })
+                        body: JSON.stringify({ query_params: getQueryParams() })
                     }).then(response => response.json())
                     .then(data => {
                         question_data = data;
@@ -802,34 +881,42 @@
                 submitButton.addEventListener('click', () => handleSubmit(question.question_id));                
 
             } else if (question.answer_type === 'Multichoice - Single - Image') {
-                console.log('Multichoice - Single - Image')
-                console.log(question.answer_choices)
+                console.log('Multichoice - Single - Image');
+                console.log(question.answer_choices);
                 const choices = question.answer_choices.split('\n');
                 const choiceContainer = document.createElement('div');
                 choiceContainer.className = 'choice-container';
             
                 choices.forEach(choice => {
-                    const parts = choice.split(' - ');
-                    const description = parts[0];
-                    const details = parts[1];
-                    const imgSrc = parts[2].match(/<img src=(.*?)>/)[1]; // Extract the image source
+                    const parts = choice.split(':'); // Split by colon to separate the identifier and the rest
+                    const identifier = parts[0].trim(); // This is 'overweight_slight'
+                    const [description, imgTag] = parts[1].split(' - '); // Now split the second part to get description and image
+            
+                    const imgSrcMatch = imgTag.match(/<img src='(.*?)'>/); // Use regex to extract the source from the img tag
+                    const imgSrc = imgSrcMatch ? imgSrcMatch[1] : ''; // Check if the image source was successfully matched
             
                     const choiceElement = document.createElement('div');
                     choiceElement.className = 'choice-item';
+                    choiceElement.dataset.identifier = identifier; // Store the identifier in a data attribute
+                    console.log("identifier: "+identifier)
                     // Create and add the image element
                     const imgElement = document.createElement('img');
-                    imgElement.src = '/static/img/' + imgSrc;
+                    imgElement.src = '/static/img/' + imgSrc; // Append the path if necessary
                     choiceElement.appendChild(imgElement);
             
-                    choiceElement.addEventListener('click', function() {
-                        handleChoiceSelection(question.question_id, choiceElement, choice);
-                    });
-                    // Add description and details as text
-                    const textNode = document.createTextNode(description + ' - ' + details);
+                    // Add description as text
+                    const textNode = document.createTextNode(description);
                     choiceElement.appendChild(textNode);
-                    if (userAnswer && choice.includes(userAnswer)) {
-                        choiceElement.classList.add('selected'); // This marks the choice as selected if it includes the user's answer
+            
+                    choiceElement.addEventListener('click', function() {
+                        handleChoiceSelection(question.question_id, choiceElement, identifier); // Pass the identifier instead of the whole choice string
+                    });
+            
+                    // Optionally mark the choice as selected based on some userAnswer logic
+                    if (userAnswer && identifier === userAnswer) { // Compare identifiers
+                        choiceElement.classList.add('selected');
                     }
+            
                     choiceContainer.appendChild(choiceElement);
                 });
             
@@ -885,7 +972,8 @@
         }
 
         function handleChoiceSelection(questionId, choiceElement, choice, inputField = null) {
-            console.log("handleChoiceSelection inputField: "+inputField)
+            //console.log("handleChoiceSelection questionId"+questionId+"inputField: "+inputField)
+            console.log("handleChoiceSelection questionId: "+questionId+" choice: "+choice + " choiceElement: "+choiceElement + " inputField: "+inputField)
             // Remove 'selected' class from all choices in the same container
             choiceElement.parentElement.querySelectorAll('.choice-item').forEach(item => {
                 item.classList.remove('selected');

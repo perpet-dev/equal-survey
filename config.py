@@ -47,7 +47,18 @@ LOGGING_CONFIG = {
 ocsp_logger = logging.getLogger('pymongo.ocsp_support')
 ocsp_logger.setLevel(logging.INFO)
 
+import os
+PORT = int(os.getenv('PORT', 8080))
 # MongoDB connection string
 # MONGODB = "mongodb+srv://ivanberlocher:P4XZZRTkgbG6iRcX@perpet.uhcs1fw.mongodb.net/?retryWrites=true&w=majority"
 #MONGODB = "mongodb+srv://ivanberlocher:P4XZZRTkgbG6iRcX@perpet.uhcs1fw.mongodb.net/?retryWrites=true&w=majority"
 MONGODB = "mongodb+srv://perpetcloud:NsIgvcQ5E7OQ2JSW@equalpet.tt45urw.mongodb.net/"
+
+DB_URI = os.getenv('DB_URI', "jdbc:mariadb://dev.promptinsight.ai:3306/perpet?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul")
+DB_HOST = "dev.promptinsight.ai" # "127.0.0.1" # 
+DB_USER = "perpetdev" # "perpetapi" # 
+DB_PASSWORD = "perpet1234!" # "O7dOQFXQ1PYY" # 
+DB_DATABASE = "perpet"
+DB_PORT = 3306 # 3307
+
+serverip = "http://dev.promptinsight.ai:10002"
