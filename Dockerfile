@@ -13,7 +13,8 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy your application code
 COPY . .
-ENV OPENAI_API_KEY="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"
-# Expose port and define command to run the app
-ENV PORT 10080
-CMD ["python", "server.py"]
+ENV PORT 10071
+# Expose the port the app runs on
+EXPOSE $PORT
+#CMD ["python", "server.py"]
+CMD uvicorn server:app --host 0.0.0.0 --port $PORT --workers 4

@@ -92,6 +92,7 @@ pyparsing==3.1.0
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 python-multipart==0.0.6
+py_eureka_client==0.11.10
 pytz==2023.3
 PyYAML==6.0
 pyzmq==25.0.2

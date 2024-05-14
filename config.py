@@ -1,5 +1,6 @@
 import logging
-LOGGING_LEVEL = 'DEBUG'
+import os
+LOGGING_LEVEL = os.getenv('LOG_LEVEL', 'DEBUG')
 LOGGING_CONFIG = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -47,18 +48,15 @@ LOGGING_CONFIG = {
 ocsp_logger = logging.getLogger('pymongo.ocsp_support')
 ocsp_logger.setLevel(logging.INFO)
 
-import os
+# Set environment variables
 PORT = int(os.getenv('PORT', 8080))
-# MongoDB connection string
-# MONGODB = "mongodb+srv://ivanberlocher:P4XZZRTkgbG6iRcX@perpet.uhcs1fw.mongodb.net/?retryWrites=true&w=majority"
-#MONGODB = "mongodb+srv://ivanberlocher:P4XZZRTkgbG6iRcX@perpet.uhcs1fw.mongodb.net/?retryWrites=true&w=majority"
-MONGODB = "mongodb+srv://perpetcloud:NsIgvcQ5E7OQ2JSW@equalpet.tt45urw.mongodb.net/"
-
+PREFIXURL = os.getenv('PREFIXURL', '/backsurvey-service')
+MONGODB = os.getenv('MONGODB', "mongodb+srv://perpetcloud:NsIgvcQ5E7OQ2JSW@equalpet.tt45urw.mongodb.net/")
 DB_URI = os.getenv('DB_URI', "jdbc:mariadb://dev.promptinsight.ai:3306/perpet?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul")
-DB_HOST = "dev.promptinsight.ai" # "127.0.0.1" # 
-DB_USER = "perpetdev" # "perpetapi" # 
-DB_PASSWORD = "perpet1234!" # "O7dOQFXQ1PYY" # 
-DB_DATABASE = "perpet"
-DB_PORT = 3306 # 3307
-
-serverip = "http://dev.promptinsight.ai:10002"
+DB_HOST = os.getenv('DB_HOST', 'dev.promptinsight.ai') #"dev.promptinsight.ai" # "127.0.0.1" # 
+DB_USER = os.getenv('DB_USER', 'perpetdev') #"perpetdev" # "perpetapi" # 
+DB_PASSWORD = os.getenv('DB_PASSWORD', "perpet1234!") #"perpet1234!" # "O7dOQFXQ1PYY" # 
+DB_DATABASE = os.getenv('DB_DATABASE', 'perpet')
+DB_PORT = int(os.getenv('DB_PORT', 3306))
+APISERVER = os.getenv('APISERVER', "http://dev.promptinsight.ai:10002") # https://api2.equal.pet 
+EUREKA = os.getenv('EUREKA_CLIENT_SERVICEURL_DEFAULTZONE', "http://dev.promptinsight.ai:10001/eureka") 

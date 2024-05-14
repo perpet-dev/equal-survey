@@ -100,7 +100,7 @@ health_map = {
     "living_space_indoor_apartment": '0',
     "living_space_indoor_with_yard": '1',
     "living_space_indoor_without_yard": '2',
-    "living_space_indoor_outdoor": '3',
+    "living_space_outdoor": '3',
     "multi_animal_environment_no": '0',
     "multi_animal_environment_two_animal": '1',
     "multi_animal_environment_more_than_three_animal": '2'

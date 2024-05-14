@@ -1,71 +1,65 @@
-from mysql.connector import connect, Error
-from mysql.connector.pooling import MySQLConnectionPool
-from config import LOGGING_LEVEL, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE
+from mysql.connector import Error
+from dbconnection import DatabaseConnectionPool
 import logging
-
+from config import LOGGING_LEVEL
+# Configure logging
 logger = logging.getLogger(__name__)
-logger.setLevel(LOGGING_LEVEL)
+logger.setLevel(LOGGING_LEVEL)  # Adjust the logging level accordingly
 
 class UserInfo:
-    def __init__(self, db_host=DB_HOST, db_port=DB_PORT, db_user=DB_USER, db_password=DB_PASSWORD, db_database=DB_DATABASE):
-        print('Initializing UserDB')
-        self.pool = self.create_pool(host=db_host, port=db_port, user=db_user, password=db_password, database=db_database)
+    def __init__(self):
+        logger.info('Initializing UserInfo database connection pool')
+        self.pool = DatabaseConnectionPool.get_instance()
+        if not self.pool:
+            logger.error("Failed to create or retrieve a connection pool.")
 
-    @staticmethod
-    def create_pool(host, port, user, password, database):
-        try:
-            pool = MySQLConnectionPool(
-                pool_name = "mypool",
-                pool_size = 32,
-                host=host,
-                port=port,
-                user=user,
-                password=password,
-                database=database
-            )
-            print('Database connection pool successfully established.')
-            return pool
-        except Error as e:
-            logger.error(f"Error connecting to MariaDB Platform: {e}")
+    def get_user_profile(self, user_id):
+        connection = self.get_connection()
+        if not connection:
             return None
 
+        try:
+            return self.fetch_user_profile(connection, user_id)
+        finally:
+            self.close_connection(connection)
+
     def get_connection(self):
+        """Safely attempt to retrieve a connection from the pool."""
         try:
             return self.pool.get_connection()
         except Error as e:
             logger.error(f"Error getting connection from pool: {e}")
             return None
 
-    def get_user_profile(self, user_id):
-        connection = self.get_connection()
-        if not connection:
-            logger.error("Failed to obtain database connection.")
-            return None
-
+    def fetch_user_profile(self, connection, user_id):
+        """Fetch user profile using the provided connection and user_id."""
         try:
-            cursor = connection.cursor()
-            sql = "SELECT `provider_id` FROM `user` WHERE `id` = %s;"
-            cursor.execute(sql, (user_id,))
-            result = cursor.fetchone()
-            if result:
-                logger.debug(f"User profile retrieved successfully: {result}")
-                return self.process_user_profile(result)
-            else:
-                logger.error(f"No profile found for user_id: {user_id}")
-                return {"error": "User profile not found"}
+            with connection.cursor() as cursor:
+                sql = "SELECT `provider_id` FROM `user` WHERE `id` = %s;"
+                cursor.execute(sql, (user_id,))
+                result = cursor.fetchone()
+                if result:
+                    logger.info(f"User profile retrieved successfully for user_id {user_id}: {result}")
+                    return {'provider_id': result[0]}
+                else:
+                    logger.warning(f"No profile found for user_id: {user_id}")
+                    return {"error": "User profile not found"}
         except Error as e:
             logger.error(f"Failed to execute query: {e}")
             return {"error": str(e)}
-        finally:
-            cursor.close()
-            connection.close()
 
-    @staticmethod
-    def process_user_profile(user_data):
-        # Placeholder for actual processing logic
-        return {'provider_id': user_data[0]}
+    def close_connection(self, connection):
+        """Safely close the connection."""
+        try:
+            if connection.is_connected():
+                connection.close()
+        except Error as e:
+            logger.error(f"Error closing connection: {e}")
 
     def close(self):
-        logger.info("Closing all database connections.")
-        self.pool.closeall()
-
+        """Close all connections in the pool if this method is necessary."""
+        try:
+            self.pool.closeall()
+            logger.info("Successfully closed all database connections.")
+        except Exception as e:
+            logger.error(f"Failed to close database connections: {e}")
