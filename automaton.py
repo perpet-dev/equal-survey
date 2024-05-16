@@ -260,31 +260,52 @@ class Automaton:
             # For literals, use the value directly
             return part
     
+    def choose_particle(self, word, suffix):
+        # Determine if the final character is a consonant
+        last_char = word[-1]
+        if (ord(last_char) - ord('가')) % 28 == 0:
+            # The last character is a vowel
+            if suffix == "이":
+                return "가"
+            elif suffix == "은":
+                return "는"
+            elif suffix == "을":
+                return "를"
+        else:
+            # The last character is a consonant
+            return suffix
+        return suffix
+
     def substitute_placeholders(self, question):
-        # Regex pattern to find both {@variable} and @node patterns
-        pattern = r'\{@\w+\}|@\w+'
+        # Regex pattern to find {@variable} patterns with optional suffixes
+        pattern = r'\{@(\w+)\}(\w)?'
         placeholders = re.findall(pattern, question)
 
-        for placeholder in placeholders:
-            # Normalize the key by removing curly braces and '@'
-            normalized_key = placeholder.replace('{', '').replace('}', '').lstrip('@')
+        for placeholder_tuple in placeholders:
+            placeholder = f"@{placeholder_tuple[0]}"
+            suffix = placeholder_tuple[1] if placeholder_tuple[1] else ''
+            normalized_key = placeholder
 
             # Check and replace placeholders based on the key
             found = False
             for variable_key, variable_value in self.variables.items():
-                # Handle '->' format and direct '@key' format
-                if variable_key.startswith(normalized_key + " ->") or variable_key.startswith("@" + normalized_key):
-                    # Ensure the variable_value is a string
+                if variable_key == normalized_key:
                     variable_value_str = str(variable_value)
-                    question = question.replace(placeholder, variable_value_str)
+                    if suffix:
+                        correct_suffix = self.choose_particle(variable_value_str, suffix)
+                        question = question.replace(f"{{@{placeholder_tuple[0]}}}{suffix}", variable_value_str + correct_suffix)
+                    else:
+                        question = question.replace(f"{{@{placeholder_tuple[0]}}}", variable_value_str)
                     found = True
-                    logger.debug(f" Found substitute_placeholder for {placeholder} = {variable_value_str}")
+                    logger.debug(f"Found substitute_placeholder for {{@{placeholder_tuple[0]}}}{suffix} = {variable_value_str + correct_suffix if suffix else variable_value_str}")
                     break
 
             if not found:
-                logger.debug(f"Placeholder '{placeholder}' not found in variables")
+                logger.debug(f"Placeholder {placeholder_tuple[0]} not found in variables")
 
         return question
+
+    
     
     def display_and_get_choice(self, answer_choices, multiple_selection=False):
         choices = [choice.strip() for choice in answer_choices.split("\n")]
@@ -813,16 +834,17 @@ class Automaton:
                 return {'redirect_url': redirect_url}
         return None  # If no redirect logic is found, return None
     
-    def start_console_execution(self):
+    def start_console_execution(self, petname="초코"):
+        self.set_variable_value("@petname", petname)
         current_question_id = "1"  # Starting with the first question
         while current_question_id:
             node = self.states.get(current_question_id)
             if not node:
                 logger.debug("No more questions or invalid question ID.")
                 break
-
+            question = self.substitute_placeholders(node['Question'])
             # Display question
-            logger.debug(f"Q: {node['Question']}")
+            logger.debug(f"Q: {question}")
 
             # Display answer choices if there are any
             if node['AnswerType'].startswith("Multichoice") and node['AnswerChoices']:
@@ -839,18 +861,17 @@ class Automaton:
                 answer = choices_map.get(answer, answer)
 
             # Process answer and determine the next step
-            next_question_id, questions_affected = self.process(current_question_id, answer)
+            next_question_id, questions_affected, redo_questions, remove_questions = self.process(current_question_id, answer)
             # Display question
-            logger.debug(f"questions_affected: {questions_affected}")
+            # logger.debug(f"questions_affected: {questions_affected}")
             # Update the current_question_id to the next question's ID
             current_question_id = next_question_id
-            #logger.debug(automaton.serialize_data())
             
 # Example usage
 # automaton = Automaton()
-# #automaton.load_from_excel('Back_Questionnaire.xlsx')
+# # #automaton.load_from_excel('Back_Questionnaire.xlsx')
 # automaton.load_from_excel('PerpetHealthCheckIntro.xlsx')
-# automaton.start_console_execution()
+# automaton.start_console_execution(petname="초코")
 # # Print the automaton
 # logger.debug("Automaton states:")
 # automaton.print_automaton()

@@ -568,12 +568,26 @@ async def submit_answer(
         f"questions_history.{question_id}.redo_questions": redo_questions,
         f"questions_history.{question_id}.remove_questions": remove_questions
     }
-    automaton_sessions_collection = mongo_db.automaton_sessions
-    automaton_sessions_collection.update_one({"session_key": session_key}, {"$set": update_fields}, upsert=True)
+    #automaton_sessions_collection = mongo_db.automaton_sessions
+    #automaton_sessions_collection.update_one({"session_key": session_key}, {"$set": update_fields}, upsert=True)
     
+    # Prepare the unset operation for the questions to be removed
+    unset_fields = {f"questions_history.{q_id}": "" for q_id in remove_questions}
+
+    # Get the collection
+    automaton_sessions_collection = mongo_db.automaton_sessions
+
+    # Perform the update and unset in a single operation
+    automaton_sessions_collection.update_one(
+        {"session_key": session_key},
+        {
+            "$set": update_fields,
+            "$unset": unset_fields
+        },
+        upsert=True
+    )
     if next_step is None:
         return {"message": "No further action required"}
-
 
     # Load the next question node
     node = automaton.states.get(str(next_step))

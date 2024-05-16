@@ -62,7 +62,7 @@ def test():
                     "chubby - 준비만 - 조금 통통해요 - IF(@petType==cat) THEN IMG(bsc_cat04) ELSE IMG(bsc_dog04)\n" \
                     "heavy - 고도비만 - 뚱뚱해요 - IF(@petType==cat) THEN IMG(bsc_cat05) ELSE IMG(bsc_dog05)"
     automaton = Automaton()
-    automaton.load_from_excel('PerpetHealthCheckIntro.xlsx')
+    automaton.load_from_excel('Back_Questionnaire.xlsx')
     automaton.set_variable_value('@petType', 'cat')
     parsed_choices = parse_answer_choices(answer_choices, automaton)
     
