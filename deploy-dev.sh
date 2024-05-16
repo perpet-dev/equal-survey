@@ -18,4 +18,3 @@ docker buildx build --platform linux/amd64,linux/arm64 --no-cache \
     -t ${REGISTRY_REPO}:${IMAGE_TAG} \
     -t ${REGISTRY_REPO}:latest \
     --push .
-
