@@ -38,7 +38,7 @@ class Parser:
         except ParserError as e:
             logger.error(f"Parser error: {e}")
             
-        logger.info(f"Parser parse: {self.parsed_statements}")
+        logger.debug(f"Parser parse: {self.parsed_statements}")
         
         return self.parsed_statements
     

@@ -403,7 +403,7 @@ async def get_question(
             extract_key = extract_from_function(answer_choices)
             responses = make_api_call(api_call) # return  a list of choices for each sub-ids
             
-            logger.info(f"API Call response: {responses}")
+            logger.debug(f"API Call response: {responses}")
             #logger.debug(f"submit_answers - Should Extract data: {extract_key}")
             #answer_choices = extract_data(response, extract_key)
             
@@ -428,11 +428,11 @@ async def get_question(
                 }
             sub_list = []
             for resp in responses:
-                logger.info(f"Should extract for single: {resp}")
+                logger.debug(f"Should extract for single: {resp}")
                 list_subs = extract_data(resp, extract_key)
-                logger.info(f"list_subs: {list_subs}")
+                logger.debug(f"list_subs: {list_subs}")
                 sub_list.append(list_subs)
-            logger.info(f"sub_lists: {sub_list}")
+            logger.debug(f"sub_lists: {sub_list}")
             
             # If no list is found, search for a single id
             match = re.search(r"main_ctgr_id=(\d+)", api_call)
@@ -455,12 +455,12 @@ async def get_question(
                 
                 for item in list_of_integers:
                     if item in medical_terms:
-                        logger.info(f"Medical term: {medical_terms[item]}")
+                        logger.debug(f"Medical term: {medical_terms[item]}")
                         main_list.append(medical_terms[item])
             if size(main_list) == 0:
                 main_list = [""]
             # else:
-            logger.info(f"Main list: {main_list}")
+            logger.debug(f"Main list: {main_list}")
             
             answer_choices = ""
             
@@ -622,7 +622,7 @@ async def submit_answer(
             extract_key = extract_from_function(answer_choices)
             responses = make_api_call(api_call) # return  a list of choices for each sub-ids
             
-            logger.info(f"API Call response: {responses}")
+            logger.debug(f"API Call response: {responses}")
             #logger.debug(f"submit_answers - Should Extract data: {extract_key}")
             #answer_choices = extract_data(response, extract_key)
             main_list = []
@@ -646,11 +646,11 @@ async def submit_answer(
                 }
             sub_list = []
             for resp in responses:
-                logger.info(f"Should extract for single: {resp}")
+                logger.debug(f"Should extract for single: {resp}")
                 list_subs = extract_data(resp, extract_key)
-                logger.info(f"list_subs: {list_subs}")
+                logger.debug(f"list_subs: {list_subs}")
                 sub_list.append(list_subs)
-            logger.info(f"sub_lists: {sub_list}")
+            logger.debug(f"sub_lists: {sub_list}")
             
             # If no list is found, search for a single id
             match = re.search(r"main_ctgr_id=(\d+)", api_call)
@@ -692,7 +692,7 @@ async def submit_answer(
             # Remove the trailing newline character from the last line
             answer_choices = answer_choices.strip()
                 
-            logger.info(f"submit_answer APICALL/EXTRACT for API CALL: {api_call} => \nlist_subs answer_choices: {answer_choices}")
+            logger.debug(f"submit_answer APICALL/EXTRACT for API CALL: {api_call} => \nlist_subs answer_choices: {answer_choices}")
             #list of answer_choices with corresponding sub-ids
             
         else:
@@ -702,12 +702,12 @@ async def submit_answer(
 
     if "IMG(" in answer_choices:
         #case of images answer choices
-        logger.info(f"answer_choices: {answer_choices}")
+        logger.debug(f"answer_choices: {answer_choices}")
         parsed_choices = parse_answer_choices(answer_choices, automaton)
         logger.debug(f"Images: {parsed_choices}")
     elif "IF(" in answer_choices:   
         #case of conditional answer choices
-        logger.info(f"Conditional answer_choices: {answer_choices}")
+        logger.debug(f"Conditional answer_choices: {answer_choices}")
         parsed_choices = extract_content_based_on_condition(answer_choices, automaton)
         logger.debug(f"Conditional: {parsed_choices}")
     else:
@@ -984,7 +984,7 @@ async def register_pet(session_id: str):
     from register_map import health_map
     logger.info("Questionnaire completed => Must register pet")
     # register_pet(questionnaireId, session_id)
-    logger.debug(f"variables: {automaton.variables}")
+    logger.info(f"variables: {automaton.variables}")
     # Prepare the data to be sent
     earfold = automaton.get_variable_value("@ear_folded")
     if earfold is not None:
