@@ -999,10 +999,8 @@ async def register_pet(session_id: str):
         "gender": health_map["gender_"+automaton.get_variable_value("@gender")],
         "profile": {
             "neutralization_code": convert_to_number(health_map["neutering_surgery_"+automaton.get_variable_value("@neutering_surgery")]),
-            #"relationship_code": convert_to_number(health_map["multi_animal_environment_"+automaton.get_variable_value("@multi_animal_environment")]),
-            "weight": convert_to_number(automaton.get_variable_value("@body_weight")),
             "body_form_code": convert_to_number(health_map["body_shape_"+automaton.get_variable_value("@body_shape")]),
-            
+            "weight": convert_to_number(automaton.get_variable_value("@body_weight")),
             "conditions_code": convert_to_number(health_map["energetic_"+automaton.get_variable_value("@energetic")]),
             "appetite_change_code": convert_to_number(health_map["appetite_"+automaton.get_variable_value("@appetite")]),
             "feed_amount_code": convert_to_number(health_map["pet_food_"+automaton.get_variable_value("@pet_food")]),
@@ -1030,13 +1028,13 @@ async def register_pet(session_id: str):
     if automaton.get_variable_value("@disease_id"):
         #pet_data["profile"]["disease_id"] = automaton.get_variable_value("@disease_id")  # Assuming it's a comma-separated string of numbers
         disease_ids = automaton.get_variable_value("@disease_id")
-        disease_id_string = ', '.join(disease_ids)
+        disease_id_string = ','.join(disease_ids)
         pet_data["profile"]["disease_id"] = disease_id_string
     else:
         pet_data["profile"]["disease_id"] = ""
 
     # Log the data for debugging purposes
-    logger.debug(f"FastAPI: Sending pet registration data: {pet_data}")
+    logger.info(f"FastAPI: Sending pet registration data: {pet_data}")
     
     login_info = loginUser(user_id)
     logger.debug(f"Login info: {login_info}")
@@ -1420,7 +1418,7 @@ async def home(request: Request, response: Response):
 
 @app.get("/get_report/{user_id}/{petname}")
 async def get_report(user_id: int, petname: str = Path(..., description="The name of the pet")):
-    logger.debug(f"FastAPI: Getting health report for user ID: {user_id} and petname: {petname}")
+    logger.info(f"FastAPI: Getting health report for user ID: {user_id} and petname: {petname}")
     metadatatexts = getMetadataText(user_id, petname)
     '''
     {pet_id} // {usr_id} // {
@@ -1429,7 +1427,7 @@ async def get_report(user_id: int, petname: str = Path(..., description="The nam
 	"survey_metadatas": []
     ''' 
     pet_id = pet_db.get_pet_profile(user_id, petname)
-    logger.debug(f"Pet ID: {pet_id}")
+    logger.info(f"Pet ID: {pet_id}")
     result = {
         "user_id": user_id,
         "pet_id": pet_id,
@@ -1444,7 +1442,7 @@ async def get_report(user_id: int, petname: str = Path(..., description="The nam
         'Authorization': f'Bearer {accessToken}'
     }
     try:
-        logger.debug(f"Sending health report data: {result}")
+        logger.info(f"Sending health report data: {result}")
         response = requests.post(f'{APISERVER}/checkup-service/v2/checkup', json=result, headers=headers)
         response.raise_for_status()  # This will raise an HTTPError for bad responses
         # should update the session with the pet_id and survey_id
@@ -1515,7 +1513,7 @@ def getMetadataText(user_id: int, petname: str):
             metadata_text.append(f"{key[:-3]}:{vf}")  # If key exists and value is not falsy, append the value
             logger.debug(f"{key}: {vf}")
     
-    ignored_variables = {'body_weight', 'query_params', 'petname'}
+    ignored_variables = {'query_params', 'petname'}
     for key, value in variables_front.items():
         if key.startswith('@'):
             metadata_key = key[1:]  # Remove '@' to match keys in the map
