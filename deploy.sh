@@ -25,8 +25,18 @@ fi
 PASSWORD=$(aws ecr get-login-password --region "$REGION")
 echo "$PASSWORD" | docker login --username AWS --password-stdin "$ECR"
 
-# Build and push the multi-platform Docker image with both tags
-docker buildx build --platform linux/amd64,linux/arm64 --no-cache \
-    -t "${REGISTRY_REPO}:latest" \
-    -t "${REGISTRY_REPO}:${IMAGE_TAG}" \
-    --push .
+# Build and push Docker image with inline cache
+docker buildx build --platform linux/amd64 \
+  --build-arg BUILDKIT_INLINE_CACHE=1 \
+  --cache-from=type=registry,ref="${REGISTRY_REPO}:latest" \
+  -t "${REGISTRY_REPO}:${IMAGE_TAG}" \
+  -t "${REGISTRY_REPO}:latest" \
+  --push .
+
+# Check if the build was successful
+if [ $? -ne 0 ]; then
+    echo "Docker build and push failed."
+    exit 1
+fi
+
+echo "Docker images have been successfully built and pushed."

@@ -124,17 +124,18 @@ async def initialize_session(
 
     if not user_id:
         # Generate new session for anonymous users
-        session_id = str(uuid.uuid4())
-        user_data = await registerUser(session_id)  # Assuming register_user is an async function
-        if user_data.get('id') and user_data.get('accessToken'):
-            user_id = user_data['id']
-            access_token = user_data['accessToken']
-            logger.debug(f"Registered anonymous user: {user_id} with access token: {access_token}")
-        else:
-            raise HTTPException(status_code=500, detail="Failed to register anonymous user")
+        # session_id = str(uuid.uuid4())
+        # user_data = await registerUser(session_id)  # Assuming register_user is an async function
+        # if user_data.get('id') and user_data.get('accessToken'):
+        #     user_id = user_data['id']
+        #     access_token = user_data['accessToken']
+        #     logger.debug(f"Registered anonymous user: {user_id} with access token: {access_token}")
+        # else:
+        raise HTTPException(status_code=500, detail="Anonymous user not allowed")
 
     # For logged-in users or newly registered anonymous users
-    session_id = await retrieve_or_create_session_for_user(user_id, str(user_id) + "_" + petname, questionnaire_id, query_params)
+    if user_id and not session_id: 
+        session_id = await retrieve_or_create_session_for_user(user_id, str(user_id) + "_" + petname, questionnaire_id, query_params)
 
     return JSONResponse(status_code=200, content={
         "session_id": session_id,
@@ -252,7 +253,7 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
     else:
         automaton_id = automaton_data['_id']
         automaton.deserialize_states(automaton_data)
-    logger.debug(f"Automaton data: {automaton_data}")
+    # logger.debug(f"Automaton data: {automaton_data}")
     # Create a unique composite key for session and questionnaire
     #Find or create the session
     session_data = session_collection.find_one({
@@ -512,7 +513,7 @@ async def get_question(
     
     # Serialize and save the automaton's current state
     automaton_data = automaton.serialize_data()
-    logger.debug(f"Automaton data: {automaton_data}")
+    #logger.debug(f"Automaton data: {automaton_data}")
     session_collection = mongo_db.automaton_sessions
     
     
@@ -1406,15 +1407,12 @@ async def get_questionnaire(request: Request, questionnaire_id: str):
     return templates.TemplateResponse("questionnaire.html", {"request": request, "questionnaire_id": questionnaire_id, "session_id": session_id,
                                                 "query_params": request.query_params})
 
-# #This is the Flask equivalent part in FastAPI
-# @app.get("/healthreport", response_class=HTMLResponse)
-# async def healthreport(request: Request):
-#     return templates.TemplateResponse("radar.html", {"request": request, "query_params": request.query_params})
-
 @app.get("/")
 async def home(request: Request, response: Response):
+    # endpoint with conditional logging
+    if logger.isEnabledFor(logging.DEBUG):
+        logger.debug(f"Handling request: {request.url}")
     return templates.TemplateResponse("intro.html", {"request": request})
-
 
 @app.get("/get_report/{user_id}/{petname}")
 async def get_report(user_id: int, petname: str = Path(..., description="The name of the pet")):
@@ -1719,26 +1717,26 @@ logging.getLogger("uvicorn.access").setLevel(LOGLEVEL)
 if logging.getLogger("uvicorn.asgi"):
     logging.getLogger("uvicorn.asgi").setLevel(LOGLEVEL)
 
-@app.on_event("startup")
-async def startup_event():
-    import logging 
-    logger.setLevel(LOGGING_LEVEL)
-    # Register with Eureka when the FastAPI app starts
-    logger.info(f"Application startup: Registering {PREFIXURL} service on port {PORT} with Eureka at {EUREKA} and logging level: {LOGGING_LEVEL}")
-    await register_with_eureka()
-    logger.info(f"Application startup: Registering {PREFIXURL} done")
+# @app.on_event("startup")
+# async def startup_event():
+#     import logging 
+#     logger.setLevel(LOGGING_LEVEL)
+#     # Register with Eureka when the FastAPI app starts
+#     logger.info(f"Application startup: Registering {PREFIXURL} service on port {PORT} with Eureka at {EUREKA} and logging level: {LOGGING_LEVEL}")
+#     await register_with_eureka()
+#     logger.info(f"Application startup: Registering {PREFIXURL} done")
 
-async def register_with_eureka():
-    if PREFIXURL == "/backsurvey-service":
-        # Asynchronously register service with Eureka
-        try:
-            logger.debug(f"Registering with Eureka at {EUREKA}...")
-            await eureka_client.init_async(eureka_server=EUREKA,
-                                        app_name="backsurvey-service",
-                                        instance_port=PORT)
-            logger.info("Registration with Eureka successful.")
-        except Exception as e:
-            logger.error(f"Failed to register with Eureka: {e}")
+# async def register_with_eureka():
+#     if PREFIXURL == "/backsurvey-service":
+#         # Asynchronously register service with Eureka
+#         try:
+#             logger.debug(f"Registering with Eureka at {EUREKA}...")
+#             await eureka_client.init_async(eureka_server=EUREKA,
+#                                         app_name="backsurvey-service",
+#                                         instance_port=PORT)
+#             logger.info("Registration with Eureka successful.")
+#         except Exception as e:
+#             logger.error(f"Failed to register with Eureka: {e}")
             
 # Set the root logger level if you want to adjust the overall logging level
 logging.getLogger().setLevel(LOGGING_LEVEL)

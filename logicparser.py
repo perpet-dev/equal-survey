@@ -20,7 +20,7 @@ class Parser:
             self.tokenizer.tokenize(input_text)
             self.tokenizer.position = 0 
             token = self.tokenizer.peek_next_token()
-            logger.debug(f"In Parser => token: {token}")
+            #logger.debug(f"In Parser => token: {token}")
             if not token:
                 return self.parsed_statements
             
@@ -38,7 +38,7 @@ class Parser:
         except ParserError as e:
             logger.error(f"Parser error: {e}")
             
-        logger.debug(f"Parser parse: {self.parsed_statements}")
+        #logger.debug(f"Parser parse: {self.parsed_statements}")
         
         return self.parsed_statements
     
@@ -69,7 +69,7 @@ class Parser:
     def parse_goto(self):
         # Consume the 'GOTO' token
         goto = self.tokenizer.get_next_token()
-        logger.debug(f"parse_goto: {goto}")
+        #logger.debug(f"parse_goto: {goto}")
         # Next token must be the step number
         step_token_value = goto['value']  # 
         step_token = {'type': 'NUMBER', 'value': step_token_value}
@@ -152,7 +152,7 @@ class Parser:
             'elif': elif_clauses,  # Include the ELIF clauses
             'else': else_actions
         }
-        logger.debug(f"parse_conditional: {conditional}")
+        #logger.debug(f"parse_conditional: {conditional}")
         return conditional
     
     def parse_condition(self, lhs_token):
@@ -204,7 +204,7 @@ class Parser:
         paren_depth = 0
         while True:
             token = self.tokenizer.peek_next_token()
-            logger.debug(f"Debugging: parse_action peek_next_token: {token}")  # Debugging statement
+            #logger.debug(f"Debugging: parse_action peek_next_token: {token}")  # Debugging statement
             if not token or token['type'].lower() == 'close_paren':
                 break
             if token['type'] == 'OPEN_PAREN':
@@ -212,14 +212,14 @@ class Parser:
                 self.tokenizer.get_next_token()  # consume the token
                 continue
             token = self.tokenizer.get_next_token()
-            logger.debug(f"Debugging: parse_action token: {token}")  # Debugging statement
+            #logger.debug(f"Debugging: parse_action token: {token}")  # Debugging statement
             action = {'type': token['type'].lower(), 'variables': []}
-            logger.debug(f"Debugging: action: {action}")  # Debugging statement
+            #logger.debug(f"Debugging: action: {action}")  # Debugging statement
 
             if action['type'] == 'redirect':
-                logger.debug(f"parse_action - Found REDIRECT action: {action}")
+                #logger.debug(f"parse_action - Found REDIRECT action: {action}")
                 url_token = self.tokenizer.expect_token('URL')  # Assume next token must be URL
-                logger.debug(f"parse_action - Found REDIRECT url_token: {url_token}")
+                #logger.debug(f"parse_action - Found REDIRECT url_token: {url_token}")
                 actions.append({'type': 'redirect', 'url': url_token['value']})
             elif action['type'] == 'add':
                 # Process the value (number or variable) to be added
@@ -247,12 +247,12 @@ class Parser:
                 self.tokenizer.expect_token('CLOSE_PAREN')
             
             elif action['type'] == 'goto':
-                logger.debug(f"parse_action - Found GOTO action: {action}")  # Debugging statement
+                #logger.debug(f"parse_action - Found GOTO action: {action}")  # Debugging statement
                 step_token_value = token['value']
                 step_token = {"type": "NUMBER", "value": step_token_value}
                 # # The next token should be the step number for the GOTO action
                 # step_token = self.tokenizer.get_next_token()
-                logger.debug(f"parse_action - Found step token: {step_token}")  # Debugging statement
+                #logger.debug(f"parse_action - Found step token: {step_token}")  # Debugging statement
                 if step_token is None or step_token['type'] != 'NUMBER':
                     raise ParserError("Expected a step number after 'GOTO' keyword")
                 action['step'] = step_token['value']
@@ -298,7 +298,7 @@ class Parser:
                 self.tokenizer.get_next_token()
             if not self.tokenizer.peek_next_token() or self.tokenizer.peek_next_token()['type'] not in ['ADD', 'MULTIPLY', 'GOTO', 'SET', 'REDIRECT']:
                 break
-        logger.debug(f"parse_action: {actions}")
+        #logger.debug(f"parse_action: {actions}")
         return actions
 
 #logic_lines="SET (@Dessert.quantity) \nTHEN (MULTIPLY) (@Dessert.quantity) (BY) (@Dessert.price) (ADD) TO (@Price) \n GOTO: 13"logic_lines = 

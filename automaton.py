@@ -1,9 +1,7 @@
-from enum import auto
 import logging
 import pandas as pd
 import json
 
-from sympy import use
 from tokenizer import Tokenizer
 from logicparser import Parser
 import re
@@ -153,17 +151,17 @@ class Automaton:
         self.goto = str(step)
 
     def execute_set(self, statement, node_id):
-        logger.debug(f"Executing set statement: {statement}")  # Debugging
+        #logger.debug(f"Executing set statement: {statement}")  # Debugging
         step_key = str(node_id) #str(self.goto)
 
         variable_name = statement['variable']
-        logger.debug(f"variable_name: {variable_name}")  # Debugging
-        logger.debug(f"user_answers: {self.user_answers}")  # Debugging
+        #logger.debug(f"variable_name: {variable_name}")  # Debugging
+        #logger.debug(f"user_answers: {self.user_answers}")  # Debugging
         value_to_set = ""
         if step_key in self.user_answers:
             value_to_set = self.user_answers[step_key]
 
-        logger.debug(f"Original value_to_set: {value_to_set}")
+        #logger.debug(f"Original value_to_set: {value_to_set}")
         original_value_to_set = value_to_set
         items = value_to_set.split(',')
         names = [item.split(':')[0].strip() for item in items]
@@ -177,70 +175,70 @@ class Automaton:
             if array_name not in self.arrays:
                 self.arrays[array_name] = []
             # Append the value to the array
-            logger.debug(f"Set array {variable_name} = {value_to_set}")  # Debugging
+            #logger.debug(f"Set array {variable_name} = {value_to_set}")  # Debugging
             self.arrays[array_name] = value_to_set
             # Also set the individual variable (non-array)
             self.variables[array_name] = original_value_to_set
         else:
             # For non-array variables, just set the value
-            logger.debug(f"Set non-array {variable_name} = {value_to_set}")  # Debugging
+            #logger.debug(f"Set non-array {variable_name} = {value_to_set}")  # Debugging
             self.variables[variable_name] = value_to_set
-        logger.debug(f"Set {variable_name} = {value_to_set}")  # Debugging
-        logger.debug(f"variables: {self.variables}")
-        logger.debug(f"arrays: {self.arrays}")
+        #logger.debug(f"Set {variable_name} = {value_to_set}")  # Debugging
+        #logger.debug(f"variables: {self.variables}")
+        #logger.debug(f"arrays: {self.arrays}")
 
     def run(self, parse_info):
         node_id = parse_info['ID']
-        logger.debug(f"run node: {node_id} with parsed_statements: {parse_info['parsed_statements']}")
+        # logger.debug(f"run node: {node_id} with parsed_statements: {parse_info['parsed_statements']}")
         parsed_statements = parse_info['parsed_statements']
 
         for statement in parsed_statements:
-            logger.debug(f"statement: {statement}")
+            #logger.debug(f"statement: {statement}")
             if statement['type'] == 'if':
                 # Extract and Evaluate the condition
-                logger.debug(f"statement['condition']: {statement['condition']}")
+                #logger.debug(f"statement['condition']: {statement['condition']}")
                 condition = statement['condition']
                 condition_met = False
                 
                 if 'operator' in condition:  # For comparison conditions
                     left_value = self.evaluate_condition_part(condition['left'])
                     right_value = self.evaluate_condition_part(condition['right'])
-                    logger.debug(f"condition['operator']: {condition['operator']}")
-                    logger.debug(f"left_value: {left_value}; right_value: {right_value}")
+                    #logger.debug(f"condition['operator']: {condition['operator']}")
+                    #logger.debug(f"left_value: {left_value}; right_value: {right_value}")
                     if condition['operator'] == 'equals':
                         condition_met = (left_value == right_value)
-                        logger.debug(f"left_value: {left_value}; right_value: {right_value} => condition_met: {condition_met}")
+                        #logger.debug(f"left_value: {left_value}; right_value: {right_value} => condition_met: {condition_met}")
                     elif condition['operator'] == 'notequals':
                         condition_met = (left_value != right_value)
-                        logger.debug(f"left_value: {left_value}; right_value: {right_value} => condition_met: {condition_met}")
+                        #logger.debug(f"left_value: {left_value}; right_value: {right_value} => condition_met: {condition_met}")
 
                 elif 'value' in condition:  # For direct literal check
                     # Assuming you have a method or way to get the user response or the value to compare with
                     # user_response = self.get_user_answer(self.goto) #self.get_user_response()
                     # logger.debug(f"user_response: {user_response} for current node:{self.goto}")
                     user_response = self.get_user_answer(node_id) #self.get_user_response()
-                    logger.debug(f"user_response: {user_response} for current node:{node_id}")
+                    #logger.debug(f"user_response: {user_response} for current node:{node_id}")
                     
                     literal_value = condition['value'].lstrip('#')  # Remove the leading '#' from the literal
                     condition_met = (user_response == literal_value)
-                    logger.debug(f"literal_value: {literal_value}; user_response: {user_response} => condition_met: {condition_met}")
+                    #logger.debug(f"literal_value: {literal_value}; user_response: {user_response} => condition_met: {condition_met}")
 
                 # Execute 'then' or 'else' part based on the condition
                 if condition_met:
-                    logger.debug(f"Condition met -> statement['then']: {statement['then']}")
+                    #logger.debug(f"Condition met -> statement['then']: {statement['then']}")
                     for action in statement['then']:
                         self.execute_action(action)
                 elif 'else' in statement and statement['else'] is not None:  # Corrected line
-                    logger.debug(f"Condition not met -> statement['else']: {statement['else']}")
+                    #logger.debug(f"Condition not met -> statement['else']: {statement['else']}")
                     for action in statement['else']:
                         self.execute_action(action)
             
             elif 'else' in statement and statement['else'] is not None:  # Corrected line
-                logger.debug(f"Condition not met -> statement['else']: {statement['else']}")
+                #logger.debug(f"Condition not met -> statement['else']: {statement['else']}")
                 for action in statement['else']:
                     self.execute_action(action)
             if statement['type'] == 'action':
-                logger.debug(f"Action: {statement}")
+                #logger.debug(f"Action: {statement}")
                 self.execute_action(statement)
             if statement['type'] == 'set':  # Handle the 'set' statement type
                 self.execute_set(statement, node_id)
@@ -490,28 +488,31 @@ class Automaton:
         }
         return cytoscape_json
 
-    def update_dependents_questions(self, variable):
-        """
-        Identifies and queues dependent questions for revisiting based on the variables that have changed.
-        Args:
-            updated_variables (list): A list of variable names that have been updated.
-        Returns:
-            list: A list of question IDs that need to be revisited.
-        """
-        logger.debug(f"Updating dependents for variable: {variable}")
-        #logger.debug(f"dependency_map = {self.dependency_map}")
-        affected_questions = []
-        if variable in self.dependency_map:
-            # Add all questions that depend on the updated variables and have already been answered
-            for q_id in self.dependency_map[variable]['questions']:
-                if q_id in self.question_path:  # Check if the question has been trigger in UI
-                    affected_questions.append(q_id)
+    # def update_dependents_questions(self, variable):
+    #     """
+    #     Identifies and queues dependent questions for revisiting based on the variables that have changed.
+    #     Args:
+    #         updated_variables (list): A list of variable names that have been updated.
+    #     Returns:
+    #         list: A list of question IDs that need to be revisited.
+    #     """
+    #     logger.debug(f"Updating dependents for variable: {variable}")
+    #     #logger.debug(f"dependency_map = {self.dependency_map}")
+    #     affected_questions = []
+    #     logger.debug(f"variable: {variable}")
+    #     if variable in self.dependency_map:
+    #         variable
+    #         # Add all questions that depend on the updated variables and have already been answered
+    #         for q_id in self.dependency_map[variable]['questions']:
+    #             if q_id in self.question_path:  # Check if the question has been trigger in UI
+    #                 affected_questions.append(q_id)
 
-        # Optionally, remove duplicates if any
-        affected_questions = list(set(affected_questions))
-        logger.debug(f"must update the following questions: {affected_questions}")
+    #     # Optionally, remove duplicates if any
+    #     affected_questions = list(set(affected_questions))
         
-        return affected_questions
+    #     logger.debug(f"must update the following questions: {affected_questions}")
+        
+    #     return affected_questions
 
     def update_redo_questions(self, variable):
         """
@@ -525,13 +526,18 @@ class Automaton:
         #logger.debug(f"dependency_map = {self.dependency_map}")
         affected_questions = []
         if variable in self.dependency_map:
+            logger.debug(f"update_redo_questions variable: {variable}")
+            logger.debug(f"self.question_path: {self.question_path}")
             for q_id in self.dependency_map[variable]['redo']:
-                if q_id in self.question_path:  # Check if the question's logic depends on the updated variable
+                
+                if q_id in self.question_path:
+                    logger.debug(f"update_redo_questions: {q_id}")
                     affected_questions.append(q_id)
+                    logger.debug(f"Adding question {q_id} to redo list => {affected_questions}")
 
         # Optionally, remove duplicates if any
         affected_questions = list(set(affected_questions))
-        #logger.debug(f"must redo the following questions: {affected_questions}")
+        logger.debug(f"must redo the following questions: {affected_questions}")
         
         return affected_questions
     
@@ -560,7 +566,8 @@ class Automaton:
                 for candidate in remove_candidates:
                     # Check if the candidate question is in the path
                     if candidate in self.question_path:
-                        remove_questions.append(candidate)
+                        if candidate not in remove_questions:
+                            remove_questions.append(candidate)
 
         # Store the user's answer
         # logger.debug(f"self.states: {self.states}")
@@ -678,45 +685,55 @@ class Automaton:
         # Return the next step or None if no further action is required
         logger.debug(f"Next step: {next_step}")
         
+        # # After processing, identify which variables have changed
+        # updated_variables = [
+        #     var for var in self.variables
+        #     if variables_snapshot_before.get(var) != self.variables[var]
+        # ]
+        # logger.debug(f"variables_snapshot_before: {variables_snapshot_before}")
+        # logger.debug(f"current variables: {self.variables}")
+        # logger.debug(f"Updated variables: {updated_variables}")
+        
+        # # Use updated variables to identify dependent questions that need revisiting
+        # affected_questions = []
+        # for var in updated_variables:
+        #     if var.startswith('@'):
+        #         affected_questions.extend(self.update_dependents_questions(var))
+        
+        # # Ensure the current question_id is not in the affected_questions list
+        # if question_id in affected_questions:
+        #     affected_questions.remove(question_id)
+        # logger.debug(f"affected_questions: {affected_questions}")
+        updated_affected_questions = {}
+        # for affected_question_id in affected_questions:
+        #     affected_node = self.states.get(affected_question_id)
+        #     if affected_node:
+        #         # Substitute placeholders in the affected question's text
+        #         updated_question_text = self.substitute_placeholders(affected_node['Question'])
+        #         updated_affected_questions[affected_question_id] = updated_question_text
+        #         #logger.debug(f"updated_affected_questions: {updated_affected_questions}")
+        # logger.debug(f"updated_affected_questions: {updated_affected_questions}")
+        
+        # Use updated variables to identify dependent questions that need revisiting
+        # redo_questions = []
+        
         # After processing, identify which variables have changed
         updated_variables = [
             var for var in self.variables
             if variables_snapshot_before.get(var) != self.variables[var]
         ]
-        logger.debug(f"variables_snapshot_before: {variables_snapshot_before}")
-        logger.debug(f"current variables: {self.variables}")
-        logger.debug(f"Updated variables: {updated_variables}")
-        
-        # Use updated variables to identify dependent questions that need revisiting
-        affected_questions = []
-        for var in updated_variables:
-            if var.startswith('@'):
-                affected_questions.extend(self.update_dependents_questions(var))
-        
-        # Ensure the current question_id is not in the affected_questions list
-        if question_id in affected_questions:
-            affected_questions.remove(question_id)
-        logger.debug(f"affected_questions: {affected_questions}")
-        updated_affected_questions = {}
-        for affected_question_id in affected_questions:
-            affected_node = self.states.get(affected_question_id)
-            if affected_node:
-                # Substitute placeholders in the affected question's text
-                updated_question_text = self.substitute_placeholders(affected_node['Question'])
-                updated_affected_questions[affected_question_id] = updated_question_text
-                #logger.debug(f"updated_affected_questions: {updated_affected_questions}")
-        logger.debug(f"updated_affected_questions: {updated_affected_questions}")
-        
-        # Use updated variables to identify dependent questions that need revisiting
-        # redo_questions = []
         for var in updated_variables:
             redo_questions.extend(self.update_redo_questions(var))
         
         # Ensure the current question_id is not in the affected_questions list
         if question_id in redo_questions:
             redo_questions.remove(question_id)
-        logger.debug(f"must redo questions: {redo_questions}")
-        
+        for q_id in redo_questions:
+            if q_id not in self.question_path:
+                logger.debug(f"remove question {q_id} from redo list")
+                redo_questions.remove(q_id)
+        logger.debug(f"must redo questions: {redo_questions} // question_path: {self.question_path}")
+
         # # # Gather questions for removal based on dependencies
         # # remove_questions = []
         # for question_id in redo_questions:
@@ -739,8 +756,9 @@ class Automaton:
         #         del self.user_answers[question_id]
         for question_id in redo_questions:
             if question_id in self.question_path:
-                remove_questions.append(question_id)
-        
+                if question_id not in remove_questions:
+                    remove_questions.append(question_id)
+
         # Now, remove questions from `question_path` and potentially from `user_answers`
         for question_id in remove_questions:
             if question_id in self.question_path:

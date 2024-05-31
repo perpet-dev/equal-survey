@@ -21,7 +21,7 @@ class PetInfo:
 
         try:
             cursor = connection.cursor()
-            sql = "SELECT `id` FROM `pet` WHERE `user_id` = %s AND `name` = %s;"
+            sql = "SELECT `id` FROM `pet` WHERE `user_id` = %s AND `name` = %s AND 'use_yn' = 'Y';" # Add use_yn condition
             cursor.execute(sql, (user_id, petname))
             results = cursor.fetchall()  # Fetch all results instead of fetchone
             if results:

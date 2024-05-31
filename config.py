@@ -51,6 +51,7 @@ ocsp_logger.setLevel(logging.INFO)
 # Set environment variables
 PORT = int(os.getenv('PORT', 8080))
 PREFIXURL = os.getenv('PREFIXURL', '/backsurvey-service')
+#PREFIXURL = os.getenv('PREFIXURL', '/')
 MONGODB = os.getenv('MONGODB', "mongodb+srv://perpetcloud:NsIgvcQ5E7OQ2JSW@equalpet.tt45urw.mongodb.net/")
 DB_URI = os.getenv('DB_URI', "jdbc:mariadb://dev.promptinsight.ai:3306/perpet?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul")
 
