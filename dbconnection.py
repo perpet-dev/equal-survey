@@ -30,7 +30,8 @@ class DatabaseConnectionPool:
                 password=DB_PASSWORD,
                 database=DB_DATABASE
             )
-            print('Database connection pool successfully established.')
+            logger.info(f'host:{DB_HOST}:port:{DB_PORT}:user:{DB_USER}:password:{DB_PASSWORD}:DB_DATABASE:{DB_DATABASE}\nDatabase connection pool successfully established.')
+            
             return pool
         except Exception as e:
             logger.error(f"Error connecting to the database platform: {e}")

@@ -19,19 +19,22 @@ class PetInfo:
             logger.error("Failed to obtain database connection.")
             return None
 
+        cursor = None
         try:
             cursor = connection.cursor()
-            sql = "SELECT `id` FROM `pet` WHERE `user_id` = %s AND `name` = %s AND 'use_yn' = 'Y';" # Add use_yn condition
+            sql = "SELECT `id` FROM `pet` WHERE `user_id` = %s AND `name` = %s AND `use_yn` = 'Y';"
+            real_query = sql % (user_id, f"'{petname}'")  # Format the query with actual parameters for logging
+            logger.debug("Executing SQL query: %s", real_query)
             cursor.execute(sql, (user_id, petname))
             results = cursor.fetchall()  # Fetch all results instead of fetchone
             if results:
-                logger.info(f"Pet profile successfully retrieved: {results[0][0]}")
+                logger.debug("Pet profile successfully retrieved: %s", results[0][0])
                 return results[0][0]  # Return the first ID from the first result
             else:
-                logger.warning(f"No pet with name {petname} found for user_id: {user_id}")
+                logger.debug("No pet with name %s found for user_id: %s", petname, user_id)
                 return None
         except Error as e:
-            logger.error(f"Failed to execute query: {e}")
+            logger.error("Failed to execute query: %s", e)
             return None
         finally:
             if cursor:
