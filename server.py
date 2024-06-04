@@ -1717,26 +1717,26 @@ logging.getLogger("uvicorn.access").setLevel(LOGLEVEL)
 if logging.getLogger("uvicorn.asgi"):
     logging.getLogger("uvicorn.asgi").setLevel(LOGLEVEL)
 
-# @app.on_event("startup")
-# async def startup_event():
-#     import logging 
-#     logger.setLevel(LOGGING_LEVEL)
-#     # Register with Eureka when the FastAPI app starts
-#     logger.info(f"Application startup: Registering {PREFIXURL} service on port {PORT} with Eureka at {EUREKA} and logging level: {LOGGING_LEVEL}")
-#     await register_with_eureka()
-#     logger.info(f"Application startup: Registering {PREFIXURL} done")
+@app.on_event("startup")
+async def startup_event():
+    import logging 
+    logger.setLevel(LOGGING_LEVEL)
+    # Register with Eureka when the FastAPI app starts
+    logger.info(f"Application startup: Registering {PREFIXURL} service on port {PORT} with Eureka at {EUREKA} and logging level: {LOGGING_LEVEL}")
+    await register_with_eureka()
+    logger.info(f"Application startup: Registering {PREFIXURL} done")
 
-# async def register_with_eureka():
-#     if PREFIXURL == "/backsurvey-service":
-#         # Asynchronously register service with Eureka
-#         try:
-#             logger.debug(f"Registering with Eureka at {EUREKA}...")
-#             await eureka_client.init_async(eureka_server=EUREKA,
-#                                         app_name="backsurvey-service",
-#                                         instance_port=PORT)
-#             logger.info("Registration with Eureka successful.")
-#         except Exception as e:
-#             logger.error(f"Failed to register with Eureka: {e}")
+async def register_with_eureka():
+    if PREFIXURL == "/backsurvey-service":
+        # Asynchronously register service with Eureka
+        try:
+            logger.debug(f"Registering with Eureka at {EUREKA}...")
+            await eureka_client.init_async(eureka_server=EUREKA,
+                                        app_name="backsurvey-service",
+                                        instance_port=PORT)
+            logger.info("Registration with Eureka successful.")
+        except Exception as e:
+            logger.error(f"Failed to register with Eureka: {e}")
             
 # Set the root logger level if you want to adjust the overall logging level
 logging.getLogger().setLevel(LOGGING_LEVEL)
