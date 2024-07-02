@@ -21,7 +21,7 @@ import re
 import uuid
 from pymongo import MongoClient, UpdateOne, ASCENDING
 import json
-from config import LOGGING_LEVEL, LOGGING_CONFIG, MONGODB, EUREKA
+from config import LOGGING_LEVEL, LOGGING_CONFIG, MONGODB, MONGODB_DBNAME, EUREKA
 from py_eureka_client import eureka_client
 import logging
 logging.config.dictConfig(LOGGING_CONFIG)
@@ -44,8 +44,15 @@ class AnswersSubmission(BaseModel):
     question_id: str
     answers: List[SingleAnswer]  # List of answers
 
-client = MongoClient(MONGODB)
-mongo_db = client.perpet_healthcheck
+# client = MongoClient(MONGODB)
+# mongo_db = client.perpet_surveys #surveys db
+# Connect to MongoDB
+# Get the MongoDB connection string and database name from the config file
+mongodb_connection_string = MONGODB
+database_name = MONGODB_DBNAME 
+client = MongoClient(mongodb_connection_string)
+mongo_db = client[database_name]
+
 automaton_collection = mongo_db.automatons
 session_collection = mongo_db.automaton_sessions
 images_collection = mongo_db.pet_images
@@ -839,6 +846,9 @@ async def healthcheck(session_id: str):
     )
 
     return {"redirect_url": redirect_url}
+
+
+
 
 def retrieve_first_image(user_id: int, pet_name: str):
     """ Retrieves image data for a given user and pet from MongoDB """
