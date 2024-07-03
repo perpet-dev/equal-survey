@@ -142,6 +142,12 @@ async def initialize_session(
 
     # For logged-in users or newly registered anonymous users
     if user_id and not session_id: 
+        profile = pet_db.get_pet_profile_deleted(user_id, petname)
+        session_data = session_collection.find_one({"session_key": str(user_id) + "_" + petname+ "_" + questionnaire_id})
+        if session_data is not None and profile is not None:
+            logger.info(f"User: {user_id} has deleted profile in registered petname: {petname}")
+            session_collection.delete_one({"session_key": str(user_id) + "_" + petname + "_" + questionnaire_id})
+            
         session_id = await retrieve_or_create_session_for_user(user_id, str(user_id) + "_" + petname, questionnaire_id, query_params)
 
     return JSONResponse(status_code=200, content={
@@ -277,7 +283,6 @@ async def get_automaton_for_user(session_id: str, questionnaire_id: str) -> Tupl
 async def restore_session(questionnaire_id: str, session_id: str):
     """
     Restores a session for a given automaton ID and session ID by retrieving or creating an Automaton instance.
-    This endpoint ensures that each session related to a specific questionnaire is correctly handled.
     """
     # Retrieve or create the Automaton and the session using the unique session_key
     automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
@@ -288,6 +293,8 @@ async def restore_session(questionnaire_id: str, session_id: str):
         "session_id": session_id,
         "questionnaire_id": questionnaire_id
     })
+
+    
     if not session_data:
         logger.info(f"No session data found... initializing new session.")
         session_data = {

@@ -58,28 +58,28 @@ def extract_data(json_data, path):
         return [item.get(last_element) for item in current_data if isinstance(item, dict)]
 
 # # Example usage
-print("Breeds list for cat:")
-result = APICALL("https://api.equal.pet/sign-service/v1/breeds", {"type": "cat", "limit": 500})
-result = extract_data(result, 'data.content[*].name')
-print(result)
+# print("Breeds list for cat:")
+# result = APICALL("https://api.equal.pet/sign-service/v1/breeds", {"type": "cat", "limit": 500})
+# result = extract_data(result, 'data.content[*].name')
+# print(result)
 
-print("Breeds list for dog:")
-result = APICALL("https://api.equal.pet/sign-service/v1/breeds", {"type": "dog", "limit": 500})
-result = extract_data(result, 'data.content[*].name')
-print(result)
+# print("Breeds list for dog:")
+# result = APICALL("https://api.equal.pet/sign-service/v1/breeds", {"type": "dog", "limit": 500})
+# result = extract_data(result, 'data.content[*].name')
+# print(result)
 
-print("Allergy list:")
-result = APICALL("https://api.equal.pet/sign-service/v1/allergy", {"limit": 500})
-result = extract_data(result, 'data.content[*].name')
-print(result)
+# print("Allergy list:")
+# result = APICALL("https://api.equal.pet/sign-service/v1/allergy", {"limit": 500})
+# result = extract_data(result, 'data.content[*].name')
+# print(result)
 
-print("Main Disease Categories list:")
-result = APICALL("https://api.equal.pet/sign-service/v1/disease", {"is_main": True, "limit": 500})
-result = extract_data(result, 'data.content[*].(id,name)')
-print(result)
+# print("Main Disease Categories list:")
+# result = APICALL("https://api.equal.pet/sign-service/v1/disease", {"is_main": True, "limit": 500})
+# result = extract_data(result, 'data.content[*].(id,name)')
+# print(result)
 
 
-print("Sub Disease list:")
-result = APICALL("https://api.equal.pet/sign-service/v1/disease", {"main_ctgr_id": 11, "limit": 500})
-result = extract_data(result, 'data.content[*].name')
-print(result)
+# print("Sub Disease list:")
+# result = APICALL("https://api.equal.pet/sign-service/v1/disease", {"main_ctgr_id": 11, "limit": 500})
+# result = extract_data(result, 'data.content[*].name')
+# print(result)
