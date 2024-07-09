@@ -33,7 +33,9 @@ class Tokenizer:
             'VARIABLE': r'@\w+(\.\w+)?',
             'WHITESPACE': r'\s+',
             'NEWLINE': r'\n',
-            'VALUE': r'\w+'
+            'VALUE': r'\w+',
+            'OR': r'\|',  # OR operator
+            'AND': r'&'   # AND operator
         }
         self.TOKEN_PATTERNS = {k: re.compile(v) for k, v in token_patterns.items()}
 

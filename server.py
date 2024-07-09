@@ -1,4 +1,5 @@
 # server.py
+from math import log
 from fastapi import FastAPI, Path, Body, Form, Header, HTTPException, Depends, Response, Request, File, UploadFile, status, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -286,6 +287,7 @@ async def restore_session(questionnaire_id: str, session_id: str):
     """
     # Retrieve or create the Automaton and the session using the unique session_key
     automaton, _ = await get_automaton_for_user(session_id, questionnaire_id)
+    
     logger.debug(f"restore_session; automaton found => automaton_data = {automaton.serialize_data()}")
 
     # Retrieve the session data using the session_key
@@ -353,6 +355,7 @@ async def restore_session(questionnaire_id: str, session_id: str):
 
 @app.post("/get_question/{questionnaire_id}/{question_id}")
 async def get_question(
+    response: Response, request: Request, 
     questionnaire_id: str,
     question_id: str,
     session_id: str = Header(None),  # Header parameter
@@ -418,84 +421,83 @@ async def get_question(
             extract_key = extract_from_function(answer_choices)
             responses = make_api_call(api_call) # return  a list of choices for each sub-ids
             
-            logger.debug(f"API Call response: {responses}")
-            #logger.debug(f"submit_answers - Should Extract data: {extract_key}")
-            #answer_choices = extract_data(response, extract_key)
+            logger.debug(f"get_question - Should Extract data: {extract_key}")
+            answer_choices = extract_data(responses, extract_key)
+            logger.debug(f"answer_choices: {answer_choices}")
+        #     main_list = []
+        #     medical_terms = {
+        #             9: "간담도계",
+        #             377: "내분비계",
+        #             13: "뇌신경",
+        #             3: "당뇨",
+        #             2: "비뇨생식기계",
+        #             10: "소화기계",
+        #             8: "신장",
+        #             11: "심혈관계",
+        #             5: "악성종양",
+        #             17: "안과",
+        #             16: "인지장애",
+        #             14: "정형외과",
+        #             6: "치과",
+        #             1: "피부",
+        #             15: "행동학적 질환",
+        #             7: "호흡기계"
+        #         }
+        #     sub_list = []
+        #     for resp in responses:
+        #         logger.debug(f"Should extract for single: {resp}")
+        #         list_subs = extract_data(resp, extract_key)
+        #         logger.debug(f"list_subs: {list_subs}")
+        #         sub_list.append(list_subs)
+        #     logger.debug(f"sub_lists: {sub_list}")
             
-            main_list = []
-            medical_terms = {
-                    9: "간담도계",
-                    377: "내분비계",
-                    13: "뇌신경",
-                    3: "당뇨",
-                    2: "비뇨생식기계",
-                    10: "소화기계",
-                    8: "신장",
-                    11: "심혈관계",
-                    5: "악성종양",
-                    17: "안과",
-                    16: "인지장애",
-                    14: "정형외과",
-                    6: "치과",
-                    1: "피부",
-                    15: "행동학적 질환",
-                    7: "호흡기계"
-                }
-            sub_list = []
-            for resp in responses:
-                logger.debug(f"Should extract for single: {resp}")
-                list_subs = extract_data(resp, extract_key)
-                logger.debug(f"list_subs: {list_subs}")
-                sub_list.append(list_subs)
-            logger.debug(f"sub_lists: {sub_list}")
+        #     # If no list is found, search for a single id
+        #     match = re.search(r"main_ctgr_id=(\d+)", api_call)
+        #     if match:
+        #         main_list = [medical_terms[int(match.group(1))]]
             
-            # If no list is found, search for a single id
-            match = re.search(r"main_ctgr_id=(\d+)", api_call)
-            if match:
-                main_list = [medical_terms[int(match.group(1))]]
-            
-            "api_call => disease?main_ctgr_id=['8', '17', '1']"
-            #match = re.search(r"(\['\d+', '\d+', '\d+'\])", api_call)
-            match = re.search(r"\[\s*((?:'\d+'\s*,\s*)*'(?:\d+)')?\s*\]", api_call)
+        #     "api_call => disease?main_ctgr_id=['8', '17', '1']"
+        #     #match = re.search(r"(\['\d+', '\d+', '\d+'\])", api_call)
+        #     match = re.search(r"\[\s*((?:'\d+'\s*,\s*)*'(?:\d+)')?\s*\]", api_call)
 
-            if match:
-                # Extract the matched group, which is the list as a string
-                list_string = match.group(1)
-                print(list_string)
-                import ast
-                list_of_strings = ast.literal_eval(list_string)
-                # Convert each string in the list to an integer
-                list_of_integers = [int(item) for item in list_of_strings]
-                logger.debug(f"List of integers: {list_of_integers}")
+        #     if match:
+        #         # Extract the matched group, which is the list as a string
+        #         list_string = match.group(1)
+        #         print(list_string)
+        #         import ast
+        #         list_of_strings = ast.literal_eval(list_string)
+        #         # Convert each string in the list to an integer
+        #         list_of_integers = [int(item) for item in list_of_strings]
+        #         logger.debug(f"List of integers: {list_of_integers}")
                 
-                for item in list_of_integers:
-                    if item in medical_terms:
-                        logger.debug(f"Medical term: {medical_terms[item]}")
-                        main_list.append(medical_terms[item])
-            if size(main_list) == 0:
-                main_list = [""]
-            # else:
-            logger.debug(f"Main list: {main_list}")
+        #         for item in list_of_integers:
+        #             if item in medical_terms:
+        #                 logger.debug(f"Medical term: {medical_terms[item]}")
+        #                 main_list.append(medical_terms[item])
+        #     if size(main_list) == 0:
+        #         main_list = [""]
+        #     # else:
+        #     logger.debug(f"Main list: {main_list}")
             
-            answer_choices = ""
+        #     answer_choices = ""
             
-            if size(main_list) == 1:
-                answer_choices = f"질병분야_{main_list[0]}|{sub_list[0]}"
-            else: 
-                for sub, main in zip(sub_list, main_list):
-                    # Concatenate the new pair at the end of the answer_choices string
-                    answer_choices += f"질병분야_{main}|{sub}\n"
+        #     if size(main_list) == 1:
+        #         answer_choices = f"질병분야_{main_list[0]}|{sub_list[0]}"
+        #     else: 
+        #         for sub, main in zip(sub_list, main_list):
+        #             # Concatenate the new pair at the end of the answer_choices string
+        #             answer_choices += f"질병분야_{main}|{sub}\n"
 
-            # Remove the trailing newline character from the last line
-            answer_choices = answer_choices.strip()
+        #     # Remove the trailing newline character from the last line
+        #     answer_choices = answer_choices.strip()
 
                 
-            logger.info(f"get_question/{questionnaire_id}/{question_id} APICALL/EXTRACT list_subs answer_choices: {answer_choices}")
-            #list of answer_choices with corresponding sub-ids
+        #     logger.info(f"get_question/{questionnaire_id}/{question_id} APICALL/EXTRACT list_subs answer_choices: {answer_choices}")
+        #     #list of answer_choices with corresponding sub-ids
             
-        else:
-            response = make_api_call(api_call)
-            answer_choices = response
+    # else:
+    #     response = make_api_call(api_call)
+    #     answer_choices = response
 
     if "IMG(" in answer_choices:
         #case of images answer choices
@@ -530,14 +532,11 @@ async def get_question(
     #logger.debug(f"Automaton data: {automaton_data}")
     session_collection = mongo_db.automaton_sessions
     
-    
     session_data = session_collection.find_one({
         "session_id": session_id,
         "questionnaire_id": questionnaire_id
     })
     session_key = session_data['session_key']
-    
-    
     
     session_collection.update_one({"session_key": f"{session_key}"}, {"$set": automaton_data}, upsert=True)
     
@@ -555,9 +554,8 @@ async def submit_answer(
     access_token: str = Header(None, alias='X-Access-Token')  # Header parameter for access token
 ):
     # Here you can use user_id and access_token as needed
-    logger.debug(f"Received user_id: {user_id}, access_token: {access_token}")
+    logger.debug(f"Received user_id: {user_id}, access_token: {access_token}, session_id: {session_id}")
     automaton, _ = await get_automaton_for_user(session_id, questionnaireId)
-    
     
     question_id = submission.question_id
     user_answer = submission.user_answer
@@ -567,7 +565,6 @@ async def submit_answer(
     # Process the answer and determine next steps in the questionnaire
     next_step, affected_questions, redo_questions, remove_questions = automaton.process(question_id, user_answer)
     
-    #session_key = f"{session_id}_{questionnaireId}"
     # Retrieve the session data using the session_key
     session_data = session_collection.find_one({
         "session_id": session_id,
@@ -628,6 +625,7 @@ async def submit_answer(
     #     else:
     #         response = make_api_call(api_call)
     #         answer_choices = response
+    #         logger.info(f"API Call response: {answer_choices}")
     if "APICALL" in answer_choices:
         
         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
@@ -637,78 +635,79 @@ async def submit_answer(
             extract_key = extract_from_function(answer_choices)
             responses = make_api_call(api_call) # return  a list of choices for each sub-ids
             
-            logger.debug(f"API Call response: {responses}")
-            #logger.debug(f"submit_answers - Should Extract data: {extract_key}")
-            #answer_choices = extract_data(response, extract_key)
-            main_list = []
-            medical_terms = {
-                    9: "간담도계",
-                    377: "내분비계",
-                    13: "뇌신경",
-                    3: "당뇨",
-                    2: "비뇨생식기계",
-                    10: "소화기계",
-                    8: "신장",
-                    11: "심혈관계",
-                    5: "악성종양",
-                    17: "안과",
-                    16: "인지장애",
-                    14: "정형외과",
-                    6: "치과",
-                    1: "피부",
-                    15: "행동학적 질환",
-                    7: "호흡기계"
-                }
-            sub_list = []
-            for resp in responses:
-                logger.debug(f"Should extract for single: {resp}")
-                list_subs = extract_data(resp, extract_key)
-                logger.debug(f"list_subs: {list_subs}")
-                sub_list.append(list_subs)
-            logger.debug(f"sub_lists: {sub_list}")
+            #logger.debug(f"API Call response: {responses}")
+            logger.debug(f"submit_answers - Should Extract data: {extract_key}")
+            answer_choices = extract_data(responses, extract_key)
+            logger.debug(f"submit_answers - Extracted data: {answer_choices}")
+            # main_list = []
+            # medical_terms = {
+            #         9: "간담도계",
+            #         377: "내분비계",
+            #         13: "뇌신경",
+            #         3: "당뇨",
+            #         2: "비뇨생식기계",
+            #         10: "소화기계",
+            #         8: "신장",
+            #         11: "심혈관계",
+            #         5: "악성종양",
+            #         17: "안과",
+            #         16: "인지장애",
+            #         14: "정형외과",
+            #         6: "치과",
+            #         1: "피부",
+            #         15: "행동학적 질환",
+            #         7: "호흡기계"
+            #     }
+            # sub_list = []
+            # for resp in responses:
+            #     logger.debug(f"Should extract for single: {resp}")
+            #     list_subs = extract_data(resp, extract_key)
+            #     logger.debug(f"list_subs: {list_subs}")
+            #     sub_list.append(list_subs)
+            # logger.debug(f"sub_lists: {sub_list}")
             
-            # If no list is found, search for a single id
-            match = re.search(r"main_ctgr_id=(\d+)", api_call)
-            if match:
-                main_list = [medical_terms[int(match.group(1))]]
+            # # If no list is found, search for a single id
+            # match = re.search(r"main_ctgr_id=(\d+)", api_call)
+            # if match:
+            #     main_list = [medical_terms[int(match.group(1))]]
     
-            "api_call => disease?main_ctgr_id=['8', '17', '1']"
-            #match = re.search(r"(\['\d+', '\d+', '\d+'\])", api_call)
-            match = re.search(r"\[\s*((?:'\d+'\s*,\s*)*'(?:\d+)')?\s*\]", api_call)
+            # "api_call => disease?main_ctgr_id=['8', '17', '1']"
+            # #match = re.search(r"(\['\d+', '\d+', '\d+'\])", api_call)
+            # match = re.search(r"\[\s*((?:'\d+'\s*,\s*)*'(?:\d+)')?\s*\]", api_call)
             
-            if match:
-                # Extract the matched group, which is the list as a string
-                list_string = match.group(1)
-                print(list_string)
-                import ast
-                list_of_strings = ast.literal_eval(list_string)
-                # Convert each string in the list to an integer
-                list_of_integers = [int(item) for item in list_of_strings]
-                logger.debug(f"List of integers: {list_of_integers}")
+            # if match:
+            #     # Extract the matched group, which is the list as a string
+            #     list_string = match.group(1)
+            #     print(list_string)
+            #     import ast
+            #     list_of_strings = ast.literal_eval(list_string)
+            #     # Convert each string in the list to an integer
+            #     list_of_integers = [int(item) for item in list_of_strings]
+            #     logger.debug(f"List of integers: {list_of_integers}")
  
-                for item in list_of_integers:
-                    if item in medical_terms:
-                        logger.info(f"Medical term: {medical_terms[item]}")
-                        main_list.append(medical_terms[item])
-            if size(main_list) == 0:
-                main_list = [""]
-            # else:
-            logger.info(f"Main list: {main_list}")
+            #     for item in list_of_integers:
+            #         if item in medical_terms:
+            #             logger.info(f"Medical term: {medical_terms[item]}")
+            #             main_list.append(medical_terms[item])
+            # if size(main_list) == 0:
+            #     main_list = [""]
+            # # else:
+            # logger.info(f"Main list: {main_list}")
             
-            answer_choices = ""
+            # answer_choices = ""
             
-            if size(main_list) == 1:
-                answer_choices = f"질병분야_{main_list[0]}|{sub_list[0]}"
-            else: 
-                for sub, main in zip(sub_list, main_list):
-                    # Concatenate the new pair at the end of the answer_choices string
-                    answer_choices += f"질병분야_{main}|{sub}\n"
+            # if size(main_list) == 1:
+            #     answer_choices = f"질병분야_{main_list[0]}|{sub_list[0]}"
+            # else: 
+            #     for sub, main in zip(sub_list, main_list):
+            #         # Concatenate the new pair at the end of the answer_choices string
+            #         answer_choices += f"질병분야_{main}|{sub}\n"
 
-            # Remove the trailing newline character from the last line
-            answer_choices = answer_choices.strip()
+            # # Remove the trailing newline character from the last line
+            # answer_choices = answer_choices.strip()
                 
-            logger.debug(f"submit_answer APICALL/EXTRACT for API CALL: {api_call} => \nlist_subs answer_choices: {answer_choices}")
-            #list of answer_choices with corresponding sub-ids
+            # logger.debug(f"submit_answer APICALL/EXTRACT for API CALL: {api_call} => \nlist_subs answer_choices: {answer_choices}")
+            # #list of answer_choices with corresponding sub-ids
             
         else:
             response = make_api_call(api_call)
@@ -742,40 +741,18 @@ async def submit_answer(
         "redo_questions": redo_questions,
         "remove_questions": remove_questions
     }
-    if "REDIRECT:" in answer_choices:
-        redirect_url_template = answer_choices.split("REDIRECT:")[1]
-        if redirect_url_template:
-            redirect_url_template = redirect_url_template.strip()
-            logger.debug(f"Found Redirect URL Template: {redirect_url_template}")
-            # Substitute placeholders in the redirect URL with actual values
-            pet_type=automaton.get_variable_value("@pet_type")
-            logger.debug(f"Pet Type: {pet_type}")
-            petname=automaton.get_variable_value("@petname")
-            gender=automaton.get_variable_value("@gender")
-            # If placeholders in your template use the at symbol '@', remove it from the variable names
-            redirect_url_template = redirect_url_template.replace("{@pet_type}", "{pet_type}")
-            redirect_url_template = redirect_url_template.replace("{@petname}", "{petname}")
-            redirect_url_template = redirect_url_template.replace("{@gender}", "{gender}")
-
-            # Now perform the substitution
-            redirect_url = redirect_url_template.format(
-                user_id=user_id,
-                access_token=access_token,
-                pet_type=pet_type,
-                petname=petname,
-                gender=gender
-            )
-            logger.debug(f"Found Redirect URL: {redirect_url}")
-            # Return the redirect URL in the response
-            question_data['redirect_url'] = redirect_url
+    logger.debug(f"Next question details: {question_data}")
     
     # Serialize and update the automaton's state
     automaton.update_questions_path(next_step)
     automaton_data = automaton.serialize_data()
+    logger.debug(f"session_key: {session_key}\nautomaton_data: {automaton_data}")
     automaton_sessions_collection.update_one({"session_key": session_key}, {"$set": automaton_data}, upsert=True)
     
     # Handle updates to affected questions
-    bulk_operations = [UpdateOne({"session_key": session_key}, {'$set': {f"questions_history.{q_id}.question": text}}) for q_id, text in affected_questions.items()]
+    #bulk_operations = [UpdateOne({"session_key": session_key}, {'$set': {f"questions_history.{q_id}.question": text}}) for q_id, text in affected_questions.items()]
+    bulk_operations = [UpdateOne({"session_key": session_key}, {'$set': {f"questions_history.{item['id']}.question": item['text']}}) for item in affected_questions]
+
     if bulk_operations:
         automaton_sessions_collection.bulk_write(bulk_operations)
 
@@ -976,7 +953,7 @@ async def deleteNonScanned(user_id: int, pet_name: str):
         raise HTTPException(status_code=500, detail="Failed to delete deleteNonScanned")
 
 @app.get("/pet_register/{session_id}")
-async def register_pet(session_id: str):
+async def register_pet(request: Request, session_id: str):
     questionnaire_id = "PerpetHealthCheckIntro"
     logger.info(f"Registering pet for session ID: {session_id}, Questionnaire ID: {questionnaire_id}")
     # Retrieve or create the Automaton and the session using the unique session_key
@@ -1054,9 +1031,17 @@ async def register_pet(session_id: str):
     # Log the data for debugging purposes
     logger.info(f"FastAPI: Sending pet registration data: {pet_data}")
     
-    login_info = loginUser(user_id)
-    logger.debug(f"Login info: {login_info}")
-    accessToken = login_info['accessToken']
+    # login_info = loginUser(user_id)
+    # logger.debug(f"Login info: {login_info}")
+    # accessToken = login_info['accessToken']
+    # Retrieve the access token from the request headers
+    accessToken = request.headers.get('Authorization')
+    if not accessToken:
+        raise HTTPException(status_code=401, detail="Authorization header missing")
+
+    # Assume the accessToken is in the format 'Bearer <token>'
+    accessToken = accessToken.split(" ")[1] if " " in accessToken else accessToken
+    logger.info(f"Access Token: {accessToken}")
     # Set up headers for authorization
     headers = {
         'Authorization': f'Bearer {accessToken}'
@@ -1229,7 +1214,7 @@ def make_api_call(url: str) -> List[dict]:
                             (parsed_url.scheme, parsed_url.netloc, parsed_url.path, parsed_url.params, new_query_string, parsed_url.fragment)
                         )
                         response = requests.get(new_url)
-                        logger.debug(f"FastAPI: API Call response of sub url {new_url} with id: {id_clean}\n: {response.json()}")
+                        logger.debug(f"FastAPI: API Call response of sub url {new_url} with id: {id_clean}")
                         response.raise_for_status()
                         combined_results.append(response.json())
 
@@ -1238,7 +1223,7 @@ def make_api_call(url: str) -> List[dict]:
         if not combined_results:  # If no list parameters were found or processed
             # Execute a normal API call with the original URL
             response = requests.get(url)
-            logger.debug(f"FastAPI: API Call for single url: {url}: {response.json()}")
+            logger.debug(f"FastAPI: API Call for single url: {url}")
             response.raise_for_status()
             combined_results.append(response.json())
         #logger.debug(f"FastAPI: API Call response of url {url}\n: {combined_results} ")
@@ -1246,53 +1231,79 @@ def make_api_call(url: str) -> List[dict]:
     except requests.RequestException as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
 
+# def extract_data(json_data, custom_path):
+#     # If the JSON data is a list and not a dictionary at the top level, we wrap it in a dictionary
+#     if isinstance(json_data, list) and len(json_data) == 1:
+#         json_data = json_data[0]  # Use the first dictionary in the list
+    
+#     # Use regular expressions to parse the custom path
+#     match = re.match(r"(.*)\[\*\]\.\((.*)\)", custom_path)
+#     if not match:
+#         return "Invalid custom path format"
+    
+#     base_path, fields = match.groups()
+#     field_list = fields.split(", ")
+    
+#     # Navigate to the correct level in the JSON data
+#     content = json_data
+    
+#     for key in base_path.split('.'):
+#         if isinstance(content, dict) and key in content:
+#             print(key, content[key])
+#             content = content[key]
+#         else:
+#             return "Path not found or not a dictionary at some level"
+    
+#     # Ensure the content is a list for iteration
+#     if not isinstance(content, list):
+#         return "Expected list at path, got something else"
+    
+#     # Extract the specified fields from each item in the list
+#     result = []
+#     for item in content:
+#         values = [str(item.get(field, 'Field not found')) for field in field_list]
+#         result.append(":".join(values))
+    
+#     list_result = "\n".join(result)
+#     logger.debug(f"FastAPI: Extracted data: {list_result}")
+#     return list_result
+
+
 def extract_data(json_data, path):
-    logger.debug(f"FastAPI: Extract data from JSON single : {json_data} => Path: {path}")
-    """
-    Extracts data from json_data based on the provided path and returns a concatenated string
-    of values or dictionaries with specified fields in the path.
-
-    :param json_data: The JSON data from which to extract information (assumed to be a single dictionary).
-    :param path: The path to the data to extract, in the format 'key1.key2[*].field' or 'key1.key2[*].(field1,field2)'.
-    :return: A concatenated string of values or formatted strings based on the path.
-    """
-    current_data = json_data  # Start with the entire JSON object
-    elements = path.split('.')
-    for elem in elements[:-1]:  # Navigate down to the last key
-        if elem.endswith('[*]'):
-            key = elem[:-3]
-            if key in current_data and isinstance(current_data[key], list):
-                current_data = current_data[key]
-            else:
-                current_data = []
-                break  # Exit if the key is not found or is not a list
-        elif elem in current_data:
-            current_data = current_data[elem]
-        else:
-            current_data = []
-            break  # Exit if the key is not found
-
-    # Extract the final element, possibly multiple fields
-    final_results = []
-    last_element = elements[-1]
-    if last_element.startswith('(') and last_element.endswith(')'):
-        fields = last_element.strip('()').split(',')
-        for item in current_data:  # current_data should be a list from the previous navigation
-            extracted = {field.strip(): item.get(field.strip()) for field in fields if isinstance(item, dict)}
-            final_results.append(extracted)
-    else:
-        for item in current_data:  # Similarly, process each item if it's a list
-            if isinstance(item, dict) and last_element in item:
-                final_results.append(item[last_element])
-
-    logger.debug(f"FastAPI: Extracted choices final_results => {final_results}")
-    # Convert list of results to a formatted string if needed
-    if all(isinstance(i, dict) for i in final_results):
-        results_str = '\n'.join([f"{item.get('id')}:{item.get('name')}" for item in final_results if 'id' in item and 'name' in item])
-    else:
-        results_str = '\n'.join(map(str, final_results))
-    logger.debug(f"FastAPI: Extracted choices - {results_str}")
-    return results_str
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    # Check if the initial json_data is a list and use the first element
+    if isinstance(json_data, list):
+        json_data = json_data[0]
+    
+    #logger.debug(f"FastAPI: Extracting data from JSON: {json_data}")
+    
+    try:
+        base_path, fields = path.split('[*].')
+        fields = fields.strip('()').split(',')
+        fields = [field.strip() for field in fields]
+        
+        # Navigate to the base path in the JSON data
+        for key in base_path.split('.'):
+            json_data = json_data[key] if key in json_data else None
+            if json_data is None:
+                raise KeyError(f"Key '{key}' not found in the JSON data.")
+        
+        # Extract the desired fields from each item in the resulting JSON data
+        results = []
+        for item in json_data:
+            result = ':'.join(str(item.get(field, 'Field not found')) for field in fields)
+            results.append(result)
+        
+        # Joining all results with newline characters
+        list_result = '\n'.join(results)
+        logger.debug(f"FastAPI: Extracted data: {list_result}")
+        return list_result
+    
+    except Exception as e:
+        logger.error(f"Error extracting data: {str(e)}")
+        return f"Error: {str(e)}"
 
 def extracted_from_extract_data(last_element, current_data):
     fields = last_element.replace(' ', '').strip('()').split(',')
@@ -1432,8 +1443,16 @@ async def home(request: Request, response: Response):
     return templates.TemplateResponse("intro.html", {"request": request})
 
 @app.get("/get_report/{user_id}/{petname}")
-async def get_report(user_id: int, petname: str = Path(..., description="The name of the pet")):
-    logger.info(f"FastAPI: Getting health report for user ID: {user_id} and petname: {petname}")
+async def get_report(request: Request, user_id: int, petname: str = Path(..., description="The name of the pet")):
+    
+    # Retrieve the access token from the request headers
+    accessToken = request.headers.get('Authorization')
+    if not accessToken:
+        raise HTTPException(status_code=401, detail="Authorization header missing")
+
+    # Assume the accessToken is in the format 'Bearer <token>'
+    accessToken = accessToken.split(" ")[1] if " " in accessToken else accessToken
+    logger.info(f"FastAPI: Getting health report for user ID: {user_id} and petname: {petname} and access token: {accessToken}")
     metadatatexts = getMetadataText(user_id, petname)
     '''
     {pet_id} // {usr_id} // {
@@ -1448,10 +1467,6 @@ async def get_report(user_id: int, petname: str = Path(..., description="The nam
         "pet_id": pet_id,
         "survey_metadatas": metadatatexts
     }
-    
-    login_info = loginUser(user_id)
-    logger.debug(f"Login info: {login_info}")
-    accessToken = login_info['accessToken']
     # Set up headers for authorization
     headers = {
         'Authorization': f'Bearer {accessToken}'

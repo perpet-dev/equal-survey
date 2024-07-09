@@ -24,38 +24,38 @@ def APICALL(url, parameters):
         print(f"An error occurred: {e}")
     return []
 
-def extract_data(json_data, path):
-    """
-    Extracts data from json_data based on the provided path and returns a list of values or
-    dictionaries with specified fields in the path.
+# def extract_data(json_data, path):
+#     """
+#     Extracts data from json_data based on the provided path and returns a list of values or
+#     dictionaries with specified fields in the path.
 
-    :param json_data: The JSON data from which to extract information.
-    :param path: The path to the data to extract, in the format 'key1.key2[*].field' or 'key1.key2[*].(field1,field2)'.
-    :return: A list of values or dictionaries with specified fields.
-    """
-    elements = path.split('.')
-    current_data = json_data
+#     :param json_data: The JSON data from which to extract information.
+#     :param path: The path to the data to extract, in the format 'key1.key2[*].field' or 'key1.key2[*].(field1,field2)'.
+#     :return: A list of values or dictionaries with specified fields.
+#     """
+#     elements = path.split('.')
+#     current_data = json_data
 
-    for elem in elements[:-1]:  # Process all elements except the last
-        if elem.endswith('[*]'):
-            key = elem[:-3]
-            if key in current_data and isinstance(current_data[key], list):
-                current_data = current_data[key]
-            else:
-                return []  # Key not found or not a list
-        else:
-            if elem in current_data:
-                current_data = current_data[elem]
-            else:
-                return []  # Key not found
+#     for elem in elements[:-1]:  # Process all elements except the last
+#         if elem.endswith('[*]'):
+#             key = elem[:-3]
+#             if key in current_data and isinstance(current_data[key], list):
+#                 current_data = current_data[key]
+#             else:
+#                 return []  # Key not found or not a list
+#         else:
+#             if elem in current_data:
+#                 current_data = current_data[elem]
+#             else:
+#                 return []  # Key not found
 
-    last_element = elements[-1]
-    if '(' in last_element and last_element.endswith(')'):
-        fields = last_element.replace(' ', '').strip('()').split(',')
-        return [{field: item.get(field) for field in fields} for item in current_data if isinstance(item, dict)]
-    else:
-        # For a single field, return a list of values
-        return [item.get(last_element) for item in current_data if isinstance(item, dict)]
+#     last_element = elements[-1]
+#     if '(' in last_element and last_element.endswith(')'):
+#         fields = last_element.replace(' ', '').strip('()').split(',')
+#         return [{field: item.get(field) for field in fields} for item in current_data if isinstance(item, dict)]
+#     else:
+#         # For a single field, return a list of values
+#         return [item.get(last_element) for item in current_data if isinstance(item, dict)]
 
 # # Example usage
 # print("Breeds list for cat:")

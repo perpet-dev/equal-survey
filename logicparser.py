@@ -155,6 +155,18 @@ class Parser:
         #logger.debug(f"parse_conditional: {conditional}")
         return conditional
     
+    def parse_logical_expression(self):
+        expression = self.parse_simple_expression()
+        while self.tokenizer.peek_next_token() and self.tokenizer.peek_next_token()['type'] in ['OR', 'AND']:
+            operator = self.tokenizer.get_next_token()
+            right = self.parse_simple_expression()
+            expression = {
+                'left': expression,
+                'operator': operator['type'].lower(),
+                'right': right
+            }
+        return expression
+    
     def parse_condition(self, lhs_token):
         # Parse condition based on lhs_token type
         condition = None
@@ -319,15 +331,17 @@ class Parser:
 # logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@pet_type==dog) THEN (GOTO: 21) ELSE (GOTO: 23)"
 
 # logic_line = "IF (#Y) THEN (GOTO: 19) ELIF (@pet_type==dog) THEN (GOTO: 21) ELSE (GOTO: 23)"
-# logic_lines = logic_line.split("\n")
-# for line in logic_lines:
-#     if line.strip() == "":
-#         continue
-#     print(f"Logic line: {line}")
-#     tokenizer = Tokenizer()
-#     parser = Parser(tokenizer)
-#     parsed_statements = parser.parse(line)
-#     parse_info = {
-#         "parsed_statements": parsed_statements
-#     }
-#     print(f"parse_info: {parse_info}")  # Debugging statement
+logic_line = "IF(@ear_condition==normal) THEN (GOTO:59) ELIF(@ear_condition==unconfirmed) THEN (GOTO:59) ELSE (GOTO:58)"
+
+logic_lines = logic_line.split("\n")
+for line in logic_lines:
+    if line.strip() == "":
+        continue
+    print(f"Logic line: {line}")
+    tokenizer = Tokenizer()
+    parser = Parser(tokenizer)
+    parsed_statements = parser.parse(line)
+    parse_info = {
+        "parsed_statements": parsed_statements
+    }
+    print(f"parse_info: {parse_info}")  # Debugging statement

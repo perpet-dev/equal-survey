@@ -1,4 +1,5 @@
 import logging
+from math import log
 import pandas as pd
 import json
 
@@ -96,9 +97,6 @@ class Automaton:
         # Retrieve the full response for the question using the question_id
         full_response = self.get_user_answer(question_id)
         logger.debug(f"full_response: {full_response}")
-        # For example, you might have stored the user's choices in a dictionary like so:
-        # self.variables = {'2 -> What's your name?': 'Ivan', '3 -> Hi @2, What pizza size do you prefer?': 'Medium - $15'}
-        # You would extract 'Medium' from 'Medium - $15' and return it.
 
         # Split the response on ' - ' and return the choice part
         # Split the response on ': ' and return the choice part
@@ -107,8 +105,7 @@ class Automaton:
             choice = full_response.split(':')[0]
             logger.debug(f"get_user_choice:{choice.strip()}")
             return choice.strip()
-
-        # Return None if the response is not found
+        
         return None
 
     def execute_action(self, action):
@@ -523,7 +520,9 @@ class Automaton:
             list: A list of question IDs that need to be revisited.
         """
         logger.debug(f"Updating dependents for variable: {variable}")
-        #logger.debug(f"dependency_map = {self.dependency_map}")
+        logger.debug(f"self.question_path: {self.question_path}")
+        logger.debug(f"dependency_map = {self.dependency_map}")
+        
         affected_questions = []
         if variable in self.dependency_map:
             logger.debug(f"update_redo_questions variable: {variable}")
@@ -554,23 +553,6 @@ class Automaton:
         """
         Processes the user's answer to a given question and determines the next step.
         """
-        redo_questions= []
-        remove_questions = []
-        # Check if this question has been answered before
-        if question_id in self.user_answers:
-            logger.debug(f"Answer is an update for question_id: {question_id}")
-            # This is an update, handle accordingly
-            # Gather questions for removal based on dependencies
-            if question_id in self.dependency_map:
-                remove_candidates = self.dependency_map[question_id].get('remove', [])
-                for candidate in remove_candidates:
-                    # Check if the candidate question is in the path
-                    if candidate in self.question_path:
-                        if candidate not in remove_questions:
-                            remove_questions.append(candidate)
-
-        # Store the user's answer
-        # logger.debug(f"self.states: {self.states}")
         self.variables[str(question_id) + " -> " + self.states[question_id]['Question']] = answer
         self.store_user_answer(question_id, answer)
         logger.debug(f"user_answers: {self.user_answers}")
@@ -685,89 +667,69 @@ class Automaton:
         # Return the next step or None if no further action is required
         logger.debug(f"Next step: {next_step}")
         
-        # # After processing, identify which variables have changed
-        # updated_variables = [
-        #     var for var in self.variables
-        #     if variables_snapshot_before.get(var) != self.variables[var]
-        # ]
-        # logger.debug(f"variables_snapshot_before: {variables_snapshot_before}")
-        # logger.debug(f"current variables: {self.variables}")
-        # logger.debug(f"Updated variables: {updated_variables}")
+        # Gather questions for removal based on dependencies
+        remove_questions = []
         
-        # # Use updated variables to identify dependent questions that need revisiting
-        # affected_questions = []
-        # for var in updated_variables:
-        #     if var.startswith('@'):
-        #         affected_questions.extend(self.update_dependents_questions(var))
-        
-        # # Ensure the current question_id is not in the affected_questions list
-        # if question_id in affected_questions:
-        #     affected_questions.remove(question_id)
-        # logger.debug(f"affected_questions: {affected_questions}")
-        updated_affected_questions = {}
-        # for affected_question_id in affected_questions:
-        #     affected_node = self.states.get(affected_question_id)
-        #     if affected_node:
-        #         # Substitute placeholders in the affected question's text
-        #         updated_question_text = self.substitute_placeholders(affected_node['Question'])
-        #         updated_affected_questions[affected_question_id] = updated_question_text
-        #         #logger.debug(f"updated_affected_questions: {updated_affected_questions}")
-        # logger.debug(f"updated_affected_questions: {updated_affected_questions}")
-        
-        # Use updated variables to identify dependent questions that need revisiting
-        # redo_questions = []
-        
-        # After processing, identify which variables have changed
-        updated_variables = [
-            var for var in self.variables
-            if variables_snapshot_before.get(var) != self.variables[var]
-        ]
-        for var in updated_variables:
-            redo_questions.extend(self.update_redo_questions(var))
-        
-        # Ensure the current question_id is not in the affected_questions list
-        if question_id in redo_questions:
-            redo_questions.remove(question_id)
-        for q_id in redo_questions:
-            if q_id not in self.question_path:
-                logger.debug(f"remove question {q_id} from redo list")
-                redo_questions.remove(q_id)
-        logger.debug(f"must redo questions: {redo_questions} // question_path: {self.question_path}")
+        # Fetch the dependency details for the question_id, default to an empty dictionary if not found
+        dependency_details = self.dependency_map.get(question_id, {})
+        remove_candidates = dependency_details.get('remove', []) 
+        logger.debug(f"remove_candidates: {remove_candidates}")
+        logger.debug(f"self.question_path: {self.question_path}")
+        for candidate in remove_candidates:
+                # Check if the candidate question is in the path
+                if candidate in self.question_path:
+                    self.question_path.remove(candidate)
+                    key_variable = str(candidate) + " -> " + self.states[candidate]['Question']
+                    if key_variable in self.variables:
+                        logger.debug(f"Removing key_variable: {key_variable} {self.variables[key_variable]}")
+                        del self.variables[key_variable]
+                    remove_questions.append(candidate)
+                    # Remove user answers associated with the candidate if they exist
+                    if candidate in self.user_answers:
+                        del self.user_answers[candidate]
 
-        # # # Gather questions for removal based on dependencies
-        # # remove_questions = []
-        # for question_id in redo_questions:
-        #     if question_id in self.dependency_map:
-        #         # Assuming 'remove' key holds questions that depend on this one
-        #         remove_candidates = self.dependency_map[question_id].get('remove', [])
-        #         for candidate in remove_candidates:
-        #             # Check if the candidate question is in the path
-        #             if candidate in self.question_path:
-        #                 remove_questions.append(candidate)
+                    # Extract and handle the variable from the logic string if it exists
+                    if candidate in self.states and 'Logic' in self.states[candidate]:
+                        logic_string = self.states[candidate]['Logic']
+                        # Check for a specific pattern like 'SET (@variable_name)'
+                        import re
+                        match = re.search(r'SET \((@\w+)\)', logic_string)
+                        if match:
+                            variable = match.group(1)  # Extract the variable name including '@'
+                            # Safely remove the variable from self.variables if it exists
+                            if variable in self.variables:
+                                logger.debug(f"Removing (fro delete) variable: {variable}")
+                                del self.variables[variable]
+                    
         
-
-        
-                
-        # # Now, remove questions from `question_path` and potentially from `user_answers`
-        # for question_id in redo_questions:
-        #     if question_id in self.question_path:
-        #         self.question_path.remove(question_id)
-        #     if question_id in self.user_answers:
-        #         del self.user_answers[question_id]
-        for question_id in redo_questions:
-            if question_id in self.question_path:
-                if question_id not in remove_questions:
-                    remove_questions.append(question_id)
-
-        # Now, remove questions from `question_path` and potentially from `user_answers`
-        for question_id in remove_questions:
-            if question_id in self.question_path:
-                self.question_path.remove(question_id)
-            if question_id in self.user_answers:
-                del self.user_answers[question_id]
-
-        logger.debug(f"Removed questions: {remove_questions}")
-        
+        logger.debug(f"Must remove questions: {remove_questions}")
+        dependency_details = self.dependency_map.get(question_id, {})
+        redo_candidates = dependency_details.get('redo', [])
+        logger.debug(f"redo_candidates: {redo_candidates}")
+        logger.debug(f"self.question_path: {self.question_path}")
+        redo_questions = []
+        for candidate in redo_candidates:
+            if candidate in self.question_path:
+                redo_questions.append(candidate)
+                # Extract and handle the variable from the logic string if it exists
+                if candidate in self.states and 'Logic' in self.states[candidate]:
+                    logic_string = self.states[candidate]['Logic']
+                    # Check for a specific pattern like 'SET (@variable_name)'
+                    import re
+                    match = re.search(r'SET \((@\w+)\)', logic_string)
+                    if match:
+                        variable = match.group(1)  # Extract the variable name including '@'
+                        # Safely remove the variable from self.variables if it exists
+                        if variable in self.variables:
+                            logger.debug(f"Removing (for redo) variable: {variable}")
+                            del self.variables[variable]
+                        
+        logger.debug(f"Must redo questions: {redo_questions}")
+        if next_step in remove_questions:
+            remove_questions.remove(next_step)
+            logger.debug(f"{next_step} was in remove_questions and has been removed. Updated list: {remove_questions}")
+        else:
+            logger.debug(f"{next_step} not found in remove_questions.")
         if(len(redo_questions)>1):
             redo_questions.sort()
             next_step = redo_questions[0]
@@ -788,9 +750,10 @@ class Automaton:
                 for q_id in redo_questions: 
                     next_step = q_id
                     break    
+        self.goto = next_step
         logger.debug(f"After process answer, found next step: {next_step}")
         
-        return next_step, updated_affected_questions, redo_questions, remove_questions
+        return next_step, [], redo_questions, remove_questions
 
     def build_dependency_map(self):
         # Extend this method to include dependencies in question text
