@@ -10,6 +10,8 @@ from numpy import size
 from pydantic import BaseModel
 from typing import Any, Optional, Tuple, List, Dict
 
+import pymongo
+
 from automaton import Automaton
 import base64
 from io import BytesIO
@@ -30,6 +32,9 @@ logger = logging.getLogger(__name__)
 from config import APISERVER, PREFIXURL
 from userdb import UserInfo
 from petdb import PetInfo
+
+import aiohttp
+import asyncio
 # Assuming UserInfo class is already imported
 user_db = UserInfo()  # Global instance for reusing the connection pool
 pet_db = PetInfo()  # Global instance for reusing the connection pool
@@ -119,7 +124,7 @@ async def initialize_session(
     questionnaire_id: str,
     user_id: str = Header(None, alias='X-User-ID'),
     access_token: str = Header(None, alias='X-Access-Token'),
-    query_params: Optional[Dict[str, Any]] = Body(default={}, embed=True)  # Use embed=True if needed
+    query_params: Optional[Dict[str, Any]] = Body(default={}, embed=True) 
 ):
     # Extract pet_type and petname from the query_params if available
     pet_type = query_params.get('pet_type')
@@ -177,7 +182,13 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
     goto = '1'
     if not session_data:
         logger.debug("No session data found, creating new session and automaton.")
-        session_id = str(uuid.uuid4())
+        #session_id = str(uuid.uuid4())
+        if questionnaire_id == "Back_Questionnaire":
+            session_data = session_collection.find_one({"session_key": f"{pet_info}_PerpetHealthCheckIntro"})
+            session_id = session_data['session_id']
+        else:
+            session_id = str(uuid.uuid4())
+            
         automaton = Automaton()
         automaton_data = await create_or_update_automaton(automaton, questionnaire_id)
         petname = query_params.get('petname')
@@ -196,18 +207,39 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
                 user_answers['1'] = pet_type
                 goto = '2'
         
-        session_collection.insert_one({
-            "session_key": session_key,
-            "session_id": session_id,
-            "questionnaire_id": questionnaire_id,
-            "insertDate": formatted_datetime,
-            "automaton_id": automaton_data['_id'],
-            "user_id": int(user_id),
-            "goto": goto,
-            "user_answers": user_answers,
-            "variables": variables,
-            "questions_history": {}
-        })
+        logger.info(f"Creating new session data for session_key: {session_key}, session_id: {session_id}, questionnaire_id: {questionnaire_id}")
+        # session_collection.update_one({
+        #     "session_key": session_key,
+        #     "session_id": session_id,
+        #     "questionnaire_id": questionnaire_id,
+        #     "insertDate": formatted_datetime,
+        #     "automaton_id": automaton_data['_id'],
+        #     "user_id": int(user_id),
+        #     "goto": goto,
+        #     "user_answers": user_answers,
+        #     "variables": variables,
+        #     "questions_history": {}
+        # })
+        try:
+            session_collection.update_one(
+                {"session_id": session_id, "questionnaire_id": questionnaire_id},
+                {
+                    "$set": {
+                        "session_key": session_key,
+                        "insertDate": formatted_datetime,
+                        "automaton_id": automaton_data['_id'],
+                        "user_id": int(user_id),
+                        "goto": goto,
+                        "user_answers": user_answers,
+                        "variables": variables,
+                        "questions_history": {}
+                    }
+                },
+                upsert=True  # This will insert the document if it does not exist
+            )
+        except pymongo.errors.PyMongoError as e:
+            logger.error(f"An error occurred: {e}")
+            raise
     else:
         automaton = Automaton()
         logger.debug(f"Found existing session data, loading automaton.{session_data}")
@@ -902,7 +934,12 @@ async def existNonRegistered(user_id: int, pet_name: str):
         filter = {"session_key": session_key}
         document = session_collection.find_one(filter)
         if document:
-            return True
+            petprofile = pet_db.get_pet_profile(user_id, pet_name)
+            if petprofile is None:
+                return True
+            else:
+                logger(f"user_id:{user_id} has a registered pet name: {petname}")
+                return False
         else:
             return False
     except Exception as e:
@@ -1471,23 +1508,48 @@ async def get_report(request: Request, user_id: int, petname: str = Path(..., de
     headers = {
         'Authorization': f'Bearer {accessToken}'
     }
-    try:
-        logger.info(f"Sending health report data: {result}")
-        response = requests.post(f'{APISERVER}/checkup-service/v2/checkup', json=result, headers=headers)
-        response.raise_for_status()  # This will raise an HTTPError for bad responses
-        # should update the session with the pet_id and survey_id
-        answer = response.json()
-        logger.info(f"health report response: {answer}")
-        # Access the 'id' value within the 'data' dictionary
+    # try:
+    #     logger.info(f"Sending health report data: {result}")
+    #     response = requests.post(f'{APISERVER}/checkup-service/v2/checkup', json=result, headers=headers)
+    #     response.raise_for_status()  # This will raise an HTTPError for bad responses
+    #     # should update the session with the pet_id and survey_id
+    #     answer = response.json()
+    #     logger.info(f"health report response: {answer}")
+    #     # Access the 'id' value within the 'data' dictionary
         
-        checkup_id = answer['data']['id']
-        #url = f"{APISERVER}/report-service/v2/report/{checkup_id}/redirect"
-        logger.debug(f"Checkup ID: {checkup_id}")
-        return checkup_id
+    #     checkup_id = answer['data']['id']
+    #     #url = f"{APISERVER}/report-service/v2/report/{checkup_id}/redirect"
+    #     logger.debug(f"Checkup ID: {checkup_id}")
+    #     return checkup_id
         
-    except requests.RequestException as e:
-        logger.error(f"Failed to get health report: {str(e)}")
-        raise HTTPException(status_code=400, detail="Failed to get health report") from e
+    # except requests.RequestException as e:
+    #     logger.error(f"Failed to get health report: {str(e)}")
+    #     raise HTTPException(status_code=400, detail="Failed to get health report") from e
+    url = f'{APISERVER}/checkup-service/v2/checkup'
+    async with aiohttp.ClientSession() as session:
+        try:
+            logger.info(f"Sending health report data: {result}")
+            async with session.post(url, json=result, headers=headers) as response:
+                if response.status != 200:
+                    response_text = await response.text()
+                    logger.error(f"Failed to get health report: {response_text}")
+                    raise aiohttp.ClientResponseError(
+                        request_info=response.request_info,
+                        history=response.history,
+                        status=response.status,
+                        message=response_text,
+                        headers=response.headers
+                    )
+                answer = await response.json()
+                logger.info(f"health report response: {answer}")
+                
+                checkup_id = answer['data']['id']
+                logger.debug(f"Checkup ID: {checkup_id}")
+                return checkup_id
+        
+        except aiohttp.ClientError as e:
+            logger.error(f"Failed to get health report: {str(e)}")
+            raise HTTPException(status_code=400, detail="Failed to get health report") from e
 
 @app.get("/get_metadatatexts/{user_id}/{petname}")
 async def get_metadatext(user_id: int, petname: str):
