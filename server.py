@@ -341,7 +341,7 @@ async def restore_session(questionnaire_id: str, session_id: str):
         }
         session_collection.insert_one(session_data)
     session_key = session_data['session_key']
-    logger.debug(f"Restore => Session data for session_key: {session_key}")
+    logger.debug(f"Restore => Session data for session_key: {session_key},  session_id:{session_id}")
     
     # Proceed with session restoration logic
     questions_history = session_data.get("questions_history", {})
@@ -382,7 +382,7 @@ async def restore_session(questionnaire_id: str, session_id: str):
         "user_answers": session_data.get("user_answers", {})
     }
     
-    logger.debug(f"Restored session data: done")
+    logger.debug(f"Restored session data: done => {restored_session_data}")
     return restored_session_data
 
 @app.post("/get_question/{questionnaire_id}/{question_id}")
@@ -587,6 +587,8 @@ async def submit_answer(
 ):
     # Here you can use user_id and access_token as needed
     logger.debug(f"Received user_id: {user_id}, access_token: {access_token}, session_id: {session_id}")
+    
+    
     automaton, _ = await get_automaton_for_user(session_id, questionnaireId)
     
     question_id = submission.question_id
@@ -642,22 +644,6 @@ async def submit_answer(
     answer_choices = node.get("AnswerChoices")
     logger.debug(f"FastAPI: => Answer choices: {answer_choices}")
     
-    # if "APICALL" in answer_choices:
-    #     logger.debug("Should make API CALL")
-    #     api_call = answer_choices.split("APICALL(")[1].split(")")[0]
-    #     api_call = automaton.substitute_placeholders(api_call)
-    #     logger.debug(f"API CALL: {api_call}")
-    #     if "EXTRACT" in answer_choices:
-    #         extract_key = extract_from_function(answer_choices)
-    #         response = make_api_call(api_call)
-    #         # logger.info(f"API Call response: {response}") 
-    #         logger.debug(f"submit_answers - Should Extract data: {extract_key}")
-    #         answer_choices = extract_data(response, extract_key)
-    #         logger.info(f"answer_choices: {answer_choices}")
-    #     else:
-    #         response = make_api_call(api_call)
-    #         answer_choices = response
-    #         logger.info(f"API Call response: {answer_choices}")
     if "APICALL" in answer_choices:
         
         api_call = answer_choices.split("APICALL(")[1].split(")")[0]
