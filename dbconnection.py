@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import pooling
+import time
 from mysql.connector import Error
 import logging
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE
@@ -21,24 +22,57 @@ class DatabaseConnectionPool:
             self.pool = self.create_pool()
 
     def create_pool(self):
-        try:
-            pool = pooling.MySQLConnectionPool(
-                pool_name="surveys_pool",
-                pool_reset_session=True,
-                pool_size=5,
-                host=DB_HOST,
-                port=DB_PORT,
-                user=DB_USER,
-                password=DB_PASSWORD,
-                database=DB_DATABASE,
-                charset='utf8mb4',
-                collation='utf8mb4_general_ci'
-            )
-            logger.info("Database connection pool successfully established.")
-            return pool
-        except Error as e:
-            logger.error(f"Error connecting to the database platform: {e}")
-            return None
+        # try:
+        #     pool = pooling.MySQLConnectionPool(
+        #         pool_name="surveys_pool",
+        #         pool_reset_session=True,
+        #         pool_size=5,
+        #         host=DB_HOST,
+        #         port=DB_PORT,
+        #         user=DB_USER,
+        #         password=DB_PASSWORD,
+        #         database=DB_DATABASE,
+        #         charset='utf8mb4',
+        #         collation='utf8mb4_general_ci'
+        #     )
+        #     logger.info("Database connection pool successfully established.")
+        #     return pool
+        # except Error as e:
+        #     logger.error(f"Error connecting to the database platform: {e}")
+        #     return None
+        # Retry configuration
+        MAX_RETRIES = 5
+        RETRY_DELAY = 5  # in seconds
+        retries = 0
+        connection_pool = None
+
+        while retries < MAX_RETRIES:
+            try:
+                connection_pool = mysql.connector.pooling.MySQLConnectionPool(
+                    pool_name="surveys_pool",
+                    pool_size=5,  # Adjust pool size as needed
+                    pool_reset_session=True,
+                    host=DB_HOST,
+                    database=DB_DATABASE,
+                    user=DB_USER,
+                    password=DB_PASSWORD,
+                    port=DB_PORT,
+                    charset='utf8mb4',
+                    collation='utf8mb4_general_ci'
+                )
+                logger.info("Connection pool created successfully.")
+                break  # Exit the loop if the connection pool is created successfully
+            except Error as e:
+                retries += 1
+                logger.error(f"Error creating connection pool: {e}")
+                if retries < MAX_RETRIES:
+                    logger.info(f"Retrying to create connection pool in {RETRY_DELAY} seconds... (Attempt {retries}/{MAX_RETRIES})")
+                    time.sleep(RETRY_DELAY)
+                else:
+                    logger.error("Max retries reached. Failed to create connection pool.")
+                    break
+
+        return connection_pool
 
     def get_connection(self):
         try:
