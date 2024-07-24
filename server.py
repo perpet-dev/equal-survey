@@ -1046,8 +1046,11 @@ async def register_pet(request: Request, session_id: str):
     if automaton.get_variable_value("@disease_id"):
         #pet_data["profile"]["disease_id"] = automaton.get_variable_value("@disease_id")  # Assuming it's a comma-separated string of numbers
         disease_ids = automaton.get_variable_value("@disease_id")
-        disease_id_string = ','.join(disease_ids)
-        pet_data["profile"]["disease_id"] = disease_id_string
+        logger.debug(f"Disease IDs: {disease_ids}")
+        # disease_id_string = ','.join(disease_ids) => no, it's already comma separated
+        # logger.debug(f"Disease IDs string : {disease_id_string}")
+        
+        pet_data["profile"]["disease_id"] = disease_ids
     else:
         pet_data["profile"]["disease_id"] = ""
 
