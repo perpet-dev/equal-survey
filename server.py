@@ -1587,7 +1587,7 @@ def getMetadataText(user_id: int, petname: str):
         logger.debug(f"variables_front: {vf}")
 
         # If the value is falsy, or the key is not in variables_front, append the default text
-        if vf == 'no':  # This already checks both: f'@{key}' not in variables_front or not variables_front[f'@{key}']
+        if not vf or vf == 'no':  # This already checks both: f'@{key}' not in variables_front or not variables_front[f'@{key}']
             metadata_text.append(f"{key[:-3]}:{default_value}")  # Append default value, like 'disease:no'
             logger.debug(f"{key}: {default_value}")
         # else:
