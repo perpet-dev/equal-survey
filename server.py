@@ -1582,9 +1582,9 @@ def getMetadataText(user_id: int, petname: str):
     default_value = "no"  # Set this outside the loop, so it's not reset every iteration
 
     for key in required_keys:
-        logger.debug(f"Checking key: {key}")
+        #logger.debug(f"Checking key: {key}")
         vf = variables_front.get(f'@{key}', default_value)  # Use default_value here
-        logger.debug(f"variables_front: {vf}")
+        #logger.debug(f"variables_front: {vf}")
 
         # If the value is falsy, or the key is not in variables_front, append the default text
         if not vf or vf == 'no':  # This already checks both: f'@{key}' not in variables_front or not variables_front[f'@{key}']
@@ -1709,7 +1709,7 @@ def getMetadataText(user_id: int, petname: str):
         if key.startswith('@'):
             #logger.debug(f"back variable => {key}: {value}")
             metadata_key = key[1:]  # Remove '@' to match keys in the map
-            logger.debug(f"variable => {metadata_key}: {value}")
+            #logger.debug(f"variable => {metadata_key}: {value}")
             if metadata_key not in ignored_variables:
                 # Process and log if the variable is not in the ignored set
                 full_metadata = f"{metadata_key}:{value}"
