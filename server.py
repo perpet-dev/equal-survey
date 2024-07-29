@@ -1050,7 +1050,14 @@ async def register_pet(request: Request, session_id: str):
         # disease_id_string = ','.join(disease_ids) => no, it's already comma separated
         # logger.debug(f"Disease IDs string : {disease_id_string}")
         
-        pet_data["profile"]["disease_id"] = disease_ids
+        # Handle disease_ids whether it's a list or a string
+        if isinstance(disease_ids, list):
+            disease_id_string = ','.join(disease_ids)
+        else:
+            disease_id_string = disease_ids
+        
+        pet_data["profile"]["disease_id"] = disease_id_string
+
     else:
         pet_data["profile"]["disease_id"] = ""
 
