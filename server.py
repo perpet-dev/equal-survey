@@ -1587,12 +1587,12 @@ def getMetadataText(user_id: int, petname: str):
         logger.debug(f"variables_front: {vf}")
 
         # If the value is falsy, or the key is not in variables_front, append the default text
-        if not vf:  # This already checks both: f'@{key}' not in variables_front or not variables_front[f'@{key}']
+        if vf == 'no':  # This already checks both: f'@{key}' not in variables_front or not variables_front[f'@{key}']
             metadata_text.append(f"{key[:-3]}:{default_value}")  # Append default value, like 'disease:no'
             logger.debug(f"{key}: {default_value}")
-        else:
-            metadata_text.append(f"{key[:-3]}:{vf}")  # If key exists and value is not falsy, append the value
-            logger.debug(f"{key}: {vf}")
+        # else:
+        #     metadata_text.append(f"{key[:-3]}:{vf}")  # If key exists and value is not falsy, append the value
+        #     logger.debug(f"{key}: {vf}")
     
     ignored_variables = {'query_params', 'petname'}
     for key, value in variables_front.items():
@@ -1613,7 +1613,7 @@ def getMetadataText(user_id: int, petname: str):
                         metadata = getDiseaseMetaText(disease_id)
                         if metadata:
                             metadata_text.append(metadata)
-                            logger.debug(f"metadata: {metadata}")
+                            logger.debug(f"disease metadata: {metadata}")
                 else:
                     metadata_text.append("disease:no")
                     logger.debug("disease:no")
@@ -1632,7 +1632,7 @@ def getMetadataText(user_id: int, petname: str):
                         metadata = getAllergyMetaText(allergy_id)
                         if metadata:
                             metadata_text.append(metadata)
-                            logger.debug(f"metadata: {metadata}")
+                            logger.debug(f"allergy metadata: {metadata}")
                 else:
                     metadata_text.append("allergy:no")
                     logger.debug("allergy:no")
@@ -1742,11 +1742,13 @@ def getBreedMetaText(breed_id: str) -> str:
 def getDiseaseMetaText(disease_id: str) -> str:
     if len(disease_id) == 0:
         return None
-    logger.debug(f"getDiseaseMetaText -> diseaseid: {disease_id}")
-    return diseaseid_map.get(int(disease_id), None)
+    # logger.debug(f"getDiseaseMetaText -> diseaseid: {disease_id}")
+    diseaseMeta = diseaseid_map.get(int(disease_id), None) 
+    logger.debug(f"getDiseaseMetaText ->  diseaseid: {disease_id} => diseaseMata: {diseaseMeta}")
+    return diseaseMeta
 
 def getAllergyMetaText(allergy_id: str) -> str:
-    logger.debug(f"allergy_id: {allergy_id}")
+    #logger.debug(f"allergy_id: {allergy_id}")
     if len(allergy_id) == 0:
         return None
     return allergyid_map.get(int(allergy_id), None)
@@ -1776,7 +1778,7 @@ async def startup_event():
         for item in data
         if item['metadata_text'].startswith('allergy')
     }
-    #logger.debug(f"allergyid_map:{allergyid_map}")
+    logger.debug(f"allergyid_map:{allergyid_map}")
 
     with open('disease_Metadata.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -1785,9 +1787,9 @@ async def startup_event():
     diseaseid_map = {
         item['disease_id']: item['metadata_text']
         for item in data
-        if item['metadata_text'].startswith('disease')
+        if item['metadata_text'].startswith('disease:')
     }
-    #logger.debug(f"diseaseid_map:{diseaseid_map}")
+    logger.debug(f"diseaseid_map:{diseaseid_map}")
     session_collection.create_index([("session_id", ASCENDING), ("questionnaire_id", ASCENDING)], unique=True)
 
 LOGLEVEL = logging.DEBUG
