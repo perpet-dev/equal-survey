@@ -693,13 +693,18 @@ class Automaton:
                         logic_string = self.states[candidate]['Logic']
                         # Check for a specific pattern like 'SET (@variable_name)'
                         import re
-                        match = re.search(r'SET \((@\w+)\)', logic_string)
+                        #match = re.search(r'SET \((@\w+)\)', logic_string)
+                        match = re.search(r'SET \((@\w+\[?\]?)\)', logic_string)
+
                         if match:
                             variable = match.group(1)  # Extract the variable name including '@'
+                            # Clean the variable name by removing '[]' if present
+                            cleaned_variable = re.sub(r'\[\]', '', variable)
+                            logger.debug(f"Found a variable to delete : {cleaned_variable}")
                             # Safely remove the variable from self.variables if it exists
-                            if variable in self.variables:
-                                logger.debug(f"Removing (fro delete) variable: {variable}")
-                                del self.variables[variable]
+                            if cleaned_variable in self.variables:
+                                logger.debug(f"Removing (delete) variable: {cleaned_variable}")
+                                del self.variables[cleaned_variable]
                     
         
         logger.debug(f"Must remove questions: {remove_questions}")
