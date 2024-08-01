@@ -694,8 +694,8 @@ class Automaton:
                         # Check for a specific pattern like 'SET (@variable_name)'
                         import re
                         #match = re.search(r'SET \((@\w+)\)', logic_string)
-                        match = re.search(r'SET \((@\w+\[?\]?)\)', logic_string)
-
+                        match = re.search(r'SET\s*\((@\w+\[?\]?)\)', logic_string)
+                        logger.debug(f"Logic string for candidate {candidate}: {logic_string} / match: {match}")
                         if match:
                             variable = match.group(1)  # Extract the variable name including '@'
                             # Clean the variable name by removing '[]' if present
@@ -705,9 +705,9 @@ class Automaton:
                             if cleaned_variable in self.variables:
                                 logger.debug(f"Removing (delete) variable: {cleaned_variable}")
                                 del self.variables[cleaned_variable]
-                    
-        
+
         logger.debug(f"Must remove questions: {remove_questions}")
+
         dependency_details = self.dependency_map.get(question_id, {})
         redo_candidates = dependency_details.get('redo', [])
         logger.debug(f"redo_candidates: {redo_candidates}")

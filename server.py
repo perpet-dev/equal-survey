@@ -220,7 +220,47 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
         #     "variables": variables,
         #     "questions_history": {}
         # })
+        # try:
+        #     session_collection.update_one(
+        #         {"session_id": session_id, "questionnaire_id": questionnaire_id},
+        #         {
+        #             "$set": {
+        #                 "session_key": session_key,
+        #                 "insertDate": formatted_datetime,
+        #                 "automaton_id": automaton_data['_id'],
+        #                 "user_id": int(user_id),
+        #                 "goto": goto,
+        #                 "user_answers": user_answers,
+        #                 "variables": variables,
+        #                 "questions_history": {}
+        #             }
+        #         },
+        #         upsert=True  # This will insert the document if it does not exist
+        #     )
+        # except pymongo.errors.PyMongoError as e:
+        #     logger.error(f"An error occurred: {e}")
+        #     raise
         try:
+            # Check if the document exists
+            existing_document = session_collection.find_one(
+                {"session_id": session_id, "questionnaire_id": questionnaire_id}
+            )
+
+            if existing_document:
+                # Use previous data for fields not provided
+                session_key = existing_document.get("session_key", session_key)
+                formatted_datetime = existing_document.get("insertDate", formatted_datetime)
+                automaton_id = existing_document.get("automaton_id", automaton_data['_id'])
+                user_id = existing_document.get("user_id", int(user_id))
+                goto = existing_document.get("goto", goto)
+                user_answers = existing_document.get("user_answers", user_answers)
+                variables = existing_document.get("variables", variables)
+                questions_history = existing_document.get("questions_history", {})
+            else:
+                # No previous data, use the provided data
+                questions_history = {}
+
+            # Update the document, upsert=True will insert if it doesn't exist
             session_collection.update_one(
                 {"session_id": session_id, "questionnaire_id": questionnaire_id},
                 {
@@ -232,10 +272,10 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
                         "goto": goto,
                         "user_answers": user_answers,
                         "variables": variables,
-                        "questions_history": {}
+                        "questions_history": questions_history
                     }
                 },
-                upsert=True  # This will insert the document if it does not exist
+                upsert=True
             )
         except pymongo.errors.PyMongoError as e:
             logger.error(f"An error occurred: {e}")
