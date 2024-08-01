@@ -148,9 +148,10 @@ async def initialize_session(
 
     # For logged-in users or newly registered anonymous users
     if user_id and not session_id: 
-        profile = pet_db.get_pet_profile_deleted(user_id, petname)
+        profile_deleted = pet_db.get_pet_profile_deleted(user_id, petname)
+        profile_active = pet_db.get_pet_profile(user_id, petname)
         session_data = session_collection.find_one({"session_key": str(user_id) + "_" + petname+ "_" + questionnaire_id})
-        if session_data is not None and profile is not None:
+        if session_data is not None and profile_deleted and not profile_active is not None:
             logger.info(f"User: {user_id} has deleted profile in registered petname: {petname}")
             session_collection.delete_one({"session_key": str(user_id) + "_" + petname + "_" + questionnaire_id})
             
