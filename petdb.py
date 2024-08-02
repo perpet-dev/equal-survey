@@ -42,6 +42,35 @@ class PetInfo:
                 cursor.close()
             if connection:
                 self.close_connection(connection)
+                
+    def get_pet_profile_gender(self, user_id, petname):
+        connection = self.get_connection()
+        if connection is None:
+            logger.error("Failed to obtain database connection.")
+            return None
+
+        cursor = None
+        try:
+            cursor = connection.cursor()
+            sql = "SELECT `gender` FROM `pet` WHERE `user_id` = %s AND `name` = %s AND `use_yn` = 'Y';"
+            logger.debug("Executing SQL query: %s with parameters: %s, %s", sql, user_id, petname)
+            cursor.execute(sql, (user_id, petname))
+            results = cursor.fetchall()  # Fetch all results instead of fetchone
+            if results:
+                logger.debug("Pet profile gender successfully retrieved: %s", results[0][0])
+                return results[0][0]  # Return the gender from the first result
+            else:
+                logger.debug("No pet with name %s found for user_id: %s", petname, user_id)
+                return None
+        except Error as e:
+            logger.error("Failed to execute query: %s", e)
+            self.reconnect()  # Attempt to reconnect
+            return None
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                self.close_connection(connection)
     
     def get_pet_profile_deleted(self, user_id, petname):
         connection = self.get_connection()

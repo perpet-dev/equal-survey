@@ -1,5 +1,6 @@
 # server.py
 from math import log
+from operator import ge
 from fastapi import FastAPI, Path, Body, Form, Header, HTTPException, Depends, Response, Request, File, UploadFile, status, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -200,6 +201,14 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
         if gender:
             variables['@gender'] = gender
             automaton.set_variable_value("@gender", gender)
+        # retrieve gender from user_id / petname 
+        profile_active_gender = pet_db.get_pet_profile_gender(user_id, petname)
+        logger.debug(f"Profile gender: {profile_active_gender}")
+        if profile_active_gender is not None:
+            gender = profile_active_gender
+            variables['@gender'] = gender
+            automaton.set_variable_value("@gender", gender)
+            
         pet_type = query_params.get('pet_type')
         if pet_type:
             automaton.set_variable_value("@pet_type", pet_type)
