@@ -197,15 +197,18 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
         if petname:
             variables['@petname'] = petname
             automaton.set_variable_value("@petname", petname)
-        gender = query_params.get('gender')
-        if gender:
-            variables['@gender'] = gender
-            automaton.set_variable_value("@gender", gender)
+        # gender = query_params.get('gender')
+        # if gender:
+        #     variables['@gender'] = gender
+        #     automaton.set_variable_value("@gender", gender)
         # retrieve gender from user_id / petname 
         profile_active_gender = pet_db.get_pet_profile_gender(user_id, petname)
         logger.debug(f"Profile gender: {profile_active_gender}")
         if profile_active_gender is not None:
             gender = profile_active_gender
+            if gender == "female": 
+                logger.debug(f"gender is female ???? ")
+                gender = "F"
             variables['@gender'] = gender
             automaton.set_variable_value("@gender", gender)
             
@@ -218,38 +221,7 @@ async def retrieve_or_create_session_for_user(user_id: str, pet_info: str, quest
                 goto = '2'
         
         logger.info(f"Creating new session data for session_key: {session_key}, session_id: {session_id}, questionnaire_id: {questionnaire_id}")
-        # session_collection.update_one({
-        #     "session_key": session_key,
-        #     "session_id": session_id,
-        #     "questionnaire_id": questionnaire_id,
-        #     "insertDate": formatted_datetime,
-        #     "automaton_id": automaton_data['_id'],
-        #     "user_id": int(user_id),
-        #     "goto": goto,
-        #     "user_answers": user_answers,
-        #     "variables": variables,
-        #     "questions_history": {}
-        # })
-        # try:
-        #     session_collection.update_one(
-        #         {"session_id": session_id, "questionnaire_id": questionnaire_id},
-        #         {
-        #             "$set": {
-        #                 "session_key": session_key,
-        #                 "insertDate": formatted_datetime,
-        #                 "automaton_id": automaton_data['_id'],
-        #                 "user_id": int(user_id),
-        #                 "goto": goto,
-        #                 "user_answers": user_answers,
-        #                 "variables": variables,
-        #                 "questions_history": {}
-        #             }
-        #         },
-        #         upsert=True  # This will insert the document if it does not exist
-        #     )
-        # except pymongo.errors.PyMongoError as e:
-        #     logger.error(f"An error occurred: {e}")
-        #     raise
+
         try:
             # Check if the document exists
             existing_document = session_collection.find_one(
