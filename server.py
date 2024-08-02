@@ -614,18 +614,35 @@ async def get_question(
     #logger.debug(f"Automaton data: {automaton_data}")
     session_collection = mongo_db.automaton_sessions
     
-    session_data = session_collection.find_one({
-        "session_id": session_id,
-        "questionnaire_id": questionnaire_id
-    })
-    session_key = session_data['session_key']
-    
-    session_collection.update_one({"session_key": f"{session_key}"}, {"$set": automaton_data}, upsert=True)
-    
-    update_history_query = {"$set": {f"questions_history.{question_id}": question_data}}
-    session_collection.update_one({"session_key": f"{session_key}"}, update_history_query, upsert=True)
+    if session_id:
+        session_data = session_collection.find_one({
+            "session_id": session_id,
+            "questionnaire_id": questionnaire_id
+        })
+        
+        if session_data and 'session_key' in session_data:
+            session_key = session_data['session_key']
+            
+            session_collection.update_one(
+                {"session_key": f"{session_key}"},
+                {"$set": automaton_data},
+                upsert=True
+            )
+            
+            update_history_query = {"$set": {f"questions_history.{question_id}": question_data}}
+            session_collection.update_one(
+                {"session_key": f"{session_key}"},
+                update_history_query,
+                upsert=True
+            )
 
-    return question_data
+            return question_data
+        else:
+            logger.error(f"Session data for session_id: {session_id} and questionnaire_id: {questionnaire_id} does not contain a session_key.")
+            raise HTTPException(status_code=500, detail="Session data does not contain a session_key.")
+    else:
+        #logger.info("No session_id provided, skipping session data update.")
+        return question_data
 
 @app.post("/submit_answer/{questionnaireId}")
 async def submit_answer(
