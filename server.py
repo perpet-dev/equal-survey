@@ -134,6 +134,11 @@ async def initialize_session(
         user_id = query_params.get('user_id')
     session_id = query_params.get('session_id')
     gender = query_params.get('gender')
+    
+    
+    
+    
+    
     logger.debug(f"User ID: {user_id}, session_id: {session_id}, Questionnaire ID: {questionnaire_id}, petname: {petname}, pet_type: {pet_type}, gender:{gender}")
 
     if not user_id:
@@ -844,7 +849,19 @@ async def healthcheck(session_id: str):
     
     petname = automaton.get_variable_value("@petname")
     pet_type = automaton.get_variable_value("@pet_type")
-    gender = automaton.get_variable_value("@gender")
+    ### DB로 부터 gender 정보를 가져온다.
+    profile_active_gender = pet_db.get_pet_profile_gender(user_id, petname)
+    logger.debug(f"Profile gender: {profile_active_gender}")
+    if profile_active_gender is not None:
+        gender = profile_active_gender
+        if gender == "female": 
+            logger.debug(f"gender is female ???? ")
+            gender = "F"
+        #variables['@gender'] = gender
+        automaton.set_variable_value("@gender", gender)
+    
+    #gender = automaton.get_variable_value("@gender")
+    
     redirect_url_template = "Back_Questionnaire?user_id={user_id}&pet_type={pet_type}&petname={petname}&gender={gender}"
     
     redirect_url = redirect_url_template.format(
